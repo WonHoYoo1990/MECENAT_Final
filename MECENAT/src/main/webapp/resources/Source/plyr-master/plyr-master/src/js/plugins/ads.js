@@ -180,7 +180,7 @@ class Ads {
     this.loader.addEventListener(
       google.ima.AdsManagerLoadedEvent.Type.ADS_MANAGER_LOADED,
       event => this.onAdsManagerLoaded(event),
-      false,
+      false
     );
     this.loader.addEventListener(google.ima.AdErrorEvent.Type.AD_ERROR, error => this.onAdError(error), false);
 

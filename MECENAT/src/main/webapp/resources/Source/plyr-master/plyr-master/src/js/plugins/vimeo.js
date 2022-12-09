@@ -87,7 +87,7 @@ const vimeo = {
       muted: player.muted,
       gesture: 'media',
       playsinline: !this.config.fullscreen.iosNative,
-      ...frameParams,
+      ...frameParams
     });
 
     // Get the source URL or ID
@@ -126,7 +126,7 @@ const vimeo = {
     fetch(format(player.config.urls.vimeo.api, id), 'json').then(response => {
       if (is.empty(response)) {
         return;
-      }
+      };
 
       // Get the URL for thumbnail
       const url = new URL(response[0].thumbnail_large);

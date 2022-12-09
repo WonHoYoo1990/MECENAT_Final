@@ -17,7 +17,7 @@ const parseVtt = vttDataString => {
       if (!is.number(result.startTime)) {
         // The line with start and end times on it is the first line of interest
         const matchTimes = line.match(
-          /([0-9]{2})?:?([0-9]{2}):([0-9]{2}).([0-9]{2,3})( ?--> ?)([0-9]{2})?:?([0-9]{2}):([0-9]{2}).([0-9]{2,3})/,
+          /([0-9]{2})?:?([0-9]{2}):([0-9]{2}).([0-9]{2,3})( ?--> ?)([0-9]{2})?:?([0-9]{2}):([0-9]{2}).([0-9]{2,3})/
         ); // Note that this currently ignores caption formatting directives that are optionally on the end of this line - fine for non-captions VTT
 
         if (matchTimes) {
@@ -360,7 +360,7 @@ class PreviewThumbnails {
     // Find the desired thumbnail index
     // TODO: Handle a video longer than the thumbs where thumbNum is null
     const thumbNum = this.thumbnails[0].frames.findIndex(
-      frame => this.seekTime >= frame.startTime && this.seekTime <= frame.endTime,
+      frame => this.seekTime >= frame.startTime && this.seekTime <= frame.endTime
     );
     const hasThumb = thumbNum >= 0;
     let qualityIndex = 0;
@@ -430,7 +430,7 @@ class PreviewThumbnails {
 
   showImage(previewImage, frame, qualityIndex, thumbNum, thumbFilename, newImage = true) {
     this.player.debug.log(
-      `Showing thumb: ${thumbFilename}. num: ${thumbNum}. qual: ${qualityIndex}. newimg: ${newImage}`,
+      `Showing thumb: ${thumbFilename}. num: ${thumbNum}. qual: ${qualityIndex}. newimg: ${newImage}`
     );
     this.setImageSizeAndOffset(previewImage, frame);
 

@@ -14,7 +14,7 @@
 	<meta name="keywords" content="Anime, unica, creative, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>errorPage | Template</title>
+	<title>error404 | Template</title>
 </head>
 <body>
 	<jsp:include page="header.jsp"/>
@@ -22,7 +22,7 @@
 	<div align="center">
 		<img src="https://cdn2.iconfinder.com/data/icons/oops-404-error/64/208_balloon-bubble-chat-conversation-sorry-speech-256.png">
 		<br><br>
-		<h1 style="font-weight:bold; color: white;">${errorMsg}</h1>
+		<h1 style="font-weight:bold; color: white;">404 Not Found</h1>
 	</div>
 	<br>
 	<jsp:include page="footer.jsp" />
