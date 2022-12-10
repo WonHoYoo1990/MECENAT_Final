@@ -47,19 +47,19 @@
 						<h3>Sign Up</h3>
 						<form action="signup.me">
 							<div class="input__item">
-								<input type="text" id="userId" name="userId" placeholder="Your Id" />
+								<input type="text" id="userId" name="userId" placeholder="Your Id" required="required"/>
 								<label for="userId"><span class="icon_id-2"></span></label>
 							</div>
 							<div class="input__item">
-								<input type="text" id="userPwd" name="userPwd" placeholder="Password">
+								<input type="text" id="userPwd" name="userPwd" placeholder="Password" required="required">
 								<label for="userPwd"><span class="icon_lock"></span></label>
 							</div>
 							<div class="input__item">
-								<input type="text" id="userName" name="userName" placeholder="Your Name">
+								<input type="text" id="userName" name="userName" placeholder="Your Name" required="required">
 								<label for="userName"><span class="icon_profile"></span></label>
 							</div>
 							<div class="input__item">
-								<input type="text" id="email" name="email" placeholder="Email address">
+								<input type="text" id="email" name="email" placeholder="Email address" required="required">
 								<label for="email"><span class="icon_mail"></span></label>
 							</div>
 							<button type="submit" class="site-btn">Login Now</button>
