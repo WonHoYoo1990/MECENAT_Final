@@ -111,7 +111,7 @@ const controls = {
       extend(attributes, {
         'aria-hidden': 'true',
         focusable: 'false',
-      }),
+      })
     );
 
     // Create the <use> to reference sprite
@@ -123,7 +123,7 @@ const controls = {
     // https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/xlink:href
     if ('href' in use) {
       use.setAttributeNS('http://www.w3.org/1999/xlink', 'href', path);
-    }
+    };
 
     // Always set the older attribute even though it's "deprecated" (it'll be around for ages)
     use.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', path);
@@ -361,12 +361,12 @@ const controls = {
 
       const suffixKey = {
         played: 'played',
-        buffer: 'buffered',
+        buffer: 'buffered'
       }[type];
       const suffix = suffixKey ? i18n.get(suffixKey, this.config) : '';
 
       progress.innerText = `% ${suffix.toLowerCase()}`;
-    }
+    };
 
     this.elements.display[type] = progress;
 
@@ -383,7 +383,7 @@ const controls = {
         class: `${attributes.class ? attributes.class : ''} ${this.config.classNames.display.time} `.trim(),
         'aria-label': i18n.get(type, this.config),
       }),
-      '00:00',
+      '00:00'
     );
 
     // Reference for updates

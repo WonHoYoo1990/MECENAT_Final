@@ -1,5 +1,7 @@
 package com.kh.mecenat.member.model.vo;
 
+import java.sql.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +10,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class Member {
-	
-	private String userId; // USER_ID
-	
+
+	private String userId; // USER_ID VARCHAR2
+	private String userPwd; // USER_PWD VARCHAR2
+	private String userName;// USER_NAME VARCHAR2
+	private String email; // EMAIL VARCHAR2
+	private Date enrollDate; // ENROLL_DATE DATE
+	private Date updateDate; // UPDATE_DATE DATE
+	private int userGrade; // USER_GRADE NUMBER
+	private String status; // STATUS VARCHAR2
+
 }

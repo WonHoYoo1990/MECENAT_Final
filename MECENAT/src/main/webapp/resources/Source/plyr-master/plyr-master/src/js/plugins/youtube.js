@@ -164,7 +164,7 @@ const youtube = {
           // Tracking for stats
           widget_referrer: window ? window.location.href : null,
         },
-        config,
+        config
       ),
       events: {
         onError(event) {
