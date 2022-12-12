@@ -42,6 +42,8 @@ public class MemberController {
 
 		return mv;
 	}
+	
+	// TEST real
 
 	// ID 중복 체크
 
