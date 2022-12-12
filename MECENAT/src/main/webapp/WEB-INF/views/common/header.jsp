@@ -29,10 +29,6 @@
 	<link rel="stylesheet" href="./resources/css/owl.carousel.min.css" type="text/css">
 	<link rel="stylesheet" href="./resources/css/slicknav.min.css" type="text/css">
 	<link rel="stylesheet" href="./resources/css/style.css" type="text/css">
-	
-	<!-- <!-- jQuery 라이브러리 -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
-	
 </head>
 <body>
 
@@ -81,7 +77,7 @@
 	            <div class="col-lg-2">
 	                <div class="header__right">
 	                    <a href="#" class="search-switch"><span class="icon_search"></span></a>
-	                    <a href="./login.html"><span class="icon_profile"></span></a>
+	                    <a href=".login.jsp"><span class="icon_profile"></span></a>
 	                </div>
 	            </div>
 	        </div>
