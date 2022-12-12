@@ -13,4 +13,9 @@ public class MemberDao {
 		return sqlSession.insert("memberMapper.signup", m);
 	}
 
+	// 회원 탈퇴
+	public int deleteMember(SqlSessionTemplate sqlSession, String userId) {
+		return sqlSession.update("memberMapper.deleteMember", userId);
+	}
+
 }

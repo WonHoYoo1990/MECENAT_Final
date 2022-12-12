@@ -12,10 +12,26 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="description" content="Anime Template">
-	<meta name="keywords" content="Anime, unica, creative, html">
+	<meta name="keywords" content="Anime, unica, creative, html, jsp">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	
+	<!-- 비밀번호 <i>태그  -->
+	<link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"> 
 	<title> Anime | Template</title>
+	
+	<style type="text/css">
+		div.main{
+		    position: relative;
+		    /* padding: 20px; */
+		}
+		div.main i{
+		    position: absolute;
+		    left: 90%;
+		    top: 25%;
+		    color: orange;
+		}
+	</style>
 </head>
 
 <body>
@@ -47,19 +63,27 @@
 						<h3>Sign Up</h3>
 						<form action="signup.me">
 							<div class="input__item">
-								<input type="text" id="userId" name="userId" placeholder="Your Id" required="required"/>
+								<input type="text" id="userId" name="userId" placeholder="Your Id (5글자 이상)" pattern="^([a-z0-9]){5,10}$" required="required"/>
 								<label for="userId"><span class="icon_id-2"></span></label>
 							</div>
 							<div class="input__item">
-								<input type="text" id="userPwd" name="userPwd" placeholder="Password" required="required">
-								<label for="userPwd"><span class="icon_lock"></span></label>
+								<div class="main">
+									<!-- pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" -->
+									<input type="password" id="userPwd" name="userPwd" placeholder="Password" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" required="required">
+									<i class="fa fa-eye fa-lg"></i>
+									<label for="userPwd"><span class="icon_lock"></span></label>
+								</div>
 							</div>
 							<div class="input__item">
 								<input type="text" id="userName" name="userName" placeholder="Your Name" required="required">
 								<label for="userName"><span class="icon_profile"></span></label>
 							</div>
 							<div class="input__item">
-								<input type="text" id="email" name="email" placeholder="Email address" required="required">
+								<input type="tel" id="userPhone" name="userPhone" placeholder="Your Phone  ex) 010-1234-1234" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required="required">
+								<label for="userPhone"><span class="icon_profile"></span></label>
+							</div>
+							<div class="input__item">
+								<input type="email" id="email" name="email" placeholder="Email address" required="required">
 								<label for="email"><span class="icon_mail"></span></label>
 							</div>
 							<button type="submit" class="site-btn">Login Now</button>
@@ -97,6 +121,22 @@
 		</div>
 	</div>
 	<!-- Search model end -->
+	
+	<script>
+		$(document).ready(function(){
+			// 비밀번호 보기/숨기기 기능
+	    	$('.main i').on('click',function(){
+		        $('#userPwd').toggleClass('active');
+		        if($('#userPwd').hasClass('active')){
+		            $(this).attr('class',"fa fa-eye-slash fa-lg")
+		            .prev('#userPwd').attr('type',"text");
+		        }else{
+		            $(this).attr('class',"fa fa-eye fa-lg")
+		            .prev('#userPwd').attr('type','password');
+		        }
+		    }); 
+		});
+	</script>
 
 </body>
 </html>
