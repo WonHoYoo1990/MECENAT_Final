@@ -27,5 +27,7 @@ public class MemberController {
 		
 		return "redirect:/";
 	}
+	
+	// TEST
 
 }
