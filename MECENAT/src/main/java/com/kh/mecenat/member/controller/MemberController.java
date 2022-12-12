@@ -39,6 +39,6 @@ public class MemberController {
 		return mv;
 	}
 	
-	// TEST
+	// TEST real
 
 }
