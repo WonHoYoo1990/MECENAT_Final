@@ -18,5 +18,6 @@ public class MemberDao {
 		return sqlSession.update("memberMapper.deleteMember", userId);
 	}
 	//업로드용 주석
+	//TEST용 입니다람쥐
 
 }
