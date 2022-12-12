@@ -19,5 +19,5 @@ public class MemberDao {
 	}
 	//업로드용 주석
 	//TEST용 입니다람쥐
-
+	//clean 완.
 }
