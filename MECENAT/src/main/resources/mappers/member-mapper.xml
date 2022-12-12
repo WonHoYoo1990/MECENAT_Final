@@ -1,16 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="memberMapper">
+	
 	<!-- 회원가입 -->
 	<insert id="signup" parameterType="member">
-		INSERT INTO MECENAT_MEMBER( USER_ID,
-									USER_PWD,
-									USER_NAME,
-									EMAIL )
-											VALUES( #{userId},
-												    #{userPwd},
-												    #{userName},
-												    #{email} )
+		INSERT INTO MEMBER( USER_NO,
+							USER_ID, 
+							USER_PWD, 
+							USER_NAME, 
+							USER_PHONE, 
+							USER_EMAIL)
+										VALUES(SEQ_MNO.NEXTVAL,
+												#{userId},
+											    #{userPwd},
+											    #{userName},
+											    #{userPhone},
+											    #{email} )
 	</insert>
+	
+	<!-- 회원 탈퇴 -->
+	<update id="deleteMember">
+		UPDATE MEMBER
+		SET STATUS = 'N'
+		WHERE USER_ID = #{userId}
+			AND STATUS = 'Y'
+	</update>
 	
 </mapper>

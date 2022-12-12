@@ -21,4 +21,10 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.signup(SqlSession, m);
 	}
 
+	// 회원 탈퇴
+	@Override
+	public int deleteMember(String userId) {
+		return memberDao.deleteMember(SqlSession, userId);
+	}
+
 }

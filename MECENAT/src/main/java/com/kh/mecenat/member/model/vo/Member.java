@@ -11,10 +11,12 @@ import lombok.NoArgsConstructor;
 @Data
 public class Member {
 
+	private String userNo; // USER_NO VARCHAR2
 	private String userId; // USER_ID VARCHAR2
 	private String userPwd; // USER_PWD VARCHAR2
 	private String userName;// USER_NAME VARCHAR2
-	private String email; // EMAIL VARCHAR2
+	private String userPhone; // USER_PHONE VARCHAR2
+	private String email; // USER_EMAIL VARCHAR2
 	private Date enrollDate; // ENROLL_DATE DATE
 	private Date updateDate; // UPDATE_DATE DATE
 	private int userGrade; // USER_GRADE NUMBER
