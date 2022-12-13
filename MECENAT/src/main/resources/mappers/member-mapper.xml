@@ -7,14 +7,12 @@
 	
 	<!-- 회원가입 -->
 	<insert id="signup" parameterType="member">
-		INSERT INTO MEMBER( USER_NO,
-							USER_ID, 
+		INSERT INTO MEMBER( USER_ID, 
 							USER_PWD, 
 							USER_NAME, 
 							USER_PHONE, 
 							USER_EMAIL)
-										VALUES(SEQ_MNO.NEXTVAL,
-												#{userId},
+										VALUES(	#{userId},
 											    #{userPwd},
 											    #{userName},
 											    #{userPhone},
@@ -29,4 +27,32 @@
 			AND STATUS = 'Y'
 	</update>
 	
+	<!-- ID 중복 체크 -->
+	<select id="checkId" resultType="_int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE USER_ID = #{checkId}
+			AND STATUS = 'Y' 
+	</select>
+
+	<resultMap type="member" id="memberResultSet">
+		<result column="USER_ID" property="userId"/>
+		<result column="USER_PWD" property="userPwd"/>
+		<result column="USER_NAME" property="userName"/>
+		<result column="EMAIL" property="email"/>
+		<result column="ENROLL_DATE" property="enrollDate"/>
+		<result column="UPDATE_DATE" property="updateDate"/>
+		<result column="USER_GRADE" property="userGrade"/>
+		<result column="STATUS" property="status"/>
+	</resultMap>
+	
+	<!-- 로그인 -->
+	<select id="loginMember" parameterType="member" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
+		WHERE USER_ID = #{userId}
+		AND STATUS = 'Y'
+	</select>
+	
+
 </mapper>

@@ -13,6 +13,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<h1>여기는 마이페이지</h1>
+	<jsp:include page="../common/header.jsp"/>
+	
+	<div>
+		<form action="delete.me">
+			<button type="submit">회원 탈퇴 버튼</button>
+		</form>
+	
+	</div>
+	
+	
+	<jsp:include page="../common/footer.jsp"/>
+	
 </body>
 </html>

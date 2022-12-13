@@ -17,7 +17,16 @@ public class MemberDao {
 	public int deleteMember(SqlSessionTemplate sqlSession, String userId) {
 		return sqlSession.update("memberMapper.deleteMember", userId);
 	}
-	//안녕하세엽
-	//업로드용 주석
-	// ?
+
+	// ID 중복 체크
+	public int checkId(SqlSessionTemplate sqlSession, String checkId) {
+		return sqlSession.selectOne("memberMapper.checkId", checkId);
+	}
+
+	// 회원 로그인
+	public Member loginMember(SqlSessionTemplate sqlSession, String userId) {
+		
+		return sqlSession.selectOne("memberMapper.loginMember",userId);
+	}
+
 }

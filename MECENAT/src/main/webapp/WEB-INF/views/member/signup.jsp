@@ -18,6 +18,7 @@
 	
 	<!-- 비밀번호 <i>태그  -->
 	<link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"> 
+	
 	<title> Anime | Template</title>
 	
 	<style type="text/css">
@@ -65,11 +66,12 @@
 							<div class="input__item">
 								<input type="text" id="userId" name="userId" placeholder="Your Id (5글자 이상)" pattern="^([a-z0-9]){5,10}$" required="required"/>
 								<label for="userId"><span class="icon_id-2"></span></label>
+								<div id="checkResult" style="font-size: 0.8em; display:none; color:red;"> 확인용 테스트 </div> <br>
 							</div>
 							<div class="input__item">
 								<div class="main">
 									<!-- pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" -->
-									<input type="password" id="userPwd" name="userPwd" placeholder="Password" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" required="required">
+									<input type="password" id="userPwd" name="userPwd" placeholder="Password" required="required">
 									<i class="fa fa-eye fa-lg"></i>
 									<label for="userPwd"><span class="icon_lock"></span></label>
 								</div>
@@ -86,9 +88,11 @@
 								<input type="email" id="email" name="email" placeholder="Email address" required="required">
 								<label for="email"><span class="icon_mail"></span></label>
 							</div>
-							<button type="submit" class="site-btn">Login Now</button>
+							<button type="submit" class="site-btn" disabled="disabled">Login Now</button>
+							<button type="submit" class="site-btn">Sign up Now</button>
+
 						</form>
-						<h5>Already have an account? <a href="#">Log In!</a></h5>
+						<h5>Already have an account? <a href="login.me">Log In!</a></h5>
 					</div>
 				</div>
 				<div class="col-lg-6">
@@ -134,7 +138,40 @@
 		            $(this).attr('class',"fa fa-eye fa-lg")
 		            .prev('#userPwd').attr('type','password');
 		        }
-		    }); 
+		    });
+			
+		});
+		
+		// 아이디 중복 체크
+		var inputId = $("#userId");
+		console.log("inputId : " + inputId); 
+		
+		inputId.keyup(function() {
+			if (inputId.val().length >= 5) {
+				$.ajax({
+					url : "checkId.me",
+					data : {
+						checkId : inputId.val()
+					},
+					success : function(result) {
+						console.log("통신 성공!");
+						console.log("result : " + result);
+						if ( result == "NNNNN") { //사용 불가
+    						$("#checkResult").css("color", "red").text("중복된 아이디가 있습니다. 다시 입력해 주세요.").show();
+    					} else { // 사용 가능
+    						$("#checkResult").css("color", "green").text("멋진 아이디입니다!").show();
+    						$(".site-btn").attr("disabled", false);
+    					}
+					},
+					error : function() {
+						console.log("통실 실패!");
+					}
+				});
+								
+				$("#checkResult").html("5글자 이상 입니다.");
+			} else {
+				$("#checkResult").html("5글자 이상 입력해주세요").show();
+			}
 		});
 	</script>
 
