@@ -18,4 +18,9 @@ public class MemberDao {
 		return sqlSession.update("memberMapper.deleteMember", userId);
 	}
 
+	// 회원 로그인
+	public Member loginMember(SqlSessionTemplate sqlSession, String userId) {
+		
+		return sqlSession.selectOne("memberMapper.loginMember",userId);
+	}
 }

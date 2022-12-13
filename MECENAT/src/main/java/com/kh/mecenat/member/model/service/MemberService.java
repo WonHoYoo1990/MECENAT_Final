@@ -13,5 +13,8 @@ public interface MemberService {
 
 	// 회원 탈퇴
 	int deleteMember(String userId);
+	
+	//로그인 서비스
+	Member loginMember(String userId);
 
 }
