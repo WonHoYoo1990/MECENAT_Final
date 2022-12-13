@@ -27,6 +27,14 @@
 		AND STATUS = 'Y'
 	</update>
 	
+	<!-- ID 중복 체크 -->
+	<select id="checkId" resultType="_int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE USER_ID = #{checkId}
+			AND STATUS = 'Y' 
+	</select>
+
 	<resultMap type="member" id="memberResultSet">
 		<result column="USER_ID" property="userId"/>
 		<result column="USER_PWD" property="userPwd"/>
@@ -74,6 +82,5 @@
 		WHERE USER_ID = #{userId}
 		AND STATUS = 'Y'
 	</update>
-	
-	
+		
 </mapper>

@@ -18,12 +18,17 @@ public class MemberDao {
 		return sqlSession.update("memberMapper.deleteMember", userId);
 	}
 
+	// ID 중복 체크
+	public int checkId(SqlSessionTemplate sqlSession, String checkId) {
+		return sqlSession.selectOne("memberMapper.checkId", checkId);
+	}
+
 	// 회원 로그인
 	public Member loginMember(SqlSessionTemplate sqlSession, String userId) {
 		
 		return sqlSession.selectOne("memberMapper.loginMember",userId);
 	}
-	
+
 	//로그인시 아이디와 비밀번호 확인
 	public Member loginUser(SqlSessionTemplate sqlSession, Member m) {
 		
@@ -41,4 +46,5 @@ public class MemberDao {
 		sqlSession.update("memberMapper.updatePwd", m);
 	}
 	
+
 }
