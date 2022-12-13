@@ -27,6 +27,12 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.deleteMember(sqlSession, userId);
 	}
 
+	// ID 중복 체크
+	@Override
+	public int checkId(String checkId) {
+		return memberDao.checkId(SqlSession, checkId);
+	}
+
 	// 회원 로그인 
 	@Override
 	public Member loginMember(String userId) {
@@ -34,4 +40,5 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.loginMember(sqlSession,userId);
 		
 	}
+
 }
