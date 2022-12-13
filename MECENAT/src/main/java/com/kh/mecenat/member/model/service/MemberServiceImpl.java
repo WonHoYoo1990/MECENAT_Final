@@ -41,6 +41,24 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 
-	// 테스트02-01
-  
+	//로그인 유저
+	@Override
+	public Member loginUser(Member m) {
+		return memberDao.loginUser(sqlSession, m);
+	}
+ 
+	//비밀번호 찾기
+	@Override
+	public Member searchPwd(Member m) {
+		return memberDao.searchPwd(sqlSession, m);
+	}
+
+	//비밀번호 업데이트
+	@Override
+	public void updatePwd(Member m) {
+		
+		memberDao.updatePwd(sqlSession,m);
+		
+	}
+	
 }

@@ -26,8 +26,8 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="normal__breadcrumb__text">
-                        <h2>Login</h2>
-                        <p>Welcome to the official Mecenat site.</p>
+                        <h2>Find Password</h2>
+                        <p>Let's find.</p>
                     </div>
                 </div>
             </div>
@@ -40,24 +40,78 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
-					<!-- 로그인 폼  -->
+					<!-- 비밀번호 찾기 폼  -->
                     <div class="login__form">
-                        <h3>Login</h3>
-                        <form action="login.me" method="post">
+                        <h3>Find Password</h3>
+                        <form action="searchPwd.me" method="post">
                             <div class="input__item">
-                                <input type="text" placeholder="Id" id="userId" name="userId">
+                                <input type="text" placeholder="아이디를 입력하세요" id="userId" name="userId">
                                 <span class="icon_mail"></span>
                             </div>
                             <div class="input__item">
-                                <input type="text" placeholder="Password" id="userPwd" name="userPwd">
-                                <span class="icon_lock"></span>
+                                <input type="text" placeholder="이름을 입력하세요" id="userName" name="userName">
+                                <span class="icon_profile"></span>
                             </div>
-                            <button type="submit" class="site-btn" id="enrollBtn">Login Now</button>
+                            <div class="input__item">
+                                <input type="text" placeholder="휴대폰번호를 입력하세요(-포함)" id="userPhone" name="userPhone">
+                                <span class="icon_profile"></span>
+                            </div>
+                            <button type="submit" class="site-btn" id="enrollBtn">Find Now</button>
+                        	
+			                <c:if test="${check == 1}">
+			                	<script>
+								opener.document.findform.userId.value = "";
+									opener.document.findform.userName.value = "";
+									opener.document.findform.userPhone.value = "";
+								</script>
+								<label>일치하는 정보가 존재하지 않습니다.</label>
+			                </c:if>
+			                
+			                
+							<!-- 이름과 비밀번호가 일치하지 않을 때 -->
+							<c:if test="${check == 0}">
+							<div>
+								<br><br>
+								<label style="color:white;">비밀번호를 변경해주세요.</label>
+							</div>
+							<div class="input__item">
+								<input type="password" id="updatePwd" name="updatePwd" class="form-control" placeholder="변경할 비밀번호를 입력하세요"/>
+								<label for="updatePwd">password</label>
+								<span class="icon_lock"></span>
+							</div>
+							
+							<div class="input__item">
+								<input type="password" id="confirmPwd" name="confirmPwd" class="form-control" placeholder="변경할 비밀번호를 다시 입력하세요"/>
+								<label for="confirmPwd">confirm password</label>
+								<span class="icon_lock"></span>
+							</div>
+							
+							<div class="form-label-group">
+									<input class="site-btn text-uppercase"
+										type="button" value="update password" onclick="updatePassword()">
+								</div>
+							</c:if>
+                        
                         </form>
-                        <!-- 비밀번호 찾기 -->
-                        <a href="searchPwdForm.me" class="forget_pass">Forgot Your Password?</a>
                     </div>
                 </div>
+                
+        <script type="text/javascript">
+			function updatePassword(){
+				if(document.findform.updatePwd.value==""){
+					alert("비밀번호를 입력해주세요.");
+					document.findform.updatePwd.focus();
+				} else if(document.findform.updatePwd.value != document.findform.confirmPwd.value){
+					alert("비밀번호가 일치하지 않습니다.");
+					document.findform.confirmPwd.focus();
+				} else {
+					document.findform.action="update_password";
+					document.findform.submit();
+				}
+			}
+		</script>
+
+                
                 <!-- 회원가입 창으로 이동 -->
                 <div class="col-lg-6">
                     <div class="login__register">
@@ -66,23 +120,7 @@
                     </div>
                 </div>
             </div>
-            <!-- 타사이트 이용한 로그인 -->
-            <div class="login__social">
-                <div class="row d-flex justify-content-center">
-                    <div class="col-lg-6">
-                        <div class="login__social__links">
-                            <span>or</span>
-                            <ul>
-                                <li><a href="#" class="facebook"><i class="fa fa-facebook"></i> Sign in With
-                                Facebook</a></li>
-                                <li><a href="#" class="google"><i class="fa fa-google"></i> Sign in With Google</a></li>
-                                <li><a href="#" class="twitter"><i class="fa fa-twitter"></i> Sign in With Twitter</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </section>
     <!-- Login Section End -->

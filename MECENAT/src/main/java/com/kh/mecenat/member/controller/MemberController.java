@@ -5,9 +5,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -101,9 +105,10 @@ public class MemberController {
 		System.out.println("myPage 이동~");
 		return "member/myPage";
 	}
-  
-  //로그인 폼으로 이동
-	@GetMapping("login.me")
+	
+	//로그인 폼으로 이동
+	@GetMapping("loginForm.me")
+
 	public String enrollForm() {
 		
 		//WEB-INF/views/member/memberEnrollForm.jsp 로 포워딩
@@ -119,8 +124,6 @@ public class MemberController {
 	//loginUser : 아이디만으로 조회해온 회원정보	
 	Member loginUser = memberService.loginMember(m.getUserId());
 	
-	System.out.println(loginUser);
-	
 	if(loginUser != null && bCryptPasswordEncoder.matches(m.getUserPwd(), loginUser.getUserPwd())) {
 		session.setAttribute("loginUser", loginUser);
 		//setViewName : 요청 주소
@@ -132,5 +135,57 @@ public class MemberController {
 	}
 	
 	}
+	
+	//로그아웃
+	@RequestMapping("logout.me")
+	public String logoutMember(HttpSession session) {
+		
+		session.removeAttribute("loginUser");
+		//invalidate()로 하게되면 세션에 있는 다른 데이터도 초기화 되기 때문에 removeAttribute
+		
+		return "redirect:/";
+	}
+	
+    // 비밀번호 찾기 페이지로 이동
+	@RequestMapping("searchPwdForm.me")
+	public String searchPwdView() {
+		return "member/searchPwd";
+	}
+	
+    // 비밀번호 찾기 실행
+	@PostMapping("searchPwd.me")
+	public String searchPwd(HttpSession session, Member m,Model model) {
+		
+		Member loginUser = memberService.searchPwd(m);
+		
+		if(loginUser == null) { 
+			model.addAttribute("check", 1);
+		} else { 
+			model.addAttribute("check", 0);
+			model.addAttribute("updateid", loginUser.getUserId());
+		}
+		
+		return "member/searchPwd";
+	}
+	
+	//비밀번호 바꾸기 실행
+	@RequestMapping(value="updatePwd.me", method=RequestMethod.POST)
+	public String updatePwd(HttpSession session, String userId, Member m) {
+		m.setUserId(userId);
+		memberService.updatePwd(m);
+		return "member/updatePwd";
+	}
+	
+//    // 비밀번호 바꾸기할 경우 성공 페이지 이동
+//	@RequestMapping(value="check_password_view")
+//	public String checkPasswordForModify(HttpSession session, Model model) {
+//		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
+//		
+//		if(loginUser == null) {
+//			return "member/login";
+//		} else {
+//			return "mypage/checkformodify";
+//		}
+//	}
 
 }

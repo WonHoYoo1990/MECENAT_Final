@@ -59,10 +59,15 @@
                                     <li><a href="./anime-details.html">Anime Details</a></li>
                                     <li><a href="./anime-watching.html">Anime Watching</a></li>
                                     <li><a href="./blog-details.html">Blog Details</a></li>
-                                    <c:if test="${empty loginUser}">
-	                                    <li><a href="signupForm.me">Sign Up</a></li>
-	                                    <li><a href="login.me">Login</a></li>
-	                                </c:if>
+                                    <c:choose>
+	                                    <c:when test="${empty loginUser}">
+		                                    <li><a href="signupForm.me">Sign Up</a></li>
+		                                    <li><a href="loginForm.me">Login</a></li>
+		                                </c:when>
+		                                <c:otherwise>
+		                                    <li><a href="logout.me">LogOut</a></li>
+	                                	</c:otherwise>
+                                	</c:choose>
                                 </ul>
                             </li>
                             <li><a href="./blog.html">Our Blog</a></li>
@@ -74,7 +79,7 @@
             <div class="col-lg-2">
                 <div class="header__right">
                     <a href="#" class="search-switch"><span class="icon_search"></span></a>
-                    <a href="./login.html"><span class="icon_profile"></span></a>
+                    <a href="myPage.me"><span class="icon_profile"></span></a>
                 </div>
             </div>
         </div>
@@ -95,4 +100,4 @@
 <script src="./resources/js/main.js"></script>
 
 </body>
-</html>
+</html>01
