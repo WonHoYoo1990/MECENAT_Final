@@ -32,5 +32,6 @@ public class MemberServiceImpl implements MemberService {
 	public int checkId(String checkId) {
 		return memberDao.checkId(SqlSession, checkId);
 	}
-
+	
+	// 테스트1
 }
