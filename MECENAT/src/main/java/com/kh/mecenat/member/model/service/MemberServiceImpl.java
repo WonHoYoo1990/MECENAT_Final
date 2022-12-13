@@ -41,4 +41,6 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 
+	// 테스트1
+  
 }
