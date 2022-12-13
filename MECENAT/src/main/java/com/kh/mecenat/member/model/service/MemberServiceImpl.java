@@ -30,7 +30,7 @@ public class MemberServiceImpl implements MemberService {
 	// ID 중복 체크
 	@Override
 	public int checkId(String checkId) {
-		return memberDao.checkId(SqlSession, checkId);
+		return memberDao.checkId(sqlSession, checkId);
 	}
 
 	// 회원 로그인 
@@ -41,6 +41,6 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 
-	// 테스트1
+	// 테스트02-01
   
 }
