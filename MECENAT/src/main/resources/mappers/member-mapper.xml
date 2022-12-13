@@ -24,7 +24,7 @@
 		UPDATE MEMBER
 		SET STATUS = 'N'
 		WHERE USER_ID = #{userId}
-			AND STATUS = 'Y'
+		AND STATUS = 'Y'
 	</update>
 	
 	<resultMap type="member" id="memberResultSet">
@@ -45,6 +45,35 @@
 		WHERE USER_ID = #{userId}
 		AND STATUS = 'Y'
 	</select>
+	
+	<!-- 로그인시 아이디와 비밀번호 확인 -->
+	<select id="loginUser" resultType="member">
+		SELECT *
+		FROM MEMBER
+		WHERE USER_ID = #{userId} 
+		AND USER_PWD = #{user_pwd}
+		AND STATUS = 'Y'
+	
+	</select>
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="searchPwd" resultType="member">
+		SELECT *
+		FROM MEMBER
+		WHERE USER_ID = #{userId} 
+		AND USER_NAME = #{userName} 
+		AND USER_PHONE = #{userPhone} 
+		AND STATUS = 'Y'
+		
+	</select>
+	
+	<!-- 비밀번호 업데이트 -->
+	<update id="updatePwd">
+		UPDATE MEMBER 
+		SET USER_PWD = #{userPwd}
+		WHERE USER_ID = #{userId}
+		AND STATUS = 'Y'
+	</update>
 	
 	
 </mapper>

@@ -16,5 +16,14 @@ public interface MemberService {
 	
 	//로그인 서비스
 	Member loginMember(String userId);
+	
+	//로그인 유저
+	Member loginUser(Member m);
+	
+	//비밀번호 찾기
+	Member searchPwd(Member m);
+	
+	//비밀번호 업데이트
+	void updatePwd(Member m);
 
 }

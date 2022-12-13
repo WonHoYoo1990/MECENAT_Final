@@ -23,4 +23,22 @@ public class MemberDao {
 		
 		return sqlSession.selectOne("memberMapper.loginMember",userId);
 	}
+	
+	//로그인시 아이디와 비밀번호 확인
+	public Member loginUser(SqlSessionTemplate sqlSession, Member m) {
+		
+		return sqlSession.selectOne("memberMapper.loginUser", m);
+	}
+	
+	//비밀번호 찾기
+	public Member searchPwd(SqlSessionTemplate sqlSession, Member m) {
+		
+		return sqlSession.selectOne("memberMapper.searchPwd", m);
+	}
+	
+	//비밀번호 업데이트
+	public void updatePwd(SqlSessionTemplate sqlSession, Member m) {
+		sqlSession.update("memberMapper.updatePwd", m);
+	}
+	
 }
