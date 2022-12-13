@@ -89,8 +89,10 @@
 								<label for="email"><span class="icon_mail"></span></label>
 							</div>
 							<button type="submit" class="site-btn" disabled="disabled">Login Now</button>
+							<button type="submit" class="site-btn">Sign up Now</button>
+
 						</form>
-						<h5>Already have an account? <a href="#">Log In!</a></h5>
+						<h5>Already have an account? <a href="login.me">Log In!</a></h5>
 					</div>
 				</div>
 				<div class="col-lg-6">

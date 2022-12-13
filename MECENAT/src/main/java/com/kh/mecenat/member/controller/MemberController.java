@@ -5,6 +5,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -30,6 +32,8 @@ public class MemberController {
 	// 회원가입 등록
 	@RequestMapping("signup.me")
 	public ModelAndView signup(Member m, ModelAndView mv, HttpSession session) {
+		System.out.println("컨트롤단");
+		System.out.println("userId : " + m.getUserId());
 
 		int result = memberService.signup(m);
 
@@ -96,6 +100,37 @@ public class MemberController {
 	public String myPageForm() {
 		System.out.println("myPage 이동~");
 		return "member/myPage";
+	}
+  
+  //로그인 폼으로 이동
+	@GetMapping("login.me")
+	public String enrollForm() {
+		
+		//WEB-INF/views/member/memberEnrollForm.jsp 로 포워딩
+		return "/member/login";
+		
+	}	
+	
+	//로그인
+	@PostMapping("login.me")
+	public String loginMember(Member m,HttpSession session,
+			ModelAndView mv) {
+		
+	//loginUser : 아이디만으로 조회해온 회원정보	
+	Member loginUser = memberService.loginMember(m.getUserId());
+	
+	System.out.println(loginUser);
+	
+	if(loginUser != null && bCryptPasswordEncoder.matches(m.getUserPwd(), loginUser.getUserPwd())) {
+		session.setAttribute("loginUser", loginUser);
+		//setViewName : 요청 주소
+		return "redirect:/";
+		
+	}else {
+		mv.addObject("errorMsg", "로그인 실패");
+		return "common/errorPage";
+	}
+	
 	}
 
 }

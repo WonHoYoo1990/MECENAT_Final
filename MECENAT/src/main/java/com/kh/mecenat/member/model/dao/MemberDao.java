@@ -23,4 +23,10 @@ public class MemberDao {
 		return sqlSession.selectOne("memberMapper.checkId", checkId);
 	}
 
+	// 회원 로그인
+	public Member loginMember(SqlSessionTemplate sqlSession, String userId) {
+		
+		return sqlSession.selectOne("memberMapper.loginMember",userId);
+	}
+
 }

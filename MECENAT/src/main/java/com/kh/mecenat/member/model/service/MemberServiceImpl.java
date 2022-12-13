@@ -13,18 +13,18 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberDao memberDao;
 	@Autowired
-	private SqlSessionTemplate SqlSession;
+	private SqlSessionTemplate sqlSession;
 
 	// 회원가입
 	@Override
 	public int signup(Member m) {
-		return memberDao.signup(SqlSession, m);
+		return memberDao.signup(sqlSession, m);
 	}
 
 	// 회원 탈퇴
 	@Override
 	public int deleteMember(String userId) {
-		return memberDao.deleteMember(SqlSession, userId);
+		return memberDao.deleteMember(sqlSession, userId);
 	}
 
 	// ID 중복 체크
@@ -32,6 +32,15 @@ public class MemberServiceImpl implements MemberService {
 	public int checkId(String checkId) {
 		return memberDao.checkId(SqlSession, checkId);
 	}
-	
+
+	// 회원 로그인 
+	@Override
+	public Member loginMember(String userId) {
+		
+		return memberDao.loginMember(sqlSession,userId);
+		
+	}
+
 	// 테스트1
+  
 }
