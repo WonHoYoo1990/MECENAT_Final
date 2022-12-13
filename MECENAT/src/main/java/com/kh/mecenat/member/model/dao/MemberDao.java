@@ -18,4 +18,9 @@ public class MemberDao {
 		return sqlSession.update("memberMapper.deleteMember", userId);
 	}
 
+	// ID 중복 체크
+	public int checkId(SqlSessionTemplate sqlSession, String checkId) {
+		return sqlSession.selectOne("memberMapper.checkId", checkId);
+	}
+
 }

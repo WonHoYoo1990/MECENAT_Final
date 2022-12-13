@@ -88,7 +88,7 @@
 								<input type="email" id="email" name="email" placeholder="Email address" required="required">
 								<label for="email"><span class="icon_mail"></span></label>
 							</div>
-							<button type="submit" class="site-btn">Login Now</button>
+							<button type="submit" class="site-btn" disabled="disabled">Login Now</button>
 						</form>
 						<h5>Already have an account? <a href="#">Log In!</a></h5>
 					</div>
@@ -146,6 +146,25 @@
 		
 		inputId.keyup(function() {
 			if (inputId.val().length >= 5) {
+				$.ajax({
+					url : "checkId.me",
+					data : {
+						checkId : inputId.val()
+					},
+					success : function(result) {
+						console.log("통신 성공!");
+						console.log("result : " + result);
+						if ( result == "NNNNN") { //사용 불가
+    						$("#checkResult").css("color", "red").text("중복된 아이디가 있습니다. 다시 입력해 주세요.").show();
+    					} else { // 사용 가능
+    						$("#checkResult").css("color", "green").text("멋진 아이디입니다!").show();
+    						$(".site-btn").attr("disabled", false);
+    					}
+					},
+					error : function() {
+						console.log("통실 실패!");
+					}
+				});
 								
 				$("#checkResult").html("5글자 이상 입니다.");
 			} else {

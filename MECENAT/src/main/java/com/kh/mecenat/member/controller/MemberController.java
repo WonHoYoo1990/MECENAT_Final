@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.mecenat.member.model.service.MemberService;
@@ -43,16 +44,9 @@ public class MemberController {
 		return mv;
 	}
 
-	// ID 중복 체크
-	
-
-	// EMAIL 중복 체크
-
 	// 회원 탈퇴
 	@RequestMapping("delete.me")
 	public ModelAndView deleteMember(String userPwd, HttpSession session, ModelAndView mv) {
-
-		System.out.println("여기는 회원탈퇴~");
 
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		String userId = loginUser.getUserId();
@@ -60,7 +54,6 @@ public class MemberController {
 
 		if (bCryptPasswordEncoder.matches(userPwd, loginUserPwd)) { // 입력한 비밀번호와 암호화 비밀번호가 일치할 경우
 			int result = memberService.deleteMember(userId);
-			System.out.println("result : " + result);
 
 			if (result > 0) {
 				session.removeAttribute("loginUser");
@@ -78,13 +71,31 @@ public class MemberController {
 		return mv;
 	}
 
+	// ID 중복 체크
+	@ResponseBody
+	@RequestMapping("checkId.me")
+	public String checkId(String checkId) {
+
+		int count = memberService.checkId(checkId);
+
+		String str = "";
+
+		if (count > 0) {
+			str = "NNNNN";
+		} else {
+			str = "NNNNY";
+		}
+
+		return str;
+	}
+
+	// EMAIL 중복 체크
+
 	// 마이페이지 이동
 	@RequestMapping("myPage.me")
 	public String myPageForm() {
 		System.out.println("myPage 이동~");
 		return "member/myPage";
 	}
-	
-	// ver01-1
 
 }

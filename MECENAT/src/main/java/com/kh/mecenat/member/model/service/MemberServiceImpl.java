@@ -27,4 +27,10 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.deleteMember(SqlSession, userId);
 	}
 
+	// ID 중복 체크
+	@Override
+	public int checkId(String checkId) {
+		return memberDao.checkId(SqlSession, checkId);
+	}
+
 }
