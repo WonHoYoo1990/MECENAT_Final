@@ -44,12 +44,15 @@ public class MemberController {
 	}
 
 	// ID 중복 체크
+	
 
 	// EMAIL 중복 체크
 
 	// 회원 탈퇴
 	@RequestMapping("delete.me")
 	public ModelAndView deleteMember(String userPwd, HttpSession session, ModelAndView mv) {
+
+		System.out.println("여기는 회원탈퇴~");
 
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		String userId = loginUser.getUserId();
@@ -73,6 +76,13 @@ public class MemberController {
 		}
 
 		return mv;
+	}
+
+	// 마이페이지 이동
+	@RequestMapping("myPage.me")
+	public String myPageForm() {
+		System.out.println("myPage 이동~");
+		return "member/myPage";
 	}
 
 }

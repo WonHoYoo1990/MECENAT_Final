@@ -66,11 +66,12 @@
 							<div class="input__item">
 								<input type="text" id="userId" name="userId" placeholder="Your Id (5글자 이상)" pattern="^([a-z0-9]){5,10}$" required="required"/>
 								<label for="userId"><span class="icon_id-2"></span></label>
+								<div id="checkResult" style="font-size: 0.8em; display:none; color:red;"> 확인용 테스트 </div> <br>
 							</div>
 							<div class="input__item">
 								<div class="main">
 									<!-- pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" -->
-									<input type="password" id="userPwd" name="userPwd" placeholder="Password" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$" required="required">
+									<input type="password" id="userPwd" name="userPwd" placeholder="Password" required="required">
 									<i class="fa fa-eye fa-lg"></i>
 									<label for="userPwd"><span class="icon_lock"></span></label>
 								</div>
@@ -135,7 +136,21 @@
 		            $(this).attr('class',"fa fa-eye fa-lg")
 		            .prev('#userPwd').attr('type','password');
 		        }
-		    }); 
+		    });
+			
+		});
+		
+		// 아이디 중복 체크
+		var inputId = $("#userId");
+		console.log("inputId : " + inputId); 
+		
+		inputId.keyup(function() {
+			if (inputId.val().length >= 5) {
+								
+				$("#checkResult").html("5글자 이상 입니다.");
+			} else {
+				$("#checkResult").html("5글자 이상 입력해주세요").show();
+			}
 		});
 	</script>
 

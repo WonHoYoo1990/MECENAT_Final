@@ -7,14 +7,12 @@
 	
 	<!-- 회원가입 -->
 	<insert id="signup" parameterType="member">
-		INSERT INTO MEMBER( USER_NO,
-							USER_ID, 
+		INSERT INTO MEMBER( USER_ID, 
 							USER_PWD, 
 							USER_NAME, 
 							USER_PHONE, 
 							USER_EMAIL)
-										VALUES(SEQ_MNO.NEXTVAL,
-												#{userId},
+										VALUES(	#{userId},
 											    #{userPwd},
 											    #{userName},
 											    #{userPhone},
