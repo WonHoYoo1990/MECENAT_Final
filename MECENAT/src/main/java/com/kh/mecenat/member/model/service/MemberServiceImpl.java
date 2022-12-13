@@ -26,5 +26,13 @@ public class MemberServiceImpl implements MemberService {
 	public int deleteMember(String userId) {
 		return memberDao.deleteMember(SqlSession, userId);
 	}
+	
+	//회원 로그인
+	@Override
+	public Member loginMember(String userId) {
+		
+		return memberDao.loginMember(SqlSession,userId);
+		
+	}
 
 }
