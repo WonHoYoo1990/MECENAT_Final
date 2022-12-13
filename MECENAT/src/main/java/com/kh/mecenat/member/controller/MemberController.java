@@ -84,5 +84,7 @@ public class MemberController {
 		System.out.println("myPage 이동~");
 		return "member/myPage";
 	}
+	
+	// ver01-1
 
 }
