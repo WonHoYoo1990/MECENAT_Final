@@ -18,6 +18,7 @@
 	
 	<!-- 비밀번호 <i>태그  -->
 	<link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"> 
+	
 	<title> Anime | Template</title>
 	
 	<style type="text/css">

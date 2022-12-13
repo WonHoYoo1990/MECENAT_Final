@@ -29,4 +29,5 @@
 			AND STATUS = 'Y'
 	</update>
 	
+	
 </mapper>
