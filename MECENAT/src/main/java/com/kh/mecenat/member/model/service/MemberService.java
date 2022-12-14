@@ -9,17 +9,17 @@ public interface MemberService {
 
 	// 회원 탈퇴
 	int deleteMember(String userId);
-	
-	//로그인 서비스
+
+	// 로그인 서비스
 	Member loginMember(String userId);
-	
-	//로그인 유저
+
+	// 로그인 유저
 	Member loginUser(Member m);
-	
-	//비밀번호 찾기
+
+	// 비밀번호 찾기
 	Member searchPwd(Member m);
-	
-	//비밀번호 업데이트
+
+	// 비밀번호 업데이트
 	void updatePwd(Member m);
 
 	// ID 중복 체크

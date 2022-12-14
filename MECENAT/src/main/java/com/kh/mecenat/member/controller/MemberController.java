@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -36,17 +34,18 @@ public class MemberController {
 	// 회원가입 등록
 	@RequestMapping("signup.me")
 	public ModelAndView signup(Member m, ModelAndView mv, HttpSession session) {
-		System.out.println("컨트롤단");
-		System.out.println("userId : " + m.getUserId());
+
+		String encPwd = bCryptPasswordEncoder.encode(m.getUserPwd());
+
+		m.setUserPwd(encPwd);
 
 		int result = memberService.signup(m);
 
 		if (result > 0) {
-			session.setAttribute("alertMsg", "회원 가입 성공 하셨습니다!");
+			session.setAttribute("alertMsg", "회원가입을 축하합니다!");
 			mv.setViewName("redirect:/");
 		} else {
-			mv.addObject("errorMsg", "회원 가입에 실패 하였습니다. 다시 회원 가입 해주세요");
-			mv.setViewName("common/errorPage");
+			mv.addObject("errorMsg", "회원 가입 실패하셨습니다. 다시 시도해 주세요!").setViewName("common/errorPage");
 		}
 
 		return mv;
@@ -105,77 +104,76 @@ public class MemberController {
 		System.out.println("myPage 이동~");
 		return "member/myPage";
 	}
-	
-	//로그인 폼으로 이동
+
+	// 로그인 폼으로 이동
 	@GetMapping("loginForm.me")
 
 	public String enrollForm() {
-		
-		//WEB-INF/views/member/memberEnrollForm.jsp 로 포워딩
+
+		// WEB-INF/views/member/memberEnrollForm.jsp 로 포워딩
 		return "/member/login";
-		
-	}	
-	
-	//로그인
+
+	}
+
+	// 로그인
 	@PostMapping("login.me")
-	public String loginMember(Member m,HttpSession session,
-			ModelAndView mv) {
-		
-	//loginUser : 아이디만으로 조회해온 회원정보	
-	Member loginUser = memberService.loginMember(m.getUserId());
-	
-	if(loginUser != null && bCryptPasswordEncoder.matches(m.getUserPwd(), loginUser.getUserPwd())) {
-		session.setAttribute("loginUser", loginUser);
-		//setViewName : 요청 주소
-		return "redirect:/";
-		
-	}else {
-		mv.addObject("errorMsg", "로그인 실패");
-		return "common/errorPage";
+	public String loginMember(Member m, HttpSession session, ModelAndView mv) {
+
+		// loginUser : 아이디만으로 조회해온 회원정보
+		Member loginUser = memberService.loginMember(m.getUserId());
+
+		if (loginUser != null && bCryptPasswordEncoder.matches(m.getUserPwd(), loginUser.getUserPwd())) {
+			session.setAttribute("loginUser", loginUser);
+			// setViewName : 요청 주소
+			return "redirect:/";
+
+		} else {
+			mv.addObject("errorMsg", "로그인 실패");
+			return "common/errorPage";
+		}
+
 	}
-	
-	}
-	
-	//로그아웃
+
+	// 로그아웃
 	@RequestMapping("logout.me")
 	public String logoutMember(HttpSession session) {
-		
+
 		session.removeAttribute("loginUser");
-		//invalidate()로 하게되면 세션에 있는 다른 데이터도 초기화 되기 때문에 removeAttribute
-		
+		// invalidate()로 하게되면 세션에 있는 다른 데이터도 초기화 되기 때문에 removeAttribute
+
 		return "redirect:/";
 	}
-	
-    // 비밀번호 찾기 페이지로 이동
+
+	// 비밀번호 찾기 페이지로 이동
 	@RequestMapping("searchPwdForm.me")
 	public String searchPwdView() {
 		return "member/searchPwd";
 	}
-	
-    // 비밀번호 찾기 실행
+
+	// 비밀번호 찾기 실행
 	@PostMapping("searchPwd.me")
-	public String searchPwd(HttpSession session, Member m,Model model) {
-		
+	public String searchPwd(HttpSession session, Member m, Model model) {
+
 		Member loginUser = memberService.searchPwd(m);
-		
-		if(loginUser == null) { 
+
+		if (loginUser == null) {
 			model.addAttribute("check", 1);
-		} else { 
+		} else {
 			model.addAttribute("check", 0);
 			model.addAttribute("updateid", loginUser.getUserId());
 		}
-		
+
 		return "member/searchPwd";
 	}
-	
-	//비밀번호 바꾸기 실행
-	@RequestMapping(value="updatePwd.me", method=RequestMethod.POST)
+
+	// 비밀번호 바꾸기 실행
+	@RequestMapping(value = "updatePwd.me", method = RequestMethod.POST)
 	public String updatePwd(HttpSession session, String userId, Member m) {
 		m.setUserId(userId);
 		memberService.updatePwd(m);
 		return "member/updatePwd";
 	}
-	
+
 //    // 비밀번호 바꾸기할 경우 성공 페이지 이동
 //	@RequestMapping(value="check_password_view")
 //	public String checkPasswordForModify(HttpSession session, Model model) {
