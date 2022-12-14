@@ -34,6 +34,14 @@
 		WHERE USER_ID = #{checkId}
 			AND STATUS = 'Y' 
 	</select>
+	
+	<!-- EMAIL 중복 체크 -->
+	<select id="checkEmail" resultType="int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE USER_EMAIL = #{checkEmail}
+			AND STATUS = 'Y'
+	</select>
 
 	<resultMap type="member" id="memberResultSet">
 		<result column="USER_ID" property="userId"/>
