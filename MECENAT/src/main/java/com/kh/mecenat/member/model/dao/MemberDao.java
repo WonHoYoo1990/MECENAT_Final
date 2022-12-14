@@ -23,6 +23,11 @@ public class MemberDao {
 		return sqlSession.selectOne("memberMapper.checkId", checkId);
 	}
 
+	// EMAIL 중복 체크
+	public int checkEmail(SqlSessionTemplate sqlSession, String checkEmail) {
+		return sqlSession.selectOne("memberMapper.checkEmail", checkEmail);
+	}
+
 	// 회원 로그인
 	public Member loginMember(SqlSessionTemplate sqlSession, String userId) {
 

@@ -33,12 +33,16 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.checkId(sqlSession, checkId);
 	}
 
+	// EMAIL 중복 체크
+	@Override
+	public int checkEmail(String checkEmail) {
+		return memberDao.checkEmail(sqlSession, checkEmail);
+	}
+
 	// 회원 로그인
 	@Override
 	public Member loginMember(String userId) {
-
 		return memberDao.loginMember(sqlSession, userId);
-
 	}
 
 	// 로그인 유저
@@ -56,9 +60,7 @@ public class MemberServiceImpl implements MemberService {
 	// 비밀번호 업데이트
 	@Override
 	public void updatePwd(Member m) {
-
 		memberDao.updatePwd(sqlSession, m);
-
 	}
 
 }

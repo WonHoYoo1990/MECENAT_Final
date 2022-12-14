@@ -66,7 +66,7 @@
 							<div class="input__item">
 								<input type="text" id="userId" name="userId" placeholder="Your Id (5글자 이상)" pattern="^([a-z0-9]){5,10}$" required="required"/>
 								<label for="userId"><span class="icon_id-2"></span></label>
-								<div id="checkResult" style="font-size: 0.8em; display:none; color:red;"> 확인용 테스트 </div> <br>
+								<div id="checkIdResult" style="font-size: 0.8em; display:none; color:red;"> 아이디 중복 확인용 테스트 </div> <br>
 							</div>
 							<div class="input__item">
 								<div class="main">
@@ -87,6 +87,7 @@
 							<div class="input__item">
 								<input type="email" id="email" name="email" placeholder="Email address" required="required">
 								<label for="email"><span class="icon_mail"></span></label>
+								<div id="checkEmailResult" style="font-size: 0.8em; display:none; color:red;"> 이메일 중복 확인용 테스트 </div> <br>
 							</div>
 							<button type="submit" class="site-btn" disabled="disabled">Sign up Now</button>
 						</form>
@@ -153,12 +154,12 @@
 					},
 					success : function(result) {
 						console.log("통신 성공!");
-						console.log("result : " + result);
+						console.log("ID result : " + result);
+						
 						if ( result == "NNNNN") { //사용 불가
-    						$("#checkResult").css("color", "red").text("중복된 아이디가 있습니다. 다시 입력해 주세요.").show();
+    						$("#checkIdResult").css("color", "red").text("중복된 아이디가 있습니다. 다시 입력해 주세요.").show();
     					} else { // 사용 가능
-    						$("#checkResult").css("color", "green").text("멋진 아이디입니다!").show();
-    						$(".site-btn").attr("disabled", false);
+    						$("#checkIdResult").css("color", "green").text("멋진 아이디입니다!").show();
     					}
 					},
 					error : function() {
@@ -171,6 +172,34 @@
 				$("#checkResult").html("5글자 이상 입력해주세요").show();
 			}
 		});
+		
+		// 이메일 중복 체크
+		var inputEmail = $("#email");
+		console.log("email : " + email);
+		
+		inputEmail.keyup(function() {
+			$.ajax({
+				url : "checkEmail.me",
+				data : {
+					checkEmail : inputEmail.val()
+				},
+				success : function(result) {
+					console.log("이메일 중복 통신 성공!")
+					console.log("Email result : " + result);
+					
+					if (result == "NNNNN") {
+   						$("#checkEmailResult").css("color", "red").text("중복된 아이디가 있습니다. 다시 입력해 주세요.").show();
+					} else {
+   						$("#checkEmailResult").css("color", "green").text("가능한 이메일입니다!").show();
+   						$(".site-btn").attr("disabled", false);
+					}
+				},
+				error : function() {
+					console.log("이메일 중복 통신 실패!")
+				}
+			});
+		});
+		
 	</script>
 
 </body>

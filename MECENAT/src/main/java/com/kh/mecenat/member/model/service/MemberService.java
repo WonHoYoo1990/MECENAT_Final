@@ -10,6 +10,12 @@ public interface MemberService {
 	// 회원 탈퇴
 	int deleteMember(String userId);
 
+	// ID 중복 체크
+	int checkId(String checkId);
+
+	// EMAIL 중복 체크
+	int checkEmail(String checkEmail);
+
 	// 로그인 서비스
 	Member loginMember(String userId);
 
@@ -21,10 +27,5 @@ public interface MemberService {
 
 	// 비밀번호 업데이트
 	void updatePwd(Member m);
-
-	// ID 중복 체크
-	int checkId(String checkId);
-
-	// EMAIL 중복 체크
 
 }

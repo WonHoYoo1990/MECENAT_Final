@@ -97,6 +97,22 @@ public class MemberController {
 	}
 
 	// EMAIL 중복 체크
+	@ResponseBody
+	@RequestMapping("checkEmail.me")
+	public String checkEmail(String checkEmail) {
+
+		int count = memberService.checkEmail(checkEmail);
+
+		String str = "";
+
+		if (count > 0) {
+			str = "NNNNN";
+		} else {
+			str = "NNNNY";
+		}
+
+		return str;
+	}
 
 	// 마이페이지 이동
 	@RequestMapping("myPage.me")
