@@ -32,72 +32,79 @@
 </head>
 <body>
 
-<!-- Page Preloder -->
-<div id="preloder">
-    <div class="loader"></div>
-</div>
+	<c:if test="${not empty alertMsg}">
+		<script type="text/javascript">
+			alert("${alertMsg}");
+		</script>
+		<c:remove var="alertMsg" scope="session"/>
+	</c:if>
 
-<!-- Header Section Begin -->
-<header class="header">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-2">
-                <div class="header__logo">
-                    <a href="./index.html">
-                        <!-- <img src="img/logo.png" alt=""> -->
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-8">
-                <div class="header__nav">
-                    <nav class="header__menu mobile-menu">
-                        <ul>
-                            <li><a href="index.jsp">Homepage</a></li>
-                            <li><a href="index.jsp">Categories <span class="arrow_carrot-down"></span></a>
-                                <ul class="dropdown">
-                                    <li><a href="./categories.html">Categories</a></li>
-                                    <li><a href="./anime-details.html">Anime Details</a></li>
-                                    <li><a href="./anime-watching.html">Anime Watching</a></li>
-                                    <li><a href="./blog-details.html">Blog Details</a></li>
-                                    <c:choose>
-	                                    <c:when test="${empty loginUser}">
-		                                    <li><a href="signupForm.me">Sign Up</a></li>
-		                                    <li><a href="loginForm.me">Login</a></li>
-		                                </c:when>
-		                                <c:otherwise>
-		                                    <li><a href="logout.me">LogOut</a></li>
-	                                	</c:otherwise>
-                                	</c:choose>
-                                </ul>
-                            </li>
-                            <li><a href="./blog.html">Our Blog</a></li>
-                            <li><a href="#">Contacts</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-            <div class="col-lg-2">
-                <div class="header__right">
-                    <a href="#" class="search-switch"><span class="icon_search"></span></a>
-                    <a href="myPage.me"><span class="icon_profile"></span></a>
-                </div>
-            </div>
-        </div>
-        <div id="mobile-menu-wrap"></div>
-    </div>
-</header>
-<!-- Header End -->
-
-
-<!-- Js Plugins -->
-<script src="./resources/js/jquery-3.3.1.min.js"></script>
-<script src="./resources/js/bootstrap.min.js"></script>
-<script src="./resources/js/player.js"></script>
-<script src="./resources/js/jquery.nice-select.min.js"></script>
-<script src="./resources/js/mixitup.min.js"></script>
-<script src="./resources/js/jquery.slicknav.js"></script>
-<script src="./resources/js/owl.carousel.min.js"></script>
-<script src="./resources/js/main.js"></script>
+	<!-- Page Preloder -->
+	<div id="preloder">
+	    <div class="loader"></div>
+	</div>
+	
+	<!-- Header Section Begin -->
+	<header class="header">
+    	<div class="container">
+        	<div class="row">
+	            <div class="col-lg-2">
+	                <div class="header__logo">
+	                    <a href="./index.html">
+	                        <!-- <img src="img/logo.png" alt=""> -->
+	                    </a>
+                	</div>
+	            </div>
+	            <div class="col-lg-8">
+	                <div class="header__nav">
+	                    <nav class="header__menu mobile-menu">
+	                        <ul>
+	                            <li><a href="index.jsp">Homepage</a></li>
+	                            <li><a href="index.jsp">Categories <span class="arrow_carrot-down"></span></a>
+	                                <ul class="dropdown">
+	                                    <li><a href="./categories.html">Categories</a></li>
+	                                    <li><a href="./anime-details.html">Anime Details</a></li>
+	                                    <li><a href="./anime-watching.html">Anime Watching</a></li>
+                                    	<li><a href="./blog-details.html">Blog Details</a></li>
+	                                    <c:choose>
+		                                    <c:when test="${empty loginUser}">
+			                                    <li><a href="signupForm.me">Sign Up</a></li>
+			                                    <li><a href="loginForm.me">Login</a></li>
+			                                </c:when>
+			                                <c:otherwise>
+			                                    <li><a href="logout.me">LogOut</a></li>
+		                                	</c:otherwise>
+	                                	</c:choose>
+	                                </ul>
+	                            </li>
+	                            <li><a href="./blog.html">Our Blog</a></li>
+	                            <li><a href="#">Contacts</a></li>
+	                        </ul>
+	                    </nav>
+	                </div>
+	            </div>
+	            <div class="col-lg-2">
+	                <div class="header__right">
+	                    <a href="#" class="search-switch"><span class="icon_search"></span></a>
+	                    <a href="myPage.me"><span class="icon_profile"></span></a>
+	                </div>
+	            </div>
+	        </div>
+	        <div id="mobile-menu-wrap"></div>
+	    </div>
+	</header>
+	<!-- Header End -->
+	
+	
+	<!-- Js Plugins -->
+	<script src="./resources/js/jquery-3.3.1.min.js"></script>
+	<script src="./resources/js/bootstrap.min.js"></script>
+	<script src="./resources/js/player.js"></script>
+	<script src="./resources/js/jquery.nice-select.min.js"></script>
+	<script src="./resources/js/mixitup.min.js"></script>
+	<script src="./resources/js/jquery.slicknav.js"></script>
+	<script src="./resources/js/owl.carousel.min.js"></script>
+	<script src="./resources/js/main.js"></script>
 
 </body>
-</html>01
+</html>

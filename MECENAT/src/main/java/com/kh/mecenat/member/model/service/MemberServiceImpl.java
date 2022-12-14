@@ -33,32 +33,32 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.checkId(sqlSession, checkId);
 	}
 
-	// 회원 로그인 
+	// 회원 로그인
 	@Override
 	public Member loginMember(String userId) {
-		
-		return memberDao.loginMember(sqlSession,userId);
-		
+
+		return memberDao.loginMember(sqlSession, userId);
+
 	}
 
-	//로그인 유저
+	// 로그인 유저
 	@Override
 	public Member loginUser(Member m) {
 		return memberDao.loginUser(sqlSession, m);
 	}
- 
-	//비밀번호 찾기
+
+	// 비밀번호 찾기
 	@Override
 	public Member searchPwd(Member m) {
 		return memberDao.searchPwd(sqlSession, m);
 	}
 
-	//비밀번호 업데이트
+	// 비밀번호 업데이트
 	@Override
 	public void updatePwd(Member m) {
-		
-		memberDao.updatePwd(sqlSession,m);
-		
+
+		memberDao.updatePwd(sqlSession, m);
+
 	}
-	
+
 }
