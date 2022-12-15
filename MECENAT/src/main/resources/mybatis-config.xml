@@ -11,10 +11,17 @@
 	<!-- 별칭등록 -->
 	<typeAliases>
 		<typeAlias type = "com.kh.mecenat.member.model.vo.Member" alias="member"/>
+		<typeAlias type="com.kh.mecenat.reservation.model.vo.Hall" alias="hall"/>
+		<typeAlias type="com.kh.mecenat.reservation.model.vo.Payment" alias="payment"/>
+		<typeAlias type="com.kh.mecenat.reservation.model.vo.Performance" alias="performance"/>
+		<typeAlias type="com.kh.mecenat.reservation.model.vo.Purchase" alias="purchase"/>
+		<typeAlias type="com.kh.mecenat.reservation.model.vo.RentApplication" alias="rentapplication"/>
+		<typeAlias type="com.kh.mecenat.reservation.model.vo.RentSystem" alias="rentsystem"/>
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="/mappers/member-mapper.xml"/>
+		<mapper resource="/mappers/reservation-mapper.xml"/> 	
 	</mappers>
 	
 </configuration>
