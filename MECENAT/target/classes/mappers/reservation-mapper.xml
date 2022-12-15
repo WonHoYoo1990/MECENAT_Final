@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="reservationMapper">
+
+	<resultMap type="performance" id="performanceResult">
+		<result column="PERFO_NO" property="perfoNo"/>
+		<result column="RENTAL_CODE" property="rentalCode"/>
+		<result column="PERFO_TITLE" property="perfoTitle"/>
+		<result column="GENRE_NAME" property="genreName"/>
+		<result column="PERFO_DATE" property="perfoDate"/>
+		<result column="PERFO_START_DATE" property="perfoStartDate"/>
+		<result column="PERFO_END_DATE" property="perfoEndDate"/>
+		<result column="PERFO_EVENT_DATE" property="perfoEventDate"/>
+		<result column="DIRECTOR" property="director"/>
+		<result column="CAST" property="cast"/>
+		<result column="PERFO_CONTENT" property="perfoContent"/>
+		<result column="START_TIME" property="startTime"/>
+		<result column="RUNNING_TIME" property="runningTime"/>
+		<result column="AGE_LIMIT" property="ageLimit"/>
+		<result column="PERFO_STATUS" property="perfoStatus"/>
+		<result column="PRICE" property="price"/>
+		<result column="HALL_NAME" property="hallName"/>
+	</resultMap>
+	
+	<resultMap type="rentapplication" id="rentapplicationResult">
+		<result column="RENTAL_CODE" property="rentalCode"/>
+		<result column="USER_ID" property="userId"/>
+		<result column="HALL_NAME" property="hallName"/>
+		<result column="COVENANTEE_NAME" property="covenanteeName"/>
+		<result column="COVENANTEE_PHONE" property="covenanteePhone"/>
+		<result column="AGENT_NAME" property="agentName"/>
+		<result column="AGENT_PHONE" property="agentPhone"/>
+		<result column="AGENT_EMAIL" property="agentEmail"/>
+		<result column="PERFO_START_DATE" property="rentalStartDate"/>
+		<result column="RENTAL_END_DATE" property="rentalEndDate"/>
+		<result column="EVENT_DATE" property="eventDate"/>
+		<result column="RENTAL_PROPOSE" property="rentalPropose"/>
+		<result column="RENTAL_DATE" property="rentalDate"/>
+		<result column="APPROVE_STATUS" property="approveStatus"/>
+	</resultMap>
+
+	<resultMap type="hall" id="hallResult">
+		<result column="HALL_NAME" property="hallName"/>
+		<result column="HALL_SEATS" property="hallSeats"/>
+		<result column="HALL_LOCATION" property="hallLocation"/>
+	</resultMap>
+	
+	<resultMap type="rentsystem" id="rentsystemResult">
+		<result column="RENTAL_CODE" property="rentalCode"/>
+		<result column="USER_ID" property="userId"/>
+		<result column="PERFO_NO" property="perfoNo"/>		
+		<result column="HALL_STATUS" property="hallStatus"/>
+	</resultMap>
+
+	<resultMap type="payment" id="paymentResult">
+		<result column="PAYMENT_NO" property="paymentNo"/>
+		<result column="USER_ID" property="userId"/>
+		<result column="PAYMENT_METHOD" property="paymentMethod"/>
+		<result column="PAYMENT_DATE" property="paymentDate"/>
+		<result column="PAYMENT_STATUS" property="paymentStatus"/>
+		<result column="PAYMENT_AMOUNT" property="paymentAmount"/>
+		<result column="DEPOSIT_NAME" property="depositName"/>
+		<result column="DEPOSIT_BANK" property="depositBank"/>
+		<result column="CARDCO_NAME" property="cardcoName"/>
+		<result column="CARD_NO" property="cardNo"/>
+	</resultMap>
+
+	<resultMap type="purchase" id="purchaseResult">
+		<result column="PURCHASE_NO" property="purchaseNo"/>
+		<result column="USER_ID" property="userId"/>
+		<result column="RENTAL_CODE" property="rentalCode"/>
+		<result column="SEAT_NO" property="seatNo"/>
+		<result column="PAYMENT_NO" property="paymentNo"/>
+		<result column="CUSTOMERSERVICE_STATUS" property="customerserviceStatus"/>
+		<result column="PURCHASE_DATE" property="purchaseDate"/>
+		<result column="RESERVATION_DATE" property="reservationDate"/>
+		<result column="TOTAL_PRICE" property="totalPrice"/>
+	</resultMap>
+
+	<select id="selectPerformanceList" resultMap="performanceResult">
+		SELECT *
+		FROM PERFORMANCE
+		WHERE PERFO_STATUS = 'Y'
+		ORDER BY PERFO_START_DATE
+	</select>
+	
+	
+	<!-- #혜원만제 - 예매할 공연 선택 후 공연번호로 공연 전체 정보 조회 -->
+	<select id="selectPerformance" resultMap="performanceResult">
+		SELECT *
+		FROM PERFORMANCE
+		WHERE PERFO_STATUS = 'Y'
+		AND PERFO_NO = #{perfoNo}
+	</select>
+	
+	<!-- #혜원만제 - 대관신청서 insert -->
+	<insert id="insertApplication">
+		INSERT INTO RENTAPPLICATION
+	    VALUES(SEQ_RENTALNO.NEXTVAL
+			, #{userId}
+			, #{hallName}
+			, #{covenanteeName}
+			, #{covenanteePhone}
+			, #{agentName}
+			, #{agentPhone}
+			, #{agentEmail}
+			, #{rentalStartDate}
+			, #{rentalEndDate}
+			, #{eventDate}
+			, #{rentalPropose}
+			, SYSDATE
+			, '승인대기')
+	</insert>
+
+	
+	<update id="updateBoard">
+		UPDATE BOARD
+		SET BOARD_TITLE = #{boardTitle}
+		,BOARD_CONTENT = #{boardContent}
+		,ORIGIN_NAME = #{originName}
+		,CHANGE_NAME = #{changeName}
+		WHERE STATUS = 'Y'
+		AND BOARD_NO = #{boardNo}
+	</update>
+
+	<update id="deleteBoard" parameterType="int">
+		UPDATE BOARD
+		SET STATUS = 'N'
+		WHERE BOARD_NO = #{boardNo}
+		AND STATUS = 'Y'
+	</update>
+
+</mapper>
