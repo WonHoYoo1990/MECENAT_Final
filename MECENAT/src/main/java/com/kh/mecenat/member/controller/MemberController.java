@@ -25,13 +25,13 @@ public class MemberController {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	// 회원가입 폼으로 이동
+	// �쉶�썝媛��엯 �뤌�쑝濡� �씠�룞
 	@RequestMapping("signupForm.me")
 	public String signupForm() {
 		return "member/signup";
 	}
 
-	// 회원가입 등록
+	// �쉶�썝媛��엯 �벑濡�
 	@RequestMapping("signup.me")
 	public ModelAndView signup(Member m, ModelAndView mv, HttpSession session) {
 
@@ -42,16 +42,16 @@ public class MemberController {
 		int result = memberService.signup(m);
 
 		if (result > 0) {
-			session.setAttribute("alertMsg", "회원가입을 축하합니다!");
+			session.setAttribute("alertMsg", "�쉶�썝媛��엯�쓣 異뺥븯�빀�땲�떎!");
 			mv.setViewName("redirect:/");
 		} else {
-			mv.addObject("errorMsg", "회원 가입 실패하셨습니다. 다시 시도해 주세요!").setViewName("common/errorPage");
+			mv.addObject("errorMsg", "�쉶�썝 媛��엯 �떎�뙣�븯�뀲�뒿�땲�떎. �떎�떆 �떆�룄�빐 二쇱꽭�슂!").setViewName("common/errorPage");
 		}
 
 		return mv;
 	}
 
-	// 회원 탈퇴
+	// �쉶�썝 �깉�눜
 	@RequestMapping("delete.me")
 	public ModelAndView deleteMember(String userPwd, HttpSession session, ModelAndView mv) {
 
@@ -59,26 +59,26 @@ public class MemberController {
 		String userId = loginUser.getUserId();
 		String loginUserPwd = loginUser.getUserPwd();
 
-		if (bCryptPasswordEncoder.matches(userPwd, loginUserPwd)) { // 입력한 비밀번호와 암호화 비밀번호가 일치할 경우
+		if (bCryptPasswordEncoder.matches(userPwd, loginUserPwd)) { // �엯�젰�븳 鍮꾨�踰덊샇�� �븫�샇�솕 鍮꾨�踰덊샇媛� �씪移섑븷 寃쎌슦
 			int result = memberService.deleteMember(userId);
 
 			if (result > 0) {
 				session.removeAttribute("loginUser");
-				session.setAttribute("alertMsg", "회원 탈퇴 하셨습니다. 그동안 감사드립니다.");
+				session.setAttribute("alertMsg", "�쉶�썝 �깉�눜 �븯�뀲�뒿�땲�떎. 洹몃룞�븞 媛먯궗�뱶由쎈땲�떎.");
 
 				mv.setViewName("redirect:/");
 			} else {
-				mv.addObject("errorMsg", "회원 탈퇴 실패하셨습니다.").setViewName("common/errorPage");
+				mv.addObject("errorMsg", "�쉶�썝 �깉�눜 �떎�뙣�븯�뀲�뒿�땲�떎.").setViewName("common/errorPage");
 			}
 
-		} else { // 입력한 비밀번호와 암호화 비밀번호가 일치하지 않을 경우
-			mv.addObject("errorMsg", "비밀번호가 일치하지 않습니다. 다시 시도해주시기 바랍니다.").setViewName("redirect:/myPage.me");
+		} else { // �엯�젰�븳 鍮꾨�踰덊샇�� �븫�샇�솕 鍮꾨�踰덊샇媛� �씪移섑븯吏� �븡�쓣 寃쎌슦
+			mv.addObject("errorMsg", "鍮꾨�踰덊샇媛� �씪移섑븯吏� �븡�뒿�땲�떎. �떎�떆 �떆�룄�빐二쇱떆湲� 諛붾엻�땲�떎.").setViewName("redirect:/myPage.me");
 		}
 
 		return mv;
 	}
 
-	// ID 중복 체크
+	// ID 以묐났 泥댄겕
 	@ResponseBody
 	@RequestMapping("checkId.me")
 	public String checkId(String checkId) {
@@ -96,7 +96,7 @@ public class MemberController {
 		return str;
 	}
 
-	// EMAIL 중복 체크
+	// EMAIL 以묐났 泥댄겕
 	@ResponseBody
 	@RequestMapping("checkEmail.me")
 	public String checkEmail(String checkEmail) {
@@ -114,59 +114,59 @@ public class MemberController {
 		return str;
 	}
 
-	// 마이페이지 이동
+	// 留덉씠�럹�씠吏� �씠�룞
 	@RequestMapping("myPage.me")
 	public String myPageForm() {
-		System.out.println("myPage 이동~");
+		System.out.println("myPage �씠�룞~");
 		return "member/myPage";
 	}
 
-	// 로그인 폼으로 이동
+	// 濡쒓렇�씤 �뤌�쑝濡� �씠�룞
 	@GetMapping("loginForm.me")
 
 	public String enrollForm() {
 
-		// WEB-INF/views/member/memberEnrollForm.jsp 로 포워딩
+		// WEB-INF/views/member/memberEnrollForm.jsp 濡� �룷�썙�뵫
 		return "/member/login";
 
 	}
 
-	// 로그인
+	// 濡쒓렇�씤
 	@PostMapping("login.me")
 	public String loginMember(Member m, HttpSession session, ModelAndView mv) {
 
-		// loginUser : 아이디만으로 조회해온 회원정보
+		// loginUser : �븘�씠�뵒留뚯쑝濡� 議고쉶�빐�삩 �쉶�썝�젙蹂�
 		Member loginUser = memberService.loginMember(m.getUserId());
 
 		if (loginUser != null && bCryptPasswordEncoder.matches(m.getUserPwd(), loginUser.getUserPwd())) {
 			session.setAttribute("loginUser", loginUser);
-			// setViewName : 요청 주소
+			// setViewName : �슂泥� 二쇱냼
 			return "redirect:/";
 
 		} else {
-			mv.addObject("errorMsg", "로그인 실패");
+			mv.addObject("errorMsg", "濡쒓렇�씤 �떎�뙣");
 			return "common/errorPage";
 		}
 
 	}
 
-	// 로그아웃
+	// 濡쒓렇�븘�썐
 	@RequestMapping("logout.me")
 	public String logoutMember(HttpSession session) {
 
 		session.removeAttribute("loginUser");
-		// invalidate()로 하게되면 세션에 있는 다른 데이터도 초기화 되기 때문에 removeAttribute
+		// invalidate()濡� �븯寃뚮릺硫� �꽭�뀡�뿉 �엳�뒗 �떎瑜� �뜲�씠�꽣�룄 珥덇린�솕 �릺湲� �븣臾몄뿉 removeAttribute
 
 		return "redirect:/";
 	}
 
-	// 비밀번호 찾기 페이지로 이동
+	// 鍮꾨�踰덊샇 李얘린 �럹�씠吏�濡� �씠�룞
 	@RequestMapping("searchPwdForm.me")
 	public String searchPwdView() {
 		return "member/searchPwd";
 	}
 
-	// 비밀번호 찾기 실행
+	// 鍮꾨�踰덊샇 李얘린 �떎�뻾
 	@PostMapping("searchPwd.me")
 	public String searchPwd(HttpSession session, Member m, Model model) {
 
@@ -182,7 +182,7 @@ public class MemberController {
 		return "member/searchPwd";
 	}
 
-	// 비밀번호 바꾸기 실행
+	// 鍮꾨�踰덊샇 諛붽씀湲� �떎�뻾
 	@RequestMapping(value = "updatePwd.me", method = RequestMethod.POST)
 	public String updatePwd(HttpSession session, String userId, Member m) {
 		m.setUserId(userId);
@@ -190,7 +190,7 @@ public class MemberController {
 		return "member/updatePwd";
 	}
 
-//    // 비밀번호 바꾸기할 경우 성공 페이지 이동
+//    // 鍮꾨�踰덊샇 諛붽씀湲고븷 寃쎌슦 �꽦怨� �럹�씠吏� �씠�룞
 //	@RequestMapping(value="check_password_view")
 //	public String checkPasswordForModify(HttpSession session, Model model) {
 //		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
@@ -201,5 +201,5 @@ public class MemberController {
 //			return "mypage/checkformodify";
 //		}
 //	}
-
+//1234567890
 }
