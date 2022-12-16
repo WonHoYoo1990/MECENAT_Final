@@ -44,7 +44,7 @@ public class MemberDao {
 	public Member searchPwd(SqlSessionTemplate sqlSession, Member m) {
 
 		return sqlSession.selectOne("memberMapper.searchPwd", m);
-	}
+	} 
 
 	// 비밀번호 업데이트
 	public void updatePwd(SqlSessionTemplate sqlSession, Member m) {

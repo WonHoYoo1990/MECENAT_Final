@@ -1,5 +1,12 @@
 package com.kh.mecenat.member.controller;
 
+import java.io.IOException;
+import java.net.PasswordAuthentication;
+import java.util.Properties;
+
+import javax.mail.Session;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.mecenat.member.model.service.MemberService;
 import com.kh.mecenat.member.model.vo.Member;
+import com.sun.glass.ui.View;
 
 @Controller
 public class MemberController {
@@ -72,7 +80,8 @@ public class MemberController {
 			}
 
 		} else { // 입력한 비밀번호와 암호화 비밀번호가 일치하지 않을 경우
-			mv.addObject("errorMsg", "비밀번호가 일치하지 않습니다. 다시 시도해주시기 바랍니다.").setViewName("redirect:/myPage.me");
+			session.setAttribute("alertMsg", "비밀번호가 일치하지 않습니다. 다시 입력해주시기 바랍니다.");
+			mv.setViewName("redirect:/myPage.me");
 		}
 
 		return mv;
@@ -113,6 +122,92 @@ public class MemberController {
 
 		return str;
 	}
+
+	// 이메일 인증 TEST
+//	@RequestMapping("/sendEmail.do")
+//	public void sendEmail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//
+//		// 메일 관련 정보
+//		String host = "smtp.naver.com";
+//		final String username = "ywh080"; // 네이버 메일중 @naver.com 앞주소만 작성
+//		final String password = "dnjsgh123!@#"; // 네이버 메일 비밀번호 작성
+//		int port = 465;
+//
+//		// 메일 내용
+//		String recipient = "you_yearning@hanmail.net"; // 메일 발송할 이메일 주소 기재
+//		String subject = "제목이에요"; // 메일 발송시 제목
+//		String body = "이름 : 홍길동이요"; // 메일 발송시 내용
+//
+//		Properties props = System.getProperties();
+//
+//		props.put("mail.smtp.host", host);
+//		props.put("mail.smtp.port", port);
+//		props.put("mail.smtp.auth", "true");
+//		props.put("mail.smtp.ssl.enable", "true");
+//		props.put("mail.smtp.ssl.trust", host);
+//
+//		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+//			String un = username;
+//			String pw = password;
+//
+//			protected PasswordAuthentication getPasswordAuthentication() {
+//				return new PasswordAuthentication(un, pw);
+//			}
+//
+//		});
+//
+//	}
+
+//	@Test
+//	public void mailTest() {
+//
+////		JavaMailSenderImpl mailSender = (JavaMailSenderImpl) ctx.getBean("mailSender");
+//
+//		ApplicationContext context = new ClassPathXmlApplicationContext("webapp/WEB-INF/spring/root-context.xml");
+//		JavaMailSenderImpl mailSender = (JavaMailSenderImpl) context.getBean("mailSender");
+//
+//		// 메일 제목, 내용
+//		String subject = "제목입니당";
+//		String content = "내용입니당~";
+//
+//		// 보내는 사람
+//		String from = "you_yearning@hanmail.net";
+//
+//		// 받는 사람
+//		String[] to = new String[1];
+//		to[0] = "ywh080@naver.com";
+////		to[1] = "ulantj@naver.com";
+//
+//		try {
+//			// 메일 내용 넣을 객체와, 이를 도와주는 Helper 객체 생성
+//			MimeMessage mail = mailSender.createMimeMessage();
+//			MimeMessageHelper mailHelper = new MimeMessageHelper(mail, "UTF-8");
+//
+//			// 메일 내용을 채워줌
+//			mailHelper.setFrom(from); // 보내는 사람 셋팅
+//			mailHelper.setTo(to); // 받는 사람 셋팅
+//			mailHelper.setSubject(subject); // 제목 셋팅
+//			mailHelper.setText(content); // 내용 셋팅
+//
+//			// 메일 전송
+//			mailSender.send(mail);
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
+//	@RequestMapping(value = "/get_auth", method = RequestMethod.POST)
+//	public View sendAuthCode(HttpServletRequest request, Model model) throws IOException {
+//
+//		String title = "인증코드에요?";
+//		String from = "";
+//		String text = "인증 코드 : ";
+//		String to = "";
+//		String cc = "";
+//
+////		return jsonView;
+//		return null;
+//	}
 
 	// 마이페이지 이동
 	@RequestMapping("myPage.me")

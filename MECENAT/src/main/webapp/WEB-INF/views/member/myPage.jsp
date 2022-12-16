@@ -13,11 +13,22 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+	<c:if test="${not empty errorMsg}">
+		<script type="text/javascript">
+			alert("${errorMsg}");
+		</script>
+		<%-- <c:remove var="errorMsg" scope="request"/> --%>
+	</c:if>
+	<h1 style="font-weight:bold; color: white;">${errorMsg}</h1>
+
 	<h1>여기는 마이페이지</h1>
 	<jsp:include page="../common/header.jsp"/>
 	
 	<div>
-		<form action="delete.me">
+		<form action="delete.me" method="post">
+			<label for="userPwd" class="mr-sm-2">Password : </label>
+			<input type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter Password" id="userPwd" name="userPwd"> <br>
 			<button type="submit">회원 탈퇴 버튼</button>
 		</form>
 	
