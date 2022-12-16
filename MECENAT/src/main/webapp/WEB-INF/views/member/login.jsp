@@ -45,13 +45,23 @@
                         <h3>Login</h3>
                         <form action="login.me" method="post">
                             <div class="input__item">
-                                <input type="text" placeholder="Id" id="userId" name="userId">
+                            <c:choose>
+                            	<c:when test="${cookie.userId.value}">
+                                <input type="text" placeholder="Id" id="userId" name="userId" required>
                                 <span class="icon_mail"></span>
+                               </c:when>
+                               <c:otherwise>
+                                <input type="text" placeholder="Id" id="userId" name="userId" value="${cookie.userId.value}" required>
+                                <span class="icon_mail"></span>
+                               </c:otherwise>
+                             </c:choose>
                             </div>
                             <div class="input__item">
                                 <input type="text" placeholder="Password" id="userPwd" name="userPwd">
                                 <span class="icon_lock"></span>
                             </div>
+                            <input type="checkbox" id="saveId" name="saveId">
+                            	<label for="saveId" style="color:white;">아이디 저장</label><br>
                             <button type="submit" class="site-btn" id="enrollBtn">Login Now</button>
                         </form>
                         <!-- 비밀번호 찾기 -->
@@ -101,16 +111,22 @@
         </div>
     </div>
     <!-- Search model end -->
+    
+    <script>	
+    
+		$(function(){
+			<c:choose>
+			<c:when test="${not empty cookie.userId.value}">
+				$("#saveId").attr("checked",true);
+			</c:when>
+			<c:otherwise>
+				$("#saveId").attr("checked",false);
+			</c:otherwise>
+			</c:choose>
+		});
+		
+	</script>
 
-    <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/player.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/mixitup.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
 
 
 </body>

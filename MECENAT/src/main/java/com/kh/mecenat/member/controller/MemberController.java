@@ -1,5 +1,8 @@
 package com.kh.mecenat.member.controller;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -220,8 +223,35 @@ public class MemberController {
 
 	// 로그인
 	@PostMapping("login.me")
-	public String loginMember(Member m, HttpSession session, ModelAndView mv) {
+	public String loginMember(Member m, HttpSession session, HttpServletResponse response, ModelAndView mv, HttpServletRequest request) {
 
+		String userId = request.getParameter("userId");
+		String userPwd = request.getParameter("userPwd");
+		String saveId = request.getParameter("saveId");
+		
+		Cookie cookie = null;
+		
+		//아이디 저장이 체크되었는지 확인하여 체크되었으면 쿠키 생성
+		if(saveId != null && saveId.equals("on")) {
+			//쿠키의 이름과 값을 넣어서 생성해준다.
+			cookie = new Cookie("userId", userId);
+			
+			//쿠키의 수명 지정(초단위)
+			cookie.setMaxAge(60*60*24); //하루 60초*60*24
+			
+			//응답 객체인 response에 생성된 쿠키 추가
+			response.addCookie(cookie);
+			
+			
+		}else { //체크되지 않았으면 쿠키 삭제
+			cookie = new Cookie("userId", null); //값을 null로
+			cookie.setMaxAge(0); // 쿠키의 수명을 0으로 바꾸기
+			response.addCookie(cookie);
+			
+		}
+		
+				
+		
 		// loginUser : 아이디만으로 조회해온 회원정보
 		Member loginUser = memberService.loginMember(m.getUserId());
 
