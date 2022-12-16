@@ -13,7 +13,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>여기는 메인페이지</h1>
     <!-- Header Section Begin -->
 	<jsp:include page="../views/common/header.jsp"/>
     <!-- Header End -->
