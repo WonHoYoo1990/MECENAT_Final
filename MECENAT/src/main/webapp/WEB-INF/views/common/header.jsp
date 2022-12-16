@@ -59,6 +59,7 @@
 	                <div class="header__nav">
 	                    <nav class="header__menu mobile-menu">
 	                        <ul>
+	                        	<li><h1 align="center" style='color:white'>안녕디지몬</h1></li>
 	                            <li><a href="index.jsp">Homepage</a></li>
 	                            <li><a href="index.jsp">Categories <span class="arrow_carrot-down"></span></a>
 	                                <ul class="dropdown">

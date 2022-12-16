@@ -24,7 +24,7 @@
 			<input type="submit" value="관리자용: 등록하기">
 		</form>
 		<br><br>
-		
+		<!-- <h1 align="center"  style='color:white' >테스트 줄</h1> -->
 		<table id="performanceList" align="center"  style='color:white' align="center" border="1px">
 			<thead>
 				<tr>
