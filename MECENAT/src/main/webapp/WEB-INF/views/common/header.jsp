@@ -87,7 +87,14 @@
 	            <div class="col-lg-2">
 	                <div class="header__right">
 	                    <a href="#" class="search-switch"><span class="icon_search"></span></a>
-	                    <a href="myPage.me"><span class="icon_profile"></span></a>
+	                    <c:choose>
+	                    	<c:when test="${not empty loginUser}">
+	                    		<a href="myPage.me"><span class="icon_profile"></span></a>
+	                    	</c:when>
+	                    	<c:otherwise>
+	                    		
+	                    	</c:otherwise>
+	                    </c:choose>
 	                </div>
 	            </div>
 	        </div>
