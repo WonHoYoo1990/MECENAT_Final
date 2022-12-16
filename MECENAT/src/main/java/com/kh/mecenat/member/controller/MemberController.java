@@ -1,12 +1,5 @@
 package com.kh.mecenat.member.controller;
 
-import java.io.IOException;
-import java.net.PasswordAuthentication;
-import java.util.Properties;
-
-import javax.mail.Session;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.mecenat.member.model.service.MemberService;
 import com.kh.mecenat.member.model.vo.Member;
-import com.sun.glass.ui.View;
 
 @Controller
 public class MemberController {
