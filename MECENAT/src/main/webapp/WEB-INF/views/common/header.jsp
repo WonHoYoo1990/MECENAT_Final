@@ -68,6 +68,16 @@
                                     	<li><a href="./blog-details.html">KH 시즌</a></li>
 	                                    <li><a href="./anime-watching.html">공연 일정</a></li>
                                     	<li><a href="./blog-details.html">패키지</a></li>
+                                    	<li><a href="./blog-details.html">전시일정</a></li>
+                                    	<li><a href="./blog-details.html">강좌일정</a></li>
+                                    	<li>
+                                    		<a href="./blog-details.html">좌석배치도</a>
+                                    		<ul>
+											  <li><a href="./blog-details.html">세종대극장1</a></li>
+											  <li><a href="./blog-details.html">세종대극장2</a></li>
+											  <li><a href="./blog-details.html">세종대극장3</a></li>
+											</ul>
+                                    	</li>
 	                                </ul>
 	                            </li>
 								<!-- 대관안내 -->
