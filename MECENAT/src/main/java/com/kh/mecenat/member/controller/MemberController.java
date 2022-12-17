@@ -320,4 +320,6 @@ public class MemberController {
 //	}
 
 	// test 05!!
+	
+	// test 06 !!
 }
