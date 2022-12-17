@@ -11,6 +11,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Anime | Template</title>
+    
+    
+    <style type="text/css">
+		.etc {
+			text-align: center;
+		    font-size: 15px;
+		    margin-top: 30px;
+		    margin-top: 1.875rem;
+		}
+	</style>
 
 </head>
 
@@ -21,7 +31,7 @@
 	<!-- Header End -->
 
     <!-- Normal Breadcrumb Begin -->
-    <section class="normal-breadcrumb set-bg" data-setbg="img/normal-breadcrumb.jpg">
+    <section class="normal-breadcrumb set-bg" data-setbg="resources/img/normal-breadcrumb.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -63,16 +73,26 @@
                             <input type="checkbox" id="saveId" name="saveId">
                             	<label for="saveId" style="color:white;">아이디 저장</label><br>
                             <button type="submit" class="site-btn" id="enrollBtn">Login Now</button>
-                        </form>
-                        <!-- 비밀번호 찾기 -->
-                        <a href="searchPwdForm.me" class="forget_pass">Forgot Your Password?</a>
+                        </form><br>
                     </div>
                 </div>
-                <!-- 회원가입 창으로 이동 -->
+               
                 <div class="col-lg-6">
                     <div class="login__register">
                         <h3>Dont’t Have An Account?</h3>
-                        <a href="signupForm.me" class="primary-btn">Register Now</a>
+                        <a href="signupForm.me" class="primary-btn">아이디 찾기</a>
+                    </div>
+                    <div class="login__register">
+                        <h3>Dont’t Have An Account?</h3>
+                        <a href="signupForm.me" class="primary-btn">비밀번호 찾기</a>
+                    </div>
+                    <div class="login__register">
+                        <h3>Dont’t Have An Account?</h3>
+                        <a href="signupForm.me" class="primary-btn">회원가입</a>
+                    </div>
+                    <div class="login__register">
+                        <h3>Dont’t Have An Account?</h3>
+                        <a href="signupForm.me" class="primary-btn">회원혜택 안내</a>
                     </div>
                 </div>
             </div>
@@ -127,8 +147,10 @@
 		
 	</script>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'WH' of https://github.com/WonHoYoo1990/MECENAT_Final.git
 
 </body>
-
 </html>
