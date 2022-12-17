@@ -28,8 +28,30 @@
 	
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="/favicon.ico" type="image/x-icon">
-
-
+	
+	
+	<!-- 인터넷 -->
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/aos.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/bbs_new.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/fonts.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/layout_new.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/main_new.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/pop_all.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/responsive_new.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/sitemap.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/slider.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/style.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/sub.css">
+	
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	
+	<script src="./resources/sejongpac/static/commons/js/jquery-3.6.0.min.js"></script>
+	<script src="./resources/sejongpac/static/commons/js/jquery-ui.1.12.1.min.js"></script>
+	<script src="./resources/sejongpac/static/portal/js/slider.js"></script>
+	<script src="./resources/sejongpac/static/ticket/ticket.js"></script>
+	<link rel="stylesheet" href="./resources/sejongpac/static/portal/css/aos.css">
+	<script src="./resources/sejongpac/static/portal/inc/netfunnel.js" charset="UTF-8"></script>
 
 </head>
 <body>
@@ -42,53 +64,122 @@
 	<article class="hero">
 		<div class="container">
 			<div class="hero__slider owl-carousel">
-				<div class="hero__items set-bg" data-setbg="resources/img/hero/hero-1.jpg">
+				<div class="hero__items set-bg" data-setbg="resources/performanceFiles/2022121411532658291.jpg">
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="hero__text">
-								<div class="label">Adventure</div>
-								<h2>Fate / Stay Night: Unlimited Blade Works</h2>
-								<p>After 30 days of travel across the world...</p>
-								<a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="hero__items set-bg" data-setbg="resources/img/hero/hero-1.jpg">
-					<div class="row">
-						<div class="col-lg-6">
-							<div class="hero__text">
-								<div class="label">Adventure</div>
-								<h2>Fate / Stay Night: Unlimited Blade Works</h2>
-								<p>After 30 days of travel across the world...</p>
-								<a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="hero__items set-bg" data-setbg="resources/img/hero/hero-1.jpg">
-					<div class="row">
-						<div class="col-lg-6">
-							<div class="hero__text">
-								<div class="label">Adventure</div>
-								<h2>Fate / Stay Night: Unlimited Blade Works</h2>
-								<p>After 30 days of travel across the world...</p>
-								<a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
+								<div class="label">제목 위에 라벨?</div>
+								<h2>공연 제목</h2>
+								<p>공연 짤막한 한줄 소개?...</p>
+								<a href="#"><span>예매하기</span></a>
+								<a href="#"><span>상세보기</span></a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			
+
+			<div id="m1" class="inner aos-init aos-animate" data-aos="fade-up">
+				<div class="clearfix s slick-initialized slick-slider ms">
+					<ul>
+						<div aria-live="polite" class="slick-list draggable">
+							<div class="slick-track" style="opacity: 1; width: 1400px; transform: translate3d(0px, 0px, 0px);">
+								<li class="slick-slide slick-current slick-active"
+									style="width: 175px;" role="tabpanel" id="slickSlide80"
+									aria-labelledby="slickDot80" tabindex="-1" data-slick-index="0"
+									aria-hidden="false">
+									<div>
+										<a href="/portal/subMain/perform.do?menuNo=200001" tabindex="0">
+											<div>
+												<div class="img" style="top: 0px;">
+													<img src="./resources/sejongpac/static/portal/img/main/m1_3.gif">
+												</div>
+												<div class="txt">세종투데이</div>
+											</div>
+										</a>
+									</div>
+								</li>
+
+								<li class="slick-slide slick-active" style="width: 175px;"
+									role="tabpanel" id="slickSlide801" aria-labelledby="slickDot80"
+									tabindex="-1" data-slick-index="1" aria-hidden="false">
+									<a href="/portal/bbs/B0000001/list.do?menuNo=200042" tabindex="0">
+										<div class="img" style="top: 0px;">
+											<img src="./resources/sejongpac/static/portal/img/main/m1_4.gif">
+										</div>
+										<div class="txt">세종소식</div>
+									</a>
+								</li>
+
+								<li class="slick-slide slick-active" style="width: 175px;"
+									role="tabpanel" id="slickSlide802" aria-labelledby="slickDot80"
+									tabindex="-1" data-slick-index="2" aria-hidden="false"><a
+									href="/portal/main/contents.do?menuNo=200094" tabindex="0">
+										<div class="img" style="top: 0px;">
+											<img src="./resources/sejongpac/static/portal/img/main/m1_5.gif"/>
+										</div>
+										<div class="txt">좌석배치도</div>
+								</a>
+								</li>
+								
+								<li class="slick-slide slick-active" style="width: 175px;"
+									role="tabpanel" id="slickSlide803" aria-labelledby="slickDot80"
+									tabindex="-1" data-slick-index="3" aria-hidden="false">
+									<a href="/portal/main/contents.do?menuNo=200085" tabindex="0">
+										<div class="img" style="top: 0px;">
+											<img src="./resources/sejongpac/static/portal/img/main/m1_7.gif">
+										</div>
+										<div class="txt">예매안내</div>
+									</a>
+								</li>
+								
+								<li class="slick-slide slick-active" style="width: 175px;"
+									role="tabpanel" id="slickSlide804" aria-labelledby="slickDot80"
+									tabindex="-1" data-slick-index="4" aria-hidden="false">
+									<a href="/portal/main/contents.do?menuNo=200082" tabindex="0">
+										<div class="img" style="top: 0px;">
+											<img src="./resources/sejongpac/static/portal/img/main/m1_6.gif">
+										</div>
+										<div class="txt">오시는길</div>
+									</a>
+								</li>
+								
+								<li class="slick-slide slick-active" style="width: 175px;"
+									role="tabpanel" id="slickSlide807" aria-labelledby="slickDot80"
+									tabindex="-1" data-slick-index="7" aria-hidden="false">
+									<a href="/portal/singl/faq/list.do?menuNo=200052" tabindex="0">
+										<div class="img" style="top: 0px;">
+											<img src="./resources/sejongpac/static/portal/img/main/m1_12.gif">
+										</div>
+										<div class="txt">FAQ</div>
+									</a>
+								</li>
+								
+							</div>
+						</div>
+					</ul>
+				</div>
+			</div>
+
+
+
+
 		</div>
 	</article>
+	
 	</section>
 	<!-- Hero Section End -->
+	
+	
 
 	<!-- Product Section Begin -->
 	<section class="product spad">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8">
+				
+					<!-- trending__product -->
 					<div class="trending__product">
 						<div class="row">
 						   	<div class="col-lg-8 col-md-8 col-sm-8">
@@ -106,16 +197,16 @@
 							<div class="col-lg-4 col-md-6 col-sm-6">
 								<div class="product__item">
 								    <div class="product__item__pic set-bg" data-setbg="resources/img/trending/trend-1.jpg">
-								        <div class="ep">18 / 18</div>
-								        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-								        <div class="view"><i class="fa fa-eye"></i> 9141</div>
+								        <div class="ep">날짜? / 원래는 에피소드</div>
+								        <div class="comment"><i class="fa fa-comments"></i> 댓글 수</div>
+								        <div class="view"><i class="fa fa-eye"></i> 조회수</div>
 								    </div>
 								    <div class="product__item__text">
 								        <ul>
-								            <li>Active</li>
-								            <li>Movie</li>
+								            <li>무슨 장르인지 1</li>
+								            <li>무슨 장르인지 2</li>
 								        </ul>
-								        <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
+								        <h5><a href="#">공연 제목</a></h5>
 								    </div>
 								</div>
 							</div>
@@ -201,6 +292,8 @@
 							</div>
 						</div>
 					</div>
+					
+					<!-- popular__product -->
 					<div class="popular__product">
 						<div class="row">
 						    <div class="col-lg-8 col-md-8 col-sm-8">
@@ -218,16 +311,16 @@
 							<div class="col-lg-4 col-md-6 col-sm-6">
 								<div class="product__item">
 								    <div class="product__item__pic set-bg" data-setbg="resources/img/popular/popular-1.jpg">
-								        <div class="ep">18 / 18</div>
-								        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-								        <div class="view"><i class="fa fa-eye"></i> 9141</div>
+							        	<div class="ep">날짜? / 원래는 에피소드</div>
+								        <div class="comment"><i class="fa fa-comments"></i> 댓글 수</div>
+								        <div class="view"><i class="fa fa-eye"></i> 조회수</div>
 								    </div>
 								    <div class="product__item__text">
 								        <ul>
-								            <li>Active</li>
-								            <li>Movie</li>
+								            <li>무슨 장르인지 1</li>
+								            <li>무슨 장르인지 2</li>
 								        </ul>
-								        <h5><a href="#">Sen to Chihiro no Kamikakushi</a></h5>
+								        <h5><a href="#">공연 제목</a></h5>
 								    </div>
 								</div>
 							</div>
@@ -313,6 +406,8 @@
 							</div>
 						</div>
 					</div>
+					
+					<!-- recent__product -->
 					<div class="recent__product">
 					    <div class="row">
 					        <div class="col-lg-8 col-md-8 col-sm-8">
@@ -330,17 +425,17 @@
 					        <div class="col-lg-4 col-md-6 col-sm-6">
 					            <div class="product__item">
 					                <div class="product__item__pic set-bg" data-setbg="resources/img/recent/recent-1.jpg">
-					                    <div class="ep">18 / 18</div>
-					                    <div class="comment"><i class="fa fa-comments"></i> 11</div>
-					                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
-					                </div>
-					                <div class="product__item__text">
-					                    <ul>
-					                        <li>Active</li>
-					                        <li>Movie</li>
-					                    </ul>
-					                    <h5><a href="#">Great Teacher Onizuka</a></h5>
-					                </div>
+					                 	<div class="ep">날짜? / 원래는 에피소드</div>
+								        <div class="comment"><i class="fa fa-comments"></i> 댓글 수</div>
+								        <div class="view"><i class="fa fa-eye"></i> 조회수</div>
+								    </div>
+								    <div class="product__item__text">
+								        <ul>
+								            <li>무슨 장르인지 1</li>
+								            <li>무슨 장르인지 2</li>
+								        </ul>
+								        <h5><a href="#">공연 제목</a></h5>
+								    </div>
 					            </div>
 					        </div>
 					        <div class="col-lg-4 col-md-6 col-sm-6">
@@ -425,6 +520,8 @@
 					        </div>
 					    </div>
 					</div>
+					
+					<!-- live__product -->
 					<div class="live__product">
 					    <div class="row">
 					        <div class="col-lg-8 col-md-8 col-sm-8">
@@ -442,17 +539,17 @@
 					        <div class="col-lg-4 col-md-6 col-sm-6">
 					            <div class="product__item">
 					                <div class="product__item__pic set-bg" data-setbg="resources/img/live/live-1.jpg">
-					                    <div class="ep">18 / 18</div>
-					                    <div class="comment"><i class="fa fa-comments"></i> 11</div>
-					                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
-					                </div>
-					                <div class="product__item__text">
-					                    <ul>
-					                        <li>Active</li>
-					                        <li>Movie</li>
-					                    </ul>
-					                    <h5><a href="#">Shouwa Genroku Rakugo Shinjuu</a></h5>
-					                </div>
+					                 	<div class="ep">날짜? / 원래는 에피소드</div>
+								        <div class="comment"><i class="fa fa-comments"></i> 댓글 수</div>
+								        <div class="view"><i class="fa fa-eye"></i> 조회수</div>
+								    </div>
+								    <div class="product__item__text">
+								        <ul>
+								            <li>무슨 장르인지 1</li>
+								            <li>무슨 장르인지 2</li>
+								        </ul>
+								        <h5><a href="#">공연 제목</a></h5>
+								    </div>
 					            </div>
 					        </div>
 					        <div class="col-lg-4 col-md-6 col-sm-6">
@@ -538,6 +635,8 @@
 					    </div>
 					</div>
 				</div>
+				
+				<!-- product__sidebar__view -->
 				<div class="col-lg-4 col-md-6 col-sm-8">
 					<div class="product__sidebar">
 						<div class="product__sidebar__view">
@@ -552,32 +651,34 @@
 							</ul>
 							<div class="filter__gallery">
 								<div class="product__sidebar__view__item set-bg mix day years" data-setbg="resources/img/sidebar/tv-1.jpg" >
-									<div class="ep">18 / ?</div>
-									<div class="view"><i class="fa fa-eye"></i> 9141</div>
-									<h5><a href="#">Boruto: Naruto next generations</a></h5>
+									<div class="ep">날짜? / 원래는 에피소드</div>
+									<div class="view"><i class="fa fa-eye"></i> 조회수</div>
+									<h5><a href="#">공연 제목</a></h5>
 								</div>
 								<div class="product__sidebar__view__item set-bg mix month week" data-setbg="resources/img/sidebar/tv-2.jpg">
-									<div class="ep">18 / ?</div>
-									<div class="view"><i class="fa fa-eye"></i> 9141</div>
-									<h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
+									<div class="ep">날짜? / 원래는 에피소드</div>
+									<div class="view"><i class="fa fa-eye"></i> 조회수</div>
+									<h5><a href="#">공연 제목</a></h5>
 								</div>
 								<div class="product__sidebar__view__item set-bg mix week years" data-setbg="resources/img/sidebar/tv-3.jpg">
-									<div class="ep">18 / ?</div>
-									<div class="view"><i class="fa fa-eye"></i> 9141</div>
-									<h5><a href="#">Sword art online alicization war of underworld</a></h5>
+									<div class="ep">날짜? / 원래는 에피소드</div>
+									<div class="view"><i class="fa fa-eye"></i> 조회수</div>
+									<h5><a href="#">공연 제목</a></h5>
 								</div>
 						        <div class="product__sidebar__view__item set-bg mix years month" data-setbg="resources/img/sidebar/tv-4.jpg">
-						        	<div class="ep">18 / ?</div>
-							        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-							        <h5><a href="#">Fate/stay night: Heaven's Feel I. presage flower</a></h5>
+						        	<div class="ep">날짜? / 원래는 에피소드</div>
+									<div class="view"><i class="fa fa-eye"></i> 조회수</div>
+									<h5><a href="#">공연 제목</a></h5>
 							    </div>
 							    <div class="product__sidebar__view__item set-bg mix day" data-setbg="resources/img/sidebar/tv-5.jpg">
-								    <div class="ep">18 / ?</div>
-								    <div class="view"><i class="fa fa-eye"></i> 9141</div>
-								    <h5><a href="#">Fate stay night unlimited blade works</a></h5>
+								    <div class="ep">날짜? / 원래는 에피소드</div>
+									<div class="view"><i class="fa fa-eye"></i> 조회수</div>
+									<h5><a href="#">공연 제목</a></h5>
 								</div>
 							</div>
 						</div>
+						
+						<!-- product__sidebar__comment -->
 						<div class="product__sidebar__comment">
 							<div class="section-title">
 						    	<h5>New Comment</h5>
@@ -588,11 +689,11 @@
 								</div>
 								<div class="product__sidebar__comment__item__text">
 									<ul>
-									    <li>Active</li>
-									    <li>Movie</li>
+									    <li>장르 1</li>
+									    <li>장르 2</li>
 									</ul>
-									<h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
-									<span><i class="fa fa-eye"></i> 19.141 Viewes</span>
+									<h5><a href="#">공연 제목</a></h5>
+									<span><i class="fa fa-eye"></i> 조회수 Viewes</span>
 								</div>
 							</div>
 							<div class="product__sidebar__comment__item">
@@ -601,11 +702,11 @@
 								</div>
 								<div class="product__sidebar__comment__item__text">
 									<ul>
-										<li>Active</li>
-										<li>Movie</li>
+									    <li>장르 1</li>
+									    <li>장르 2</li>
 									</ul>
-									<h5><a href="#">Shirogane Tamashii hen Kouhan sen</a></h5>
-									<span><i class="fa fa-eye"></i> 19.141 Viewes</span>
+									<h5><a href="#">공연 제목</a></h5>
+									<span><i class="fa fa-eye"></i> 조회수 Viewes</span>
 								</div>
 							</div>
 							<div class="product__sidebar__comment__item">
@@ -614,11 +715,11 @@
 								</div>
 								<div class="product__sidebar__comment__item__text">
 									<ul>
-									    <li>Active</li>
-									    <li>Movie</li>
+									    <li>장르 1</li>
+									    <li>장르 2</li>
 									</ul>
-									<h5><a href="#">Kizumonogatari III: Reiket su-hen</a></h5>
-									<span><i class="fa fa-eye"></i> 19.141 Viewes</span>
+									<h5><a href="#">공연 제목</a></h5>
+									<span><i class="fa fa-eye"></i> 조회수 Viewes</span>
 								</div>
 							</div>
 							<div class="product__sidebar__comment__item">
@@ -627,11 +728,11 @@
 								</div>
 								<div class="product__sidebar__comment__item__text">
 									<ul>
-									    <li>Active</li>
-									    <li>Movie</li>
+									    <li>장르 1</li>
+									    <li>장르 2</li>
 									</ul>
-									<h5><a href="#">Monogatari Series: Second Season</a></h5>
-									<span><i class="fa fa-eye"></i> 19.141 Viewes</span>
+									<h5><a href="#">공연 제목</a></h5>
+									<span><i class="fa fa-eye"></i> 조회수 Viewes</span>
 								</div>
 							</div>
 						</div>
