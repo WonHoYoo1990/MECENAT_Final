@@ -14,6 +14,7 @@
 	<meta name="keywords" content="Anime, unica, creative, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	
 	<title>Footer | Template</title>
 	
 	<!-- Google Font -->
@@ -28,7 +29,13 @@
 	<link rel="stylesheet" href="./resources/css/nice-select.css" type="text/css">
 	<link rel="stylesheet" href="./resources/css/owl.carousel.min.css" type="text/css">
 	<link rel="stylesheet" href="./resources/css/slicknav.min.css" type="text/css">
-	<link rel="stylesheet" href="./resources/css/style.css" type="text/css"> 
+	<link rel="stylesheet" href="./resources/css/style.css" type="text/css">
+	
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	
+	
+	
 </head>
 <body>
 	<!-- Footer Section Begin -->
@@ -72,7 +79,6 @@
 	</footer>
 	<!-- Footer Section End -->
 	
-	
 	<!-- Js Plugins -->
 	<script src="./resources/js/jquery-3.3.1.min.js"></script>
 	<script src="./resources/js/bootstrap.min.js"></script>
@@ -81,6 +87,7 @@
 	<script src="./resources/js/mixitup.min.js"></script>
 	<script src="./resources/js/jquery.slicknav.js"></script>
 	<script src="./resources/js/owl.carousel.min.js"></script>
-	<!-- <script src="./resources/js/main.js"></script> -->
+	<script src="./resources/js/main.js"></script>
+	
 </body>
 </html>

@@ -347,6 +347,7 @@ ol {
 	display: inline-block;
 	position: relative;
 	margin-right: 16px;
+	visibility: visible;
 }
 
 .header__menu ul li.active a {
@@ -358,7 +359,13 @@ ol {
 	color: #ffffff;
 }
 
+
 .header__menu ul li:hover .dropdown {
+	top: 62px;
+	opacity: 1;
+	visibility: visible;
+}
+.header__menu ul li:hover .dropdown:hover {
 	top: 62px;
 	opacity: 1;
 	visibility: visible;
@@ -391,6 +398,11 @@ ol {
 .header__menu ul li .dropdown li {
 	display: block;
 	margin-right: 0;
+}
+.header__menu ul li .dropdown dropdown2 {
+	display: flex !important; 
+	margin-left: 0;
+	background-color: red;
 }
 
 .header__menu ul li .dropdown li a {

@@ -45,7 +45,7 @@
 		<div class="container">
 		    <div class="row">
 		        <div class="col-lg-12 text-center">
-		            <div class="normal__breadcrumb__text" style="background-image: url('./resources/img/member/Background_Member.jpg'); background-size:cover; height: 300px; padding-top: 8%;" >
+		            <div class="normal__breadcrumb__text" style="background-image: url('./resources/img/member/signupBackground.jpg'); background-size:cover; height: 300px; padding-top: 8%;" >
 		                <h2>Sign Up</h2>
 		                <p>Welcome to the MECENAT.</p>
 		            </div>

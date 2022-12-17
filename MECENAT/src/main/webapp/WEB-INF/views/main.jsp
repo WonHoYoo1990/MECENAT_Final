@@ -11,17 +11,38 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+	
+	<!-- Css Styles -->
+	<link rel="stylesheet" href="./resources/css/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="./resources/css/font-awesome.min.css" type="text/css">
+	<link rel="stylesheet" href="./resources/css/elegant-icons.css" type="text/css">
+	<link rel="stylesheet" href="./resources/css/plyr.css" type="text/css">
+	<link rel="stylesheet" href="./resources/css/nice-select.css" type="text/css">
+	<link rel="stylesheet" href="./resources/css/owl.carousel.min.css" type="text/css">
+	<link rel="stylesheet" href="./resources/css/slicknav.min.css" type="text/css">
+	<link rel="stylesheet" href="./resources/css/style.css" type="text/css">
+	
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+
+
 </head>
 <body>
     <!-- Header Section Begin -->
-	<jsp:include page="../views/common/header.jsp"/>
+	<jsp:include page="../views/common/header.jsp"/> 
     <!-- Header End -->
-
+    
 	<!-- Hero Section Begin -->
 	<section class="hero">
+	<article class="hero">
 		<div class="container">
 			<div class="hero__slider owl-carousel">
-				<div class="hero__items set-bg" data-setbg="img/hero/hero-1.jpg">
+				<div class="hero__items set-bg" data-setbg="resources/img/hero/hero-1.jpg">
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="hero__text">
@@ -33,19 +54,19 @@
 						</div>
 					</div>
 				</div>
-					<div class="hero__items set-bg" data-setbg="img/hero/hero-1.jpg">
-						<div class="row">
-							<div class="col-lg-6">
-								<div class="hero__text">
-									<div class="label">Adventure</div>
-									<h2>Fate / Stay Night: Unlimited Blade Works</h2>
-									<p>After 30 days of travel across the world...</p>
-									<a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
-								</div>
+				<div class="hero__items set-bg" data-setbg="resources/img/hero/hero-1.jpg">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="hero__text">
+								<div class="label">Adventure</div>
+								<h2>Fate / Stay Night: Unlimited Blade Works</h2>
+								<p>After 30 days of travel across the world...</p>
+								<a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
 							</div>
 						</div>
+					</div>
 				</div>
-				<div class="hero__items set-bg" data-setbg="img/hero/hero-1.jpg">
+				<div class="hero__items set-bg" data-setbg="resources/img/hero/hero-1.jpg">
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="hero__text">
@@ -59,6 +80,7 @@
 				</div>
 			</div>
 		</div>
+	</article>
 	</section>
 	<!-- Hero Section End -->
 
@@ -83,7 +105,7 @@
 						<div class="row">
 							<div class="col-lg-4 col-md-6 col-sm-6">
 								<div class="product__item">
-								    <div class="product__item__pic set-bg" style="background-image: url('resources/img/trending/trend-1.jpg');">
+								    <div class="product__item__pic set-bg" data-setbg="resources/img/trending/trend-1.jpg">
 								        <div class="ep">18 / 18</div>
 								        <div class="comment"><i class="fa fa-comments"></i> 11</div>
 								        <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -99,7 +121,7 @@
 							</div>
 							<div class="col-lg-4 col-md-6 col-sm-6">
 								<div class="product__item">
-								    <div class="product__item__pic set-bg" style="background-image: url('resources/img/trending/trend-2.jpg');" >
+								    <div class="product__item__pic set-bg" data-setbg="resources/img/trending/trend-2.jpg">
 								        <div class="ep">18 / 18</div>
 								        <div class="comment"><i class="fa fa-comments"></i> 11</div>
 								        <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -115,7 +137,7 @@
 							</div>
 							<div class="col-lg-4 col-md-6 col-sm-6">
 								<div class="product__item">
-								    <div class="product__item__pic set-bg" style="background-image: url('resources/img/trending/trend-3.jpg');">
+								    <div class="product__item__pic set-bg" data-setbg="resources/img/trending/trend-3.jpg">
 								        <div class="ep">18 / 18</div>
 								        <div class="comment"><i class="fa fa-comments"></i> 11</div>
 								        <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -131,7 +153,7 @@
 							</div>
 							<div class="col-lg-4 col-md-6 col-sm-6">
 							    <div class="product__item">
-							        <div class="product__item__pic set-bg" style="background-image: url('resources/img/trending/trend-4.jpg');">
+							        <div class="product__item__pic set-bg" data-setbg="resources/img/trending/trend-4.jpg">
 							            <div class="ep">18 / 18</div>
 							            <div class="comment"><i class="fa fa-comments"></i> 11</div>
 							            <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -147,7 +169,7 @@
 							</div>
 							<div class="col-lg-4 col-md-6 col-sm-6">
 							    <div class="product__item">
-							        <div class="product__item__pic set-bg" style="background-image: url('resources/img/trending/trend-5.jpg');">
+							        <div class="product__item__pic set-bg" data-setbg="resources/img/trending/trend-5.jpg">
 							            <div class="ep">18 / 18</div>
 							            <div class="comment"><i class="fa fa-comments"></i> 11</div>
 							            <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -163,7 +185,7 @@
 							</div>
 							<div class="col-lg-4 col-md-6 col-sm-6">
 							    <div class="product__item">
-							        <div class="product__item__pic set-bg" style="background-image: url('resources/img/trending/trend-6.jpg');">
+							        <div class="product__item__pic set-bg" data-setbg="resources/img/trending/trend-6.jpg">
 							            <div class="ep">18 / 18</div>
 							            <div class="comment"><i class="fa fa-comments"></i> 11</div>
 							            <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -195,7 +217,7 @@
 						<div class="row">
 							<div class="col-lg-4 col-md-6 col-sm-6">
 								<div class="product__item">
-								    <div class="product__item__pic set-bg" style="background-image: url('resources/img/popular/popular-1.jpg');">
+								    <div class="product__item__pic set-bg" data-setbg="resources/img/popular/popular-1.jpg">
 								        <div class="ep">18 / 18</div>
 								        <div class="comment"><i class="fa fa-comments"></i> 11</div>
 								        <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -211,7 +233,7 @@
 							</div>
 							<div class="col-lg-4 col-md-6 col-sm-6">
 								<div class="product__item">
-								    <div class="product__item__pic set-bg" style="background-image: url('resources/img/popular/popular-2.jpg');">
+								    <div class="product__item__pic set-bg" data-setbg="resources/img/popular/popular-2.jpg">
 								        <div class="ep">18 / 18</div>
 								        <div class="comment"><i class="fa fa-comments"></i> 11</div>
 								        <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -227,7 +249,7 @@
 							</div>
 							<div class="col-lg-4 col-md-6 col-sm-6">
 							    <div class="product__item">
-							        <div class="product__item__pic set-bg" style="background-image: url('resources/img/popular/popular-3.jpg');">
+							        <div class="product__item__pic set-bg" data-setbg="resources/img/popular/popular-3.jpg">
 							            <div class="ep">18 / 18</div>
 							            <div class="comment"><i class="fa fa-comments"></i> 11</div>
 							            <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -243,7 +265,7 @@
 							</div>
 							<div class="col-lg-4 col-md-6 col-sm-6">
 							    <div class="product__item">
-							        <div class="product__item__pic set-bg" style="background-image: url('resources/img/popular/popular-4.jpg');">
+							        <div class="product__item__pic set-bg" data-setbg="resources/img/popular/popular-4.jpg">
 							            <div class="ep">18 / 18</div>
 							            <div class="comment"><i class="fa fa-comments"></i> 11</div>
 							            <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -259,7 +281,7 @@
 							</div>
 							<div class="col-lg-4 col-md-6 col-sm-6">
 							    <div class="product__item">
-							        <div class="product__item__pic set-bg" style="background-image: url('resources/img/popular/popular-5.jpg');">
+							        <div class="product__item__pic set-bg" data-setbg="resources/img/popular/popular-5.jpg">
 							            <div class="ep">18 / 18</div>
 							            <div class="comment"><i class="fa fa-comments"></i> 11</div>
 							            <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -275,7 +297,7 @@
 							</div>
 							<div class="col-lg-4 col-md-6 col-sm-6">
 							    <div class="product__item">
-							        <div class="product__item__pic set-bg" style="background-image: url('resources/img/popular/popular-6.jpg');">
+							        <div class="product__item__pic set-bg" data-setbg="resources/img/popular/popular-6.jpg">
 							            <div class="ep">18 / 18</div>
 							            <div class="comment"><i class="fa fa-comments"></i> 11</div>
 							            <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -307,7 +329,7 @@
 					    <div class="row">
 					        <div class="col-lg-4 col-md-6 col-sm-6">
 					            <div class="product__item">
-					                <div class="product__item__pic set-bg" style="background-image: url('resources/img/recent/recent-1.jpg');">
+					                <div class="product__item__pic set-bg" data-setbg="resources/img/recent/recent-1.jpg">
 					                    <div class="ep">18 / 18</div>
 					                    <div class="comment"><i class="fa fa-comments"></i> 11</div>
 					                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -323,7 +345,7 @@
 					        </div>
 					        <div class="col-lg-4 col-md-6 col-sm-6">
 					            <div class="product__item">
-					                <div class="product__item__pic set-bg" style="background-image: url('resources/img/recent/recent-2.jpg');">
+					                <div class="product__item__pic set-bg" data-setbg="resources/img/recent/recent-1.jpg">
 					                    <div class="ep">18 / 18</div>
 					                    <div class="comment"><i class="fa fa-comments"></i> 11</div>
 					                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -339,7 +361,7 @@
 					        </div>
 					        <div class="col-lg-4 col-md-6 col-sm-6">
 					            <div class="product__item">
-					                <div class="product__item__pic set-bg" style="background-image: url('resources/img/recent/recent-3.jpg');">
+					                <div class="product__item__pic set-bg" data-setbg="resources/img/recent/recent-1.jpg">
 					                    <div class="ep">18 / 18</div>
 					                    <div class="comment"><i class="fa fa-comments"></i> 11</div>
 					                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -355,7 +377,7 @@
 					        </div>
 					        <div class="col-lg-4 col-md-6 col-sm-6">
 					            <div class="product__item">
-					                <div class="product__item__pic set-bg" style="background-image: url('resources/img/recent/recent-4.jpg');">
+					                <div class="product__item__pic set-bg" data-setbg="resources/img/recent/recent-4.jpg">
 					                    <div class="ep">18 / 18</div>
 					                    <div class="comment"><i class="fa fa-comments"></i> 11</div>
 					                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -371,7 +393,7 @@
 					        </div>
 					        <div class="col-lg-4 col-md-6 col-sm-6">
 					            <div class="product__item">
-					                <div class="product__item__pic set-bg" style="background-image: url('resources/img/recent/recent-5.jpg');">
+					                <div class="product__item__pic set-bg" data-setbg="resources/img/recent/recent-5.jpg">
 					                    <div class="ep">18 / 18</div>
 					                    <div class="comment"><i class="fa fa-comments"></i> 11</div>
 					                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -387,7 +409,7 @@
 					        </div>
 					        <div class="col-lg-4 col-md-6 col-sm-6">
 					            <div class="product__item">
-					                <div class="product__item__pic set-bg" style="background-image: url('resources/img/recent/recent-6.jpg');">
+					                <div class="product__item__pic set-bg" data-setbg="resources/img/recent/recent-6.jpg">
 					                    <div class="ep">18 / 18</div>
 					                    <div class="comment"><i class="fa fa-comments"></i> 11</div>
 					                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -419,7 +441,7 @@
 					    <div class="row">
 					        <div class="col-lg-4 col-md-6 col-sm-6">
 					            <div class="product__item">
-					                <div class="product__item__pic set-bg" style="background-image: url('resources/img/live/live-1.jpg');">
+					                <div class="product__item__pic set-bg" data-setbg="resources/img/live/live-1.jpg">
 					                    <div class="ep">18 / 18</div>
 					                    <div class="comment"><i class="fa fa-comments"></i> 11</div>
 					                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -435,7 +457,7 @@
 					        </div>
 					        <div class="col-lg-4 col-md-6 col-sm-6">
 					            <div class="product__item">
-					                <div class="product__item__pic set-bg" style="background-image: url('resources/img/live/live-2.jpg');">
+					                <div class="product__item__pic set-bg" data-setbg="resources/img/live/live-2.jpg">
 					                    <div class="ep">18 / 18</div>
 					                    <div class="comment"><i class="fa fa-comments"></i> 11</div>
 					                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -451,7 +473,7 @@
 					        </div>
 					        <div class="col-lg-4 col-md-6 col-sm-6">
 					            <div class="product__item">
-					                <div class="product__item__pic set-bg" style="background-image: url('resources/img/live/live-3.jpg');">
+					                <div class="product__item__pic set-bg" data-setbg="resources/img/live/live-3.jpg">
 					                    <div class="ep">18 / 18</div>
 					                    <div class="comment"><i class="fa fa-comments"></i> 11</div>
 					                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -467,7 +489,7 @@
 					        </div>
 					        <div class="col-lg-4 col-md-6 col-sm-6">
 					            <div class="product__item">
-					                <div class="product__item__pic set-bg" style="background-image: url('resources/img/live/live-4.jpg');">
+					                <div class="product__item__pic set-bg" data-setbg="resources/img/live/live-4.jpg">
 					                    <div class="ep">18 / 18</div>
 					                    <div class="comment"><i class="fa fa-comments"></i> 11</div>
 					                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -483,7 +505,7 @@
 					        </div>
 					        <div class="col-lg-4 col-md-6 col-sm-6">
 					            <div class="product__item">
-					                <div class="product__item__pic set-bg" style="background-image: url('resources/img/live/live-5.jpg');">
+					                <div class="product__item__pic set-bg" data-setbg="resources/img/live/live-5.jpg">
 					                    <div class="ep">18 / 18</div>
 					                    <div class="comment"><i class="fa fa-comments"></i> 11</div>
 					                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -499,7 +521,7 @@
 					        </div>
 					        <div class="col-lg-4 col-md-6 col-sm-6">
 					            <div class="product__item">
-					                <div class="product__item__pic set-bg" style="background-image: url('resources/img/live/live-6.jpg');">
+					                <div class="product__item__pic set-bg" data-setbg="resources/img/live/live-6.jpg">
 					                    <div class="ep">18 / 18</div>
 					                    <div class="comment"><i class="fa fa-comments"></i> 11</div>
 					                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -529,27 +551,27 @@
 							    <li data-filter=".years">Years</li>
 							</ul>
 							<div class="filter__gallery">
-								<div class="product__sidebar__view__item set-bg mix day years" style="background-image:url('resources/img/sidebar/tv-1.jpg');" >
+								<div class="product__sidebar__view__item set-bg mix day years" data-setbg="resources/img/sidebar/tv-1.jpg" >
 									<div class="ep">18 / ?</div>
 									<div class="view"><i class="fa fa-eye"></i> 9141</div>
 									<h5><a href="#">Boruto: Naruto next generations</a></h5>
 								</div>
-								<div class="product__sidebar__view__item set-bg mix month week" style="background-image: url('resources/img/sidebar/tv-2.jpg');">
+								<div class="product__sidebar__view__item set-bg mix month week" data-setbg="resources/img/sidebar/tv-2.jpg">
 									<div class="ep">18 / ?</div>
 									<div class="view"><i class="fa fa-eye"></i> 9141</div>
 									<h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
 								</div>
-								<div class="product__sidebar__view__item set-bg mix week years" style="background-image: url('resources/img/sidebar/tv-3.jpg');">
+								<div class="product__sidebar__view__item set-bg mix week years" data-setbg="resources/img/sidebar/tv-3.jpg">
 									<div class="ep">18 / ?</div>
 									<div class="view"><i class="fa fa-eye"></i> 9141</div>
 									<h5><a href="#">Sword art online alicization war of underworld</a></h5>
 								</div>
-						        <div class="product__sidebar__view__item set-bg mix years month" style="background-image: url('resources/img/sidebar/tv-4.jpg');">
+						        <div class="product__sidebar__view__item set-bg mix years month" data-setbg="resources/img/sidebar/tv-4.jpg">
 						        	<div class="ep">18 / ?</div>
 							        <div class="view"><i class="fa fa-eye"></i> 9141</div>
 							        <h5><a href="#">Fate/stay night: Heaven's Feel I. presage flower</a></h5>
 							    </div>
-							    <div class="product__sidebar__view__item set-bg mix day" style="background-image: url('resources/img/sidebar/tv-5.jpg');">
+							    <div class="product__sidebar__view__item set-bg mix day" data-setbg="resources/img/sidebar/tv-5.jpg">
 								    <div class="ep">18 / ?</div>
 								    <div class="view"><i class="fa fa-eye"></i> 9141</div>
 								    <h5><a href="#">Fate stay night unlimited blade works</a></h5>
@@ -634,5 +656,17 @@
 		 </div>
 	</div>
 	<!-- Search model end -->
+	
+	<!-- Js Plugins -->
+	<script src="./resources/js/jquery-3.3.1.min.js"></script>
+	<script src="./resources/js/bootstrap.min.js"></script>
+	<script src="./resources/js/player.js"></script>
+	<script src="./resources/js/jquery.nice-select.min.js"></script>
+	<script src="./resources/js/mixitup.min.js"></script>
+	<script src="./resources/js/jquery.slicknav.js"></script>
+	<script src="./resources/js/owl.carousel.min.js"></script>
+	<script src="./resources/js/main.js"></script>
+	
+	
 </body>
 </html>
