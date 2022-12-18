@@ -1,5 +1,7 @@
 package com.kh.mecenat.member.model.service;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,6 +63,13 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void updatePwd(Member m) {
 		memberDao.updatePwd(sqlSession, m);
+	}
+	
+	//관리자) 멤버 전체 조회
+	@Override
+	public ArrayList<Member> selectAllMemberList() {
+		
+		return memberDao.selectAllMemberList(sqlSession);
 	}
 
 }

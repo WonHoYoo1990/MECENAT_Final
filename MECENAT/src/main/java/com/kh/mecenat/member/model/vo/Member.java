@@ -18,7 +18,7 @@ public class Member {
 	private String email; // USER_EMAIL VARCHAR2
 	private Date enrollDate; // ENROLL_DATE DATE
 	private Date updateDate; // UPDATE_DATE DATE
-	private int userGrade; // USER_GRADE NUMBER
+	private String userGrade; // USER_GRADE NUMBER
 	private String status; // STATUS VARCHAR2
 
 }
