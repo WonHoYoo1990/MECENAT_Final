@@ -19,7 +19,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.mecenat.member.model.service.MemberService;
 import com.kh.mecenat.member.model.vo.Member;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
+@Slf4j
 public class MemberController {
 
 	@Autowired
@@ -34,15 +37,26 @@ public class MemberController {
 		return "member/signup";
 	}
 
+	// 마이페이지 이동
+	@RequestMapping("myPage.me")
+	public String myPageForm() {
+		System.out.println("myPage 이동~");
+		return "member/myPage";
+	}
+
 	// 회원가입 등록
 	@RequestMapping("signup.me")
 	public ModelAndView signup(Member m, ModelAndView mv, HttpSession session) {
+		log.info("signup");
 
 		String encPwd = bCryptPasswordEncoder.encode(m.getUserPwd());
+		log.info("encPwd : {}", encPwd);
 
 		m.setUserPwd(encPwd);
+		log.info("m : {}", m);
 
 		int result = memberService.signup(m);
+		log.info("result : {}", result);
 
 		if (result > 0) {
 			session.setAttribute("alertMsg", "회원가입을 축하합니다!");
@@ -58,12 +72,19 @@ public class MemberController {
 	@RequestMapping("delete.me")
 	public ModelAndView deleteMember(String userPwd, HttpSession session, ModelAndView mv) {
 
+		log.info("deleteMember");
+
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		String userId = loginUser.getUserId();
 		String loginUserPwd = loginUser.getUserPwd();
 
+		log.info("loginUser : {}", loginUser);
+		log.info("userId : {}", userId);
+		log.info("loginUserPwd : {}", loginUserPwd);
+
 		if (bCryptPasswordEncoder.matches(userPwd, loginUserPwd)) { // 입력한 비밀번호와 암호화 비밀번호가 일치할 경우
 			int result = memberService.deleteMember(userId);
+			log.info("result : {}", result);
 
 			if (result > 0) {
 				session.removeAttribute("loginUser");
@@ -118,99 +139,6 @@ public class MemberController {
 		return str;
 	}
 
-	// 이메일 인증 TEST
-//	@RequestMapping("/sendEmail.do")
-//	public void sendEmail(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//
-//		// 메일 관련 정보
-//		String host = "smtp.naver.com";
-//		final String username = "ywh080"; // 네이버 메일중 @naver.com 앞주소만 작성
-//		final String password = "dnjsgh123!@#"; // 네이버 메일 비밀번호 작성
-//		int port = 465;
-//
-//		// 메일 내용
-//		String recipient = "you_yearning@hanmail.net"; // 메일 발송할 이메일 주소 기재
-//		String subject = "제목이에요"; // 메일 발송시 제목
-//		String body = "이름 : 홍길동이요"; // 메일 발송시 내용
-//
-//		Properties props = System.getProperties();
-//
-//		props.put("mail.smtp.host", host);
-//		props.put("mail.smtp.port", port);
-//		props.put("mail.smtp.auth", "true");
-//		props.put("mail.smtp.ssl.enable", "true");
-//		props.put("mail.smtp.ssl.trust", host);
-//
-//		Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
-//			String un = username;
-//			String pw = password;
-//
-//			protected PasswordAuthentication getPasswordAuthentication() {
-//				return new PasswordAuthentication(un, pw);
-//			}
-//
-//		});
-//
-//	}
-
-//	@Test
-//	public void mailTest() {
-//
-////		JavaMailSenderImpl mailSender = (JavaMailSenderImpl) ctx.getBean("mailSender");
-//
-//		ApplicationContext context = new ClassPathXmlApplicationContext("webapp/WEB-INF/spring/root-context.xml");
-//		JavaMailSenderImpl mailSender = (JavaMailSenderImpl) context.getBean("mailSender");
-//
-//		// 메일 제목, 내용
-//		String subject = "제목입니당";
-//		String content = "내용입니당~";
-//
-//		// 보내는 사람
-//		String from = "you_yearning@hanmail.net";
-//
-//		// 받는 사람
-//		String[] to = new String[1];
-//		to[0] = "ywh080@naver.com";
-////		to[1] = "ulantj@naver.com";
-//
-//		try {
-//			// 메일 내용 넣을 객체와, 이를 도와주는 Helper 객체 생성
-//			MimeMessage mail = mailSender.createMimeMessage();
-//			MimeMessageHelper mailHelper = new MimeMessageHelper(mail, "UTF-8");
-//
-//			// 메일 내용을 채워줌
-//			mailHelper.setFrom(from); // 보내는 사람 셋팅
-//			mailHelper.setTo(to); // 받는 사람 셋팅
-//			mailHelper.setSubject(subject); // 제목 셋팅
-//			mailHelper.setText(content); // 내용 셋팅
-//
-//			// 메일 전송
-//			mailSender.send(mail);
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
-//	@RequestMapping(value = "/get_auth", method = RequestMethod.POST)
-//	public View sendAuthCode(HttpServletRequest request, Model model) throws IOException {
-//
-//		String title = "인증코드에요?";
-//		String from = "";
-//		String text = "인증 코드 : ";
-//		String to = "";
-//		String cc = "";
-//
-////		return jsonView;
-//		return null;
-//	}
-
-	// 마이페이지 이동
-	@RequestMapping("myPage.me")
-	public String myPageForm() {
-		System.out.println("myPage 이동~");
-		return "member/myPage";
-	}
-
 	// 로그인 폼으로 이동
 	@GetMapping("loginForm.me")
 
@@ -223,35 +151,33 @@ public class MemberController {
 
 	// 로그인
 	@PostMapping("login.me")
-	public String loginMember(Member m, HttpSession session, HttpServletResponse response, ModelAndView mv, HttpServletRequest request) {
+	public String loginMember(Member m, HttpSession session, HttpServletResponse response, ModelAndView mv,
+			HttpServletRequest request) {
 
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
 		String saveId = request.getParameter("saveId");
-		
+
 		Cookie cookie = null;
-		
-		//아이디 저장이 체크되었는지 확인하여 체크되었으면 쿠키 생성
-		if(saveId != null && saveId.equals("on")) {
-			//쿠키의 이름과 값을 넣어서 생성해준다.
+
+		// 아이디 저장이 체크되었는지 확인하여 체크되었으면 쿠키 생성
+		if (saveId != null && saveId.equals("on")) {
+			// 쿠키의 이름과 값을 넣어서 생성해준다.
 			cookie = new Cookie("userId", userId);
-			
-			//쿠키의 수명 지정(초단위)
-			cookie.setMaxAge(60*60*24); //하루 60초*60*24
-			
-			//응답 객체인 response에 생성된 쿠키 추가
+
+			// 쿠키의 수명 지정(초단위)
+			cookie.setMaxAge(60 * 60 * 24); // 하루 60초*60*24
+
+			// 응답 객체인 response에 생성된 쿠키 추가
 			response.addCookie(cookie);
-			
-			
-		}else { //체크되지 않았으면 쿠키 삭제
-			cookie = new Cookie("userId", null); //값을 null로
+
+		} else { // 체크되지 않았으면 쿠키 삭제
+			cookie = new Cookie("userId", null); // 값을 null로
 			cookie.setMaxAge(0); // 쿠키의 수명을 0으로 바꾸기
 			response.addCookie(cookie);
-			
+
 		}
-		
-				
-		
+
 		// loginUser : 아이디만으로 조회해온 회원정보
 		Member loginUser = memberService.loginMember(m.getUserId());
 
@@ -320,6 +246,6 @@ public class MemberController {
 //	}
 
 	// test 05!!
-	
+
 	// test 06 !!
 }

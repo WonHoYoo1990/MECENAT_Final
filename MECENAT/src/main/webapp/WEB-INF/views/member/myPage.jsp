@@ -18,7 +18,6 @@
 		<script type="text/javascript">
 			alert("${errorMsg}");
 		</script>
-		<%-- <c:remove var="errorMsg" scope="request"/> --%>
 	</c:if>
 	<h1 style="font-weight:bold; color: white;">${errorMsg}</h1>
 
