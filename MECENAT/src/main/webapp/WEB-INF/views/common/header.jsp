@@ -64,6 +64,7 @@
 	                        <ul class="">
 								<!-- 공연·전시·강좌 -->
 	                            <li><a href="index.jsp">공연·전시·강좌<span class="arrow_carrot-down"></span></a>
+
 	                                <ul class="dropdown">
 	                                	<li><a href="list.perf">공연목록</a></li>
                                     	<li><a href="./blog-details.html">KH 시즌</a></li>
