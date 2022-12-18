@@ -20,5 +20,5 @@ public class Member {
 	private Date updateDate; // UPDATE_DATE DATE
 	private String userGrade; // USER_GRADE NUMBER
 	private String status; // STATUS VARCHAR2
-	//userGrade
+	//userGrade 
 }
