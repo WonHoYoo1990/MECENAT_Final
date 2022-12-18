@@ -33,6 +33,16 @@
 	
 	<context:component-scan base-package="com.kh.mecenat" />
 	
+	<!-- 인터셉터 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/myPage.me"/>
+			<mapping path="/delete.me"/>
+			<mapping path="/updatePwd.me"/>
+			<beans:bean class="com.kh.mecenat.common.LoginInterceptor" id="loginInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
 	
 	
 </beans:beans>
