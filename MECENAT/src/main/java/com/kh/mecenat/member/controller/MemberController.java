@@ -41,7 +41,7 @@ public class MemberController {
 	@RequestMapping("myPage.me")
 	public String myPageForm() {
 		System.out.println("myPage 이동~");
-		return "member/myPage";
+		return "member/myPage2";
 	}
 
 	// 회원가입 등록

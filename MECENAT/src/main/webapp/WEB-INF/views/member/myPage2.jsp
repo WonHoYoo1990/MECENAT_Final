@@ -74,7 +74,6 @@ body.hide-focus-ring *:focus {
 			<link itemprop="url" href="https://www.sejongpac.or.kr"> <a itemprop="sameAs" href="https://www.youtube.com/channel/UCCqaPJqI5q1kfO51qWWOjrQ"><span class="hide">유튜브</span></a> <a itemprop="sameAs" href="https://www.instagram.com/sejongcenter/"><span class="hide">인스타그램</span></a> <a itemprop="sameAs" href="https://www.facebook.com/sjcenter"><span class="hide">페이스북</span></a> <a itemprop="sameAs" href="https://blog.naver.com/sejongnanum"><span class="hide">블로그</span></a> <a itemprop="sameAs" href="https://twitter.com/SEJONG_CENTER"><span class="hide">트위터</span></a>
 		</span>
 
-
 		<script src="/static/portal/js/ksearch/top_apc.js"></script>
 		<script src="/static/portal/js/jquery.rwdImageMaps.js"></script>
 		<div id="seoul-common-gnb"></div>
@@ -89,23 +88,31 @@ body.hide-focus-ring *:focus {
 
 
 
+
+
+
 		<section id="sub_visual">
 			<div class="bg_w">
-				<div class="bg" style="background-image: url(&quot;/static/portal/img/common/subvisual-common.jpg&quot;); transform: translate(-20px, 10px) scale(1.1);"></div>
+
+				<div class="bg" style="background-image: url(&quot;/static/portal/img/common/subvisual-common.jpg&quot;); transform: translate(-9.48087px, 10px) scale(1.1);"></div>
+
 			</div>
+
 			<h2 class="sub-t">
-				<strong class="ani" style="opacity: 1;">개인화 서비스</strong>
+				<strong class="ani" style="opacity: 1;">로그인</strong>
 			</h2>
+
 		</section>
 
-		<div id="depth_w" class="on">
+		<div id="depth_w" class="">
 			<div class="inner">
 				<ul class="clearfix dot dep1 li2">
 					<li class="home"><span><span>HOME</span></span></li>
 					<li>
 						<div class="rel">
-							<a href="#"><span>마이페이지</span></a>
-							<ul class="depth" style="display: block;">
+							<a href="#"><span>통합회원서비스</span></a>
+							<ul class="depth" style="display: none;">
+
 								<li><a href="/portal/subMain/perform.do?menuNo=200001">공연·전시·강좌</a></li>
 								<li><a href="/portal/bbs/B0000002/list.do?menuNo=200012">대관안내</a></li>
 								<li><a href="/portal/qestnar/qustnr/list.do?status=T&amp;menuNo=200027">참여공간</a></li>
@@ -118,28 +125,22 @@ body.hide-focus-ring *:focus {
 
 					<li>
 						<div class="rel">
-							<a href="#"><span>개인화 서비스</span></a>
+							<a href="#"><span>로그인</span></a>
 							<ul class="depth" style="display: none;">
-
-								<li><a href="/portal/myPage/individual/list.do?menuNo=200153"><span>개인화 서비스</span></a></li>
-
-								<li><a href="/portal/myPage/reservation/list.do?menuNo=200154"><span>예매내역확인</span></a></li>
-
-								<li><a href="/portal/myPage/happyApply/list.do?menuNo=200155"><span>천원의행복 신청내역</span></a></li>
-
-								<li><a href="/portal/myPage/package/gift.do?menuNo=200160"><span>패키지 선물</span></a></li>
-
-								<li><a href="/portal/myPage/scrap/list.do?menuNo=200157"><span>관심 공연/전시</span></a></li>
-
-								<li><a href="/portal/myPage/qnaMng/list.do?menuNo=200158"><span>고객문의내역</span></a></li>
-
-								<li><a href="/portal/myPage/acntMng/forUpdate.do?menuNo=200168"><span>회원정보 수정</span></a></li>
-
-								<li><a href="/portal/myPage/sns/sns.do?menuNo=200159"><span>SNS연결설정</span></a></li>
-
+								<li><a href="/portal/main/contents.do?menuNo=200099"><span>서비스소개</span></a></li>
+								<li><a href="/portal/member/user/forLogin.do?menuNo=200100"><span>로그인</span></a></li>
+								<li><a href="/portal/member/user/join.do?menuNo=200144"><span>회원가입</span></a></li>
+								<li><a href="/portal/member/user/idSearch.do?menuNo=200145"><span>아이디 찾기</span></a></li>
+								<li><a href="/portal/member/user/findPw.do?menuNo=200146"><span>패스워드 찾기</span></a></li>
+								<li><a href="/portal/main/contents.do?menuNo=200148"><span>개인정보처리방침</span></a></li>
+								<li><a href="/portal/main/contents.do?menuNo=200150"><span>이메일무단수집거부</span></a></li>
+								<li><a href="/portal/main/contents.do?menuNo=200164"><span>고객서비스헌장</span></a></li>
+								<li><a href="/portal/singl/siteMap/list.do?menuNo=200162"><span>사이트 맵</span></a></li>
 							</ul>
 						</div>
 				</li>
+
+
 				</ul>
 			</div>
 		</div>
@@ -169,8 +170,6 @@ body.hide-focus-ring *:focus {
 				}
 			}).resize();
 		</script>
-
-
 
 
 
@@ -212,31 +211,13 @@ body.hide-focus-ring *:focus {
 							<div class="inner clearfix">
 								<ul class="mypage_top clearfix">
 									<li class="l">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 										<dl class="card_0000">
 											<!-- .card_번호 -->
 											<dt>
 												<img src="/static/portal/img/mypage/card_0000.png" alt="">
 
 												<div class="txt">
-													<strong class="">유원호</strong>님, 안녕하세요! <strong class="grade"> <span class="octagon_w we">
-															<!-- we 웰컴,st 스타트,sp 스페셜,si 시그니처 --> <span class="octagon"> <span class="in"></span>
+													<strong class="">유원호</strong>님, 안녕하세요! <strong class="grade"> <span class="octagon_w we"> <!-- we 웰컴,st 스타트,sp 스페셜,si 시그니처 --> <span class="octagon"> <span class="in"></span>
 														</span> <span class="ttt st">We </span> <span class="octagon border"><span class="in"></span></span>
 													</span> 웰컴(Welcome)
 													</strong>
@@ -357,12 +338,12 @@ body.hide-focus-ring *:focus {
 											<div class="datepick clearfix">
 												<ul class="clearfix">
 													<li><label for="" class="hide">시작일 선택</label> <input type="text" name="searchStartDate" id="searchStartDate" placeholder="" class="hasDatepicker">
-													<button type="button" class="ui-datepicker-trigger">
+														<button type="button" class="ui-datepicker-trigger">
 															<img src="/static/portal/img/mypage/calendar.gif" alt="Select date" title="Select date">
 														</button></li>
 													<li class="dash">-</li>
 													<li><label for="" class="hide">종료일 선택</label> <input type="text" name="searchEndDate" id="searchEndDate" placeholder="" class="hasDatepicker">
-													<button type="button" class="ui-datepicker-trigger">
+														<button type="button" class="ui-datepicker-trigger">
 															<img src="/static/portal/img/mypage/calendar.gif" alt="Select date" title="Select date">
 														</button></li>
 												</ul>
@@ -807,6 +788,7 @@ body.hide-focus-ring *:focus {
 			</div>
 
 		</div>
+
 
 
 
