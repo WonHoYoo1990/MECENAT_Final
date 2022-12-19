@@ -58,18 +58,23 @@
 		                    </a>
 	               	</div>
 	            </div>
-	            <div class="col-lg-8" >
-	                <div class="header__nav" >
-	                    <nav class="header__menu mobile-menu" >
-	                        <ul class="" >
+
+	            <div class="col-lg-8">
+	                <div class="header__nav">
+	                    <nav class="header__menu mobile-menu">
+	                        <ul class="">
+
 								<!-- 공연·전시·강좌 -->
 	                            <li><a href="index.jsp">공연·전시·강좌<span class="arrow_carrot-down"></span></a>
+
 	                                <ul class="dropdown">
-                                    	<li><a href="#">KH 시즌</a></li>
-	                                    <li><a href="list.perf">공연 일정</a></li>
-                                    	<li><a href="#">패키지</a></li>
-                                    	<li><a href="#">전시일정</a></li>
-                                    	<li><a href="#">강좌일정</a></li>
+
+	                                	<li><a href="list.perf">공연목록</a></li>
+                                    	<li><a href="./blog-details.html">KH 시즌</a></li>
+	                                    <li><a href="./anime-watching.html">공연 일정</a></li>
+                                    	<li><a href="./blog-details.html">패키지</a></li>
+                                    	<li><a href="./blog-details.html">전시일정</a></li>
+                                    	<li><a href="./blog-details.html">강좌일정</a></li>
                                     	<li>
                                     		<a href="#">좌석배치도</a>
                                     		<ul>
@@ -201,6 +206,12 @@
 									<!-- TICKET -->
 									<li> <a href="#">TICKET</a> </li>
 									<li> <a href="#" class="search-switch"><span class="icon_search"></span></a> </li>
+									
+									
+									<!-- 관리자용... 회원 전체 목록 가져오기 -->
+									<c:if test="${loginUser.userId eq 'admin'}">
+										<li><a href="memberDel.manager">회원 전체 목록</a></li>
+									</c:if>
 								</ul>
 							</c:otherwise>
 						</c:choose>

@@ -1,5 +1,7 @@
 package com.kh.mecenat.member.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,7 +43,7 @@ public class MemberController {
 	// 마이페이지 이동
 	@RequestMapping("myPage.me")
 	public String myPageForm() {
-		System.out.println("myPage 이동~");
+//		System.out.println("myPage 이동~");
 		return "member/myPage";
 	}
 
@@ -243,6 +246,34 @@ public class MemberController {
 //			return "mypage/checkformodify";
 //		}
 //	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@RequestMapping("memberDel.manager")
+	public String managerMemberList(Model model) {
+		
+		ArrayList<Member> mList = memberService.selectAllMemberList();
+		
+		System.out.println(mList);
+		
+		model.addAttribute("mList", mList);
+		
+		return "member/managerMemberDelete";
+	}
+	
+	@RequestMapping("deleteMem.manager")
+	public void managerMemberDelete() {
+		System.out.println("ㅇㅇ");
+		
+	}
+	
+	
 
 	// test 05!!
 

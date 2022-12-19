@@ -1,5 +1,7 @@
 package com.kh.mecenat.member.model.dao;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -49,6 +51,12 @@ public class MemberDao {
 	// 비밀번호 업데이트
 	public void updatePwd(SqlSessionTemplate sqlSession, Member m) {
 		sqlSession.update("memberMapper.updatePwd", m);
+	}
+	
+	//관리자) 멤버 전체 조회
+	public ArrayList<Member> selectAllMemberList(SqlSessionTemplate sqlSession) {
+		
+		return (ArrayList)sqlSession.selectList("memberMapper.selectAllMemberList");
 	}
 
 }
