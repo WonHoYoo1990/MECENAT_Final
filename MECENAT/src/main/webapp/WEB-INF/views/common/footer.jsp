@@ -38,6 +38,8 @@
 	
 </head>
 <body>
+
+	
 	<!-- Footer Section Begin -->
 	<footer class="footer">
 		<div class="page-up">
@@ -88,6 +90,7 @@
 	<script src="./resources/js/jquery.slicknav.js"></script>
 	<script src="./resources/js/owl.carousel.min.js"></script>
 	<script src="./resources/js/main.js"></script>
+	
 	
 </body>
 </html>

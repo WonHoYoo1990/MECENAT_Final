@@ -10,13 +10,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+
  
 </head>
 <body>
-	<jsp:include page="../common/header.jsp"/>
+	
+	<jsp:include page="../common/header2.jsp"/>
+	
 	<br><br>
 	<div class="content">
 	<h1 align="center" style='color:white'>공연 목록</h1>
@@ -103,6 +111,6 @@
 	
 	
 	<br><br><br><br><br><br><br>
-	<jsp:include page="../common/footer.jsp"/>
+	<jsp:include page="../common/footer2.jsp"/>
 </body>
 </html>

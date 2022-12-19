@@ -144,11 +144,10 @@ public class MemberController {
 
 	// 로그인 폼으로 이동
 	@GetMapping("loginForm.me")
-
 	public String enrollForm() {
 
 		// WEB-INF/views/member/memberEnrollForm.jsp 로 포워딩
-		return "/member/login";
+		return "/member/login2";
 
 	}
 

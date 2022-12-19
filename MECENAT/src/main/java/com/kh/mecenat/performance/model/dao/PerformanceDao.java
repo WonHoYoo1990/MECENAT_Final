@@ -12,7 +12,7 @@ import com.kh.mecenat.performance.model.vo.Performance;
 public class PerformanceDao {
 
 	public ArrayList<Performance> selectListPerformance(SqlSessionTemplate sqlSession ) {
-		return (ArrayList)sqlSession.selectList("performanceMapper.selectPerformanceList");
+		return (ArrayList)sqlSession.selectList("performanceMapper.selectListPerformance");
 	}
 
 	public int insertPerformance(SqlSessionTemplate sqlSession, Performance p) {

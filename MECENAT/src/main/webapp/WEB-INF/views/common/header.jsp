@@ -58,14 +58,17 @@
 		                    </a>
 	               	</div>
 	            </div>
+
 	            <div class="col-lg-8">
 	                <div class="header__nav">
 	                    <nav class="header__menu mobile-menu">
 	                        <ul class="">
+
 								<!-- 공연·전시·강좌 -->
 	                            <li><a href="index.jsp">공연·전시·강좌<span class="arrow_carrot-down"></span></a>
 
 	                                <ul class="dropdown">
+
 	                                	<li><a href="list.perf">공연목록</a></li>
                                     	<li><a href="./blog-details.html">KH 시즌</a></li>
 	                                    <li><a href="./anime-watching.html">공연 일정</a></li>
@@ -73,7 +76,7 @@
                                     	<li><a href="./blog-details.html">전시일정</a></li>
                                     	<li><a href="./blog-details.html">강좌일정</a></li>
                                     	<li>
-                                    		<a href="./blog-details.html">좌석배치도</a>
+                                    		<a href="#">좌석배치도</a>
                                     		<ul>
 											  <li><a href="./blog-details.html">세종대극장1</a></li>
 											  <li><a href="./blog-details.html">세종대극장2</a></li>

@@ -29,7 +29,7 @@ public class ReservationController {
 		String userId = "admin";
 		String hallName ="A";
 		
-		mv.addObject("userId",userId).addObject("hallName", hallName).setViewName("reservation/applicationForm");
+		mv.addObject("userId",userId).addObject("hallName", hallName).setViewName("reservation/applicationForm2");
 		return mv;
 	}
 	

@@ -8,7 +8,7 @@
 
 </head>
 <body>
-	<jsp:include page="../common/header.jsp"/>
+	<jsp:include page="../common/header2.jsp"/>
 	<br><br>
 	<h1 align="center" style='color:white'>insertForm</h1>
 	<div class="innerOuter" align="center">
@@ -76,6 +76,6 @@
 	
 	
 	<br><br><br><br><br><br><br>
-	<jsp:include page="../common/footer.jsp"/>
+	<jsp:include page="../common/footer2.jsp"/>
 </body>
 </html>
