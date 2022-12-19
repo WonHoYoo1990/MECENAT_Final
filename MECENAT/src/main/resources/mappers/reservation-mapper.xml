@@ -8,8 +8,6 @@
 		<result column="PERFO_TITLE" property="perfoTitle"/>
 		<result column="GENRE_NAME" property="genreName"/>
 		<result column="PERFO_DATE" property="perfoDate"/>
-		<result column="PERFO_START_DATE" property="perfoStartDate"/>
-		<result column="PERFO_END_DATE" property="perfoEndDate"/>
 		<result column="PERFO_EVENT_DATE" property="perfoEventDate"/>
 		<result column="DIRECTOR" property="director"/>
 		<result column="CAST" property="cast"/>
@@ -34,6 +32,7 @@
 		<result column="PERFO_START_DATE" property="rentalStartDate"/>
 		<result column="RENTAL_END_DATE" property="rentalEndDate"/>
 		<result column="EVENT_DATE" property="eventDate"/>
+		<result column="EVENT_TIME" property="eventTime"/>
 		<result column="RENTAL_PROPOSE" property="rentalPropose"/>
 		<result column="RENTAL_DATE" property="rentalDate"/>
 		<result column="APPROVE_STATUS" property="approveStatus"/>
@@ -77,6 +76,7 @@
 		<result column="TOTAL_PRICE" property="totalPrice"/>
 	</resultMap>
 
+	<!-- #혜원만제 - 전체 공연리스트 조회(조정중) -->
 	<select id="selectPerformanceList" resultMap="performanceResult">
 		SELECT *
 		FROM PERFORMANCE
@@ -107,10 +107,18 @@
 			, #{rentalStartDate}
 			, #{rentalEndDate}
 			, #{eventDate}
+			, #{eventTime \]}
 			, #{rentalPropose}
 			, SYSDATE
 			, '승인대기')
 	</insert>
+	
+	<!-- #혜원 - 공연장 선택 시 해당 공연장 전체 정보 조회 -->
+	<select id="selectHallInfo" resultMap="hallResult">
+		SELECT *
+		FROM HALL
+		WHERE HALL_NAME = #{hallName}
+	</select>
 
 	
 	<update id="updateBoard">

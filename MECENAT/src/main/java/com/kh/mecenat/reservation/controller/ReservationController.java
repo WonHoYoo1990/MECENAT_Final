@@ -8,9 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.kh.mecenat.reservation.model.service.ReservationService;
+import com.kh.mecenat.reservation.model.vo.Hall;
 import com.kh.mecenat.reservation.model.vo.Performance;
 import com.kh.mecenat.reservation.model.vo.RentApplication;
 
@@ -20,7 +23,31 @@ public class ReservationController {
 	@Autowired
 	private ReservationService reservationService;
 	
-	@GetMapping("application.rv")
+	
+//	∞¯ø¨»¶ ¿¸√º ¡§∫∏ ¡∂»∏ ∆‰¿Ã¡ˆ. ±‚∫ª √π ∆‰¿Ã¡ˆ A»¶∫Œ≈Õ ∫∏ø©¡ÿ »ƒ, B»¶ ≈¨∏ØΩ√ ajax∑Œ ≥ªøÎ º€√‚
+	@GetMapping("information1.hl")
+	public ModelAndView informHall(ModelAndView mv) {
+		
+		String hallName = "A";
+		Hall hall = reservationService.selectHallInfo(hallName);
+		
+		mv.addObject("hallName", hallName).setViewName("reservation/hallInformation");
+		return mv;
+	}
+	
+//	∞¯ø¨»¶∫∞ ajax ¿¸√º ≥ªøÎ¡∂»∏
+	@ResponseBody
+	@RequestMapping(value="information2.hl", produces = "application/json; charset=UTF-8")
+	public String informHall(String hallName) {
+		
+		Hall hall = reservationService.selectHallInfo(hallName);
+		
+		return new Gson().toJson(hall);
+	}
+	
+	
+//	¥Î∞¸Ω≈√ª ≈¨∏ØΩ√
+	@GetMapping("application1.rv")
 	public ModelAndView viewApplicationForm(HttpSession session
 //									 		,String hallName
 											,ModelAndView mv) {
@@ -29,44 +56,121 @@ public class ReservationController {
 		String userId = "admin";
 		String hallName ="A";
 		
-		mv.addObject("userId",userId).addObject("hallName", hallName).setViewName("reservation/applicationForm2");
+		mv.addObject("userId",userId).addObject("hallName", hallName).setViewName("reservation/applicationForm1");
 		return mv;
 	}
 	
-	@PostMapping("application.rv")
+//	¥Î∞¸ Ω≈√ª ¡ﬂ ∞¯ø¨¿œº≥¡§, ∞¯ø¨Ω√∞£ º≥¡§
+	@ResponseBody
+	@RequestMapping(value="setTime.rv", produces = "text/html; charset=UTF-8")
+	public String setTime(String eventDateList) {
+		String[] arr = eventDateList.split(",");
+		String str = "";
+		
+		for(int i=0; i<arr.length; i++) {
+			str +=	"<input type='text' id='startTimes' name='startTimes'  placeholder='æ∆∑° ∞¯ø¨¿œ¿ª »Æ¿Œ«œººø‰' required/><br>"
+			     +  "<label for='startTime'>"+arr[i]+" ≥Ø¬•∏¶ »Æ¿Œ«ÿ ¡÷ººø‰**</label>"
+			     +  "<br><br>";
+		}
+		return str;
+	}
+	
+//	test
+	@PostMapping("application1.rv")
 	public ModelAndView writeApplication(RentApplication ra
+										,HttpSession session
 										,ModelAndView mv) {
-		System.out.println(ra);					 
-		int result = reservationService.insertApplication(ra);		
+		int result = 0;
+		System.out.println(ra);
 		String events = ra.getEventDate();
 		String[] arr = events.split(",");
 		System.out.println("arr : "+arr);
-		if(result>0) {
-			mv.addObject("arr",arr).addObject("ra",ra).setViewName("reservation/performanceForm");
-		} else {
-			mv.addObject("errorMsg","ÎåÄÍ¥ÄÏã†Ï≤≠Ïù¥ Ïù¥Î£®Ïñ¥ÏßÄÏßÄ ÏïäÏïòÏäµÎãàÎã§.").setViewName("common/errorPage");
+		session.setAttribute("ra", ra);
+		session.setAttribute("arr", arr);
+		
+		RentApplication finalRa = null;
+		if(arr.length == arr.length) {
+			
+			for(int i=0; i<arr.length; i++) {
+				
+				finalRa.setUserId(ra.getUserId());
+				finalRa.setHallName(ra.getHallName());
+				finalRa.setCovenanteeName(ra.getCovenanteeName());
+				finalRa.setCovenanteePhone(ra.getCovenanteePhone());
+				finalRa.setAgentName(ra.getAgentName());
+				finalRa.setAgentPhone(ra.getAgentPhone());
+				finalRa.setAgentEmail(ra.getAgentEmail());
+				finalRa.setRentalStartDate(ra.getRentalStartDate());
+				finalRa.setRentalEndDate(ra.getRentalEndDate());
+				finalRa.setEventDate(arr[i]);
+				finalRa.setEventTime(arr[i]);
+				finalRa.setRentalPropose(ra.getRentalPropose());	
+				
+				result += reservationService.insertApplication(finalRa);
+			}
+			
 		}
 		
-		return mv;		
+		if(result==arr.length) {
+			session.removeAttribute("ra");
+			session.removeAttribute("arr");
+			session.setAttribute("alertMsg", "¥Î∞¸Ω≈√ª øœ∑·. ∏∂¿Ã∆‰¿Ã¡ˆ∏¶ »Æ¿Œ«œººø‰.");
+			mv.setViewName("redirect:/");
+		} else {
+			mv.addObject("errorMsg","¥Î∞¸Ω≈√ª µÓ∑œΩ«∆–. ∞¸∏Æ¿⁄ø°∞‘ πÆ¿««œººø‰").setViewName("common/errorPage");
+		}
+		
+		return mv;	
 	}
 	
-	
-	@RequestMapping("pfapplication.rv")
+//	test
+	@RequestMapping("application2.rv")
 	public ModelAndView insertPerformance(ModelAndView mv
-										  , Performance p
-										  , String[] startTimes) {
+										 ,HttpSession session
+										 ,RentApplication ra
+										 ,String[] startTimes) {
 		
 		System.out.println(startTimes+" : "+startTimes.length);
-		for(int i=0; i<startTimes.length; i++) {
-			System.out.println(startTimes[i]);
+		int result = 0;
+		String[] arr = (String[])session.getAttribute("arr");
+		RentApplication finalRa = null;
+		if(arr.length == startTimes.length) {
+			
+			for(int i=0; i<startTimes.length; i++) {
+				
+				finalRa.setUserId(ra.getUserId());
+				finalRa.setHallName(ra.getHallName());
+				finalRa.setCovenanteeName(ra.getCovenanteeName());
+				finalRa.setCovenanteePhone(ra.getCovenanteePhone());
+				finalRa.setAgentName(ra.getAgentName());
+				finalRa.setAgentPhone(ra.getAgentPhone());
+				finalRa.setAgentEmail(ra.getAgentEmail());
+				finalRa.setRentalStartDate(ra.getRentalStartDate());
+				finalRa.setRentalEndDate(ra.getRentalEndDate());
+				finalRa.setEventDate(arr[i]);
+				finalRa.setEventTime(startTimes[i]);
+				finalRa.setRentalPropose(ra.getRentalPropose());	
+				
+				result += reservationService.insertApplication(finalRa);
+			}
+			
 		}
-		System.out.println(p);
+		
+		
+		if(result==startTimes.length) {
+			session.removeAttribute("ra");
+			session.removeAttribute("arr");
+			session.setAttribute("alertMsg", "¥Î∞¸Ω≈√ª øœ∑·. ∏∂¿Ã∆‰¿Ã¡ˆ∏¶ »Æ¿Œ«œººø‰.");
+			mv.setViewName("redirect:/");
+		} else {
+			mv.addObject("errorMsg","¥Î∞¸Ω≈√ª µÓ∑œΩ«∆–. ∞¸∏Æ¿⁄ø°∞‘ πÆ¿««œººø‰").setViewName("common/errorPage");
+					}
 		
 		
 		return mv;
 	}
 	
-
+//	øπ∏≈ ∆‰¿Ã¡ˆ ¡∂¡§¡ﬂ
 	@GetMapping("make.rv")
 	public String selectPerformaceForm(Model model//,
 									   /*int perfoNo*/) {
@@ -86,9 +190,11 @@ public class ReservationController {
 		return "reservation/makeReservation";
 	}
 	
+//	øπ∏≈ ∆‰¿Ã¡ˆ ¡∂¡§¡ﬂ
 	@PostMapping("make.rv")
 	public void selectPerformaceInfo() {
 	}
 	
+
 	
 }
