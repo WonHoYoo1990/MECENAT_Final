@@ -153,12 +153,28 @@
 				</ul>
 			</div>
 			<ul id="gnb" class="clearfix">
+				<c:choose>
+					<c:when test="${empty loginUser}">
+						<li class="li link"><a href="loginForm.me">LOGIN</a></li>
+					</c:when>
+					<c:otherwise>
+						<li class="li link login_Y" style=""><a href="#" class="t">MYPAGE</a>
+							<ul class="depth">
+								<li><a href="/portal/myPage/individual/list.do?menuNo=200153">MYPAGE</a></li>
+								<li><a href="logout.me">LOGOUT</a></li>
+						</ul></li>
+					</c:otherwise>
+				</c:choose>
+				
+				<!-- 
 				<li class="li login_N" style="display: none;"><a href="/portal/member/user/forLogin.do?menuNo=200100">LOGIN</a></li>
 				<li class="li link login_Y" style=""><a href="#" class="t">MYPAGE</a>
 					<ul class="depth">
 						<li><a href="/portal/myPage/individual/list.do?menuNo=200153">MYPAGE</a></li>
 						<li><a href="loginForm.me">LOGOUT</a></li>
 				</ul></li>
+				 -->
+				
 				<li class="li"><a href="/eng/main/main.do" target="_blank" title="새창으로 열립니다.">ENG</a></li>
 				<li class="ticket tablet"><a href="javascript:checkList();" class="btn-ticket btn">TICKET</a></li>
 				<li class="pc_only"><a href="javascript:checkList();" title="새창으로 열립니다.">TICKET</a></li>
@@ -171,7 +187,7 @@
 				<div class="in">
 					<div class="top">
 						<ul id="gnb_m" class="clearfix">
-							<li class="login_N" style="display: none;"><a href="/portal/member/user/forLogin.do?menuNo=200100">LOGIN</a></li>
+							<li class="login_N" style="display: none;"><a href="loginForm.me">LOGIN</a></li>
 							<li class="login_Y" style="display: none;"><a href="/portal/member/user/logout.do">LOGOUT</a></li>
 							<li class="login_Y" style="display: none;"><a href="/portal/myPage/individual/list.do?menuNo=200153">MYPAGE</a></li>
 							<li><a href="/eng/main/main.do" target="_blank" title="새창으로 열립니다.">ENG</a></li>
