@@ -24,6 +24,7 @@
 	  	<result column="CHANGE_NAME" property="changeName"/>
 	</resultMap>
 	
+
 	<select id="selectPerformanceList" resultMap="performanceResultSet">
 		SELECT *
 		FROM PERFORMANCE
