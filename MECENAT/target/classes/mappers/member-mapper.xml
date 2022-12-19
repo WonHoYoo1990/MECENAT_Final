@@ -90,5 +90,11 @@
 		WHERE USER_ID = #{userId}
 		AND STATUS = 'Y'
 	</update>
+	
+	<!-- 관리자) 멤버 전체 조회 -->
+	<select id="selectAllMemberList" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
+	</select>
 		
 </mapper>

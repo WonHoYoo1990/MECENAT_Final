@@ -98,6 +98,7 @@ body.hide-focus-ring *:focus {
 			</h2>
 		</section>
 
+
 		<div id="depth_w" class="on">
 			<div class="inner">
 				<ul class="clearfix dot dep1 li2">
@@ -114,6 +115,7 @@ body.hide-focus-ring *:focus {
 								<li><a href="https://www.sjartgroups.or.kr/sjartgroups/main/main.do" target="_blank" title="새창 열림">서울시예술단</a></li>
 							</ul>
 						</div>
+
 				</li>
 
 					<li>
@@ -137,10 +139,12 @@ body.hide-focus-ring *:focus {
 
 								<li><a href="/portal/myPage/sns/sns.do?menuNo=200159"><span>SNS연결설정</span></a></li>
 
+
 							</ul>
 						</div>
 				</li>
 				</ul>
+
 			</div>
 		</div>
 		<script>
@@ -174,9 +178,11 @@ body.hide-focus-ring *:focus {
 
 
 
+
 		<div id="cont">
 			<div id="sub_page">
 				<div class="inner"></div>
+
 
 				<script>
 					var loc = $("#depth_w > div > ul > li").length - 1;
@@ -679,6 +685,7 @@ body.hide-focus-ring *:focus {
 											}
 
 										});
+
 							}
 						</script>
 						<!-- <div class="inner">

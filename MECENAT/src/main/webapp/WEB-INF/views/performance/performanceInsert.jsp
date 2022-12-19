@@ -24,15 +24,11 @@
 	            </tr>
 	            <tr>
 	                <th><label for="startDate">시작 날짜: </label></th>
-	                <td><input type="Date" id="startDate" class="form-control" name="perfoStartDate" required></td>
-	            </tr>
-	            <tr>
-	                <th><label for="endDate">종료 날짜: </label></th>
-	                <td><input type="Date" id="endDate" class="form-control" name="perfoEndDate" required></td>
+	                <td><input type="Date" id="startDate" class="form-control" name="perfoEventDate" required></td>
 	            </tr>
 	            <tr>
 	                <th><label for="directo">감독: </label></th>
-	                <td><input type="text" id="directo" class="form-control" name="directo" required></td>
+	                <td><input type="text" id="directo" class="form-control" name="director" required></td>
 	            </tr>
 	            <tr>
 	                <th><label for="cast">출연진: </label></th>
@@ -43,12 +39,20 @@
 	                <td><textarea id="content" class="form-control" name="perfoContent" required></textarea>
 	            </tr>
 	            <tr>
+	                <th><label for="content">시작시간(이건 생각이를 해보쟈): </label></th>
+	                <td><input type="text" id="cast" class="form-control" name="startTime" required></td>
+	            </tr>
+	            <tr>
 	                <th><label for="runningTime">러닝타임: </label></th>
 	                <td><input type="number" id="runningTime" class="form-control" name="runningTime" required></textarea>
 	            </tr>
 	            <tr>
 	                <th><label for="ageLimit">나이 제한: </label></th>
 	                <td><input type="number" id="ageLimit" class="form-control" name="ageLimit" required>
+	            </tr>
+	            <tr>
+	            	<th><label for="upfile">상태: </label></th>
+	            	<td><input type="String" id="upfile" class="form-control-file border" name="perfoStatus"></td>
 	            </tr>
 	            <tr>
 	                <th><label for="price">티켓 가격: </label></th>

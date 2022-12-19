@@ -1,5 +1,7 @@
 package com.kh.mecenat.member.model.service;
 
+import java.util.ArrayList;
+
 import com.kh.mecenat.member.model.vo.Member;
 
 public interface MemberService {
@@ -27,5 +29,8 @@ public interface MemberService {
 
 	// 비밀번호 업데이트
 	void updatePwd(Member m);
+	
+	//관리자) 멤버 전체 조회
+	ArrayList<Member> selectAllMemberList();
 
 }

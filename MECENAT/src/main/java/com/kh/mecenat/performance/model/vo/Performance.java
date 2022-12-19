@@ -17,12 +17,12 @@ public class Performance {
 	private int rentalCode;
 	private String perfoTitle;
 	private String genreName;
-	private Date perfoStartDate;
-	private Date perfoEndDate;
-	private String directo;
+	private String perfoEventDate;
+	private String director;
 	private String cast;
 	private String perfoContent;
-	private int runningTime;
+	private String startTime;
+	private String runningTime;
 	private int ageLimit;
 	private String perfoStatus;
 	private int price;
