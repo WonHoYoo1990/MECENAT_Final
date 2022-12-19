@@ -25,6 +25,7 @@ public class PerformanceController {
 	@Autowired
 	private PerformanceService perfoService;
 	
+//	전체 공연 목록 뽑기('status=>"상영중")
 	@RequestMapping("list.perf")
 	public String performanceList(Model model) {
 //		System.out.println("list단");
@@ -35,11 +36,13 @@ public class PerformanceController {
 		return "performance/performanceListView";
 	}
 	
+//	공연 등록폼 이동
 	@RequestMapping("insertForm.perf")
 	public String performanceInsertForm() {
 		return "performance/performanceInsert";
 	}
 	
+//	관리자용 공연 등록
 	@PostMapping("insert.perf")
 	public ModelAndView insertPerformance(Performance p, MultipartFile upfile, ModelAndView mv, HttpSession session) {
 		String changeName = saveFile(upfile, session);
@@ -53,9 +56,10 @@ public class PerformanceController {
 		return mv;
 	}
 	
+//	등록된공연 빼기용
 	@RequestMapping("delete.perf")
 	public void performanceDelete() {
-		System.out.println("앙용");
+		
 	}
 	
 	

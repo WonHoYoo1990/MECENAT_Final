@@ -64,7 +64,9 @@
 	                        <ul class="">
 								<!-- 공연·전시·강좌 -->
 	                            <li><a href="index.jsp">공연·전시·강좌<span class="arrow_carrot-down"></span></a>
+
 	                                <ul class="dropdown">
+	                                	<li><a href="list.perf">공연목록</a></li>
                                     	<li><a href="./blog-details.html">KH 시즌</a></li>
 	                                    <li><a href="./anime-watching.html">공연 일정</a></li>
                                     	<li><a href="./blog-details.html">패키지</a></li>
@@ -201,6 +203,12 @@
 									<!-- TICKET -->
 									<li> <a href="#">TICKET</a> </li>
 									<li> <a href="#" class="search-switch"><span class="icon_search"></span></a> </li>
+									
+									
+									<!-- 관리자용... 회원 전체 목록 가져오기 -->
+									<c:if test="${loginUser.userId eq 'admin'}">
+										<li><a href="memberDel.manager">회원 전체 목록</a></li>
+									</c:if>
 								</ul>
 							</c:otherwise>
 						</c:choose>

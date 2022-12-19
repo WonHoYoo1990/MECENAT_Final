@@ -17,11 +17,13 @@
 		<typeAlias type="com.kh.mecenat.reservation.model.vo.Purchase" alias="purchase"/>
 		<typeAlias type="com.kh.mecenat.reservation.model.vo.RentApplication" alias="rentapplication"/>
 		<typeAlias type="com.kh.mecenat.reservation.model.vo.RentSystem" alias="rentsystem"/>
+		<typeAlias type="com.kh.mecenat.performance.model.vo.Performance" alias="performanceMana"/>
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="/mappers/member-mapper.xml"/>
-		<mapper resource="/mappers/reservation-mapper.xml"/> 	
+		<mapper resource="/mappers/reservation-mapper.xml"/>
+		<mapper resource="/mappers/performance.xml"/>
 	</mappers>
 	
 </configuration>
