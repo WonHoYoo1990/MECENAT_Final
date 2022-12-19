@@ -90,7 +90,6 @@ body.hide-focus-ring *:focus {
 
 
 
-
 		<section id="sub_visual">
 			<div class="bg_w">
 
@@ -133,9 +132,17 @@ body.hide-focus-ring *:focus {
 				
 				<li>
 					<div class="rel">
-					<a href="#"><span>로그인</span></a>
+					<a href="login.me"><span>로그인</span></a>
 					<ul class="depth" style="display: none;">
-					<li><a href="/portal/main/contents.do?menuNo=200099"><span>서비스소개</span></a></li><li><a href="/portal/member/user/forLogin.do?menuNo=200100"><span>로그인</span></a></li><li><a href="/portal/member/user/join.do?menuNo=200144"><span>회원가입</span></a></li><li><a href="/portal/member/user/idSearch.do?menuNo=200145"><span>아이디 찾기</span></a></li><li><a href="/portal/member/user/findPw.do?menuNo=200146"><span>패스워드 찾기</span></a></li><li><a href="/portal/main/contents.do?menuNo=200148"><span>개인정보처리방침</span></a></li><li><a href="/portal/main/contents.do?menuNo=200150"><span>이메일무단수집거부</span></a></li><li><a href="/portal/main/contents.do?menuNo=200164"><span>고객서비스헌장</span></a></li><li><a href="/portal/singl/siteMap/list.do?menuNo=200162"><span>사이트 맵</span></a></li>
+					<li><a href="/portal/main/contents.do?menuNo=200099"><span>서비스소개</span></a></li>
+					<li><a href="login.me"><span>로그인</span></a></li>
+					<li><a href="/portal/member/user/join.do?menuNo=200144"><span>회원가입</span></a></li>
+					<li><a href="/portal/member/user/idSearch.do?menuNo=200145"><span>아이디 찾기</span></a></li>
+					<li><a href="/portal/member/user/findPw.do?menuNo=200146"><span>패스워드 찾기</span></a></li>
+					<li><a href="/portal/main/contents.do?menuNo=200148"><span>개인정보처리방침</span></a></li>
+					<li><a href="/portal/main/contents.do?menuNo=200150"><span>이메일무단수집거부</span></a></li>
+					<li><a href="/portal/main/contents.do?menuNo=200164"><span>고객서비스헌장</span></a></li>
+					<li><a href="/portal/singl/siteMap/list.do?menuNo=200162"><span>사이트 맵</span></a></li>
 					</ul>
 					</div>
 				</li>
@@ -205,7 +212,7 @@ body.hide-focus-ring *:focus {
  -->
  
 <article class="login inner member_com">
-<form name="memberLoginForm" id="memberLoginForm" action="/portal/member/user/toLogin.do" enctype="multipart/form-data" method="post" onsubmit="return actionLogin(this);">
+<form name="memberLoginForm" id="memberLoginForm" action="login.me" enctype="multipart/form-data" method="post" onsubmit="return actionLogin(this);">
 	<input type="hidden" name="loginFlag" value="">
 	<input type="hidden" name="menuNo" value="200100">
 	<input type="hidden" name="csrfToken" id="csrfToken" value="7f0d129f-5bde-4462-86d0-ea838c826de6">
@@ -214,11 +221,19 @@ body.hide-focus-ring *:focus {
 			<h3 class="tit-st4">세종문화회관  회원  로그인</h3>
 
 			<ul class="form f20">
-				<li class="id"><label for="username" class="hide">아이디</label><input type="text" name="username" id="username" placeholder="아 이 디"></li>
-				<li class="pw"><label for="password" class="hide">패스워드</label><input type="password" name="password" id="password" autocomplete="off" onkeypress="return loginEnter(event);" "="" placeholder="비밀번호"></li>
+			 <c:choose>
+               <c:when test="${cookie.userId.value}">
+					<li class="id"><label for="userId" class="hide">아이디</label><input type="text" name="userId" id="userId" placeholder="아 이 디"></li>
+					<li class="pw"><label for="password" class="hide">패스워드</label><input type="password" name="userPwd" id="userPwd" autocomplete="off" onkeypress="return loginEnter(event);" "="" placeholder="비밀번호"></li>
+				</c:when>
+				<c:otherwise>
+				  	<li class="id"><label for="userId" class="hide">아이디</label><input type="text" name="userId" id="userId" value="${cookie.userId.value}" placeholder="아 이 디"></li>
+					<li class="pw"><label for="password" class="hide">패스워드</label><input type="password" name="userPwd" id="userPwd" autocomplete="off" onkeypress="return loginEnter(event);" "="" placeholder="비밀번호"></li>
+				</c:otherwise>
+             </c:choose>
 			</ul>
 			<div class="remeber">
-				<input type="checkbox" id="saveCookieUserId">
+				<input type="checkbox" id="saveId" name="saveId">
 				<label for="saveCookieUserId">아이디 저장</label>
 			</div>
 			<!-- 캡차주석 -->
@@ -315,8 +330,8 @@ function captchaChk(){
 */
 
 function actionLogin(form){
-	var username = $("#username").val();
-	var password = $("#password").val();
+	var username = $("#userId").val();
+	var password = $("#userPwd").val();
 
 	if (username == "" || username == null ) {
 		alert("아이디를 입력하셔야 합니다.");
@@ -326,12 +341,12 @@ function actionLogin(form){
 
 	if (password == "" || password == null ) {
 		alert("비밀번호를 입력하셔야 합니다.");
-		$("#password").focus();
+		$("#userPwd").focus();
 		return false;
 	}
 
 	if($('#saveCookieUserId').is(':checked')){
-		saveLogin($('#username').val());
+		saveLogin($('#userId').val());
 	}else{
 		saveLogin('');
 	}
@@ -355,39 +370,16 @@ function loginEnter(e){
 }
 
 //아이디저장
-$(document).ready(function(){
-	var cookie_user_id=getLogin();
-	if(cookie_user_id != ''){
-		$('#username').val(cookie_user_id);
-		$('#saveCookieUserId').attr('checked',true);
-	}
-
-});
-function saveLogin(id){
-	if(id!=''){
-		setSave('username',id,7);
-	}else{
-		setSave('username',id,-1);
-	}
-}
-function setSave(name,value,expiredays){
-	var today=new Date();
-	today.setDate(today.getDate()+expiredays);
-	document.cookie=name+'='+escape(value)+'; path=/; expires='+today.toGMTString()+';';
-}
-function getLogin(){
-	var cook=document.cookie+';';
-	var idx=cook.indexOf('username',0);
-	var val='';
-	if(idx!=-1){
-		cook=cook.substring(idx,cook.length);
-		begin=cook.indexOf('=',0)+1;
-		end=cook.indexOf(';',begin);
-		val=unescape(cook.substring(begin,end));
-	}
-	return val;
-}
-
+		$(function(){
+			<c:choose>
+			<c:when test="${not empty cookie.userId.value}">
+				$("#saveId").attr("checked",true);
+			</c:when>
+			<c:otherwise>
+				$("#saveId").attr("checked",false);
+			</c:otherwise>
+			</c:choose>
+		});
 </script>
 
 <script>
