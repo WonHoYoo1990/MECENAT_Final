@@ -170,7 +170,7 @@
 				<li class="li login_N" style="display: none;"><a href="/portal/member/user/forLogin.do?menuNo=200100">LOGIN</a></li>
 				<li class="li link login_Y" style=""><a href="#" class="t">MYPAGE</a>
 					<ul class="depth">
-						<li><a href="/portal/myPage/individual/list.do?menuNo=200153">MYPAGE</a></li>
+						<li><a href="myPage.me">MYPAGE</a></li>
 						<li><a href="loginForm.me">LOGOUT</a></li>
 				</ul></li>
 				 -->
