@@ -10,10 +10,10 @@ import com.kh.mecenat.performance.model.dao.PerformanceDao;
 import com.kh.mecenat.performance.model.vo.Performance;
 
 @Service
-public class PerformanceServerImpl implements PerformanceService{
+public class PerformanceServerImpl implements PerformanceService {
 	@Autowired
 	private PerformanceDao performanceDao;
-	
+
 	@Autowired
 	private SqlSessionTemplate SqlSession;
 
@@ -26,5 +26,5 @@ public class PerformanceServerImpl implements PerformanceService{
 	public int insertPerformance(Performance p) {
 		return performanceDao.insertPerformance(SqlSession, p);
 	}
-	
+
 }

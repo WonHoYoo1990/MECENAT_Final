@@ -27,17 +27,18 @@ public class PerformanceController {
 	
 	@RequestMapping("list.perf")
 	public String performanceList(Model model) {
-//		System.out.println("list단");
+		System.out.println("list단");
 		ArrayList<Performance> pList = perfoService.selectListPerformance();
-//		System.out.println(pList);
+		System.out.println("pList : "+pList);
+		
 		model.addAttribute("pList",pList);
 		
-		return "performance/performanceListView";
+		return "performance/performanceListView2";
 	}
 	
 	@RequestMapping("insertForm.perf")
 	public String performanceInsertForm() {
-		return "performance/performanceInsert";
+		return "performance/performanceInsert2";
 	}
 	
 	@PostMapping("insert.perf")
@@ -90,6 +91,18 @@ public class PerformanceController {
 		}
 		
 		return changeName;		
+	}
+	
+	// 예매 안내 페이지 이동
+	@RequestMapping("infomTicket.re")
+	public String infomTicket() {
+		return "reservation/ticketImfomTest";
+	}
+
+	// 좌석 배치도 페이지 이동
+	@RequestMapping("setInfom.perf")
+	public String setInfom() {
+		return "performance/setInfom";
 	}
 	
 	

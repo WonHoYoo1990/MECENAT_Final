@@ -24,10 +24,9 @@
 	  	<result column="CHANGE_NAME" property="changeName"/>
 	</resultMap>
 	
-	<select id="selectPerformanceList" resultMap="performanceResultSet">
-		SELECT *
-		FROM PERFORMANCE
-		WHERE PERFO_STATUS='Y'
+	<select id="selectListPerformance" resultMap="performanceResultSet">
+		SELECT * FROM PERFORMANCE
+		WHERE PERFO_STATUS = '공연예정'
 	</select>
 	
 	<insert id="insertPerformance">
