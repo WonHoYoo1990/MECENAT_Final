@@ -72,29 +72,20 @@
 	
 	</select>
 	
-	<!-- 비밀번호 찾기 -->
-	<select id="searchPwd" resultType="member">
+	<!-- 아이디 찾기 -->
+	<select id="memberIdSearch" resultMap="memberResultSet">
 		SELECT *
 		FROM MEMBER
-		WHERE USER_ID = #{userId} 
-		AND USER_NAME = #{userName} 
-		AND USER_PHONE = #{userPhone} 
-		AND STATUS = 'Y'
-		
+		WHERE USER_NAME = #{userName}
+		AND USER_PHONE =  #{userPhone}
 	</select>
-	
-	<!-- 비밀번호 업데이트 -->
-	<update id="updatePwd">
-		UPDATE MEMBER 
-		SET USER_PWD = #{userPwd}
-		WHERE USER_ID = #{userId}
-		AND STATUS = 'Y'
-	</update>
 	
 	<!-- 관리자) 멤버 전체 조회 -->
 	<select id="selectAllMemberList" resultMap="memberResultSet">
 		SELECT *
 		FROM MEMBER
 	</select>
+	
+
 		
 </mapper>
