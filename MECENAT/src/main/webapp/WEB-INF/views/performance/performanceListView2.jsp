@@ -149,14 +149,14 @@
 					<br>
 					<br>
 					<div class="content">
-						<h1 align="center" style='color: white'>공연 목록</h1>
-						<form action="insertForm.perf" align="center">
+						<h1 align="center">공연 목록</h1>
+						<!-- <form action="insertForm.perf" align="center"> -->
 							<input type="submit" value="관리자용: 등록하기">
-						</form>
+						<!-- </form> -->
 						<br>
 						<br>
 
-						<table id="performanceList" align="center" style='color: white' align="center" border="1px">
+						<table id="performanceList" align="center" border="1px">
 							<thead>
 								<tr>
 									<th>번호</th>
@@ -212,24 +212,20 @@
 					</div>
 
 					<script>
-		$(function(){
-			deletePerfList();
-		});
-		
-		function deletePerfList(){
-			$.ajax({
-				url:"delete.perf",
-				data: {pno: ${perfoNo}},
-				success: function(){
-					console.log("통신 성공");
-				},
-				error: function(){
-					console.log("통신 실패");
-				}
-			})
-		}
-		
-	</script>
+						function deletePerfList(){
+							$.ajax({
+								url:"delete.perf",
+								data: {pno: ${perfoNo}},
+								success: function(){
+									console.log("통신 성공");
+								},
+								error: function(){
+									console.log("통신 실패");
+								}
+							})
+						}
+						
+					</script>
 
 
 					<br>
