@@ -12,13 +12,13 @@
 
 		<!-- // -->
 		<header id="header" class="clearfix">
-			<h1 id="logo">
-				<a href="index.jsp">MECENAT</a>
+			<h1 id="logo" >
+				<a href="index.jsp" style="background-image: url('resources/sejongpac/static/commons/img/common/MECENATlogo.jpg'); background-size: cover;">MECENAT</a>
 			</h1>
 
 			<div id="top_nav">
 				<ul class="clearfix">
-					<li><a href="/portal/subMain/perform.do?menuNo=200001">공연·전시·강좌</a>
+					<li><a href="list.perf">공연·전시·강좌</a>
 						<ul class="depth2">
 							<li><a href="/portal/bbs/B0000033/list.do?menuNo=200003">세종시즌</a></li>
 							<li><a href="list.perf">공연일정</a></li>
@@ -32,8 +32,10 @@
 									<li><a href="https://www.sejongpac.or.kr/upload/vr/vr2/tour.html" target="_blank" title="새창으로 열립니다.">세종S씨어터</a></li>
 									<li><a href="/portal/main/contents.do?menuNo=200221">꿈의숲 퍼포먼스홀</a></li>
 									<li><a href="/portal/main/contents.do?menuNo=200224">꿈의숲 콘서트홀</a></li>
-							</ul></li>
-					</ul></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
 					<li><a href="/portal/bbs/B0000002/list.do?menuNo=200012">대관안내</a>
 						<ul class="depth2">
 							<li><a href="https://www.sejongpac.or.kr/portal/bbs/B0000002/list.do?menuNo=200012">대관공고</a></li>
@@ -43,7 +45,8 @@
 									<li><a href="/portal/main/contents.do?menuNo=200119">공연대관</a></li>
 									<li><a href="/portal/main/contents.do?menuNo=200126">전시대관</a></li>
 									<li><a href="/portal/main/contents.do?menuNo=200134">대여안내</a></li>
-							</ul></li>
+								</ul>
+							</li>
 							<li class="arrow"><a href="/portal/main/contents.do?menuNo=200226">꿈의숲아트센터 대관</a>
 								<ul class="depth3">
 									<li><a href="/portal/main/contents.do?menuNo=200226">공연대관</a></li>
@@ -155,12 +158,12 @@
 			<ul id="gnb" class="clearfix">
 				<c:choose>
 					<c:when test="${empty loginUser}">
-						<li class="li link"><a href="loginForm.me">LOGIN</a></li>
+						<li class="li link" ><a href="loginForm.me">LOGIN</a></li>
 					</c:when>
 					<c:otherwise>
-						<li class="li link login_Y" style=""><a href="#" class="t">MYPAGE</a>
+						<li class="li link login_Y" style=""><a href="myPage.me" class="t">MYPAGE</a>
 							<ul class="depth">
-								<li><a href="/portal/myPage/individual/list.do?menuNo=200153">MYPAGE</a></li>
+								<li><a href="myPage.me">MYPAGE</a></li>
 								<li><a href="logout.me">LOGOUT</a></li>
 						</ul></li>
 					</c:otherwise>
@@ -170,7 +173,7 @@
 				<li class="li login_N" style="display: none;"><a href="/portal/member/user/forLogin.do?menuNo=200100">LOGIN</a></li>
 				<li class="li link login_Y" style=""><a href="#" class="t">MYPAGE</a>
 					<ul class="depth">
-						<li><a href="/portal/myPage/individual/list.do?menuNo=200153">MYPAGE</a></li>
+						<li><a href="myPage.me">MYPAGE</a></li>
 						<li><a href="loginForm.me">LOGOUT</a></li>
 				</ul></li>
 				 -->
@@ -188,8 +191,8 @@
 					<div class="top">
 						<ul id="gnb_m" class="clearfix">
 							<li class="login_N" style="display: none;"><a href="loginForm.me">LOGIN</a></li>
-							<li class="login_Y" style="display: none;"><a href="/portal/member/user/logout.do">LOGOUT</a></li>
-							<li class="login_Y" style="display: none;"><a href="/portal/myPage/individual/list.do?menuNo=200153">MYPAGE</a></li>
+							<li class="login_Y" style="display: none;"><a href="logout.me">LOGOUT</a></li>
+							<li class="login_Y" style="display: none;"><a href="myPage.me">MYPAGE</a></li>
 							<li><a href="/eng/main/main.do" target="_blank" title="새창으로 열립니다.">ENG</a></li>
 							<li><a href="/portal/performance/scheduleMng/performanceSchedule.do?menuNo=200272" class="btn-book btn">전체일정</a></li>
 						</ul>
@@ -466,10 +469,8 @@
 				drawTopLeftList();
 
 				function drawTopLeftList() {
-					$
-							.post(
-									"/portal/search/search/headerPerform.do?viewType=CONTBODY",
-									null, function(data) {
+					$.post("/portal/search/search/headerPerform.do?viewType=CONTBODY",
+							null, function(data) {
 										console.log(data);
 										$("#top_apc_left_list").html(data);
 									});
@@ -493,13 +494,30 @@
 	
 		</header>
 		<!-- // -->
+		
+		<script type="text/javascript">
+			var urlStr = window.location.pathname
+			console.log("urlStr : "+ urlStr);
+			
+			var urlPath = "/mecenat/signupForm.me"
+			console.log("urlPath : "+ urlPath);
+			
+			var insertFormEq = (urlStr == urlPath)
+			console.log("insertFormEq: "+ insertFormEq);
+			
+		</script>
+		
 
-		<!-- 베너 -->
+		<!-- 베너  Start -->
 		<section id="sub_visual" style="height: 500px;">
 			<div class="bg_w">
-				<div class="bg" style="background-image: url(./resources/img/member/signupBackground.jpg;); transform: translate(-19.9989px, 10px) scale(1.1); " ></div>
+				<div class="bg" style="background-image: url(./resources/img/member/signupBackground.jpg;);"></div>
 			</div>
+			<h2 class="sub-t">
+						<strong class="ani" style="opacity: 1;"></strong>
+			</h2>
 		</section>
+		<!-- 배너 End -->
 
 
 
@@ -521,21 +539,6 @@
 			ga('send', 'pageview');
 		</script>
 		<script>
-			//반응형 이미지맵 (jquery.rwdImageMaps.js)
-			$(function() {
-				$('img[usemap]').rwdImageMaps();
-				$("#img").width("100%");
-			});
-
-			$("#e2230b85").bind("DOMNodeRemoved", function() {
-				//$("a").append("<style>::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-thumb{background:#ff7c94;border-radius:10px}</style>")
-			})
-		</script>
-		<!-- //세종문화N iframe title 추가 -->
-		<script>
-			$('#sejongPdf iframe').attr('title', '세종 센터 매거진');
-		</script>
-		<script>
 			//ReservationTitle	
 			function ReservationTitlePopWindow() {
 				if (interestLoginChk == true) { //header 에서 정의 로그인 여부	
@@ -550,7 +553,6 @@
 
 	</section>
 	
-	----------------------------------------------------------------------------------------------------------
 	
 </body>
 </html>
