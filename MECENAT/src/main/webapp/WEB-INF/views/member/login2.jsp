@@ -18,7 +18,7 @@
 <meta name="google-signin-client_id" content="113025989816-nnav0npepl2lv7h086hhmrekli0bk1tt.apps.googleusercontent.com">
 <meta property="og:title" content="세종문화회관">
 <meta property="og:image" content="https://www.sejongpac.or.kr/static/portal/img/main/201105_mtimg.jpg">
-<title>티켓 구입방법 | 예매안내 | 고객센터 |</title>
+<title>회원 로그인 | 통합회원서비스 |</title>
 
 <!-- 인터넷 -->
 <link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/aos.css">
@@ -69,11 +69,9 @@ body.hide-focus-ring *:focus {
 				<a href="#top_nav">주메뉴 바로가기</a>
 			</dd>
 		</dl>
-
 		<span itemscope="" itemtype="http://schema.org/Organization" style="display: none;">
 			<link itemprop="url" href="https://www.sejongpac.or.kr"> <a itemprop="sameAs" href="https://www.youtube.com/channel/UCCqaPJqI5q1kfO51qWWOjrQ"><span class="hide">유튜브</span></a> <a itemprop="sameAs" href="https://www.instagram.com/sejongcenter/"><span class="hide">인스타그램</span></a> <a itemprop="sameAs" href="https://www.facebook.com/sjcenter"><span class="hide">페이스북</span></a> <a itemprop="sameAs" href="https://blog.naver.com/sejongnanum"><span class="hide">블로그</span></a> <a itemprop="sameAs" href="https://twitter.com/SEJONG_CENTER"><span class="hide">트위터</span></a>
 		</span>
-
 
 		<script src="/static/portal/js/ksearch/top_apc.js"></script>
 		<script src="/static/portal/js/jquery.rwdImageMaps.js"></script>
@@ -91,22 +89,26 @@ body.hide-focus-ring *:focus {
 
 		<section id="sub_visual">
 			<div class="bg_w">
-				<div class="bg" style="background-image: url(&quot;/static/portal/img/common/subvisual-common.jpg&quot;); transform: translate(-20px, 10px) scale(1.1);"></div>
+
+				<div class="bg" style="background-image: url(&quot;/static/portal/img/common/subvisual-common.jpg&quot;); transform: translate(-5.48471px, 9.98772px) scale(1.1);"></div>
+
 			</div>
+
 			<h2 class="sub-t">
-				<strong class="ani" style="opacity: 1;">개인화 서비스</strong>
+				<strong class="ani" style="opacity: 1;">로그인</strong>
 			</h2>
+
 		</section>
 
-
-		<div id="depth_w" class="on">
+		<div id="depth_w" class="">
 			<div class="inner">
 				<ul class="clearfix dot dep1 li2">
 					<li class="home"><span><span>HOME</span></span></li>
 					<li>
 						<div class="rel">
-							<a href="#"><span>마이페이지</span></a>
-							<ul class="depth" style="display: block;">
+							<a href="#"><span>통합회원서비스</span></a>
+							<ul class="depth" style="display: none;">
+
 								<li><a href="/portal/subMain/perform.do?menuNo=200001">공연·전시·강좌</a></li>
 								<li><a href="/portal/bbs/B0000002/list.do?menuNo=200012">대관안내</a></li>
 								<li><a href="/portal/qestnar/qustnr/list.do?status=T&amp;menuNo=200027">참여공간</a></li>
@@ -115,38 +117,30 @@ body.hide-focus-ring *:focus {
 								<li><a href="https://www.sjartgroups.or.kr/sjartgroups/main/main.do" target="_blank" title="새창 열림">서울시예술단</a></li>
 							</ul>
 						</div>
-
 				</li>
 
 					<li>
 						<div class="rel">
-							<a href="#"><span>개인화 서비스</span></a>
+							<a href="#"><span>로그인</span></a>
 							<ul class="depth" style="display: none;">
-
-								<li><a href="/portal/myPage/individual/list.do?menuNo=200153"><span>개인화 서비스</span></a></li>
-
-								<li><a href="/portal/myPage/reservation/list.do?menuNo=200154"><span>예매내역확인</span></a></li>
-
-								<li><a href="/portal/myPage/happyApply/list.do?menuNo=200155"><span>천원의행복 신청내역</span></a></li>
-
-								<li><a href="/portal/myPage/package/gift.do?menuNo=200160"><span>패키지 선물</span></a></li>
-
-								<li><a href="/portal/myPage/scrap/list.do?menuNo=200157"><span>관심 공연/전시</span></a></li>
-
-								<li><a href="/portal/myPage/qnaMng/list.do?menuNo=200158"><span>고객문의내역</span></a></li>
-
-								<li><a href="/portal/myPage/acntMng/forUpdate.do?menuNo=200168"><span>회원정보 수정</span></a></li>
-
-								<li><a href="/portal/myPage/sns/sns.do?menuNo=200159"><span>SNS연결설정</span></a></li>
-
-
+								<li><a href="/portal/main/contents.do?menuNo=200099"><span>서비스소개</span></a></li>
+								<li><a href="/portal/member/user/forLogin.do?menuNo=200100"><span>로그인</span></a></li>
+								<li><a href="signupForm.me"><span>회원가입</span></a></li>
+								<li><a href="/portal/member/user/idSearch.do?menuNo=200145"><span>아이디 찾기</span></a></li>
+								<li><a href="/portal/member/user/findPw.do?menuNo=200146"><span>패스워드 찾기</span></a></li>
+								<li><a href="/portal/main/contents.do?menuNo=200148"><span>개인정보처리방침</span></a></li>
+								<li><a href="/portal/main/contents.do?menuNo=200150"><span>이메일무단수집거부</span></a></li>
+								<li><a href="/portal/main/contents.do?menuNo=200164"><span>고객서비스헌장</span></a></li>
+								<li><a href="/portal/singl/siteMap/list.do?menuNo=200162"><span>사이트 맵</span></a></li>
 							</ul>
 						</div>
 				</li>
-				</ul>
 
+
+				</ul>
 			</div>
 		</div>
+
 		<script>
 			$(window).resize(function() {
 				if ($(window).width() > 1024) {
@@ -179,10 +173,10 @@ body.hide-focus-ring *:focus {
 
 
 
+
 		<div id="cont">
 			<div id="sub_page">
 				<div class="inner"></div>
-
 
 				<script>
 					var loc = $("#depth_w > div > ul > li").length - 1;
@@ -199,621 +193,352 @@ body.hide-focus-ring *:focus {
 
 
 
-
-
-
-
-
-
 					<style>
-#sub_page {
-	padding-top: 0;
+.tabs-st1, .tabs-st2 {
+	display: none;
 }
 </style>
 
-					<!-- data tables -->
+					<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+					<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+					<!-- 캡차주석 웃는남자 -->
+					<!--  
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"></script>
+ -->
 
-					<article class="">
-						<div class="mypage_top_w">
-							<div class="inner clearfix">
-								<ul class="mypage_top clearfix">
-									<li class="l">
+					<article class="login inner member_com">
+						<form name="memberLoginForm" id="memberLoginForm" action="/portal/member/user/toLogin.do" enctype="multipart/form-data" method="post" onsubmit="return actionLogin(this);">
+							<input type="hidden" name="loginFlag" value=""> <input type="hidden" name="menuNo" value="200100"> <input type="hidden" name="csrfToken" id="csrfToken" value="af5443b0-038d-4379-bd88-20a9fc68d1b0">
+							<ul class="clearfix half_w">
+								<li class="l form_w">
+									<h3 class="tit-st4">세종문화회관 회원 로그인</h3>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-										<dl class="card_0000">
-											<!-- .card_번호 -->
-											<dt>
-												<img src="/static/portal/img/mypage/card_0000.png" alt="">
-
-												<div class="txt">
-													<strong class="">유원호</strong>님, 안녕하세요! <strong class="grade"> <span class="octagon_w we">
-															<!-- we 웰컴,st 스타트,sp 스페셜,si 시그니처 --> <span class="octagon"> <span class="in"></span>
-														</span> <span class="ttt st">We </span> <span class="octagon border"><span class="in"></span></span>
-													</span> 웰컴(Welcome)
-													</strong>
-												</div>
-
-
-											</dt>
-										</dl>
-								</li>
-									<li class="r"><span class="date">가입일자 : 2022-12-01 </span> <a href="/portal/myPage/acntMng/forUpdate.do?menuNo=200168" class="btn">회원정보 수정</a> <a href="/portal/myPage/reservation/list.do?menuNo=200154" class="btn">예매확인</a> <a href="/portal/member/user/logout.do" class="logout">로그아웃</a></li>
+									<ul class="form f20">
+										<li class="id"><label for="username" class="hide">아이디</label><input type="text" name="username" id="username" placeholder="아 이 디"></li>
+										<li class="pw"><label for="password" class="hide">패스워드</label><input type="password" name="password" id="password" autocomplete="off" onkeypress="return loginEnter(event);" "="" placeholder="비밀번호"></li>
 								</ul>
+									<div class="remeber">
+										<input type="checkbox" id="saveCookieUserId"> <label for="saveCookieUserId">아이디 저장</label>
+									</div> <!-- 캡차주석 --> <!-- <div id="g-recaptcha" style="display:flex; justify-content:center;"></div>  -->
 
-								<!-- <a href="/portal/main/contents.do?menuNo=200091" class="btn-grade">등급별 혜택보기</a> -->
-								<button type="button" class="btn-grade" onclick="popIndividual(this,'individual','#pop_we')">내 혜택 확인하기</button>
-							</div>
-						</div>
-						<div class="my_state_renew inner">
-							<div class="top">
-								<div class="tit-st4 rel">
-									2022년 나의 이용 현황 <a href="/portal/main/contents.do?menuNo=200091" class="bg-navy ab btn">등급별 혜택보기</a>
-								</div>
+									<button type="submit" class="bg-black btn-login f20">로그인</button>
 
-								<ul class="clearfix dev">
-									<li clas="item">
-										<div class="ico">
-											<strong class="ico-s large">S</strong>
-										</div>
-										<dl>
-											<dt>세종ⓢ포인트</dt>
-											<dd>
-												0 <strong class="ico-s size13" style="top: 0;">S</strong>
-											</dd>
-										</dl>
-								</li>
-									<li clas="item">
-										<div class="ico">
-											<img src="/static/portal/img/mypage/ms1.png" alt="">
-										</div>
-										<dl>
-											<dt>이용횟수</dt>
-											<dd>0회</dd>
-										</dl>
-								</li>
-									<li clas="item">
-										<div class="ico">
-											<img src="/static/portal/img/mypage/ms2.png" alt="">
-										</div>
-										<dl>
-											<dt>2023년 예상등급</dt>
-											<dd>웰컴(Welcome)</dd>
-										</dl>
-								</li>
-								</ul>
-							</div>
+									<p class="bul-stars b">입력하신 로그인정보가 5회 연속 불일치 시 로그인이 제한되며 아래의 비밀번호 찾기를 통해 해제하실 수 있습니다.</p>
 
-							<div class="grade_txt">
-
-								<strong class="color-red">스타트 등급</strong>까지 <strong class="color-red dec">3,000ⓢ, 2회</strong> 방문 남았습니다.
-
-
-							</div>
-							<div class="grade_graph per15">
-								<!-- per15, per40,per65,per80 -->
-								<div class="graph"></div>
-								<ul class="clearfix">
-									<li>
-										<div class="t">
-											<span class="octagon_w we"> <!-- <span class='octagon border'><span class='in'></span></span> --> <span class="octagon"><span class="in"></span></span> <span class="ttt">We</span> <span class="octagon border"><span class="in"></span></span></span> <strong>웰컴</strong>
-										</div>
-										<div class="c">회원가입</div>
-								</li>
-									<li>
-										<div class="t">
-											<span class="octagon_w st"> <span class="octagon"> <span class="in"></span>
-											</span> <span class="ttt">St</span>
-											</span> <strong>스타트</strong>
-										</div>
-										<div class="c">
-											3,000 <strong class="ico-s small">S</strong><br> 2회 방문
-										</div>
-								</li>
-									<li>
-										<div class="t">
-											<span class="octagon_w sp"> <span class="octagon"> <span class="in"></span>
-											</span> <span class="ttt">Sp</span>
-											</span> <strong>스페셜</strong>
-										</div>
-										<div class="c">
-											6,000 <strong class="ico-s small">S</strong><br> 4회 방문
-										</div>
-								</li>
-									<li>
-										<div class="add"></div>
-										<div class="t">
-											<span class="octagon_w si"> <span class="octagon"> <span class="in"></span>
-											</span> <span class="ttt">Si</span>
-											</span> <strong>시그니처</strong>
-										</div>
-										<div class="c">
-											10,000 <strong class="ico-s small">S</strong><br> 7회 방문
-										</div>
-								</li>
-								</ul>
-							</div>
-							<div class="my_point_renew">
-								<div class="tit-st4">나의 포인트 적립 내역</div>
-								<div class="my_sch">
+									<div class="etc">
+										<span><a href="/portal/member/user/idSearch.do?menuNo=200145">아이디 찾기</a></span> <span><a href="/portal/member/user/findPw.do?menuNo=200146">비밀번호 찾기</a></span> <span><a href="signupForm.me">회원가입</a></span> <span><a href="/portal/main/contents.do?menuNo=200091">회원혜택안내</a></span>
+									</div>
+							</li>
+								<li class="r sns_join">
+									<h3 class="tit-st4">
+										시민이 자랑하고 싶은 예술 명소! <strong class="small">세종문화회관에 오신 것을 환영합니다.</strong>
+									</h3>
+									<div id="naverIdLogin"></div>
 									<ul class="clearfix">
-										<li class="l"><span class="t">기간선택</span>
-
-											<div class="clearfix btns">
-												<button type="button" class="active timeBtn day7">1주일</button>
-												<button type="button" class="timeBtn month1">1개월</button>
-												<button type="button" class="timeBtn month3">3개월</button>
-												<button type="button" class="timeBtn month6">6개월</button>
-											</div></li>
-										<li class="r">
-											<div class="datepick clearfix">
-												<ul class="clearfix">
-													<li><label for="" class="hide">시작일 선택</label> <input type="text" name="searchStartDate" id="searchStartDate" placeholder="" class="hasDatepicker">
-													<button type="button" class="ui-datepicker-trigger">
-															<img src="/static/portal/img/mypage/calendar.gif" alt="Select date" title="Select date">
-														</button></li>
-													<li class="dash">-</li>
-													<li><label for="" class="hide">종료일 선택</label> <input type="text" name="searchEndDate" id="searchEndDate" placeholder="" class="hasDatepicker">
-													<button type="button" class="ui-datepicker-trigger">
-															<img src="/static/portal/img/mypage/calendar.gif" alt="Select date" title="Select date">
-														</button></li>
-												</ul>
-												<button type="button" class="view searchBtn">조회</button>
-											</div>
-									</li>
-									</ul>
-								</div>
-
-								<table class="tbl-st1 f18" id="pointTable">
-									<caption>일자, 구분, 행사명, 적립으로 구성된 나의 포인트 적립 내역 리스트</caption>
-									<colgroup>
-										<col width="10%">
-										<col width="10%">
-										<col>
-										<col width="10%">
-									</colgroup>
-									<thead>
-										<tr>
-											<th scope="col">일자</th>
-											<th scope="col">구분</th>
-											<th scope="col">행사명</th>
-											<th scope="col">적립</th>
-										</tr>
-									</thead>
-									<tbody id="pointTbody">
-										<tr>
-											<td colspan="4">조회 결과가 없습니다.</td>
-										</tr>
-									</tbody>
-								</table>
-
-								<div class="mypage-pagination">
-									<!--
-				<a href="#" class="mypage-pagination__arrow first"></a>
-				<a href="#" class="mypage-pagination__arrow prev"></a>
+										<li class=""><a href="#" id="naverIdLogin_loginButton" title="새창열림"> <span class="naver icon"></span> <span class="block-pc">네이버 계정으로</span>로그인
+										</a></li>
+										<!--
+				<li class="">
+					<a href="javascript:authGoogle();">
+					<span class="google icon"></span>
+					<span class="block-pc">구글 계정으로</span> 로그인
+					</a>
+				</li>
 				-->
-									<!-- append -->
-									<ul id="pagingUl"></ul>
-									<!--
-				<a href="#" class="mypage-pagination__arrow next"></a>
-				<a href="#" class="mypage-pagination__arrow last"></a>
-				-->
-								</div>
+										<li><a href="#googleAuthBtn" id="googleAuthBtn" title="새창열림"> <span class="google icon"></span> <span class="block-pc">구글 계정으로</span> 로그인
+										</a></li>
 
-							</div>
+										<li class=""><a href="javascript:loginWithKakao();" title="새창열림"> <span class="kakao icon"></span> <span class="block-pc">카카오 계정으로</span> 로그인
+										</a></li>
 
-						</div>
-						<script>
-							$(".octagon_w.we")
-									.append(
-											"<span class='octagon border'><span class='in'></span></span>");
+								</ul>
 
-							$(".datepick input")
-									.datepicker(
-											{
-												dateFormat : 'yy-mm-dd',
-												prevText : '이전 달',
-												nextText : '다음 달',
-												monthNames : [ '1월', '2월',
-														'3월', '4월', '5월', '6월',
-														'7월', '8월', '9월',
-														'10월', '11월', '12월' ],
-												monthNamesShort : [ '1월', '2월',
-														'3월', '4월', '5월', '6월',
-														'7월', '8월', '9월',
-														'10월', '11월', '12월' ],
-												dayNames : [ '일', '월', '화',
-														'수', '목', '금', '토' ],
-												dayNamesShort : [ '일', '월',
-														'화', '수', '목', '금', '토' ],
-												dayNamesMin : [ '일', '월', '화',
-														'수', '목', '금', '토' ],
-												showMonthAfterYear : true,
-												yearSuffix : '년',
-												showOn : "both",
-												buttonImage : "/static/portal/img/mypage/calendar.gif",
-												buttonText : "Select date"
-											});
-
-							$(document)
-									.ready(
-											function() {
-
-												function monthSet(date) {
-													var month = date.getMonth() + 1 < 10 ? '0'
-															+ (date.getMonth() + 1)
-															: (date.getMonth() + 1);
-													return month;
-												}
-												function daySet(date) {
-													var day = date.getDate() < 10 ? '0'
-															+ date.getDate()
-															: date.getDate();
-													return day;
-												}
-
-												var today = new Date(), year = today
-														.getFullYear(), month = monthSet(today);
-												day = daySet(today);
-
-												var tempTime = new Date();
-												tempTime.setDate(tempTime
-														.getDate() - 7);
-												$('#searchStartDate')
-														.val(
-																tempTime
-																		.getFullYear()
-																		+ '-'
-																		+ monthSet(tempTime)
-																		+ '-'
-																		+ daySet(tempTime));
-												$('#searchEndDate').val(
-														year + '-' + month
-																+ '-' + day);
-
-												var $TimeBtn = $('.timeBtn');
-
-												$TimeBtn
-														.on(
-																'click',
-																function() {
-																	$TimeBtn
-																			.removeClass('active');
-																	$(this)
-																			.addClass(
-																					'active');
-
-																	var changeTime = new Date();
-																	if ($(this)
-																			.hasClass(
-																					'day7')) {
-																		// 1주일
-																		changeTime
-																				.setDate(changeTime
-																						.getDate() - 7);
-																	} else if ($(
-																			this)
-																			.hasClass(
-																					'month1')) {
-																		// 1개월
-																		changeTime
-																				.setMonth(changeTime
-																						.getMonth() - 1);
-																	} else if ($(
-																			this)
-																			.hasClass(
-																					'month3')) {
-																		// 3개월
-																		changeTime
-																				.setMonth(changeTime
-																						.getMonth() - 3);
-																	} else if ($(
-																			this)
-																			.hasClass(
-																					'month6')) {
-																		// 6개월
-																		changeTime
-																				.setMonth(changeTime
-																						.getMonth() - 6);
-																	}
-																	$(
-																			'#searchStartDate')
-																			.val(
-																					changeTime
-																							.getFullYear()
-																							+ '-'
-																							+ monthSet(changeTime)
-																							+ '-'
-																							+ daySet(changeTime))
-																	$(
-																			'#searchEndDate')
-																			.val(
-																					year
-																							+ '-'
-																							+ month
-																							+ '-'
-																							+ day);
-																	return false;
-																});
-
-												searchPoint();
-
-												$('.searchBtn').on('click',
-														function() {
-															searchPoint();
-														});
-												$('.hasDatepicker')
-														.on(
-																'keydown',
-																function(e) {
-																	if (e.originalEvent.keyCode == 13) {
-																		searchPoint();
-																	}
-																});
-
-												var $mypagePagination = $('.mypage-pagination ul li a');
-
-												$(document)
-														.on(
-																'click',
-																'.mypage-pagination ul li a',
-																function() {
-																	$(
-																			'.mypage-pagination ul li a')
-																			.removeClass(
-																					'active');
-																	$(this)
-																			.addClass(
-																					'active');
-
-																	$(
-																			'#pointTbody tr')
-																			.hide()
-																			.filter(
-																					'.trDp_'
-																							+ $(
-																									this)
-																									.attr(
-																											'data-index'))
-																			.css(
-																					'display',
-																					'table-row');
-																	return false;
-																});
-											});
-
-							function searchPoint() {
-								var url = "/portal/myPage/individual/getNewMemberShipList.json";
-								var stDate = $("#searchStartDate").val()
-										.replace(/-/g, "");
-								var endDate = $("#searchEndDate").val()
-										.replace(/-/g, "");
-								var params = {
-									searchStartDate : stDate,
-									searchEndDate : endDate
-								};
-
-								$
-										.ajax({
-											url : url,
-											type : 'post',
-											data : params,
-											dataType : "json",
-											success : function(data) {
-												if (data.resultCode == 'success') {
-													console
-															.log(data.memberShipPointList);
-													var results = data.memberShipPointList;
-													var insertHtml = "";
-													var insertPageHtml = "";
-													var cnt = 1;
-													$
-															.each(
-																	results,
-																	function(i) {
-																		var index = i + 1;
-																		var trClass = 'trDp_'
-																				+ cnt;
-																		var typeCd = results[i].isstypeCd;
-																		var typeName = "";
-																		if (typeCd == '000001') {
-																			typeName = '공연';
-																		} else if (typeCd == '000003') {
-																			typeName = '강좌';
-																		} else if (typeCd == '000008') {
-																			typeName = '전시';
-																		} else if (typeCd == '000009') {
-																			typeName = '추가적립';
-																		}
-																		insertHtml += '<tr style="display:none;" class=' + trClass + '>';
-																		insertHtml += '<td>'
-																				+ results[i].tranDate
-																				+ '</td><td>'
-																				+ typeName
-																				+ '</td><td>'
-																				+ results[i].programName
-																				+ '</td><td>'
-																				+ results[i].pointAmt
-																						.toString()
-																						.replace(
-																								/\B(?=(\d{3})+(?!\d))/g,
-																								",")
-																				+ '</td>';
-																		insertHtml += '</TR>';
-																		if (index % 10 == 1) {
-																			if (cnt == 1) {
-																				insertPageHtml += "<li><a href='#' class='active' data-index='" + cnt + "'>"
-																						+ cnt
-																						+ "</a></li>";
-																			} else {
-																				insertPageHtml += "<li><a href='#' data-index='" + cnt + "'>"
-																						+ cnt
-																						+ "</a></li>";
-																			}
-
-																		}
-																		if (index % 10 == 0) {
-																			cnt++;
-																		}
-																	});
-													$("#pointTbody").html(
-															insertHtml);
-													$("#pagingUl").html(
-															insertPageHtml);
-													$("#pointTbody tr").hide();
-													$(".trDp_1").css('display',
-															'table-row');
-												} else if (data.resultCode == 'fail') {
-													var insertHtml = '<tr><td colspan="4">조회 결과가 없습니다.</td></tr>';
-													$("#pointTbody").html(
-															insertHtml);
-												}
-											}
-
-										});
-
-							}
-						</script>
-						<!-- <div class="inner">
-
-		<div class="tit-st4 rel">
-		맞춤공연
-		<button type="button" class="bg-navy ab" onclick="sch()">맞춤정보 설정 </button>
-		</div>
-	</div> -->
-
-
-
-						<script src="/static/ticket/js/ticket.js"></script>
-
-						<script>
-							function popIndividual(target, test, tabId) {
-								//$("body").css("overflow-y","hidden")
-								$("body").append(
-										'<div class="allmenu_bg"></div>');
-								$(".allmenu_bg")
-										.append(
-												'<div class="modal_w transform" style="display:block"></div>')
-								$
-										.ajax({
-											url : "/static/portal/ajax/mypage/"
-													+ test + ".jsp",
-											success : function(result) {
-												$(".modal_w").html(result);
-												$(tabId).show().focus();
-												$(".layerClose")
-														.click(
-																function() {
-																	$(
-																			".allmenu_bg")
-																			.remove();
-																	$(target)
-																			.focus();
-																	//$("body").css("overflow-y","scroll")
-																	$(
-																			".octagon_w.we")
-																			.append(
-																					"<span class='octagon border'><span class='in'></span></span>");
-																});
-											}
-										});
-							}
-							function sch() {
-								$("body").append(
-										'<div class="allmenu_bg"></div>');
-								$(".allmenu_bg").append(
-										'<div class="modal_w wide2 mp"></div>')
-
-								$
-										.ajax({
-											url : "/portal/myPage/individual/setInfo.do?viewType=CONTBODY",
-											success : function(result) {
-												$(".modal_w").html(result);
-												modalH = $(".modal_w")
-														.outerHeight()
-												$(".modal_w")
-														.attr("tabindex", "0")
-														.show()
-														.focus()
-														.css(
-																{
-																	"margin-top" : -(modalH / 2)
-																});
-												$(".layerClose")
-														.click(
-																function() {
-																	$(
-																			".modal_w")
-																			.removeAttr(
-																					"tabindex")
-																			.remove();
-																	$(
-																			".allmenu_bg")
-																			.remove();
-																	$(
-																			".tit-st4 button")
-																			.focus();
-																	return false;
-																});
-											}
-										});
-							}
-							$('.bbs-mypage .s').slick({
-								slidesToShow : 5,
-								responsive : [ {
-									breakpoint : 1450,
-									settings : {
-										slidesToShow : 4
-									}
-								}, {
-									breakpoint : 1024,
-									settings : {
-										slidesToShow : 3
-									}
-								}, {
-									breakpoint : 640,
-									settings : {
-										slidesToShow : 2
-									}
-								}, {
-									breakpoint : 400,
-									settings : {
-										slidesToShow : 1
-									}
-								} ]
-							});
-
-							$(".bbs-mypage .item").hover(function() {
-								$(this).find(".hover").stop().fadeIn(150);
-							}, function() {
-								$(this).find(".hover").stop().fadeOut(150);
-							})
-							$(".bbs-mypage .in").focusin(function() {
-								$(this).find(".hover").stop().fadeIn(150);
-							})
-							$(".bbs-mypage .in").focusout(function() {
-								$(this).find(".hover").stop().fadeOut(150);
-							})
-						</script>
+							</li>
+							</ul>
+						</form>
 					</article>
+					<input type="hidden" id="reUrl" name="reUrl" value="/">
+
+					<script>
+						//화면 시작 시 g-recaptcha 생성
+						//캡차주석 - 웃는남자
+						/*
+						 var onloadCallback = function() {
+						 grecaptcha.render('g-recaptcha', {
+						 'sitekey' : '6LfQUYMfAAAAAMGmYQj6eLslOLs_BLxvJDET0KJg', // real
+						 //'sitekey' : '6LcrQWQfAAAAAJL76rCMf6fPJ2tSo5x18uvd6rNv', // local
+						 });
+						 };
+
+						 //구글캡차체크
+						 function captchaChk(){
+						 var rtn = false;
+						
+						 //구글캡차체크
+						 $.ajax({
+						 url: '/portal/member/user/verifyRecaptcha.json',
+						 type: 'post',
+						 dataType: 'json',
+						 async :false,
+						 data: {
+						 recaptcha: $("#g-recaptcha-response").val()
+						 },
+						 success: function(data) {
+						 if(data.status == "success"){
+						 rtn = true;
+						 }else{
+						 alert("자동입력방지 서비스(로봇이 아닙니다)를 체크 바랍니다.");
+						 rtn = false;
+						 }
+						 }
+						 });
+						 return rtn;
+						 } 
+						 */
+
+						function actionLogin(form) {
+							var username = $("#username").val();
+							var password = $("#password").val();
+
+							if (username == "" || username == null) {
+								alert("아이디를 입력하셔야 합니다.");
+								$("#username").focus();
+								return false;
+							}
+
+							if (password == "" || password == null) {
+								alert("비밀번호를 입력하셔야 합니다.");
+								$("#password").focus();
+								return false;
+							}
+
+							if ($('#saveCookieUserId').is(':checked')) {
+								saveLogin($('#username').val());
+							} else {
+								saveLogin('');
+							}
+
+							//캡차주석 - 웃는남자
+							/*
+							if(captchaChk()){
+								return true;
+							}else{
+								return false;
+							} 
+							 */
+
+							return true;
+						}
+
+						function loginEnter(e) {
+							if (e.keyCode == 13) { /* IE기준으로 설명 */
+								actionLogin();
+							}
+						}
+
+						//아이디저장
+						$(document).ready(function() {
+							var cookie_user_id = getLogin();
+							if (cookie_user_id != '') {
+								$('#username').val(cookie_user_id);
+								$('#saveCookieUserId').attr('checked', true);
+							}
+
+						});
+						function saveLogin(id) {
+							if (id != '') {
+								setSave('username', id, 7);
+							} else {
+								setSave('username', id, -1);
+							}
+						}
+						function setSave(name, value, expiredays) {
+							var today = new Date();
+							today.setDate(today.getDate() + expiredays);
+							document.cookie = name + '=' + escape(value)
+									+ '; path=/; expires='
+									+ today.toGMTString() + ';';
+						}
+						function getLogin() {
+							var cook = document.cookie + ';';
+							var idx = cook.indexOf('username', 0);
+							var val = '';
+							if (idx != -1) {
+								cook = cook.substring(idx, cook.length);
+								begin = cook.indexOf('=', 0) + 1;
+								end = cook.indexOf(';', begin);
+								val = unescape(cook.substring(begin, end));
+							}
+							return val;
+						}
+					</script>
+
+					<script>
+						var naverLogin = new naver.LoginWithNaverId(
+								{
+									clientId : "EAb7CewzwpTuSWU1vAZ4",
+									callbackUrl : "https://www.sejongpac.or.kr/static/view/callback.html",
+									isPopup : true, /* 팝업을 통한 연동처리 여부 */
+									callbackHandle : false
+								});
+
+						naverLogin.init();
+
+						function setAuthNaver(id, nickname, email, birthday,
+								age) {
+							if (id == undefined || id == null) {
+								alert("연결이 실패하였습니다");
+								document.location.href = "/portal/member/user/join.do?menuNo=200144";
+								return;
+							}
+							var returnUrl = $("#reUrl").val();
+							$
+									.post(
+											"/portal/member/user/setSnsAuth.json",
+											{
+												memberId : id,
+												crtfcSeCd : "N",
+												returnUrl : returnUrl
+											},
+											function(data) {
+												if (data.resultCode == 'success') {
+													alert('로그인 하였습니다.');
+													location.href = data.goUrl;
+												} else {
+													alert("연동된 SNS 계정이 없습니다.\n신규가입화면으로 이동합니다.");
+													location.href = "/portal/member/user/join.do?menuNo=200144";
+												}
+											});
+						}
+					</script>
+					<script>
+						Kakao.init('bbe665ff03be7273519e7e76ac4c4c19');
+						function loginWithKakao() {
+							Kakao.Auth
+									.login({
+										success : function(authObj) {
+											Kakao.API
+													.request({
+														url : '/v2/user/me',
+														success : function(res) {
+															var memberId = res.id;
+															var email = res.kakao_account.email;
+
+															if (memberId == undefined
+																	|| memberId == null) {
+																alert("카카오 연결이 실패하였습니다");
+																document.location.href = "/portal/member/user/forLogin.do?menuNo=200100";
+																return;
+															}
+															var returnUrl = $(
+																	"#reUrl")
+																	.val();
+															$
+																	.post(
+																			"/portal/member/user/setSnsAuth.json",
+																			{
+																				email : email,
+																				memberId : memberId,
+																				crtfcSeCd : "K",
+																				returnUrl : returnUrl
+																			},
+																			function(
+																					data) {
+																				if (data.resultCode == 'success') {
+																					alert('로그인 하였습니다.');
+																					location.href = data.goUrl;
+																				} else {
+																					alert("연동된 SNS 계정이 없습니다.\n신규가입화면으로 이동합니다.");
+																					location.href = "/portal/member/user/join.do?menuNo=200144";
+																				}
+																			});
+														},
+														fail : function(error) {
+															alert("카카오 로그인 처리에 실패하였습니다. - "
+																	+ JSON
+																			.stringify(error));
+														}
+													});
+										},
+										fail : function(err) {
+											alert(JSON.stringify(err));
+										}
+									});
+						};
+						//]]>
+					</script>
+					<script>
+						function onLoadGoogleCallback() {
+							gapi
+									.load(
+											'auth2',
+											function() {
+												auth2 = gapi.auth2
+														.init({
+															client_id : '113025989816-nnav0npepl2lv7h086hhmrekli0bk1tt.apps.googleusercontent.com',
+															cookiepolicy : 'single_host_origin',
+															scope : 'profile email'
+														});
+
+												auth2
+														.attachClickHandler(
+																element,
+																{},
+																function(
+																		googleUser) {
+																	var profile = googleUser
+																			.getBasicProfile();
+																	//console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+																	//console.log('Name: ' + profile.getName());
+																	//console.log('Image URL: ' + profile.getImageUrl());
+																	//console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+
+																	var memberId = profile
+																			.getId();
+																	var email = profile
+																			.getEmail();
+																	var returnUrl = $(
+																			"#reUrl")
+																			.val();
+																	$
+																			.post(
+																					"/portal/member/user/setSnsAuth.json",
+																					{
+																						email : email,
+																						memberId : memberId,
+																						crtfcSeCd : "G",
+																						returnUrl : returnUrl
+																					},
+																					function(
+																							data) {
+																						if (data.resultCode == 'success') {
+																							alert('로그인 하였습니다.');
+																							location.href = data.goUrl;
+																						} else {
+																							alert("연동된 SNS 계정이 없습니다.\n신규가입화면으로 이동합니다.");
+																							location.href = "/portal/member/user/joinAgre.do?menuNo=200144";
+																						}
+																					});
+
+																},
+																function(error) {
+																	console
+																			.log(
+																					'Sign-in error',
+																					error);
+																});
+											});
+
+							element = document.getElementById('googleAuthBtn');
+						}
+					</script>
+					<script src="https://apis.google.com/js/platform.js?onload=onLoadGoogleCallback" async="" defer="" gapi_processed="true"></script>
 				</div>
 			</div>
 
 		</div>
+
+
 
 
 

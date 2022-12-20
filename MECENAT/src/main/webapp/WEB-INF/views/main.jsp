@@ -44,20 +44,7 @@
 	<section id="wrap">
 
 		<div class="open_bg"></div>
-		<dl class="accessibilityWrap">
-			<dt class="hide">
-				<strong>바로가기 메뉴</strong>
-			</dt>
-			<dd>
-				<a href="#cont">본문 바로가기</a>
-			</dd>
-			<dd>
-				<a href="#top_nav">주메뉴 바로가기</a>
-			</dd>
-		</dl>
-
-
-
+		
 		<div class="wrap" style="opacity: 1;">
 			<!-- 헤더부분은 기존 소스 살림  -->
 
