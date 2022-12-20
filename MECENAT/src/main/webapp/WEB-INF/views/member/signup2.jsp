@@ -145,6 +145,7 @@ body.hide-focus-ring *:focus {
 				<div class="sub_page">
 					<script src="./resources/sejongpac/static/commons/js/validUtil.js"></script>
 					<script src="./resources/sejongpac/static/jslibrary/miya_validator.js"></script>
+					
 					<script>
 						function formCheck() {
 							var form = $("#board")[0];
@@ -188,26 +189,18 @@ body.hide-focus-ring *:focus {
 							// 부모님 동의
 							if (isDate($('[name=birthdayYear]').val()
 									+ '-'
-									+ lpad($('[name=birthdayMonth]').val(), 2,
-											'0')
+									+ lpad($('[name=birthdayMonth]').val(), 2,'0')
 									+ '-'
-									+ lpad($('[name=birthdayDay]').val(), 2,
-											'0'))) {
+									+ lpad($('[name=birthdayDay]').val(), 2,'0'))) {
 								if (isKid($('[name=birthdayYear]').val()
 										+ ''
-										+ lpad($('[name=birthdayMonth]').val(),
-												2, '0')
+										+ lpad($('[name=birthdayMonth]').val(),2, '0')
 										+ ''
-										+ lpad($('[name=birthdayDay]').val(),
-												2, '0'))) {
-									var parentName = $('#parentName').val()
-											.trim();
-									var parentDupinfo = $('#parentDupinfo')
-											.val().trim();
-									var parentBirthday = $('#parentBirthday')
-											.val().trim();
-									if (parentName == "" || parentDupinfo == ""
-											|| parentBirthday == "") {
+										+ lpad($('[name=birthdayDay]').val(),2, '0'))) {
+									var parentName = $('#parentName').val().trim();
+									var parentDupinfo = $('#parentDupinfo').val().trim();
+									var parentBirthday = $('#parentBirthday').val().trim();
+									if (parentName == "" || parentDupinfo == ""|| parentBirthday == "") {
 										alert("만 14세 미만의 어린이는 보호자 동의가 필요합니다.");
 										return;
 									}
@@ -248,15 +241,20 @@ body.hide-focus-ring *:focus {
 							var tel2 = $("#tel2").val();
 							var tel3 = $("#tel3").val();
 							var tel = tel1 + '-' + tel2 + '-' + tel3;
-							$('#memberCel').val(tel);
+							
+							console.log("tel1 : " + tel1);
+							console.log("tel2 : " + tel2);
+							console.log("tel3 : " + tel3);
+							console.log("tel : " + tel);
+							
+							$('#userPhone').val(tel);
+							console.log("userPhone : " + userPhone);
+							
 
 							var birthdayYear = $('[name=birthdayYear]').val();
-							var birthdayMonth = lpad($('[name=birthdayMonth]')
-									.val(), 2, '0');
-							var birthdayDay = lpad($('[name=birthdayDay]')
-									.val(), 2, '0');
-							var regNoDate = birthdayYear + birthdayMonth
-									+ birthdayDay;
+							var birthdayMonth = lpad($('[name=birthdayMonth]').val(), 2, '0');
+							var birthdayDay = lpad($('[name=birthdayDay]').val(), 2, '0');
+							var regNoDate = birthdayYear + birthdayMonth + birthdayDay;
 							$("#regNoDate").val(regNoDate);
 
 							var dupinfo = "";
@@ -269,41 +267,25 @@ body.hide-focus-ring *:focus {
 								dupinfo = "S_" + $("#userId").val() + "_"
 										+ tel;
 							}
+							
 							$("#dupinfo").val(dupinfo);
 							$("#extId").val(extID);
 
-
 							if ($("#cbdYear").val() != ""
-									&& $("#cbdMonth").val() != ""
-									&& $("#cbdDay").val() != "") {
-								$("#childrenBirthDay1").val(
-										$("#cbdYear").val()
-												+ $("#cbdMonth").val()
-												+ $("#cbdDay").val());
+								&& $("#cbdMonth").val() != ""
+								&& $("#cbdDay").val() != "") {$("#childrenBirthDay1").val($("#cbdYear").val()+ $("#cbdMonth").val()+ $("#cbdDay").val());
 							}
 							if ($("#cbdYear2").val() != ""
-									&& $("#cbdMonth2").val() != ""
-									&& $("#cbdDay2").val() != "") {
-								$("#childrenBirthDay2").val(
-										$("#cbdYear2").val()
-												+ $("#cbdMonth2").val()
-												+ $("#cbdDay2").val());
+								&& $("#cbdMonth2").val() != ""
+								&& $("#cbdDay2").val() != "") {$("#childrenBirthDay2").val($("#cbdYear2").val()+ $("#cbdMonth2").val()+ $("#cbdDay2").val());
 							}
 							if ($("#cbdYear3").val() != ""
-									&& $("#cbdMonth3").val() != ""
-									&& $("#cbdDay3").val() != "") {
-								$("#childrenBirthDay3").val(
-										$("#cbdYear3").val()
-												+ $("#cbdMonth3").val()
-												+ $("#cbdDay3").val());
+								&& $("#cbdMonth3").val() != ""
+								&& $("#cbdDay3").val() != "") {$("#childrenBirthDay3").val($("#cbdYear3").val()+ $("#cbdMonth3").val()+ $("#cbdDay3").val());
 							}
 							if ($("#cbdYear4").val() != ""
-									&& $("#cbdMonth4").val() != ""
-									&& $("#cbdDay4").val() != "") {
-								$("#childrenBirthDay4").val(
-										$("#cbdYear4").val()
-												+ $("#cbdMonth4").val()
-												+ $("#cbdDay4").val());
+								&& $("#cbdMonth4").val() != ""
+								&& $("#cbdDay4").val() != "") {$("#childrenBirthDay4").val($("#cbdYear4").val()+ $("#cbdMonth4").val()+ $("#cbdDay4").val());
 							}
 
 							if ($("#childrenCnt").val() > 0) {
@@ -342,21 +324,12 @@ body.hide-focus-ring *:focus {
 								return fasle;
 							}
 
-							if ($("#memberTel1").val() != ""
-									&& $("#memberTel2").val() != ""
-									&& $("#memberTel3").val() != "") {
-								$("#userPhone").val($("#memberTel1").val() + "-"
-												+ $("#memberTel2").val() + "-"
-												+ $("#memberTel3").val());
+							if ($("#tel1").val() != "" && $("#tel2").val() != "" && $("#tel3").val() != "") {
+								$("#userPhone").val($("#tel1").val() + "-"+ $("#tel2").val() + "-"+ $("#tel3").val());
 							}
 
-							if ($("#weddingDate1").val() != ""
-									&& $("#weddingDate2").val() != ""
-									&& $("#weddingDate3").val() != "") {
-								$("#weddingDate").val(
-										$("#weddingDate1").val()
-												+ $("#weddingDate2").val()
-												+ $("#weddingDate3").val());
+							if ($("#weddingDate1").val() != "" && $("#weddingDate2").val() != "" && $("#weddingDate3").val() != "") {
+								$("#weddingDate").val($("#weddingDate1").val()+ $("#weddingDate2").val()+ $("#weddingDate3").val());
 							}
 
 							form.submit();
@@ -438,8 +411,7 @@ body.hide-focus-ring *:focus {
 											return false;
 										}
 
-										if (!id
-												.match('^[a-zA-Z0-9]{4,20}$')) {
+										if (!id.match('^[a-zA-Z0-9]{4,20}$')) {
 											alert('아이디는 특수문자를 제외한 영문, 숫자 조합 4~20자로 사용 가능합니다.');
 											$('#userId').focus();
 											return false;
@@ -471,22 +443,6 @@ body.hide-focus-ring *:focus {
 											}
 										})
 			
-										/* 
-										$.post(
-											"checkDupId.me",
-											{id : },
-											function(data) {
-
-												if (data.idCnt > 0) { 
-													alert("아이디가 중복됩니다.");
-													$("#chkuserIdYN").val("N");
-													$('#userId').focus();
-													return false;
-												}
-												alert("사용 가능한 아이디입니다.");
-												$("#chkuserIdYN").val("Y");
-											});
-										 */
 									});
 
 
@@ -518,10 +474,21 @@ body.hide-focus-ring *:focus {
 
 					<!-- {(joinExtCode,K)(joinExtID,1234528163)(joinExtEmail,hojin0703@nate.com)(joinExtName,김호진)(joinExtBirthDay,)(joinExtGender,)} -->
 					<form name="board" id="board" method="post" action="signup.me">
-						<input type="hidden" id="menuNo" name="menuNo" value="200144"> <input type="hidden" name="extId" id="extId" value=""> <input type="hidden" name="extCode" id="extCode" value=""> <input type="hidden" id="stipulationType" name="stipulation_type" value=""> <input type="hidden" id="effectiveDate" name="effective_date" value=""> <input type="hidden" id="parentName" name="parentName" value=""> <input type="hidden" id="parentDupinfo" name="parentDupinfo" value=""> <input type="hidden" id="parentBirthday" name="parentBirthday" value=""> <input type="hidden" id="parentAuthGubun" name="parentAuthGubun" value=""> <input type="hidden" id="joinType" name="joinType" value=""> <input type="hidden" name="regIdCheckFl" value="N"> <input type="hidden" name="joinTypeCode" value="0001"> <input type="hidden" name="receiveSms" value=""> <input type="hidden" name="receivemail" value="">
-
+						<input type="hidden" id="menuNo" name="menuNo" value="200144"> 
+						<input type="hidden" name="extId" id="extId" value=""> 
+						<input type="hidden" name="extCode" id="extCode" value=""> 
+						<input type="hidden" id="stipulationType" name="stipulation_type" value=""> 
+						<input type="hidden" id="effectiveDate" name="effective_date" value=""> 
+						<input type="hidden" id="parentName" name="parentName" value=""> 
+						<input type="hidden" id="parentDupinfo" name="parentDupinfo" value=""> 
+						<input type="hidden" id="parentBirthday" name="parentBirthday" value=""> 
+						<input type="hidden" id="parentAuthGubun" name="parentAuthGubun" value=""> 
+						<input type="hidden" id="joinType" name="joinType" value=""> 
+						<input type="hidden" name="regIdCheckFl" value="N"> 
+						<input type="hidden" name="joinTypeCode" value="0001"> 
+						<input type="hidden" name="receiveSms" value=""> 
+						<input type="hidden" name="receivemail" value="">
 						<input type="hidden" name="regNoDate" id="regNoDate" value=""> <input type="hidden" name="dupinfo" id="dupinfo" value=""> <input type="hidden" name="siteType" id="siteType" value="">
-
 
 						<article class="member_join inner member_com">
 							<div class="group">
@@ -798,10 +765,10 @@ body.hide-focus-ring *:focus {
 													<li><label for="tel2" class="hide">휴대폰 중간</label> <input type="text" name="tel2" id="tel2" class="small" maxlength="4" value="" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"></li>
 													<li><label for="tel3" class="hide">휴대폰 끝</label> <input type="text" name="tel3" id="tel3" class="small" maxlength="4" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"></li>
 												</ul>
-												<input type="hidden" name="memberCel" id="memberCel" value="">
+												<input type="hidden" name="userPhone" id="userPhone" value="">
 											</div>
 											<div class="tel_confirm" style="margin-top: 10px;">
-												<label for="smsAuthNumber" class="hide">인증번호 입력</label> <input type="text" name="smsAuthNumber" id="smsAuthNumber" placeholder="인증번호 6자리 숫자 입력" maxlength="6"> <input type="hidden" name="serverAuth" id="serverAuth">
+												<!-- <label for="smsAuthNumber" class="hide">인증번호 입력</label> <input type="text" name="smsAuthNumber" id="smsAuthNumber" placeholder="인증번호 6자리 숫자 입력" maxlength="6"> <input type="hidden" name="serverAuth" id="serverAuth"> -->
 											</div>
 										</div>
 									</li>
