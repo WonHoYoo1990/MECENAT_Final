@@ -83,7 +83,7 @@ body.hide-focus-ring *:focus {
 
 
 		<!-- Header Section Begin -->
-		<jsp:include page="../common/header2.jsp" />
+		<jsp:include page="../common/header.jsp" />
 		<!-- Header End -->
 
 
@@ -136,7 +136,7 @@ body.hide-focus-ring *:focus {
 					<ul class="depth" style="display: none;">
 					<li><a href="/portal/main/contents.do?menuNo=200099"><span>서비스소개</span></a></li>
 					<li><a href="login.me"><span>로그인</span></a></li>
-					<li><a href="findPasswordForm.me"><span>회원가입</span></a></li>
+					<li><a href="signupForm.me"><span>회원가입</span></a></li>
 					<li><a href="findIdForm.me"><span>아이디 찾기</span></a></li>
 					<li><a href="/portal/member/user/findPw.do?menuNo=200146"><span>패스워드 찾기</span></a></li>
 					<li><a href="/portal/main/contents.do?menuNo=200148"><span>개인정보처리방침</span></a></li>
@@ -246,7 +246,7 @@ body.hide-focus-ring *:focus {
 			<div class="etc">
 				<span><a href="findIdForm.me">아이디 찾기</a></span>
 				<span><a href="findPasswordForm.me">비밀번호 찾기</a></span>
-				<span><a href="/portal/member/user/join.do?menuNo=200144">회원가입</a></span>
+				<span><a href="signupForm.me">회원가입</a></span>
 				<span><a href="/portal/main/contents.do?menuNo=200091">회원혜택안내</a></span>
 			</div>
 		</li>
@@ -506,16 +506,8 @@ function onLoadGoogleCallback() {
 	</div>
 
 </div>
-
-
-
-
-		ㅡ,ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-
-
-
 		<!-- footer Section Begin -->
-		<jsp:include page="../common/footer2.jsp" />
+		<jsp:include page="../common/footer.jsp" />
 		<!-- footer End -->
 		
 		

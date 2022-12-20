@@ -38,7 +38,7 @@ public class MemberController {
 	// 회원가입 폼으로 이동
 	@RequestMapping("signupForm.me")
 	public String signupForm() {
-		return "member/signup2";
+		return "member/signup";
 	}
 
 	// 마이페이지 이동
