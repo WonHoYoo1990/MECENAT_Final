@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -153,7 +154,7 @@ public class MemberController {
 	public String enrollForm() {
 
 		// WEB-INF/views/member/memberEnrollForm.jsp 로 포워딩
-		return "/member/login2";
+		return "/member/login";
 
 	}
 
@@ -210,78 +211,38 @@ public class MemberController {
 
 		return "redirect:/";
 	}
-
-	// 비밀번호 찾기 페이지로 이동
-	@RequestMapping("searchPwdForm.me")
-	public String searchPwdView() {
-		return "member/searchPwd";
-	}
-
-	// 비밀번호 찾기 실행
-	@PostMapping("searchPwd.me")
-	public String searchPwd(HttpSession session, Member m, Model model) {
-
-		Member loginUser = memberService.searchPwd(m);
-
-		if (loginUser == null) {
-			model.addAttribute("check", 1);
-		} else {
-			model.addAttribute("check", 0);
-			model.addAttribute("updateid", loginUser.getUserId());
+	
+	// 아이디 찾기 페이지로 이동
+		@RequestMapping("findIdForm.me")
+		public String searchIdView() {
+			return "member/search_Id";
+		}
+		
+		// 아이디 찾기 실행
+		@RequestMapping(value = "searchResultId.me")
+		public String search_result_id(HttpServletRequest request, Model model,
+			    @RequestParam(required = true, value = "userName") String userName, 
+			    @RequestParam(required = true, value = "userPhone") String userPhone,
+			    Member m) {
+			
+			try {
+			    
+			    m.setUserName(userName);
+			    m.setUserPhone(userPhone);
+			    Member memberSearch = memberService.memberIdSearch(m);
+			    
+			    model.addAttribute("m", memberSearch);
+			 
+			    
+			} catch (Exception e) {
+			    System.out.println(e.toString());
+			    model.addAttribute("msg", "오류가 발생되었습니다.");
+			}
+			return "member/search_result_Id";
+			
+			
 		}
 
-		return "member/searchPwd";
-	}
-
-	// 비밀번호 바꾸기 실행
-	@RequestMapping(value = "updatePwd.me", method = RequestMethod.POST)
-	public String updatePwd(HttpSession session, String userId, Member m) {
-		m.setUserId(userId);
-		memberService.updatePwd(m);
-		return "member/updatePwd";
-	}
-
-//    // 비밀번호 바꾸기할 경우 성공 페이지 이동
-//	@RequestMapping(value="check_password_view")
-//	public String checkPasswordForModify(HttpSession session, Model model) {
-//		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
-//		
-//		if(loginUser == null) {
-//			return "member/login";
-//		} else {
-//			return "mypage/checkformodify";
-//		}
-//	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	@RequestMapping("memberDel.manager")
-	public String managerMemberList(Model model) {
-		
-		ArrayList<Member> mList = memberService.selectAllMemberList();
-		
-		System.out.println(mList);
-		
-		model.addAttribute("mList", mList);
-		
-		return "member/managerMemberDelete";
-	}
-	
-	@RequestMapping("deleteMem.manager")
-	public void managerMemberDelete() {
-		System.out.println("ㅇㅇ");
-		
-	}
-	
-	
-
-	// test 05!!
-
-	// test 06 !!
 }
+
+

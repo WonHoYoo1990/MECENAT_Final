@@ -53,16 +53,11 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.loginUser(sqlSession, m);
 	}
 
-	// 비밀번호 찾기
+	//아이디 찾기
 	@Override
-	public Member searchPwd(Member m) {
-		return memberDao.searchPwd(sqlSession, m);
-	}
-
-	// 비밀번호 업데이트
-	@Override
-	public void updatePwd(Member m) {
-		memberDao.updatePwd(sqlSession, m);
+	public Member memberIdSearch(Member m) {
+		
+		return memberDao.memberIdSearch(sqlSession, m);
 	}
 	
 	//관리자) 멤버 전체 조회
