@@ -4,7 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper namespace="performanceMapper">
+<mapper namespace="performanceMapperMana">
 	
 	<resultMap type="performanceMana" id="performanceResultSet">
 	  	<result column="PERFO_NO" property="perfoNo"/>
