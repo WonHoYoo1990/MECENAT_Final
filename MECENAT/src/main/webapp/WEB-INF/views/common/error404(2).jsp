@@ -1,0 +1,121 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- Core -->
+<%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml"%>
+<!-- XML -->
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!-- I18N -->
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+<!-- Database -->
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<!-- Functions -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>error404 | Template</title>
+
+<!-- 인터넷 -->
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/aos.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/bbs_new.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/fonts.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/layout_new.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/main_new.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/pop_all.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/reset.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/responsive_new.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/sitemap.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/slider.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/style.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/sub.css">
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+<script src="./resources/sejongpac/static/commons/js/jquery-3.6.0.min.js"></script>
+<script src="./resources/sejongpac/static/commons/js/jquery-ui.1.12.1.min.js"></script>
+<script src="./resources/sejongpac/static/portal/js/slider.js"></script>
+<script src="./resources/sejongpac/static/ticket/ticket.js"></script>
+<link rel="stylesheet" href="./resources/sejongpac/static/portal/css/aos.css">
+<script src="./resources/sejongpac/static/portal/inc/netfunnel.js" charset="UTF-8"></script>
+
+</head>
+<body class="hide-focus-ring">
+	<section id="wrap">
+		<!-- Header Section Begin -->
+		<jsp:include page="../common/header2.jsp" />
+		<!-- Header End -->
+
+		<div id="depth_w" class="">
+			<div class="inner">
+				<ul class="clearfix dot dep1 li3">
+					<li class="home"><span><span>HOME</span></span></li>
+				</ul>
+			</div>
+		</div>
+		<script>
+			$(window).resize(function() {
+				if ($(window).width() > 1024) {
+					$("#depth_w .rel").hover(function() {
+						$(this).closest("#depth_w").addClass("on")
+						$(this).find(".depth").show();
+					}, function() {
+						$(this).closest("#depth_w").removeClass("on")
+						$(this).find(".depth").hide();
+					})
+					$("#depth_w .rel > a").focus(function() {
+						$(this).closest("#depth_w").addClass("on")
+						$(this).next(".depth").show();
+					})
+					$("#depth_w .depth > li:last-child a").focusout(function() {
+						$(this).closest("#depth_w").removeClass("on")
+						$("#depth_w .depth").stop(true, true).slideUp(150);
+					})
+				} else {
+					$("#depth_w .rel").click(function() {
+						$(this).closest("#depth_w").toggleClass("on")
+						$(this).find(".depth").toggle();
+					})
+				}
+			}).resize();
+		</script>
+
+
+		<div id="cont">
+			<div id="sub_page">
+				<div class="inner"></div>
+
+				<script>
+					var loc = $("#depth_w > div > ul > li").length - 1;
+					$("#depth_w .dep1").addClass("li" + loc);
+
+					var len = $(".tabs-st1 li").length;
+					$(".tabs-st1").addClass("li" + len);
+				</script>
+
+				<div class="sub_page">
+					<article class="ticket_com inner">
+						<ul>
+							<li class="group">
+								<div class="tit">404 Not Found</div>
+								<div class="cont">
+									<dl class="t1">
+										<dt>페이지를 찾을 수 없습니다.</dt>
+										<dd>페이지가 존재하지 않거나 사용 할 수 없는 페이지입니다.</dd>
+										<dd>입력하신 주소가  정확한지 다시 한번 확인해 주시기 바랍니다.</dd>
+									</dl>
+								</div>
+							</li>
+						</ul>
+					</article>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- footer Section Begin -->
+		<jsp:include page="../common/footer2.jsp" />
+		<!-- footer End -->
+	</section>
+</body>
+</html>

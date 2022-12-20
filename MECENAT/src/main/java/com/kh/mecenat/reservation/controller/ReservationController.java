@@ -24,7 +24,7 @@ public class ReservationController {
 	private ReservationService reservationService;
 	
 	
-//	°ø¿¬È¦ ÀüÃ¼ Á¤º¸ Á¶È¸ ÆäÀÌÁö. ±âº» Ã¹ ÆäÀÌÁö AÈ¦ºÎÅÍ º¸¿©ÁØ ÈÄ, BÈ¦ Å¬¸¯½Ã ajax·Î ³»¿ë ¼ÛÃâ
+//	ï¿½ï¿½ï¿½ï¿½È¦ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½. ï¿½âº» Ã¹ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ AÈ¦ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, BÈ¦ Å¬ï¿½ï¿½ï¿½ï¿½ ajaxï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@GetMapping("information1.hl")
 	public ModelAndView informHall(ModelAndView mv) {
 		
@@ -35,7 +35,7 @@ public class ReservationController {
 		return mv;
 	}
 	
-//	°ø¿¬È¦º° ajax ÀüÃ¼ ³»¿ëÁ¶È¸
+//	ï¿½ï¿½ï¿½ï¿½È¦ï¿½ï¿½ ajax ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¸
 	@ResponseBody
 	@RequestMapping(value="information2.hl", produces = "application/json; charset=UTF-8")
 	public String informHall(String hallName) {
@@ -46,7 +46,7 @@ public class ReservationController {
 	}
 	
 	
-//	´ë°ü½ÅÃ» Å¬¸¯½Ã
+//	ï¿½ï¿½ï¿½ï¿½ï¿½Ã» Å¬ï¿½ï¿½ï¿½ï¿½
 	@GetMapping("application1.rv")
 	public ModelAndView viewApplicationForm(HttpSession session
 //									 		,String hallName
@@ -60,7 +60,7 @@ public class ReservationController {
 		return mv;
 	}
 	
-//	´ë°ü ½ÅÃ» Áß °ø¿¬ÀÏ¼³Á¤, °ø¿¬½Ã°£ ¼³Á¤
+//	ï¿½ï¿½ï¿½ ï¿½ï¿½Ã» ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@ResponseBody
 	@RequestMapping(value="setTime.rv", produces = "text/html; charset=UTF-8")
 	public String setTime(String eventDateList) {
@@ -68,8 +68,8 @@ public class ReservationController {
 		String str = "";
 		
 		for(int i=0; i<arr.length; i++) {
-			str +=	"<input type='text' id='startTimes' name='startTimes'  placeholder='¾Æ·¡ °ø¿¬ÀÏÀ» È®ÀÎÇÏ¼¼¿ä' required/><br>"
-			     +  "<label for='startTime'>"+arr[i]+" ³¯Â¥¸¦ È®ÀÎÇØ ÁÖ¼¼¿ä**</label>"
+			str +=	"<input type='text' id='startTimes' name='startTimes'  placeholder='ï¿½Æ·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½' required/><br>"
+			     +  "<label for='startTime'>"+arr[i]+" ï¿½ï¿½Â¥ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½**</label>"
 			     +  "<br><br>";
 		}
 		return str;
@@ -114,10 +114,10 @@ public class ReservationController {
 		if(result==arr.length) {
 			session.removeAttribute("ra");
 			session.removeAttribute("arr");
-			session.setAttribute("alertMsg", "´ë°ü½ÅÃ» ¿Ï·á. ¸¶ÀÌÆäÀÌÁö¸¦ È®ÀÎÇÏ¼¼¿ä.");
+			session.setAttribute("alertMsg", "ï¿½ï¿½ï¿½ï¿½ï¿½Ã» ï¿½Ï·ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½.");
 			mv.setViewName("redirect:/");
 		} else {
-			mv.addObject("errorMsg","´ë°ü½ÅÃ» µî·Ï½ÇÆĞ. °ü¸®ÀÚ¿¡°Ô ¹®ÀÇÇÏ¼¼¿ä").setViewName("common/errorPage");
+			mv.addObject("errorMsg","ï¿½ï¿½ï¿½ï¿½ï¿½Ã» ï¿½ï¿½Ï½ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½").setViewName("common/errorPage");
 		}
 		
 		return mv;	
@@ -160,17 +160,17 @@ public class ReservationController {
 		if(result==startTimes.length) {
 			session.removeAttribute("ra");
 			session.removeAttribute("arr");
-			session.setAttribute("alertMsg", "´ë°ü½ÅÃ» ¿Ï·á. ¸¶ÀÌÆäÀÌÁö¸¦ È®ÀÎÇÏ¼¼¿ä.");
+			session.setAttribute("alertMsg", "ï¿½ï¿½ï¿½ï¿½ï¿½Ã» ï¿½Ï·ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½.");
 			mv.setViewName("redirect:/");
 		} else {
-			mv.addObject("errorMsg","´ë°ü½ÅÃ» µî·Ï½ÇÆĞ. °ü¸®ÀÚ¿¡°Ô ¹®ÀÇÇÏ¼¼¿ä").setViewName("common/errorPage");
+			mv.addObject("errorMsg","ï¿½ï¿½ï¿½ï¿½ï¿½Ã» ï¿½ï¿½Ï½ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½").setViewName("common/errorPage");
 					}
 		
 		
 		return mv;
 	}
 	
-//	¿¹¸Å ÆäÀÌÁö Á¶Á¤Áß
+//	ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@GetMapping("make.rv")
 	public String selectPerformaceForm(Model model//,
 									   /*int perfoNo*/) {
@@ -190,11 +190,16 @@ public class ReservationController {
 		return "reservation/makeReservation";
 	}
 	
-//	¿¹¸Å ÆäÀÌÁö Á¶Á¤Áß
+//	ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@PostMapping("make.rv")
 	public void selectPerformaceInfo() {
 	}
 	
+	// ì˜ˆë§¤ ì•ˆë‚´ í˜ì´ì§€ ì´ë™
+	@RequestMapping("infomTicket.re")
+	public String infomTicket() {
+		return "reservation/ticketImfomTest";
+	}
 
 	
 }

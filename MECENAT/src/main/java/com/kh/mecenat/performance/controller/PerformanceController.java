@@ -97,11 +97,7 @@ public class PerformanceController {
 		return changeName;		
 	}
 	
-	// 예매 안내 페이지 이동
-	@RequestMapping("infomTicket.re")
-	public String infomTicket() {
-		return "reservation/ticketImfomTest";
-	}
+	
 
 	// 좌석 배치도 페이지 이동
 	@RequestMapping("setInfom.perf")

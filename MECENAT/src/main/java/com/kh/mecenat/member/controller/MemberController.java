@@ -37,7 +37,7 @@ public class MemberController {
 	// 회원가입 폼으로 이동
 	@RequestMapping("signupForm.me")
 	public String signupForm() {
-		return "member/signup";
+		return "member/signup2";
 	}
 
 	// 마이페이지 이동
@@ -108,10 +108,14 @@ public class MemberController {
 
 	// ID 중복 체크
 	@ResponseBody
-	@RequestMapping("checkId.me")
+	@RequestMapping("checkDupId.me")
 	public String checkId(String checkId) {
+		
+		System.out.println("checkId : " +checkId);
 
 		int count = memberService.checkId(checkId);
+		
+		System.out.println("count : " + count);
 
 		String str = "";
 
