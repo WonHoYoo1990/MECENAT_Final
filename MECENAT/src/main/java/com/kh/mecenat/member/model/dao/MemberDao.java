@@ -42,15 +42,11 @@ public class MemberDao {
 		return sqlSession.selectOne("memberMapper.loginUser", m);
 	}
 
-	// 비밀번호 찾기
-	public Member searchPwd(SqlSessionTemplate sqlSession, Member m) {
-
-		return sqlSession.selectOne("memberMapper.searchPwd", m);
-	} 
-
-	// 비밀번호 업데이트
-	public void updatePwd(SqlSessionTemplate sqlSession, Member m) {
-		sqlSession.update("memberMapper.updatePwd", m);
+	//아이디 찾기
+	public Member memberIdSearch(SqlSessionTemplate sqlSession, Member m) {
+		
+		return sqlSession.selectOne("memberMapper.memberIdSearch", m);
+	
 	}
 	
 	//관리자) 멤버 전체 조회
