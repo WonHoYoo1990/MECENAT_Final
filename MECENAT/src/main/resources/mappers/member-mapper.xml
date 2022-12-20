@@ -11,11 +11,13 @@
 							USER_PWD, 
 							USER_NAME, 
 							USER_PHONE, 
+							USER_ADRESS, 
 							USER_EMAIL)
 										VALUES(	#{userId},
 											    #{userPwd},
 											    #{userName},
 											    #{userPhone},
+											    #{address},
 											    #{email} )
 	</insert>
 	

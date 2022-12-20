@@ -43,6 +43,9 @@
 <link rel="stylesheet" href="./resources/sejongpac/static/portal/css/aos.css">
 <script src="./resources/sejongpac/static/portal/inc/netfunnel.js" charset="UTF-8"></script>
 
+<!-- 주소 찾기 API -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 
 
 <!--[if lt IE 9]>
@@ -151,6 +154,14 @@ body.hide-focus-ring *:focus {
 							var form = $("#board")[0];
 							var v = new MiyaValidator(form);
 							var regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@#$%&\\\=\(\'\"]/gi;
+							
+							var memberAddr1 =  $("#memberAddr1").val();
+							var memberAddr2 =  $("#memberAddr2").val();
+							var address =  memberAddr1 + memberAddr2;
+							
+							console.log("memberAddr1 : "+ memberAddr1);
+							console.log("memberAddr2 : "+ memberAddr2);
+							console.log("address : "+ memberAddr1 + memberAddr2);
 
 							if (regExp.test($("#userName").val())) {
 								alert("이름에 특수문자를 입력 할수 없습니다.");
@@ -241,11 +252,6 @@ body.hide-focus-ring *:focus {
 							var tel2 = $("#tel2").val();
 							var tel3 = $("#tel3").val();
 							var tel = tel1 + '-' + tel2 + '-' + tel3;
-							
-							console.log("tel1 : " + tel1);
-							console.log("tel2 : " + tel2);
-							console.log("tel3 : " + tel3);
-							console.log("tel : " + tel);
 							
 							$('#userPhone').val(tel);
 							console.log("userPhone : " + userPhone);
@@ -488,7 +494,11 @@ body.hide-focus-ring *:focus {
 						<input type="hidden" name="joinTypeCode" value="0001"> 
 						<input type="hidden" name="receiveSms" value=""> 
 						<input type="hidden" name="receivemail" value="">
-						<input type="hidden" name="regNoDate" id="regNoDate" value=""> <input type="hidden" name="dupinfo" id="dupinfo" value=""> <input type="hidden" name="siteType" id="siteType" value="">
+						<input type="hidden" name="regNoDate" id="regNoDate" value=""> 
+						<input type="hidden" name="dupinfo" id="dupinfo" value=""> 
+						<input type="hidden" name="siteType" id="siteType" value="">
+
+						<input type="hidden" name="address" id="address" value="${address}">
 
 						<article class="member_join inner member_com">
 							<div class="group">
@@ -722,6 +732,9 @@ body.hide-focus-ring *:focus {
 									<li class="item"><strong class="t">주소 <span class="color-purple">*</span></strong>
 										<div class="cont">
 											<ul class="add">
+											
+												<!-- 원본이에요!!  -->
+												<!-- 
 												<li class="clearfix a1">
 													<div class="zipcode">
 														<label for="memberZipCd" class="hide">우편번호</label> <input type="text" name="memberZipCd" id="memberZipCd" value="">
@@ -734,11 +747,60 @@ body.hide-focus-ring *:focus {
 														</script>
 													</div>
 												</li>
+ 												-->
+ 												
+												<li class="clearfix a1">
+													<div class="zipcode">
+														<label for="memberZipCd" class="hide">우편번호</label> <input type="text" name="memberZipCd" id="memberZipCd" value="">
+														<button id="addrBtn" type="button" class="bg-black" title="새창으로 열립니다." onclick="findAddr()">우편번호 찾기</button>
+													</div>
+												</li>
 												<li class="clearfix a2">
 													<span class="l"> <label for="memberAddr1" class="hide">주소</label> <input type="text" name="memberAddr1" id="memberAddr1" value=""></span> 
 													<span class="r"> <label for="memberAddr2" class="hide">나머지 주소</label> <input type="text" name="memberAddr2" id="memberAddr2" value="" class="long">
+													<input type="hidden" name="memberAddr" id="memberAddr" value="" class="long">
 													</span>
 												</li>
+												<!-- 주소 찾기 API -->
+												<script>
+												$("#addrBtn").on("click",function(){
+													
+													var memberAddr1 =  $("#memberAddr1").val();
+													var memberAddr2 =  $("#memberAddr2").val();
+													var memberAddr =  memberAddr1 + memberAddr2;
+													
+													console.log("memberAddr1 : "+ memberAddr1);
+													console.log("memberAddr2 : "+ memberAddr2);
+													console.log("memberAddr : "+ memberAddr1 + memberAddr2);
+												})
+													function findAddr(){
+														new daum.Postcode({
+													        oncomplete: function(data) {
+													        	console.log("data : "+data);
+													            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+													            // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+													            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+
+													            var roadAddr = data.roadAddress; // 도로명 주소 변수
+													            var jibunAddr = data.jibunAddress; // 지번 주소 변수
+													            var zoneCode = data.zoneCode; // zoneCode??
+													           
+													            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+													            
+													            console.log("roadAddr : "+roadAddr);
+													            console.log("jibunAddr : "+jibunAddr);
+													            
+													            document.getElementById('memberZipCd').value = data.zonecode;
+													            if(roadAddr !== ''){
+													                document.getElementById("memberAddr1").value = roadAddr;
+													            } 
+													            else if(jibunAddr !== ''){
+													                document.getElementById("memberAddr1").value = jibunAddr;
+													            }
+													        }
+													    }).open();
+													}
+												</script>
 											</ul>
 										</div>
 									</li>
@@ -780,6 +842,10 @@ body.hide-focus-ring *:focus {
 							</div>
 						</article>
 					</form>
+					
+					
+					
+					
 
 					<form name="form_chk" method="post">
 						<input type="hidden" name="m" value="checkplusSerivce">
@@ -807,6 +873,7 @@ body.hide-focus-ring *:focus {
 								return true;
 							}
 						}
+						
 						function isDate(dayStr) {
 							var valid = false;
 							if (dayStr
@@ -833,31 +900,32 @@ body.hide-focus-ring *:focus {
 						}
 
 						$('[name=birthdayYear], [name=birthdayMonth], [name=birthdayDay]').change(
-										function(event) {
-											if (isDate($('[name=birthdayYear]')
-													.val()
-													+ '-'
-													+ lpad(
-															$('[name=birthdayMonth]').val(), 2,'0')
-													+ '-'
-													+ lpad(
-															$('[name=birthdayDay]').val(), 2,'0'))) {
-												if (isKid($(
-														'[name=birthdayYear]')
-														.val()
-														+ ''
-														+ lpad(
-																$('[name=birthdayMonth]').val(),2, '0')
-														+ ''
-														+ lpad(
-																$('[name=birthdayDay]').val(),2, '0'))) {
-													$('.manAgeSet').show()
-												} else {
-													$('.manAgeSet').hide()
-												}
-											} else {
-												$('.manAgeSet').hide()
-											}
+								
+								function(event) {
+									if (isDate($('[name=birthdayYear]')
+											.val()
+											+ '-'
+											+ lpad(
+													$('[name=birthdayMonth]').val(), 2,'0')
+											+ '-'
+											+ lpad(
+													$('[name=birthdayDay]').val(), 2,'0'))) {
+										if (isKid($(
+												'[name=birthdayYear]')
+												.val()
+												+ ''
+												+ lpad(
+														$('[name=birthdayMonth]').val(),2, '0')
+												+ ''
+												+ lpad(
+														$('[name=birthdayDay]').val(),2, '0'))) {
+											$('.manAgeSet').show()
+										} else {
+											$('.manAgeSet').hide()
+										}
+									} else {
+										$('.manAgeSet').hide()
+									}
 							});
 					</script>
 				</div>

@@ -57,6 +57,8 @@ public class MemberController {
 
 		m.setUserPwd(encPwd);
 		log.info("m : {}", m);
+		
+		System.out.println("m.address : " + m.getAddress());
 
 		int result = memberService.signup(m);
 		log.info("result : {}", result);
