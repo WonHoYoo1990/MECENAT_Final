@@ -136,8 +136,8 @@ body.hide-focus-ring *:focus {
 					<ul class="depth" style="display: none;">
 					<li><a href="/portal/main/contents.do?menuNo=200099"><span>서비스소개</span></a></li>
 					<li><a href="login.me"><span>로그인</span></a></li>
-					<li><a href="/portal/member/user/join.do?menuNo=200144"><span>회원가입</span></a></li>
-					<li><a href="/portal/member/user/idSearch.do?menuNo=200145"><span>아이디 찾기</span></a></li>
+					<li><a href="findPasswordForm.me"><span>회원가입</span></a></li>
+					<li><a href="findIdForm.me"><span>아이디 찾기</span></a></li>
 					<li><a href="/portal/member/user/findPw.do?menuNo=200146"><span>패스워드 찾기</span></a></li>
 					<li><a href="/portal/main/contents.do?menuNo=200148"><span>개인정보처리방침</span></a></li>
 					<li><a href="/portal/main/contents.do?menuNo=200150"><span>이메일무단수집거부</span></a></li>
@@ -244,8 +244,8 @@ body.hide-focus-ring *:focus {
 			<p class="bul-stars b">입력하신 로그인정보가 5회 연속 불일치 시 로그인이 제한되며   아래의 비밀번호 찾기를 통해 해제하실 수 있습니다.</p>
 
 			<div class="etc">
-				<span><a href="/portal/member/user/idSearch.do?menuNo=200145">아이디 찾기</a></span>
-				<span><a href="/portal/member/user/findPw.do?menuNo=200146">비밀번호 찾기</a></span>
+				<span><a href="findIdForm.me">아이디 찾기</a></span>
+				<span><a href="findPasswordForm.me">비밀번호 찾기</a></span>
 				<span><a href="/portal/member/user/join.do?menuNo=200144">회원가입</a></span>
 				<span><a href="/portal/main/contents.do?menuNo=200091">회원혜택안내</a></span>
 			</div>

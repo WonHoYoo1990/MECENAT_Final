@@ -24,13 +24,17 @@ public interface MemberService {
 	// 로그인 유저
 	Member loginUser(Member m);
 
-	// 비밀번호 찾기
-	Member searchPwd(Member m);
-
-	// 비밀번호 업데이트
-	void updatePwd(Member m);
 	
 	//관리자) 멤버 전체 조회
 	ArrayList<Member> selectAllMemberList();
+
+	//비밀번호 찾기
+	Member selectMember(String email);
+
+	//비밀번호 재설정
+	int pwUpdate_M(Member loginUser);
+
+	//아이디 찾기
+	Member memberIdSearch(Member m);
 
 }

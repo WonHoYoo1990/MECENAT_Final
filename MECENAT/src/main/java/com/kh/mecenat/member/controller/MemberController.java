@@ -1,13 +1,18 @@
 package com.kh.mecenat.member.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +21,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,6 +39,10 @@ public class MemberController {
 
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+
+	@Autowired
+	private JavaMailSender mailSender;
 
 	// 회원가입 폼으로 이동
 	@RequestMapping("signupForm.me")
@@ -205,54 +215,128 @@ public class MemberController {
 		return "redirect:/";
 	}
 
+	
+	// 아이디 찾기 페이지로 이동
+	@RequestMapping("findIdForm.me")
+	public String searchIdView() {
+		return "member/search_Id";
+	}
+	
+	// 아이디 찾기 실행
+	@RequestMapping(value = "searchResultId.me")
+	public String search_result_id(HttpServletRequest request, Model model,
+		    @RequestParam(required = true, value = "userName") String userName, 
+		    @RequestParam(required = true, value = "userPhone") String userPhone,
+		    Member m) {
+		
+		try {
+		    
+		    m.setUserName(userName);
+		    m.setUserPhone(userPhone);
+		    Member memberSearch = memberService.memberIdSearch(m);
+		    
+		    model.addAttribute("m", memberSearch);
+		 
+		    
+		} catch (Exception e) {
+		    System.out.println(e.toString());
+		    model.addAttribute("msg", "오류가 발생되었습니다.");
+		}
+		return "member/search_result_Id";
+		
+		
+	}
+	
+	
 	// 비밀번호 찾기 페이지로 이동
-	@RequestMapping("searchPwdForm.me")
+	@RequestMapping("findPasswordForm.me")
 	public String searchPwdView() {
-		return "member/searchPwd";
+		return "member/search_pwd";
 	}
 
 	// 비밀번호 찾기 실행
-	@PostMapping("searchPwd.me")
-	public String searchPwd(HttpSession session, Member m, Model model) {
+	@PostMapping(value= "searchPwd.me")
+	public ModelAndView searchPwd(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException  {
 
-		Member loginUser = memberService.searchPwd(m);
+		String email = (String)request.getParameter("userId");
+		String name = (String)request.getParameter("userName");
+		
+		Member loginUser = memberService.selectMember(email);
 
-		if (loginUser == null) {
-			model.addAttribute("check", 1);
-		} else {
-			model.addAttribute("check", 0);
-			model.addAttribute("updateid", loginUser.getUserId());
+		if(loginUser != null) {
+		Random r = new Random();
+		int num = r.nextInt(999999); // 이메일 인증 번호인 랜덤난수설정
+		
+		if (loginUser.getUserName().equals(name)) {
+			session.setAttribute("email", loginUser.getEmail());
+			
+			
+			String setfrom = "sjs8739@naver.com"; // naver 보내는사람
+			String tomail = email; //받는사람
+			String title = "[MECENAT] 비밀번호변경 인증 이메일 입니다"; 
+			String content = System.getProperty("line.separator") + "안녕하세요 회원님" + System.getProperty("line.separator")
+			+ "MECENAT 비밀번호찾기(변경) 인증번호는 " + num + " 입니다." + System.getProperty("line.separator");
+		
+			
+			try {
+			MimeMessage message = mailSender.createMimeMessage();
+			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "utf-8");
+			
+			messageHelper.setFrom(setfrom); 
+			messageHelper.setTo(tomail); 
+			messageHelper.setSubject(title);
+			messageHelper.setText(content); 
+			
+			mailSender.send(message);
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+				ModelAndView mv = new ModelAndView();
+				mv.setViewName("member/numCheck");
+				mv.addObject("num", num);
+				return mv;
+			
+			}else {
+				ModelAndView mv = new ModelAndView();
+				mv.setViewName("member/search_pwd");
+				return mv;
+			}
+			}else {
+				ModelAndView mv = new ModelAndView();
+				mv.setViewName("member/search_pwd");
+				return mv;
+			}
+
+		
+		
 		}
+		
 
-		return "member/searchPwd";
-	}
-
-	// 비밀번호 바꾸기 실행
-	@RequestMapping(value = "updatePwd.me", method = RequestMethod.POST)
-	public String updatePwd(HttpSession session, String userId, Member m) {
-		m.setUserId(userId);
-		memberService.updatePwd(m);
-		return "member/updatePwd";
-	}
-
-//    // 비밀번호 바꾸기할 경우 성공 페이지 이동
-//	@RequestMapping(value="check_password_view")
-//	public String checkPasswordForModify(HttpSession session, Model model) {
-//		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
-//		
-//		if(loginUser == null) {
-//			return "member/login";
-//		} else {
-//			return "mypage/checkformodify";
-//		}
-//	}
+	//비밀번호 찾기 인증번호 확인
+	@RequestMapping(value="numCheck.me", method = RequestMethod.POST)
+	public String numCheck(@RequestParam(value="email_injeung") String email_injeung,
+			@RequestParam(value = "num") String num) throws IOException{
+		
+		if(email_injeung.equals(num)) {
+			return "member/pw_new";
+		}
+		else {
+			return "member/search_pwd";
+		}
+} 
 	
-	
-	
-	
-	
-	
-	
+	//비밀번호 업데이트
+	@RequestMapping(value = "/pw_new.me", method = RequestMethod.POST)
+	public String pw_new(Member loginUser, HttpSession session) throws IOException{
+		int result = memberService.pwUpdate_M(loginUser);
+		if(result == 1) {
+			return "member/login";
+		}
+		else {
+			System.out.println("pw_update"+ result);
+			return "member/pw_new";
+		}
+}
 	
 	
 	@RequestMapping("memberDel.manager")

@@ -8,6 +8,12 @@
 <html>
 <head>
 <body class="hide-focus-ring">
+	<c:if test="${not empty alertMsg}">
+		<script type="text/javascript">
+			alert("${alertMsg}");
+		</script>
+		<c:remove var="alertMsg" scope="session"/>
+	</c:if>
 	<section id="wrap">
 
 		<!-- // -->
