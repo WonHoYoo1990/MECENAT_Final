@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MECENAT</title>
 
 <!-- 인터넷 -->
 <link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/aos.css">
@@ -41,6 +41,20 @@
 
 </head>
 <body class="hide-focus-ring">
+	
+	<c:if test="${not empty errorMsg}">
+		<script type="text/javascript">
+			alert("${errorMsg}");
+			<%session.removeAttribute("errorMsg"); %>
+		</script>
+	</c:if>
+	<c:if test="${not empty alertMsg}">
+		<script type="text/javascript">
+			alert("${alertMsg}");
+			<%session.removeAttribute("alertMsg"); %>
+		</script>
+	</c:if>
+
 	<section id="wrap">
 
 		<div class="open_bg"></div>

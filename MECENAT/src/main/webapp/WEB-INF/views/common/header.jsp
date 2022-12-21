@@ -8,10 +8,10 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<meta name="description" content="Anime Template">
-	<meta name="keywords" content="Anime, unica, creative, html">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width">
+	<meta property="og:title" content="세종문화회관">
+	<meta property="og:image" content="https://www.sejongpac.or.kr/static/portal/img/main/201105_mtimg.jpg">
 	<title>Header | Template</title>
 	
 	<!-- 인터넷 -->
@@ -43,7 +43,20 @@
 </head>
 <body class="hide-focus-ring">
 	<section id="wrap">
-
+		<div class="wrap" style="opacity: 1;">
+		
+		<span itemscope="" itemtype="http://schema.org/Organization" style="display: none;">
+			<link itemprop="url" href="https://www.sejongpac.or.kr">
+			<a itemprop="sameAs" href="https://www.youtube.com/channel/UCCqaPJqI5q1kfO51qWWOjrQ"><span class="hide">유튜브</span></a>
+			<a itemprop="sameAs" href="https://www.instagram.com/sejongcenter/"><span class="hide">인스타그램</span></a>
+			<a itemprop="sameAs" href="https://www.facebook.com/sjcenter"><span class="hide">페이스북</span></a>
+			<a itemprop="sameAs" href="https://blog.naver.com/sejongnanum"><span class="hide">블로그</span></a>
+			<a itemprop="sameAs" href="https://twitter.com/SEJONG_CENTER"><span class="hide">트위터</span></a>
+		</span>
+		<script src="/static/portal/js/ksearch/top_apc.js"></script>
+		<div id="seoul-common-gnb"></div>
+		
+		
 		<!-- // -->
 		<header id="header" class="clearfix">
 			<h1 id="logo" >
@@ -202,16 +215,6 @@
 						</ul></li>
 					</c:otherwise>
 				</c:choose>
-				
-				<!-- 
-				<li class="li login_N" style="display: none;"><a href="/portal/member/user/forLogin.do?menuNo=200100">LOGIN</a></li>
-				<li class="li link login_Y" style=""><a href="#" class="t">MYPAGE</a>
-					<ul class="depth">
-						<li><a href="myPage.me">MYPAGE</a></li>
-						<li><a href="loginForm.me">LOGOUT</a></li>
-				</ul></li>
-				 -->
-				
 				<li class="li"><a href="/eng/main/main.do" target="_blank" title="새창으로 열립니다.">ENG</a></li>
 				<li class="ticket tablet"><a href="javascript:checkList();" class="btn-ticket btn">TICKET</a></li>
 				<li class="pc_only"><a href="javascript:checkList();" title="새창으로 열립니다.">TICKET</a></li>
@@ -483,22 +486,6 @@
 					});
 				}
 
-				//웃는남자 상단 메뉴 링크 막음 
-
-				/*
-				$(function(){
-					var msg0001 = "트래픽으로 인해 메뉴 사용이 제한되오니 양해부탁드립니다.\\n제한 시간 :  13:00 ~ 15:00\\n(※트래픽 상황에 따라 시간은 변동될 수 있습니다.)";
-					$("#top_nav, #lnb_m").each(function(){
-						var ahref = $(this).find("a");
-						
-						ahref.each(function(){
-							$(this).attr("href", "javascript:alert('"+msg0001+"');");
-							$(this).attr("target", "");
-						});
-					});
-				});
-				 */
-
 				// 상단 돋보기 클릭시 펼침메뉴 우측 추천 공연 //
 				drawTopLeftList();
 
@@ -584,7 +571,8 @@
 			console.log("248");
 		</script>
 		<script src="./resources/sejongpac/static/portal/js/common.js"></script>
-
+		
+		</div>
 	</section>
 	
 	

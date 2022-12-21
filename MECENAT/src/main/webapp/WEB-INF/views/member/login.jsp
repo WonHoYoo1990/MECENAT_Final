@@ -18,7 +18,7 @@
 <meta name="google-signin-client_id" content="113025989816-nnav0npepl2lv7h086hhmrekli0bk1tt.apps.googleusercontent.com">
 <meta property="og:title" content="세종문화회관">
 <meta property="og:image" content="https://www.sejongpac.or.kr/static/portal/img/main/201105_mtimg.jpg">
-<title>티켓 구입방법 | 예매안내 | 고객센터 |</title>
+<title>로그인 | 통합회원서비스|</title>
 
 <!-- 인터넷 -->
 <link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/aos.css">
@@ -91,16 +91,16 @@ body.hide-focus-ring *:focus {
 
 
 
+		<!-- 베너  Start -->
 		<section id="sub_visual">
 			<div class="bg_w">
-				<div class="bg" style="background-image: url(&quot;/static/portal/img/common/subvisual-common.jpg&quot;); transform: translate(-9.48087px, 10px) scale(1.1);"></div>
+				<div class="bg" style="background-image: url(./resources/sejongpac/static/commons/img/member/signupBackground.jpg); transform: translate(-19.9989px, 9.99961px) scale(1.1);"></div>
 			</div>
-
 			<h2 class="sub-t">
 				<strong class="ani" style="opacity: 1;">로그인</strong>
 			</h2>
-
 		</section>
+		<!-- 배너 End -->
 		
 		<div id="depth_w" class="">
 		<div class="inner">

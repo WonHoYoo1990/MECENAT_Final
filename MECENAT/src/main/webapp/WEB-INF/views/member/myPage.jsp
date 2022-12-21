@@ -59,9 +59,15 @@ body.hide-focus-ring *:focus {
 	<c:if test="${not empty errorMsg}">
 		<script type="text/javascript">
 			alert("${errorMsg}");
+			<%session.removeAttribute("errorMsg"); %>
 		</script>
 	</c:if>
-	<h1 style="font-weight:bold; color: white;">${errorMsg}</h1>
+	<c:if test="${not empty alertMsg}">
+		<script type="text/javascript">
+			alert("${alertMsg}");
+			<%session.removeAttribute("alertMsg"); %>
+		</script>
+	</c:if>
 	
 	<section id="wrap">
 		<dl class="accessibilityWrap">

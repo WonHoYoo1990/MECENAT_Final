@@ -69,7 +69,9 @@ body.hide-focus-ring *:focus {
 			<div class="bg_w">
 				<div class="bg" style="background-image: url(./resources/sejongpac/static/commons/img/member/signupBackground.jpg); transform: translate(-19.9989px, 9.99961px) scale(1.1);"></div>
 			</div>
-			<h2 class="sub-t"><strong class="ani" style="opacity: 1;">회원가입</strong></h2>
+			<h2 class="sub-t">
+				<strong class="ani" style="opacity: 1;">회원가입</strong>
+			</h2>
 		</section>
 		<!-- 배너 End -->
 
@@ -137,7 +139,8 @@ body.hide-focus-ring *:focus {
 				}
 			}).resize();
 		</script>
-
+		
+		
 		<!-- 본문 시작 -->
 		<div id="cont">
 			<div id="sub_page">
@@ -207,26 +210,6 @@ body.hide-focus-ring *:focus {
 								message : "비밀번호가 일치하지 않습니다."
 							});
 
-							// 부모님 동의
-							if (isDate($('[name=birthdayYear]').val()
-									+ '-'
-									+ lpad($('[name=birthdayMonth]').val(), 2,'0')
-									+ '-'
-									+ lpad($('[name=birthdayDay]').val(), 2,'0'))) {
-								if (isKid($('[name=birthdayYear]').val()
-										+ ''
-										+ lpad($('[name=birthdayMonth]').val(),2, '0')
-										+ ''
-										+ lpad($('[name=birthdayDay]').val(),2, '0'))) {
-									var parentName = $('#parentName').val().trim();
-									var parentDupinfo = $('#parentDupinfo').val().trim();
-									var parentBirthday = $('#parentBirthday').val().trim();
-									if (parentName == "" || parentDupinfo == ""|| parentBirthday == "") {
-										alert("만 14세 미만의 어린이는 보호자 동의가 필요합니다.");
-										return;
-									}
-								}
-							}
 							v.add("memberZipCd", {
 								required : true
 							});
@@ -235,17 +218,6 @@ body.hide-focus-ring *:focus {
 								return false;
 							}
 							
-							var serverAuth = $("#serverAuth").val();
-							if (serverAuth == "") {
-								alert('휴대폰인증을 해주세요.');
-								return;
-							}
-
-
-							if ($('#vodTextDistYn').is(":checked") != false) {
-								$('#ctsId').val('');
-							}
-
 							var result = v.validate();
 							
 							if (!result) {
@@ -260,7 +232,6 @@ body.hide-focus-ring *:focus {
 							var tel = tel1 + '-' + tel2 + '-' + tel3;
 							
 							$('#userPhone').val(tel);
-							
 
 							var birthdayYear = $('[name=birthdayYear]').val();
 							var birthdayMonth = lpad($('[name=birthdayMonth]').val(), 2, '0');
@@ -275,61 +246,11 @@ body.hide-focus-ring *:focus {
 								extID = "";
 								dupinfo = extCode + "_" + extID;
 							} else {
-								dupinfo = "S_" + $("#userId").val() + "_"
-										+ tel;
+								dupinfo = "S_" + $("#userId").val() + "_" + tel;
 							}
 							
 							$("#dupinfo").val(dupinfo);
 							$("#extId").val(extID);
-
-							if ($("#cbdYear").val() != ""
-								&& $("#cbdMonth").val() != ""
-								&& $("#cbdDay").val() != "") {$("#childrenBirthDay1").val($("#cbdYear").val()+ $("#cbdMonth").val()+ $("#cbdDay").val());
-							}
-							if ($("#cbdYear2").val() != ""
-								&& $("#cbdMonth2").val() != ""
-								&& $("#cbdDay2").val() != "") {$("#childrenBirthDay2").val($("#cbdYear2").val()+ $("#cbdMonth2").val()+ $("#cbdDay2").val());
-							}
-							if ($("#cbdYear3").val() != ""
-								&& $("#cbdMonth3").val() != ""
-								&& $("#cbdDay3").val() != "") {$("#childrenBirthDay3").val($("#cbdYear3").val()+ $("#cbdMonth3").val()+ $("#cbdDay3").val());
-							}
-							if ($("#cbdYear4").val() != ""
-								&& $("#cbdMonth4").val() != ""
-								&& $("#cbdDay4").val() != "") {$("#childrenBirthDay4").val($("#cbdYear4").val()+ $("#cbdMonth4").val()+ $("#cbdDay4").val());
-							}
-
-							if ($("#childrenCnt").val() > 0) {
-								if ($("#childrenBirthDay1").val() == "") {
-									alert("자녀의 생년월일을 선택해 주세요.");
-									$("#cbdYear").focus();
-									return;
-								}
-							}
-
-							if ($("#childrenCnt").val() > 1) {
-								if ($("#childrenBirthDay2").val() == "") {
-									alert("자녀의 생년월일을 선택해 주세요.");
-									$("#cbdYear2").focus();
-									return;
-								}
-							}
-
-							if ($("#childrenCnt").val() > 2) {
-								if ($("#childrenBirthDay3").val() == "") {
-									alert("자녀의 생년월일을 선택해 주세요.");
-									$("#cbdYear3").focus();
-									return;
-								}
-							}
-
-							if ($("#childrenCnt").val() > 3) {
-								if ($("#childrenBirthDay4").val() == "") {
-									alert("자녀의 생년월일을 선택해 주세요.");
-									$("#cbdYear4").focus();
-									return;
-								}
-							}
 
 							if (!confirm('등록 하시겠습니까?')) {
 								return fasle;
@@ -339,46 +260,7 @@ body.hide-focus-ring *:focus {
 								$("#userPhone").val($("#tel1").val() + "-"+ $("#tel2").val() + "-"+ $("#tel3").val());
 							}
 
-							if ($("#weddingDate1").val() != "" && $("#weddingDate2").val() != "" && $("#weddingDate3").val() != "") {
-								$("#weddingDate").val($("#weddingDate1").val()+ $("#weddingDate2").val()+ $("#weddingDate3").val());
-							}
-
 							form.submit();
-						}
-
-						function goPopup() {
-							var pop = window.open(
-											"/juso/popup/jusoPopup.jsp", "pop",
-											"width=570,height=420, scrollbars=yes, resizable=yes");
-						}
-
-						function jusoCallBack(roadFullAddr, roadAddrPart1,
-								addrDetail, roadAddrPart2, engAddr, jibunAddr,
-								zipNo, admCd, rnMgtSn, bdMgtSn, detBdNmList,
-								bdNm, bdKdcd, siNm, sggNm, emdNm, liNm, rn,
-								udrtYn, buldMnnm, buldSlno, mtYn, lnbrMnnm,
-								lnbrSlno, emdNo, entX, entY) {
-
-							$("#memberZipCd").val(zipNo);
-							$("#memberAddr1").val(roadFullAddr);
-							$("#memberAddr2").val(addrDetail);
-						}
-
-						function checkPlusPopup() {
-							window.open('',
-										'checkPluspopupChk',
-										'width=500, height=550, top=100, left=100, fullscreen=no, menubar=no, status=no, toolbar=no, titlebar=yes, location=no, scrollbar=no');
-							document.form_chk.action = "https://nice.checkplus.co.kr/CheckPlusSafeModel/checkplus.cb";
-							document.form_chk.target = "checkPluspopupChk";
-							document.form_chk.submit();
-						}
-
-						function setAuthIn(dupInfo, name, birth, gender, cell) {
-							$('#parentName').val(name);
-							$('#parentDupinfo').val(dupInfo);
-							$('#parentBirthday').val(birth);
-							$('#parentAuthGubun').val('A00008');
-							alert('실명확인되었습니다');
 						}
 
 						function registUserAuth() {
@@ -455,42 +337,41 @@ body.hide-focus-ring *:focus {
 								$("#chkuserEmailYN").val("N");
 							});
 							
-							$(".chkuserEmail").click(
-									function() {
-										var email = $("#email").val();
-										
-										if (email == '') {
-											alert("이메일을 입력해주세요.");
-											$('#email').focus();
-											return false;
-										}
+							$(".chkuserEmail").click(function() {
+								var email = $("#email").val();
+								
+								if (email == '') {
+									alert("이메일을 입력해주세요.");
+									$('#email').focus();
+									return false;
+								}
 
-										if (!email.match('^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$')) {
-											alert('이메일은 ex) abcd@mecenat.com 의 형식에 맞춰서 작성해 주세요.');
+								if (!email.match('^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$')) {
+									alert('이메일은 ex) abcd@mecenat.com 의 형식에 맞춰서 작성해 주세요.');
+									$('#email').focus();
+									return false;
+								}
+								
+								$.ajax({
+									url : "checkDupEmail.me",
+									data : {
+										checkEmail : email
+									},
+									success : function(result) {
+										if (result == "NNNNN") { 
+											alert("이메일이 중복됩니다.");
+											$("#chkuserEmailYN").val("N");
 											$('#email').focus();
 											return false;
 										}
-										
-										$.ajax({
-											url : "checkDupEmail.me",
-											data : {
-												checkEmail : email
-											},
-											success : function(result) {
-												if (result == "NNNNN") { 
-													alert("이메일이 중복됩니다.");
-													$("#chkuserEmailYN").val("N");
-													$('#email').focus();
-													return false;
-												}
-												alert("사용 가능한 이메일입니다.");
-												$("#chkuserEmailYN").val("Y");
-											},
-											error : function() {
-												console.log("통신 실패!")
-											}
-										})
-									});
+										alert("사용 가능한 이메일입니다.");
+										$("#chkuserEmailYN").val("Y");
+									},
+									error : function() {
+										console.log("통신 실패!")
+									}
+								})
+							});
 						});
 					</script>
 
@@ -501,10 +382,6 @@ body.hide-focus-ring *:focus {
 						<input type="hidden" name="extCode" id="extCode" value=""> 
 						<input type="hidden" id="stipulationType" name="stipulation_type" value=""> 
 						<input type="hidden" id="effectiveDate" name="effective_date" value=""> 
-						<input type="hidden" id="parentName" name="parentName" value=""> 
-						<input type="hidden" id="parentDupinfo" name="parentDupinfo" value=""> 
-						<input type="hidden" id="parentBirthday" name="parentBirthday" value=""> 
-						<input type="hidden" id="parentAuthGubun" name="parentAuthGubun" value=""> 
 						<input type="hidden" id="joinType" name="joinType" value=""> 
 						<input type="hidden" name="regIdCheckFl" value="N"> 
 						<input type="hidden" name="joinTypeCode" value="0001"> 
@@ -731,12 +608,6 @@ body.hide-focus-ring *:focus {
 											</div>
 										</div>
 									</li>
-									<li class="item manAgeSet" style="display: none"><label for="parent" class="t">부모님동의 <span class="color-purple">*</span></label>
-										<div class="cont">
-											<span class="txt">만 14세 미만의 어린이는 보호자 동의가 필요합니다.</span>
-											<button type="button" class="bg-black" onclick="javascript:checkPlusPopup();return false;">부모님 휴대전화 인증</button>
-										</div>
-									</li>
 									<li class="item"><strong class="t">주소 <span class="color-purple">*</span></strong>
 										<div class="cont">
 											<ul class="add">
@@ -810,9 +681,6 @@ body.hide-focus-ring *:focus {
 												</ul>
 												<input type="hidden" name="userPhone" id="userPhone" value="">
 											</div>
-											<div class="tel_confirm" style="margin-top: 10px;">
-												<!-- <label for="smsAuthNumber" class="hide">인증번호 입력</label> <input type="text" name="smsAuthNumber" id="smsAuthNumber" placeholder="인증번호 6자리 숫자 입력" maxlength="6"> <input type="hidden" name="serverAuth" id="serverAuth"> -->
-											</div>
 										</div>
 									</li>
 								</ul>
@@ -823,51 +691,16 @@ body.hide-focus-ring *:focus {
 							</div>
 						</article>
 					</form>
-					
-					
-					
-					
-
-					<form name="form_chk" method="post">
-						<input type="hidden" name="m" value="checkplusSerivce">
-						<!-- 필수 데이타로, 누락하시면 안됩니다. -->
-						<input type="hidden" name="EncodeData" value="AgAFRzY2OTk8DAPean4bRcEs2DfOrt8xzDwq50B5ModxJ8R93TmbvUGBS6kaH0geIGMa2q9CDDCTXGOxZ9e14WVJQFZLRNW3I3+bm3RiM5qzFgm5iVT590qFh+OdXtZOSMJXRbGoPK5s6zgJy1njjbJu6GsQxq5Ieeyc3aAkXn2azreIWgzEO19wTrzmlt7uB4NbqD+nx+8V2TTSHN9kD8FlWywC/FJOlwcTIW2wePJSwYctkTBaaegLxCfI+osQ2owzASl9T6mg6pGz/7qMNjni73TnYh/J9DjIH673VNib7EiDJrYSkFsrQHMiw6VC5zB6NQCs2rxGiimiDb7FyN8rZYqOEkqWZy/i3hTwfMS6gw0oJrLMg4WtpwKaKFiSZLHlC62oNlCzfxRpyLyYv6v2omsJR+cxDwMetZHqnCioP0IrQ6RwAZ8pa2bYXW+9KZTZ++I3zX8jYC1FWIpJY1raAg6dx7gyDNtUVldr1VZBCvVOpHzXFg==">
-						<!-- 위에서 업체정보를 암호화 한 데이타입니다. -->
-					</form>
-
 					<script>
-						function isKid(birthday) {
-							var nowage = birthday;
-							var now = new Date();
-							var year = now.getFullYear();
-							var mon = (now.getMonth() + 1) > 9 ? ''
-									+ (now.getMonth() + 1) : '0'
-									+ (now.getMonth() + 1);
-							var day = now.getDate() > 9 ? '' + now.getDate()
-									: '0' + now.getDate();
-							var todays = year + mon + day;
-							var dif = todays - parseInt(nowage) - 140000;
-
-							if (dif >= 0) {
-								return false;
-							} else {
-								return true;
-							}
-						}
-						
 						function isDate(dayStr) {
 							var valid = false;
-							if (dayStr
-									.search(/\d{4}-(0[1-9]|1[0-2])-([0-3][0-9])/) == 0) {
+							if (dayStr.search(/\d{4}-(0[1-9]|1[0-2])-([0-3][0-9])/) == 0) {
 								var arrDay = dayStr.split("-");
 								var year = parseInt(arrDay[0]);
-								var month = parseInt(arrDay[1].replace(
-										/^0(\d)/g, "$1"));
-								var day = parseInt(arrDay[2].replace(/^0(\d)/g,
-										"$1"));
+								var month = parseInt(arrDay[1].replace(/^0(\d)/g, "$1"));
+								var day = parseInt(arrDay[2].replace(/^0(\d)/g,"$1"));
 								var d = new Date(year, month - 1, day);
-								if (d.getMonth() == month - 1
-										&& d.getDate() == day)
+								if (d.getMonth() == month - 1 && d.getDate() == day)
 									valid = true;
 							}
 							return valid;
@@ -879,35 +712,6 @@ body.hide-focus-ring *:focus {
 							}
 							return val;
 						}
-
-						$('[name=birthdayYear], [name=birthdayMonth], [name=birthdayDay]').change(
-								
-								function(event) {
-									if (isDate($('[name=birthdayYear]')
-											.val()
-											+ '-'
-											+ lpad(
-													$('[name=birthdayMonth]').val(), 2,'0')
-											+ '-'
-											+ lpad(
-													$('[name=birthdayDay]').val(), 2,'0'))) {
-										if (isKid($(
-												'[name=birthdayYear]')
-												.val()
-												+ ''
-												+ lpad(
-														$('[name=birthdayMonth]').val(),2, '0')
-												+ ''
-												+ lpad(
-														$('[name=birthdayDay]').val(),2, '0'))) {
-											$('.manAgeSet').show()
-										} else {
-											$('.manAgeSet').hide()
-										}
-									} else {
-										$('.manAgeSet').hide()
-									}
-							});
 					</script>
 				</div>
 			</div>

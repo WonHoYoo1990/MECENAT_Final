@@ -1,7 +1,6 @@
 package com.kh.mecenat.member.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
@@ -16,8 +15,6 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,8 +27,8 @@ import com.kh.mecenat.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
 
+
 @Controller
-@Slf4j
 public class MemberController {
 
 	@Autowired
@@ -64,16 +61,12 @@ public class MemberController {
 	// 회원가입 등록
 	@RequestMapping("signup.me")
 	public ModelAndView signup(Member m, ModelAndView mv, HttpSession session) {
-		log.info("signup");
 
 		String encPwd = bCryptPasswordEncoder.encode(m.getUserPwd());
-		log.info("encPwd : {}", encPwd);
 
 		m.setUserPwd(encPwd);
-		log.info("m : {}", m);
 		
 		int result = memberService.signup(m);
-		log.info("result : {}", result);
 
 		if (result > 0) {
 			Member loginUser = memberService.loginMember(m.getUserId());
@@ -90,22 +83,22 @@ public class MemberController {
 	}
 
 	// 회원 탈퇴
-	@RequestMapping("delete.me")
+	@RequestMapping("deleteMember.me")
 	public ModelAndView deleteMember(String userPwd, HttpSession session, ModelAndView mv) {
-
-		log.info("deleteMember");
 
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		String userId = loginUser.getUserId();
 		String loginUserPwd = loginUser.getUserPwd();
+		
+		System.out.println("loginUser : " + loginUser);
+		System.out.println("userId : " + userId);
+		System.out.println("loginUserPwd : " + loginUserPwd);
+		System.out.println("userPwd : " + userPwd);
 
-		log.info("loginUser : {}", loginUser);
-		log.info("userId : {}", userId);
-		log.info("loginUserPwd : {}", loginUserPwd);
 
 		if (bCryptPasswordEncoder.matches(userPwd, loginUserPwd)) { // 입력한 비밀번호와 암호화 비밀번호가 일치할 경우
 			int result = memberService.deleteMember(userId);
-			log.info("result : {}", result);
+			System.out.println("result : " + result);
 
 			if (result > 0) {
 				session.removeAttribute("loginUser");
@@ -163,11 +156,10 @@ public class MemberController {
 	}
 
 	// 로그인 폼으로 이동
-	@GetMapping("loginForm.me")
+//	@GetMapping("loginForm.me")
+	@RequestMapping("loginForm.me")
 	public String enrollForm() {
-
-		// WEB-INF/views/member/memberEnrollForm.jsp 로 포워딩
-		return "/member/login";
+		return "member/login";
 
 	}
 

@@ -236,7 +236,6 @@ body.hide-focus-ring *:focus {
 		</div>
 	</form>
 	</div><!-- .group -->
-
 </article>
 
 <form method="post" name="authForm">
