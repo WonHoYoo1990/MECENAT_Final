@@ -44,7 +44,13 @@ public class MemberController {
 	// 마이페이지 이동
 	@RequestMapping("myPage.me")
 	public String myPageForm() {
-		return "member/myPage2";
+		return "member/myPage";
+	}
+
+	// 회원정보 수정 페이지 이동
+	@RequestMapping("updateMemberForm.me")
+	public String updateMemberForm() {
+		return "member/updateMemberForm";
 	}
 
 	// 회원가입 등록

@@ -92,9 +92,7 @@ body.hide-focus-ring *:focus {
 
 		<section id="sub_visual">
 			<div class="bg_w">
-
 				<div class="bg" style="background-image: url(&quot;/static/portal/img/common/subvisual-common.jpg&quot;); transform: translate(-9.48087px, 10px) scale(1.1);"></div>
-
 			</div>
 
 			<h2 class="sub-t">
