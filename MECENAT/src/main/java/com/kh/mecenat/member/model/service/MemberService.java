@@ -13,10 +13,10 @@ public interface MemberService {
 	int deleteMember(String userId);
 
 	// ID 중복 체크
-	int checkId(String checkId);
+	int checkDupId(String checkId);
 
 	// EMAIL 중복 체크
-	int checkEmail(String checkEmail);
+	int checkDupEmail(String checkEmail);
 
 	// 로그인 서비스
 	Member loginMember(String userId);

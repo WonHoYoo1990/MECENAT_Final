@@ -45,11 +45,6 @@
 <!-- 주소 찾기 API -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-
-
-<!--[if lt IE 9]>
-<script src="/static/portal/js/html5.js"></script>
-<![endif]-->
 <style>
 body.hide-focus-ring *:focus {
 	outline: none !important;
@@ -68,63 +63,79 @@ body.hide-focus-ring *:focus {
 		<!-- 배너 End -->
 
 		<!-- DropDown List Start -->
-		<div id="depth_w" class="">
+		<div id="depth_w">
 			<div class="inner">
 				<ul class="clearfix dot dep1 li2">
-					<li class="home"><span><span>HOME</span></span></li>
-					<li>
-						<div class="rel">
-							<a href="#"><span>통합회원서비스</span></a>
-							<ul class="depth" style="display: none;">
-								<li><a href="/portal/subMain/perform.do?menuNo=200001">공연·전시·강좌</a></li>
-								<li><a href="/portal/bbs/B0000002/list.do?menuNo=200012">대관안내</a></li>
-								<li><a href="/portal/qestnar/qustnr/list.do?status=T&amp;menuNo=200027">참여공간</a></li>
-								<li><a href="/portal/bbs/B0000001/list.do?menuNo=200042">뉴스·소식</a></li>
-								<li><a href="/portal/main/contents.do?menuNo=200082">고객센터</a></li>
-								<li><a href="https://www.sjartgroups.or.kr/sjartgroups/main/main.do" target="_blank" title="새창 열림">서울시예술단</a></li>
-							</ul>
-						</div>
+					<li class="home">
+						<span><span>HOME</span></span>
 					</li>
 					<li>
 						<div class="rel">
-							<a href="#"><span>회원가입</span></a>
-							<ul class="depth" style="display: none;">
-								<li><a href="/portal/main/contents.do?menuNo=200099"><span>서비스소개</span></a></li>
-								<li><a href="loginForm.me"><span>로그인</span></a></li>
-								<li><a href="signupForm.me"><span>회원가입</span></a></li>
-								<li><a href="/portal/member/user/idSearch.do?menuNo=200145"><span>아이디 찾기</span></a></li>
-								<li><a href="/portal/member/user/findPw.do?menuNo=200146"><span>패스워드 찾기</span></a></li>
-								<li><a href="/portal/main/contents.do?menuNo=200148"><span>개인정보처리방침</span></a></li>
-								<li><a href="/portal/main/contents.do?menuNo=200150"><span>이메일무단수집거부</span></a></li>
-								<li><a href="/portal/main/contents.do?menuNo=200164"><span>고객서비스헌장</span></a></li>
-								<li><a href="/portal/singl/siteMap/list.do?menuNo=200162"><span>사이트 맵</span></a></li>
+						<a href="#"><span>마이페이지</span></a>
+						<ul class="depth">
+							
+							<li><a href="/portal/subMain/perform.do?menuNo=200001">공연·전시·강좌</a>
+							
+							</li><li><a href="/portal/bbs/B0000002/list.do?menuNo=200012">대관안내</a>
+							
+							</li><li><a href="/portal/qestnar/qustnr/list.do?status=T&amp;menuNo=200027">참여공간</a>
+							
+							</li><li><a href="/portal/bbs/B0000001/list.do?menuNo=200042">뉴스·소식</a>
+							
+							</li><li><a href="/portal/main/contents.do?menuNo=200082">고객센터</a>
+							
+							</li><li><a href="https://www.sjartgroups.or.kr/sjartgroups/main/main.do" target="_blank" title="새창 열림">서울시예술단</a>
+							
+						</li></ul>
+						</div>
+					</li>
+					
+					<li>
+						<div class="rel">
+							<a href="#"><span>회원정보 수정</span></a>
+							<ul class="depth">
+								<li><a href="/portal/myPage/individual/list.do?menuNo=200153"><span>개인화 서비스</span></a></li>
+								
+								<li><a href="/portal/myPage/reservation/list.do?menuNo=200154"><span>예매내역확인</span></a></li>
+								
+								<li><a href="/portal/myPage/happyApply/list.do?menuNo=200155"><span>천원의행복 신청내역</span></a></li>
+								
+								<li><a href="/portal/myPage/package/gift.do?menuNo=200160"><span>패키지 선물</span></a></li>
+								
+								<li><a href="/portal/myPage/scrap/list.do?menuNo=200157"><span>관심 공연/전시</span></a></li>
+								
+								<li><a href="/portal/myPage/qnaMng/list.do?menuNo=200158"><span>고객문의내역</span></a></li>
+								
+								<li><a href="/portal/myPage/acntMng/forUpdate.do?menuNo=200168"><span>회원정보 수정</span></a></li>
+								
+								<li><a href="/portal/myPage/sns/sns.do?menuNo=200159"><span>SNS연결설정</span></a></li>
 							</ul>
 						</div>
 					</li>
 				</ul>
 			</div>
-		</div>
+		</div>		
 		<!-- DropDown List End -->
 		<script>
-			$(window).resize(function() {
-				if ($(window).width() > 1024) {
-					$("#depth_w .rel").hover(function() {
+			$(window).resize(function(){
+				if ( $(window).width() > 1024 ){
+					$("#depth_w .rel").hover(function(){
 						$(this).closest("#depth_w").addClass("on")
 						$(this).find(".depth").show();
-					}, function() {
+					},function(){
 						$(this).closest("#depth_w").removeClass("on")
 						$(this).find(".depth").hide();
 					})
-					$("#depth_w .rel > a").focus(function() {
+					$("#depth_w .rel > a").focus(function(){
 						$(this).closest("#depth_w").addClass("on")
 						$(this).next(".depth").show();
 					})
-					$("#depth_w .depth > li:last-child a").focusout(function() {
+					$("#depth_w .depth > li:last-child a").focusout(function(){
 						$(this).closest("#depth_w").removeClass("on")
-						$("#depth_w .depth").stop(true, true).slideUp(150);
+						$("#depth_w .depth").stop(true,true).slideUp(150);
 					})
-				} else {
-					$("#depth_w .rel").click(function() {
+				}else {
+					$("#depth_w .rel").click(function(){
 						$(this).closest("#depth_w").toggleClass("on")
 						$(this).find(".depth").toggle();
 					})

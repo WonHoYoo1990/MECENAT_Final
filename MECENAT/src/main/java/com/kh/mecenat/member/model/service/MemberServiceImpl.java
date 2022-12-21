@@ -31,14 +31,14 @@ public class MemberServiceImpl implements MemberService {
 
 	// ID 중복 체크
 	@Override
-	public int checkId(String checkId) {
-		return memberDao.checkId(sqlSession, checkId);
+	public int checkDupId(String checkId) {
+		return memberDao.checkDupId(sqlSession, checkId);
 	}
 
 	// EMAIL 중복 체크
 	@Override
-	public int checkEmail(String checkEmail) {
-		return memberDao.checkEmail(sqlSession, checkEmail);
+	public int checkDupEmail(String checkEmail) {
+		return memberDao.checkDupEmail(sqlSession, checkEmail);
 	}
 
 	// 회원 로그인

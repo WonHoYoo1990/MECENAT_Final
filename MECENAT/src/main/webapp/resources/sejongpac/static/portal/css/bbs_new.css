@@ -539,6 +539,7 @@ a.bbs-btn-st2{display: inline-block;line-height: 4em;vertical-align: middle;}
 .member_join .ck_id{display:flex; flex-direction:column;}
 .member_join .ck_id .id_input{display:flex; margin:0.3em 0; position:relative; }
 .member_join .ck_id button{height:3.750em;width:140px;}
+.member_join .ck_email button{height:3.750em;width:140px;}
 .member_join .group{margin-top: 70px;}
 .member_join .group:first-child{margin-top: 0;}
 .member_join .sect{border-top: 1px solid #000;}
