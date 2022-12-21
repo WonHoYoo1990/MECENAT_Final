@@ -67,4 +67,16 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.selectAllMemberList(sqlSession);
 	}
 
+	//비밀번호 찾기
+	@Override
+	public Member selectMember(String email) {
+		return memberDao.selectMember(sqlSession, email);
+	}
+
+	//비밀번호 재설정
+	@Override
+	public int search_Pwd_New(Member vo) {
+		return memberDao.search_Pwd_New(sqlSession, vo);	
+	}
+
 }

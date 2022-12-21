@@ -1,13 +1,18 @@
 package com.kh.mecenat.member.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +39,10 @@ public class MemberController {
 
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
-
+	
+	@Autowired
+	private JavaMailSenderImpl mailSender;
+	
 	// 회원가입 폼으로 이동
 	@RequestMapping("signupForm.me")
 	public String signupForm() {
@@ -240,14 +248,108 @@ public class MemberController {
 			 
 			    
 			} catch (Exception e) {
-			    System.out.println(e.toString());
 			    model.addAttribute("msg", "오류가 발생되었습니다.");
 			}
 			return "member/search_result_Id";
 			
 			
 		}
+		
+		//비밀번호 찾기 페이지로 이동
+		@RequestMapping("findPwdForm.me")
+		public String searchPwdView() {
+			return "member/search_Pwd";
+		}
+		
+		//비밀번호 찾기 실행
+		@RequestMapping(value = "findPwd.me")
+		public ModelAndView search_Pwd (HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException {
+			
+			String chkEmail = (String)request.getParameter("chkEmail");
+			
+			session.setAttribute("chkEmail", chkEmail);
+			System.out.println("");
+			String name = (String)request.getParameter("name2");
 
+			Member vo = memberService.selectMember(chkEmail);
+				
+			if(vo != null) {
+			Random r = new Random();
+			int num = r.nextInt(999999); // 랜덤난수설정
+			
+			if (vo.getUserName().equals(name)) {
+				session.setAttribute("email", vo.getEmail());
+
+				String setfrom = "sjs@naver.com"; // naver 
+				String tomail = chkEmail; //받는사람
+				String title = "[MECENAT] 비밀번호변경 인증 이메일 입니다"; 
+				String content = System.getProperty("line.separator") + "안녕하세요 회원님" + System.getProperty("line.separator")
+						+ "MECENAT 비밀번호찾기(변경) 인증번호는 " + num + " 입니다." + System.getProperty("line.separator"); // 
+
+				try {
+					MimeMessage message = mailSender.createMimeMessage();
+					MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "utf-8");
+
+					messageHelper.setFrom(setfrom); 
+					messageHelper.setTo(tomail); 
+					messageHelper.setSubject(title);
+					messageHelper.setText(content); 
+
+					mailSender.send(message);
+				} catch (Exception e) {
+				}
+
+				ModelAndView mv = new ModelAndView();
+				mv.setViewName("member/search_Pwd_Email");
+				mv.addObject("num", num);
+				return mv;
+			}else {
+				ModelAndView mv = new ModelAndView();
+				mv.setViewName("member/search_Pwd");
+				return mv;
+			}
+			}else {
+				ModelAndView mv = new ModelAndView();
+				mv.setViewName("member/search_Pwd");
+				return mv;
+			}
+
+		}
+		
+		//비밀번호 이메일 인증번호 확인
+		@RequestMapping(value = "search_Pwd_Email.me", method = RequestMethod.POST)
+		public String search_Pwd_Email(@RequestParam(value="email_injeung") String email_injeung,
+					@RequestParam(value = "num") String num) throws IOException{
+				
+				if(email_injeung.equals(num)) {
+					return "member/search_Pwd_New";
+				}
+				else {
+					return "member/search_Pwd"; 
+				}
+		} 
+		
+		//비밀번호 업데이트
+		@RequestMapping(value = "search_Pwd_New.me", method = RequestMethod.POST)
+		public String search_Pwd_New(HttpSession session, String newPwd) throws IOException{
+			
+			Member vo = new Member();
+			String newEncPwd = bCryptPasswordEncoder.encode(newPwd);
+			vo.setUserPwd(newEncPwd);
+
+			String chkEmail = (String)session.getAttribute("chkEmail");
+			vo.setEmail(chkEmail);
+			
+			
+			int result = memberService.search_Pwd_New(vo);
+			
+			if(result == 1) {
+				session.setAttribute("alertMsg", "비밀번호 변경이 완료되었습니다.");
+				session.removeAttribute("chkEmail");
+				return "member/login"; 
+			}
+			else {
+				return "member/search_Pwd_New";
+			}
+	}
 }
-
-

@@ -29,6 +29,12 @@ public interface MemberService {
 	
 	//관리자) 멤버 전체 조회
 	ArrayList<Member> selectAllMemberList();
+
+	// 비밀번호 찾기
+	Member selectMember(String email);
+
+	// 비밀번호 재설정
+	int search_Pwd_New(Member vo);
 	
 	
 
