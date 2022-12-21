@@ -21,13 +21,13 @@ public class MemberDao {
 	}
 
 	// ID 중복 체크
-	public int checkId(SqlSessionTemplate sqlSession, String checkId) {
-		return sqlSession.selectOne("memberMapper.checkId", checkId);
+	public int checkDupId(SqlSessionTemplate sqlSession, String checkId) {
+		return sqlSession.selectOne("memberMapper.checkDupId", checkId);
 	}
 
 	// EMAIL 중복 체크
-	public int checkEmail(SqlSessionTemplate sqlSession, String checkEmail) {
-		return sqlSession.selectOne("memberMapper.checkEmail", checkEmail);
+	public int checkDupEmail(SqlSessionTemplate sqlSession, String checkEmail) {
+		return sqlSession.selectOne("memberMapper.checkDupEmail", checkEmail);
 	}
 
 	// 회원 로그인

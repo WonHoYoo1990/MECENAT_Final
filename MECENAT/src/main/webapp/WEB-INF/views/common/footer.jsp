@@ -12,43 +12,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width">
-<meta name="google-signin-client_id" content="113025989816-nnav0npepl2lv7h086hhmrekli0bk1tt.apps.googleusercontent.com">
-<meta property="og:title" content="세종문화회관">
-<meta property="og:image" content="https://www.sejongpac.or.kr/static/portal/img/main/201105_mtimg.jpg">
-<title>Footer | Template|</title>
-
-<!-- 인터넷 -->
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/aos.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/bbs_new.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/fonts.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/layout_new.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/main_new.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/pop_all.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/reset.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/responsive_new.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/sitemap.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/slider.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/style.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/sub.css">
-
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-
-<script src="./resources/sejongpac/static/commons/js/jquery-3.6.0.min.js"></script>
-<script src="./resources/sejongpac/static/commons/js/jquery-ui.1.12.1.min.js"></script>
-<script src="./resources/sejongpac/static/portal/js/slider.js"></script>
-<script src="./resources/sejongpac/static/ticket/ticket.js"></script>
-<link rel="stylesheet" href="./resources/sejongpac/static/portal/css/aos.css">
-<script src="./resources/sejongpac/static/portal/inc/netfunnel.js" charset="UTF-8"></script>
-
-
-<style>
-body.hide-focus-ring *:focus {
-	outline: none !important;
-}
-</style>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width">
+	<meta name="google-signin-client_id" content="113025989816-nnav0npepl2lv7h086hhmrekli0bk1tt.apps.googleusercontent.com">
+	<meta property="og:title" content="세종문화회관">
+	<meta property="og:image" content="https://www.sejongpac.or.kr/static/portal/img/main/201105_mtimg.jpg">
+	<title>Footer | Template|</title>
+	
+	<!-- 인터넷 -->
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/aos.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/bbs_new.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/fonts.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/layout_new.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/main_new.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/pop_all.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/responsive_new.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/sitemap.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/slider.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/style.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/sub.css">
+	
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	
+	<script src="./resources/sejongpac/static/commons/js/jquery-3.6.0.min.js"></script>
+	<script src="./resources/sejongpac/static/commons/js/jquery-ui.1.12.1.min.js"></script>
+	<script src="./resources/sejongpac/static/portal/js/slider.js"></script>
+	<script src="./resources/sejongpac/static/ticket/ticket.js"></script>
+	<link rel="stylesheet" href="./resources/sejongpac/static/portal/css/aos.css">
+	<script src="./resources/sejongpac/static/portal/inc/netfunnel.js" charset="UTF-8"></script>
+	
+	
+	<style>
+		body.hide-focus-ring *:focus {
+			outline: none !important;
+		}
+	</style>
 </head>
 <body class="hide-focus-ring">
 	<section id="wrap">
