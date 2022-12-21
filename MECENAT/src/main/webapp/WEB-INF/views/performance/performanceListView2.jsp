@@ -90,18 +90,6 @@
 	</div>
 
 	<script>
-		function deletePerfList(){
-			$.ajax({
-				url:"delete.perf",
-				success: function(){
-					alert("삭제입니다");
-				},
-				error: function(){
-					console.log("통신 실패");
-				}
-			})
-		}
-		
 	</script>
 
 
