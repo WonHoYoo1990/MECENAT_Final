@@ -42,7 +42,8 @@
 <script src="./resources/sejongpac/static/ticket/ticket.js"></script>
 <link rel="stylesheet" href="./resources/sejongpac/static/portal/css/aos.css">
 <script src="./resources/sejongpac/static/portal/inc/netfunnel.js" charset="UTF-8"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
 
 <!--[if lt IE 9]>
@@ -245,7 +246,7 @@ body.hide-focus-ring *:focus {
 
 			<div class="etc">
 				<span><a href="findIdForm.me">아이디 찾기</a></span>
-				<span><a href="findPasswordForm.me">비밀번호 찾기</a></span>
+				<span><a href="findPwdForm.me">비밀번호 찾기</a></span>
 				<span><a href="/portal/member/user/join.do?menuNo=200144">회원가입</a></span>
 				<span><a href="/portal/main/contents.do?menuNo=200091">회원혜택안내</a></span>
 			</div>
@@ -328,6 +329,13 @@ function captchaChk(){
 	return rtn;
 } 
 */
+$(document).ready(function() {
+	var msg = "${msg}";
+	if(msg != ""){
+	alert(msg);    
+	}
+	});
+
 
 function actionLogin(form){
 	var username = $("#userId").val();
@@ -506,12 +514,6 @@ function onLoadGoogleCallback() {
 	</div>
 
 </div>
-
-
-
-
-		ㅡ,ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-
 
 
 		<!-- footer Section Begin -->

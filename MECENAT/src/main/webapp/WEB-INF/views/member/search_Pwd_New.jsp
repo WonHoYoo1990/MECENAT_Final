@@ -201,75 +201,78 @@ body.hide-focus-ring *:focus {
 
 <script src="/static/commons/js/validUtil.js"></script>
 
-<style>
+ <style>
 .tabs-st1,.tabs-st2{display: none;}
 </style>
-<article class="find_confirm inner member_com">
-	<h3 class="tit-st4">간편찾기</h3>
-	<div class="box">
-		<h4 class="t">SNS 계정으로 가입하신 경우 아이디 찾기를 이용하실 수 없습니다.</h4>
-		<form name="createForm" id="createForm" method="post" action="searchResultId.me">
-			<input type="hidden" name="chk" id="chk" value="">
-			<input type="hidden" name="cel" id="cel" value="">
-			<div class="bg">
-				<div class="in">
-					<label for="id"></label>
-					<input type="text" name="userPhone" id="userPhone" placeholder="휴대폰 번호(-를 포함해서 입력해주세요)"> 
-					<input type="text" name="userName" id="userName" placeholder="이름"> 
-					<button class="bg-black" onclick="fnId(); return false;">확인</button>
+<article class="find_member inner member_com">
+	<form action="search_Pwd_New.me" method="POST" class="content">
+	<div class="group">
+		<h3 class="tit-st4">비밀번호 변경</h3>
+		<div class="box">
+			<div class="top" id="ck_input">
+			</div>
+				<div class="form_w form2" style="">
+					<h4 class="t">새롭게 변경할 비밀번호를 입력해주세요.</h4>
+					<ul class="form">
+						<li>
+							<label for="userPwd" class="tt">새 비밀번호</label>
+							<div class="cont">
+								<input type="text" name="newPwd" id="newPwd">
+							</div>
+						</li>
+						<li>
+							<span class="tt">새 비밀번호 확인</span>
+							<div class="cont">
+								<div class="tel_confirm">
+									<label for="pw2" class="hide">새 비밀번호 확인</label>
+									<input type="text" name="newPwd2" id="newPwd2" onchange="isSame();">
+								<span id=same></span>
+								<button type="submit" class="bg-black" id="check" >비밀번호 변경</button>
+								</div>
+							</div>
+						</li>
+					</ul>
 				</div>
 			</div>
-		</form>
-	</div>
+		</div>
+	</form>
+	</div><!-- .group -->
 </article>
 
-<script>
-	
-	$(document).ready(function() {
-		var msg = "${msg}";
-		if(msg != ""){
-		alert(msg);    
-		}
-		});
-	function fnId() {
-		 
-		var email_rule =  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-		var tel_rule = /^\d{2,3}-\d{3,4}-\d{4}$/;
-	
-		if ($("#userName").val() == null || $("#userName").val() == "") {
-			alert("이름을 입력해주세요.");
-			$("#userName").focus();
-			 
-			return false;
-			}	
-		
-		if ($("#userPhone").val() == null || $("#userPhone").val() == "") {
-			alert("전화번호를 입력해주세요.");
-			$("#userPhone").focus();
-			 
-			return false;
-			}
-		
-		if(!tel_rule.test($("#userPhone").val())){
-			alert("전화번호 형식에 맞게 입력해주세요.");
-			return false;
-			}
-		
-		if (confirm("아이디를 찾으시겠습니까?")) {
-			 
-			$("#createForm").submit();
-			 
-			return false;
-			}
-		
-	}
-		
+<form method="post" name="authForm">
+	<input type="hidden" name="serverAuth" id="serverAuth">
+</form>
 
+<form method="post" name="smsForm" id="smsForm" action="/portal/member/user/findIdResut.do?menuNo=200146">
+	<input type="hidden" name="userId" id="userId" value="">
+	<input type="hidden" name="userName" id="userName">
+	<input type="hidden" name="userDi" id="userDi">
+	<input type="hidden" name="userTel" id="userTel">
+	<input type="hidden" name="type" id="type">
+	<input type="hidden" name="userEmail" id="userEmail">
+</form>
+
+<form name="form_chk" method="post">
+<input type="hidden" name="m" value="checkplusSerivce">						<!-- 필수 데이타로, 누락하시면 안됩니다. -->
+<input type="hidden" name="EncodeData" value="AgAFRzY2OTmM4jMMtT8XZSoplSzjmdVODq5ToLC/cSyy/w91J7pg0EGBS6kaH0geIGMa2q9CDDCTXGOxZ9e14WVJQFZLRNW3si2m9qvshtbmxYkoQMF6VXHaomoIb1nK9NDr8X33qBJR9uGnOqX8wxR0Pk0tfw2kt/dy5xX74LWc7hqCRwqaCFZsSr0TbBqarvG5bDwvFFxWKBfbz5ZEgUg242+sOdDMK4PrW2tgUAUiznHVEI3GWZOYtfXiDpfakpdNBU1+bS71xKeD1wqiDmgbfKlfaWbckMCs/Mb1NxZPcg9zgRrAYDrCIXnX0HrDs8eomrFCuyz8Ab6pdJMpebDgSH/urVR+jCQ83QU3YsbJagZn4DHMDTtcyi3Yb6a82I1MWnb+jZqJ6s6pwGmkPdCuPzGjUrRJ6GzR2MfGt6Xbpu1x8aslwtasefKODKftyxEL1BR+TkgEXqAOcY1gT8dZmrYc+6Xfu+4bkpapQ7H2CeQAaElWtw==">		<!-- 위에서 업체정보를 암호화 한 데이타입니다. -->
+</form>
+<script>
+
+$(function(){
+		$(document).ready(function() {
+			var msg = "${msg}";
+			if(msg != ""){
+			alert(msg);    
+			}
+		});
+
+});
 </script>
 		</div>
 	</div>
 
 </div>
+
 
 		<!-- footer Section Begin -->
 		<jsp:include page="../common/footer2.jsp" />

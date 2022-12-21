@@ -55,4 +55,13 @@ public class MemberDao {
 		return (ArrayList)sqlSession.selectList("memberMapper.selectAllMemberList");
 	}
 
+	public Member selectMember(SqlSessionTemplate sqlSession, String email) {
+
+		return sqlSession.selectOne("memberMapper.selectMember",email);
+	}
+
+	public int search_Pwd_New(SqlSessionTemplate sqlSession, Member vo) {
+		return sqlSession.update("memberMapper.search_Pwd_New",vo);	
+		}
+
 }
