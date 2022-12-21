@@ -46,14 +46,19 @@ public class MemberController {
 	// 회원가입 폼으로 이동
 	@RequestMapping("signupForm.me")
 	public String signupForm() {
-		return "member/signup2";
+		return "member/signup";
 	}
 
 	// 마이페이지 이동
 	@RequestMapping("myPage.me")
 	public String myPageForm() {
-//		System.out.println("myPage 이동~");
 		return "member/myPage";
+	}
+
+	// 회원정보 수정 페이지 이동
+	@RequestMapping("updateMemberForm.me")
+	public String updateMemberForm() {
+		return "member/updateMemberForm";
 	}
 
 	// 회원가입 등록
@@ -66,12 +71,16 @@ public class MemberController {
 
 		m.setUserPwd(encPwd);
 		log.info("m : {}", m);
-
+		
 		int result = memberService.signup(m);
 		log.info("result : {}", result);
 
 		if (result > 0) {
+			Member loginUser = memberService.loginMember(m.getUserId());
+			
+			session.setAttribute("loginUser", loginUser);
 			session.setAttribute("alertMsg", "회원가입을 축하합니다!");
+			
 			mv.setViewName("redirect:/");
 		} else {
 			mv.addObject("errorMsg", "회원 가입 실패하셨습니다. 다시 시도해 주세요!").setViewName("common/errorPage");
@@ -118,14 +127,12 @@ public class MemberController {
 	// ID 중복 체크
 	@ResponseBody
 	@RequestMapping("checkDupId.me")
-	public String checkId(String checkId) {
+	public String checkDupId(String checkId) {
 		
-		System.out.println("checkId : " +checkId);
+		System.out.println("checkDupId : " +checkId);
 
-		int count = memberService.checkId(checkId);
+		int count = memberService.checkDupId(checkId);
 		
-		System.out.println("count : " + count);
-
 		String str = "";
 
 		if (count > 0) {
@@ -139,10 +146,10 @@ public class MemberController {
 
 	// EMAIL 중복 체크
 	@ResponseBody
-	@RequestMapping("checkEmail.me")
-	public String checkEmail(String checkEmail) {
+	@RequestMapping("checkDupEmail.me")
+	public String checkDupEmail(String checkEmail) {
 
-		int count = memberService.checkEmail(checkEmail);
+		int count = memberService.checkDupEmail(checkEmail);
 
 		String str = "";
 

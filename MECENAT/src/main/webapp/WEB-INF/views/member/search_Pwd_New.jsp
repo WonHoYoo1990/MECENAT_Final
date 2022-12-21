@@ -83,7 +83,7 @@ body.hide-focus-ring *:focus {
 
 
 		<!-- Header Section Begin -->
-		<jsp:include page="../common/header2.jsp" />
+		<jsp:include page="../common/header.jsp" />
 		<!-- Header End -->
 
 
@@ -275,7 +275,7 @@ $(function(){
 
 
 		<!-- footer Section Begin -->
-		<jsp:include page="../common/footer2.jsp" />
+		<jsp:include page="../common/footer.jsp" />
 		<!-- footer End -->
 		
 		

@@ -11,11 +11,13 @@
 							USER_PWD, 
 							USER_NAME, 
 							USER_PHONE, 
+							USER_ADDRESS, 
 							USER_EMAIL)
 										VALUES(	#{userId},
 											    #{userPwd},
 											    #{userName},
 											    #{userPhone},
+											    #{address},
 											    #{email} )
 	</insert>
 	
@@ -28,7 +30,7 @@
 	</update>
 	
 	<!-- ID 중복 체크 -->
-	<select id="checkId" resultType="_int">
+	<select id="checkDupId" resultType="_int">
 		SELECT COUNT(*)
 		FROM MEMBER
 		WHERE USER_ID = #{checkId}
@@ -36,7 +38,7 @@
 	</select>
 	
 	<!-- EMAIL 중복 체크 -->
-	<select id="checkEmail" resultType="int">
+	<select id="checkDupEmail" resultType="int">
 		SELECT COUNT(*)
 		FROM MEMBER
 		WHERE USER_EMAIL = #{checkEmail}

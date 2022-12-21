@@ -61,7 +61,7 @@
 			<div id="seoul-common-gnb"></div>
 
 			<!-- Header Section Begin -->
-			<jsp:include page="../views/common/header2.jsp" />
+			<jsp:include page="../views/common/header.jsp" />
 			<!-- Header End -->
 
 
@@ -829,7 +829,7 @@
 
 
 		<!-- footer Section Begin -->
-		<jsp:include page="../views/common/footer2.jsp" />
+		<jsp:include page="../views/common/footer.jsp" />
 		<!-- footer End -->
 	</section>
 </body>
