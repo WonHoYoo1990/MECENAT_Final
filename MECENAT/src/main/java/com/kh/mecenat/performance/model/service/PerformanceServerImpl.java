@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.mecenat.performance.model.dao.PerformanceDao;
 import com.kh.mecenat.performance.model.vo.Performance;
+import com.kh.mecenat.reservation.model.vo.RentApplication;
 
 @Service
 public class PerformanceServerImpl implements PerformanceService {
@@ -25,6 +26,16 @@ public class PerformanceServerImpl implements PerformanceService {
 	@Override
 	public int insertPerformance(Performance p) {
 		return performanceDao.insertPerformance(SqlSession, p);
+	}
+
+	@Override
+	public ArrayList<RentApplication> selectRentalApplication() {
+		return performanceDao.selectRentalApplication(SqlSession);
+	}
+
+	@Override
+	public int approvePerformance(int rno) {
+		return performanceDao.performanceDao(SqlSession, rno);
 	}
 
 }

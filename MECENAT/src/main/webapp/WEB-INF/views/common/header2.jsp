@@ -158,6 +158,9 @@
 						<li class="li link"><a href="loginForm.me">LOGIN</a></li>
 					</c:when>
 					<c:otherwise>
+						<%-- <c:if test="${loginUser.userId eq 'admin'}"> --%>
+						<li><a href="approveWaitForm.mana">공연 관리</a></li>
+						<%-- </c:if> --%>
 						<li class="li link login_Y" style=""><a href="#" class="t">MYPAGE</a>
 							<ul class="depth">
 								<li><a href="/portal/myPage/individual/list.do?menuNo=200153">MYPAGE</a></li>

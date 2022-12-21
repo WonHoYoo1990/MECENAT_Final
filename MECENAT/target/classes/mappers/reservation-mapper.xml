@@ -75,7 +75,7 @@
 		<result column="RESERVATION_DATE" property="reservationDate"/>
 		<result column="TOTAL_PRICE" property="totalPrice"/>
 	</resultMap>
-
+	
 	<!-- #혜원만제 - 전체 공연리스트 조회(조정중) -->
 	<select id="selectPerformanceList" resultMap="performanceResult">
 		SELECT *
@@ -137,5 +137,18 @@
 		WHERE BOARD_NO = #{boardNo}
 		AND STATUS = 'Y'
 	</update>
-
+	
+	<!-- 관리자)승인대기중인 list조회 -->
+	<select id="selectRentalApplication" resultMap="rentapplicationResult">
+		SELECT * 
+		FROM RENTAPPLICATION
+		WHERE APPROVE_STATUS='승인대기'
+	</select>
+	
+	<update id="updateApproveStatus">
+		UPDATE RENTAPPLICATION
+		SET APPROVE_STATUS='승인'
+		WHERE RENTAL_CODE = #{rno}
+	</update>
+	
 </mapper>

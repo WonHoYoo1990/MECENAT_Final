@@ -44,9 +44,10 @@
 	<div class="content" align="center">
 	<h1>공연 목록</h1>
 		<c:if test="${loginUser.userId eq 'admin'}">
-			<form action="insertForm.perf" align="center">
+			<!-- <form action="insertForm.perf" align="center">
 				<input type="submit" value="관리자용: 등록하기">
-			</form>
+			</form> -->
+			
 		</c:if>
 		<br><br>
 		<!-- <h1 align="center"  style='color:white' >테스트 줄</h1> -->
