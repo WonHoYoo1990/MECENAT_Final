@@ -545,10 +545,10 @@
 		<!-- 베너  Start -->
 		<section id="sub_visual" style="height: 500px;">
 			<div class="bg_w">
-				<div class="bg" style="background-image: url(./resources/img/member/signupBackground.jpg;);"></div>
+				<div class="bg" style="background-image: url(./resources/sejongpac/static/commons/img/member/signupBackground.jpg);"></div>
 			</div>
 			<h2 class="sub-t">
-						<strong class="ani" style="opacity: 1;"></strong>
+				<strong class="ani" style="opacity: 1;"></strong>
 			</h2>
 		</section>
 		<!-- 배너 End -->

@@ -64,8 +64,6 @@ body.hide-focus-ring *:focus {
 	<h1 style="font-weight:bold; color: white;">${errorMsg}</h1>
 	
 	<section id="wrap">
-
-
 		<dl class="accessibilityWrap">
 			<dt class="hide">
 				<strong>바로가기 메뉴</strong>
@@ -236,7 +234,7 @@ body.hide-focus-ring *:focus {
 										</dl>
 									</li>
 									<li class="r"><span class="date">가입일자 : 2022-12-01 </span> 
-										<a href="/portal/myPage/acntMng/forUpdate.do?menuNo=200168" class="btn">회원정보 수정</a> 
+										<a href="updateMemberForm.me" class="btn">회원정보 수정</a> 
 										<a href="/portal/myPage/reservation/list.do?menuNo=200154" class="btn">예매확인</a> 
 										<a href="/portal/member/user/logout.do" class="logout">로그아웃</a>
 									</li>

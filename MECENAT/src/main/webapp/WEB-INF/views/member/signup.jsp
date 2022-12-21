@@ -65,6 +65,12 @@ body.hide-focus-ring *:focus {
 		<!-- Header End -->
 
 		<!-- 베너  Start -->
+		<section id="sub_visual">
+			<div class="bg_w">
+				<div class="bg" style="background-image: url(./resources/sejongpac/static/commons/img/member/signupBackground.jpg); transform: translate(-19.9989px, 9.99961px) scale(1.1);"></div>
+			</div>
+			<h2 class="sub-t"><strong class="ani" style="opacity: 1;">회원가입</strong></h2>
+		</section>
 		<!-- 배너 End -->
 
 		<!-- DropDown List Start -->
