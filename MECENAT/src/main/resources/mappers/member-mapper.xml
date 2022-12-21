@@ -11,7 +11,7 @@
 							USER_PWD, 
 							USER_NAME, 
 							USER_PHONE, 
-							USER_ADRESS, 
+							USER_ADDRESS, 
 							USER_EMAIL)
 										VALUES(	#{userId},
 											    #{userPwd},

@@ -1,4 +1,3 @@
 eclipse.preferences.version=1
 encoding//src/main/java/com/kh/mecenat/member/controller/MemberController.java=UTF-8
-encoding//src/main/webapp/WEB-INF/views/common/header2.jsp=UTF-8
-encoding//src/main/webapp/WEB-INF/views/main2.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/common/header.jsp=UTF-8

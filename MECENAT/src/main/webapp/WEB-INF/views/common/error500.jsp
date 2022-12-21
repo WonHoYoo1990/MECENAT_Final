@@ -43,7 +43,7 @@
 <body class="hide-focus-ring">
 	<section id="wrap">
 		<!-- Header Section Begin -->
-		<jsp:include page="../common/header2.jsp" />
+		<jsp:include page="../common/header.jsp" />
 		<!-- Header End -->
 
 		<div id="depth_w" class="">
@@ -115,7 +115,7 @@
 
 
 		<!-- footer Section Begin -->
-		<jsp:include page="../common/footer2.jsp" />
+		<jsp:include page="../common/footer.jsp" />
 		<!-- footer End -->
 	</section>
 </body>
