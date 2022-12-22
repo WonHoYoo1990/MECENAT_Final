@@ -85,7 +85,7 @@
 					</li>
 					<li><a href="/portal/bbs/B0000002/list.do?menuNo=200012">대관안내</a>
 						<ul class="depth2">
-							<li><a href="https://www.sejongpac.or.kr/portal/bbs/B0000002/list.do?menuNo=200012">대관공고</a></li>
+							<li><a href="rentList.rv">대관공고</a></li>
 							<li><a href="application.rv">대관신청</a></li>
 							<li class="arrow"><a href="/portal/main/contents.do?menuNo=200119">세종문화회관 대관</a>
 								<ul class="depth3">
@@ -146,7 +146,7 @@
 									<li><a href="/portal/main/contents.do?menuNo=200091">회원제 소개</a></li>
 									<li><a href="/portal/singl/restaurant/list.do?menuNo=200093">제휴업체</a></li>
 							</ul></li>
-							<li class="arrow"><a href="/portal/main/contents.do?menuNo=200085">예매안내</a>
+							<li class="arrow"><a href="infomTicket.rv">예매안내</a>
 								<ul class="depth3">
 									<li><a href="/portal/main/contents.do?menuNo=200085">티켓 구입방법</a></li>
 									<li><a href="/portal/main/contents.do?menuNo=200222">티켓 수령방법</a></li>
@@ -255,7 +255,7 @@
 						</ul></li>
 						<li><a href="/portal/bbs/B0000002/list.do?menuNo=200012">대관안내</a>
 							<ul class="depth2">
-								<li><a href="https://www.sejongpac.or.kr/portal/bbs/B0000002/list.do?menuNo=200012"><span>대관공고</span></a></li>
+								<li><a href="rentList.rv"><span>대관공고</span></a></li>
 								<li><a href="application.rv"><span>대관신청</span></a></li>
 								<li><a href="/portal/main/contents.do?menuNo=200119"><span>세종문화회관 대관</span></a>
 									<ul class="depth3 bul-dot">
@@ -315,7 +315,7 @@
 										<li><a href="/portal/main/contents.do?menuNo=200091">회원제 소개</a></li>
 										<li><a href="/portal/singl/restaurant/list.do?menuNo=200093">제휴업체</a></li>
 								</ul></li>
-								<li><a href="/portal/main/contents.do?menuNo=200085"><span>예매안내</span></a>
+								<li><a href="infomTicket.rv"><span>예매안내</span></a>
 									<ul class="depth3 bul-dot">
 										<li><a href="/portal/main/contents.do?menuNo=200085">티켓 구입방법</a></li>
 										<li><a href="/portal/main/contents.do?menuNo=200222">티켓 수령방법</a></li>
@@ -525,6 +525,26 @@
 		
 		<!-- 베너  Start -->
 		<c:choose>
+			<c:when test="${fn:contains(path, 'infomTicket')}">
+				<section id="sub_visual" style="height: 500px; ">
+					<div class="bg_w">
+						<div class="bg" style="background-image: url(./resources/sejongpac/static/commons/img/member/signupBackground.jpg);"></div>
+					</div>
+					<h2 class="sub-t" style="margin-top: 100px;">
+						<strong class="ani" style="opacity: 1;">티켓 구입방법</strong>
+					</h2>
+				</section>
+			</c:when>
+			<c:when test="${fn:contains(path, 'rentList')}">
+				<section id="sub_visual" style="height: 500px; ">
+					<div class="bg_w">
+						<div class="bg" style="background-image: url(./resources/sejongpac/static/commons/img/member/signupBackground.jpg);"></div>
+					</div>
+					<h2 class="sub-t" style="margin-top: 100px;">
+						<strong class="ani" style="opacity: 1;">대관공고</strong>
+					</h2>
+				</section>
+			</c:when>
 			<c:when test="${fn:contains(path, 'login')}">
 				<section id="sub_visual" style="height: 500px; ">
 					<div class="bg_w">

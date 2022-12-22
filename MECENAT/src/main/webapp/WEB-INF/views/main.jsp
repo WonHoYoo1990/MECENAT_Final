@@ -352,7 +352,7 @@
 									</div>
 									<div class="txt">좌석배치도</div>
 							</a></li>
-							<li><a href="infomTicket.re">
+							<li><a href="infomTicket.rv">
 									<div class="img">
 										<img src="./resources/sejongpac/static/portal/img/main/m1_7.gif" alt="">
 									</div>
