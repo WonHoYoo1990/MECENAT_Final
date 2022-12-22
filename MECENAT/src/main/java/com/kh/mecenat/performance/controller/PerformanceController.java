@@ -105,7 +105,7 @@ public class PerformanceController {
 		return "performance/setInfom";
 	}
 	
-	
+	// 된다
 	
 	
 }
