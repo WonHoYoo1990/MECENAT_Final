@@ -87,21 +87,6 @@ body.hide-focus-ring *:focus {
 		<jsp:include page="../common/header.jsp" />
 		<!-- Header End -->
 
-
-
-
-
-		<!-- 베너  Start -->
-		<section id="sub_visual">
-			<div class="bg_w">
-				<div class="bg" style="background-image: url(./resources/sejongpac/static/commons/img/member/signupBackground.jpg); transform: translate(-19.9989px, 9.99961px) scale(1.1);"></div>
-			</div>
-			<h2 class="sub-t">
-				<strong class="ani" style="opacity: 1;">로그인</strong>
-			</h2>
-		</section>
-		<!-- 배너 End -->
-		
 		<div id="depth_w" class="">
 		<div class="inner">
 			<ul class="clearfix dot dep1 li2">
