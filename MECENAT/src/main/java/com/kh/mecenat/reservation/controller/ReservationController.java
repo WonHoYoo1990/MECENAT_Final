@@ -196,9 +196,20 @@ public class ReservationController {
 	}
 	
 	// 예매 안내 페이지 이동
-	@RequestMapping("infomTicket.re")
+	@RequestMapping("infomTicket.rv")
 	public String infomTicket() {
-		return "reservation/ticketImfomTest";
+		return "reservation/infomTicket";
+	}
+	
+	// 대관 공고 페이지 이동
+	@RequestMapping("rentList.rv")
+	public String rentList() {
+		return "reservation/rentList";
+	}
+	// 대관 공고 검색어
+	@RequestMapping("serchListRent.rv")
+	public String serchListRent() {
+		return "reservation/rentList";
 	}
 
 	
