@@ -25,5 +25,7 @@ public class Performance {
 	private int ageLimit;//	AGE_LIMIT
 	private String  perfoStatus;//	PERFO_STATUS
 	private int price;//	PRICE
+	private String  originName;//	ORIGIN_NAME
+	private String  changeName;//	CHANGE_NAME
 	private String  hallName;//	HALL_NAME
 }
