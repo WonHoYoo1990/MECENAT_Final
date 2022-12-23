@@ -212,6 +212,11 @@
 							<ul class="depth">
 								<li><a href="myPage.me">MYPAGE</a></li>
 								<li><a href="logout.me">LOGOUT</a></li>
+								
+								<c:if test="${loginUser.userId eq 'admin' }">
+									<li><a href="approveWaitForm.mana">승인관리</a></li>	
+								</c:if>
+								
 						</ul></li>
 					</c:otherwise>
 				</c:choose>

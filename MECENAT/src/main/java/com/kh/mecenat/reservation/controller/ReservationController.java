@@ -196,10 +196,10 @@ public class ReservationController {
 	}
 	
 	// 예매 안내 페이지 이동
-	@RequestMapping("infomTicket.re")
-	public String infomTicket() {
-		return "reservation/ticketImfomTest";
-	}
+//	@RequestMapping("infomTicket.re")
+//	public String infomTicket() {
+//		return "reservation/ticketImfomTest";
+//	}
 
 	
 }
