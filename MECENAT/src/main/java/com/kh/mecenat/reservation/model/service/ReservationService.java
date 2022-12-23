@@ -9,7 +9,7 @@ import com.kh.mecenat.reservation.model.vo.RentApplication;
 public interface ReservationService {
 
 //	전체 공연 리스트 조회
-	ArrayList<Performance> selectPerformanceList();
+	ArrayList<Performance> selectPerformanceList(int rentalCode);
 
 //	공연 세부내용 조회
 	Performance selectPerformance(int perfoNo);

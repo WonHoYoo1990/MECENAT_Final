@@ -13,9 +13,9 @@ import com.kh.mecenat.reservation.model.vo.RentApplication;
 public class ReservationDao {
 
 //	전체 공연 리스트 조회
-	public ArrayList<Performance> selectPerformanceList(SqlSessionTemplate sqlSession) {
+	public ArrayList<Performance> selectPerformanceList(SqlSessionTemplate sqlSession, int rentalCode) {
 
-		ArrayList<Performance> list = (ArrayList)sqlSession.selectList("reservationMapper.selectPerformanceList");
+		ArrayList<Performance> list = (ArrayList)sqlSession.selectList("reservationMapper.selectPerformanceList", rentalCode);
 		
 		return list;
 	}

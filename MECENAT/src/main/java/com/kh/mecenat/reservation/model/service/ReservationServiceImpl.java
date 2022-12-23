@@ -22,10 +22,10 @@ public class ReservationServiceImpl implements ReservationService{
 
 //	전체 공연 리스트 조회
 	@Override
-	public ArrayList<Performance> selectPerformanceList() {
+	public ArrayList<Performance> selectPerformanceList(int rentalCode) {
 		
 		
-		ArrayList<Performance> list = reservationDao.selectPerformanceList(sqlSession);
+		ArrayList<Performance> list = reservationDao.selectPerformanceList(sqlSession, rentalCode);
 		
 		return list;
 	}

@@ -6,8 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor//기본생성자
-@AllArgsConstructor//모든필드 매개변수 생성자
+@NoArgsConstructor//湲곕낯�깮�꽦�옄
+@AllArgsConstructor//紐⑤뱺�븘�뱶 留ㅺ컻蹂��닔 �깮�꽦�옄
 @Data
 public class Performance {
 
@@ -25,5 +25,7 @@ public class Performance {
 	private int ageLimit;//	AGE_LIMIT
 	private String  perfoStatus;//	PERFO_STATUS
 	private int price;//	PRICE
+	private String  originName;//	ORIGIN_NAME
+	private String  changeName;//	CHANGE_NAME
 	private String  hallName;//	HALL_NAME
 }

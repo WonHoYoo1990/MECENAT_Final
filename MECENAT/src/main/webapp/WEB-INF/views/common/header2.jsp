@@ -34,26 +34,28 @@
 									<li><a href="/portal/main/contents.do?menuNo=200224">꿈의숲 콘서트홀</a></li>
 							</ul></li>
 					</ul></li>
-					<li><a href="/portal/bbs/B0000002/list.do?menuNo=200012">대관안내</a>
+					<li><a href="information1.hl">대관안내</a>
 						<ul class="depth2">
 							<li><a href="https://www.sejongpac.or.kr/portal/bbs/B0000002/list.do?menuNo=200012">대관공고</a></li>
-							<li><a href="application.rv">대관신청</a></li>
-							<li class="arrow"><a href="/portal/main/contents.do?menuNo=200119">세종문화회관 대관</a>
+							<li><a href="information1.hl">대관신청안내</a></li>
+							<li class="arrow"><a href="information1.hl?hallName=Concert Hall">Concert Hall 대관</a>
 								<ul class="depth3">
-									<li><a href="/portal/main/contents.do?menuNo=200119">공연대관</a></li>
-									<li><a href="/portal/main/contents.do?menuNo=200126">전시대관</a></li>
-									<li><a href="/portal/main/contents.do?menuNo=200134">대여안내</a></li>
-							</ul></li>
-							<li class="arrow"><a href="/portal/main/contents.do?menuNo=200226">꿈의숲아트센터 대관</a>
+									<li><a href="information1.hl?hallName=Concert Hall">공연홀 안내</a></li><!-- information1.hl -->
+									<li><a href="application1.rv?hallName=Concert Hall">대관신청</a></li><!-- application1.rv -->
+								</ul>
+							</li>
+							<li class="arrow"><a href="information1.hl?hallName=Dreaming Hall">Dreaming Hall 대관</a>
 								<ul class="depth3">
-									<li><a href="/portal/main/contents.do?menuNo=200226">공연대관</a></li>
-									<li><a href="/portal/main/contents.do?menuNo=200228">전시대관</a></li>
-							</ul></li>
+									<li><a href="information1.hl?hallName=Dreaming Hall">공연홀 안내</a></li>
+									<li><a href="application1.rv?hallName=Dreaming Hall">대관신청</a></li>
+								</ul>
+							</li>				
 							<li class="arrow"><a href="/portal/main/contents.do?menuNo=200142">기타대관</a>
 								<ul class="depth3">
 									<li><a href="/portal/main/contents.do?menuNo=200142">야외공간 대관</a></li>
 									<li><a href="/portal/main/contents.do?menuNo=200257">강의실 대여</a></li>
-							</ul></li>
+								</ul>
+							</li>
 							<li><a href="/portal/main/contents.do?menuNo=200016">홈페이지 배너신청</a></li>
 							<li><a href="/portal/main/contents.do?menuNo=200172">티켓판매절차</a></li>
 					</ul></li>
@@ -497,7 +499,9 @@
 		<!-- 베너 -->
 		<section id="sub_visual" style="height: 500px;">
 			<div class="bg_w">
-				<div class="bg" style="background-image: url(./resources/img/member/signupBackground.jpg;); transform: translate(-19.9989px, 10px) scale(1.1); " ></div>
+				<div class="bg" style="background-image: url(./resources/img/member/signupBackground.jpg;); transform: translate(-19.9989px, 10px) scale(1.1); " >
+					<h1 id="" style=""></h1>
+				</div>
 			</div>
 		</section>
 
@@ -550,7 +554,7 @@
 
 	</section>
 	
-	----------------------------------------------------------------------------------------------------------
+<!-- 	---------------------------------------------------------------------------------------------------------- -->
 	
 </body>
 </html>

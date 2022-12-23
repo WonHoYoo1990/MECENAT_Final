@@ -48,16 +48,16 @@
         <div id="concert-info">
         	<table style="width:800px;" border="1">
         		<tr>
-        			<td rowspan="4">q</td>
-        			<td colspan="2">q</td>
+        			<td rowspan="4">${list[0].changeName }</td>
+        			<td colspan="2">${list[0].perfoTitle }</td>
         		</tr>
         		<tr>
         			<td>기간</td>
-        			<td>${pfmc.perfoStartDate } ~ ${pfmc.perfoEndDate }</td>
+        			<td>${list[0].perfoEventDate }~${list[(list.size()-1)].perfoEventDate }</td>
         		</tr>
         		<tr>
         			<td>장소</td>
-        			<td>A</td>
+        			<td>${list[0].hallName }</td>
         		</tr>
         		<tr>
         			<td colspan="2"></td>
@@ -73,8 +73,9 @@
                 <tr>
                     <td>   
 				    <h3 align="center">★공연 일정★</h3>
-				    <input type="hidden" id="perfoStartDate" value="${pfmc.perfoStartDate}">
-					<input type="hidden" id="perfoEndDate" value="${pfmc.perfoEndDate}">
+				    
+				    <input type="hidden" id="perfoStartDate" value="${list[0].perfoEventDate}">
+					<input type="hidden" id="perfoEndDate" value="${list[1] }">
 						<table id="calendar" align="center">
 							<tr>
 								<td align="center" onclick="prevCalendar()"><label> ◀ </label></td>
@@ -101,7 +102,7 @@
 							</tr>
 							<tr>
 								<th>공연 시간</th>
-								<td>${pfmc.runningTime}</td>
+								<td>${list[1].runningTime}</td>
 							</tr>
 							<tr>
 								<th>잔여좌석수</th>
@@ -159,7 +160,6 @@
 		    //열의 갯수를 계속 다음으로 위치하게 해주는 역할
 		
 		    cell.setAttribute('id', i);
-		    
 		  	cell.innerHTML = i;
 		    //셀을 1부터 마지막 day까지 HTML 문법에 넣어줌
 		  	cell.align = "center";
@@ -172,13 +172,29 @@
 		    fineDate = fineDate >= 10 ? fineDate : '0' + fineDate;
 		    findMonth = findMonth >= 10 ? findMonth : '0' + findMonth;
 	    	findPfDate = findYear + "-" + findMonth + "-" + fineDate;
-		    
-	    
+			
+	    	console.log("cell: " + cell);
 	    	
-	    	if((findPfDate>=perfoStartDate)&&(findPfDate<=perfoEndDate)){
-	    		//여기에 ${pfmc.perfoStartDate}perfoStartDate, ${pfmc.perfoEndDate}perfoEndDate 들어가야됨
-	    		
-			    cell.setAttribute("class", "date-number");
+	    	console.log("fineDate : " + fineDate );
+	    	console.log("fineDate : " + fineDate );
+	    	console.log("findMonth : " + findMonth);
+	    	console.log("findYear : " + findYear);
+		    
+			console.log("findPfDate : " + findPfDate );
+	    	
+	    	var perfoEventDate = "";
+	    	
+	    	<c:forEach items="${list}" var="p">
+				console.log("${p.perfoEventDate}"+${p.perfoEventDate});
+				console.log("findPfDate " + findPfDate );
+			
+				<c:if test="${p.perfoEventDate eq findPfDate}">
+					console.log(${p.perfoEventDate});
+	     			cell.bgColor = "pink";//셀의 배경색을 핑크로 
+				</c:if>
+      		</c:forEach>
+			
+	    		//여기에 공연날짜가 들어가야됨
 	    		cell.onclick = function(){
 			    	clickedYear = today.getFullYear();
 			    	clickedMonth = ( 1 + today.getMonth() );
@@ -194,38 +210,9 @@
 			    	console.log(clickedYMD);
 			    	//list의 내용이랑 perfoStartDate<=clickedYMD || perfoEndDate>=clickedYMD 이면 
 			    	
-			    	
-	// 		    	cell.onclick = function(){
-	
-	// 					$.ajax({
-	// 						url : "make.rv",
-	// 						data : {selectDate : clickedYMD},
-	// 						success : function(result){
-	// 							console.log(result);
-	// 							var resultStr = "";
-								
-	// 							for(var i=0; i<result.length; i++){
-	// 								resultStr += "<table><tr>"
-	// 										    +"<th>"+result[i].perfoTitle+"</th>"
-	// 										    +"<td>"+result[i].runningTime+"</td>"
-	// 										    +"<td>"+result[i].ageLimit+"</td>"
-	// 										    +"</tr></table>";
-	// 							}
-	// 							//조회해온 데이터 dom요소에 추가
-	// 							$("#info-td").html(resultStr);
-	// 						},
-	// 						error : function(){
-	// 							console.log("통신실패");	
-	// 						}
-	// 					});
-						
-	// 			    }
+
 			    }
-	    	}
 	    	
-	    	
-		
-		
 		    if (cnt % 7 == 1) {/*일요일 계산*/
 		    //1주일이 7일 이므로 일요일 구하기
 		    //월화수목금토일을 7로 나눴을때 나머지가 1이면 cnt가 1번째에 위치함을 의미한다
@@ -243,10 +230,24 @@
 		  }
 		
 		  if(cnt % 7 != 0){
+			  
 		  	for(i = 0; i < 7 - (cnt % 7); i++){
 		  		cell = row.insertCell();
 		  	}
 		  }
+		  
+// 		<c:forEach items="${list}" var="p">
+// 			console.log(${p.perfoEventDate});
+			
+					
+// 			<c:if test="(${p.perfoEventDate}==findPfDate">
+// 			console.log(${p.perfoEventDate});
+//      		cell.bgColor = "pink";//셀의 배경색을 핑크로 
+// 			</c:if>
+//       	</c:forEach>
+		  
+		
+    		
 		}
 		
 		function prevCalendar(){//이전 달

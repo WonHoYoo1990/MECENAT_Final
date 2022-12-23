@@ -319,7 +319,7 @@
     .bbs-list tr:first-child td{padding-top: 1rem;}
     .bbs-list tr:last-child td{padding-bottom: 1rem;}
     .bbs-list .no{width: 3em}
-    .bbs-list .event-date{width: 6em}/* �씠踰ㅽ듃湲곌컙 */
+    .bbs-list .event-date{width: 6em}/* 占쎌뵠甕겹끋�뱜疫꿸퀗而� */
     .bbs-list .event-date br{display:inline;}
     .bbs-list .date{width: 5em}
     .bbs-list .date2{width: 7em}
@@ -781,7 +781,7 @@
    .etq .bul-dot{margin-top: 1em;}
 
 
-   /* 怨듭뿰�씪�젙 */
+   /* �⑤벊肉곤옙�뵬占쎌젟 */
 	.schedule_cont .w > .r{
     position: fixed;
     left: 0;
@@ -1170,3 +1170,67 @@ html{font-size: 13px;}
 @media (max-width:320px){
 html{font-size: 12px;}
 }
+
+/* 여기부터 우리땅 */
+.login__form form .input__item {
+	position: relative;
+	width: 370px;
+	margin-bottom: 20px;
+}
+
+.login__form form .input__item:before {
+	position: absolute;
+	left: 50px;
+	top: 10px;
+	height: 30px;
+	width: 1px;
+	background: #b7b7b7;
+	content: "";
+}
+
+.login__form form .input__item input {
+	height: 50px;
+	width: 100%;
+	font-size: 15px;
+	color: #b7b7b7;
+	background: #ffffff;
+	border: none;
+	padding-left: 76px;
+}
+
+.login__form form .input__item input::-webkit-input-placeholder {
+	color: #b7b7b7;
+}
+
+.login__form form .input__item input::-moz-placeholder {
+	color: #b7b7b7;
+}
+
+.login__form form .input__item input:-ms-input-placeholder {
+	color: #b7b7b7;
+}
+
+.login__form form .input__item input::-ms-input-placeholder {
+	color: #b7b7b7;
+}
+
+.login__form form .input__item input::placeholder {
+	color: #b7b7b7;
+}
+
+.login__form form .input__item span {
+	color: #b7b7b7;
+	font-size: 20px;
+	position: absolute;
+	left: 15px;
+	top: 13px;
+}
+
+.login__form form button {
+	border-radius: 0;
+	margin-top: 10px;
+}
+
+	.login__form form .input__item {
+		width: auto;
+	}
