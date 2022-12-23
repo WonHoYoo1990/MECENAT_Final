@@ -55,13 +55,21 @@ public class MemberDao {
 		return (ArrayList)sqlSession.selectList("memberMapper.selectAllMemberList");
 	}
 
+	////비밀번호 찾기 이메일 인증
 	public Member selectMember(SqlSessionTemplate sqlSession, String email) {
 
 		return sqlSession.selectOne("memberMapper.selectMember",email);
 	}
 
+	//비밀번호 변경
 	public int search_Pwd_New(SqlSessionTemplate sqlSession, Member vo) {
 		return sqlSession.update("memberMapper.search_Pwd_New",vo);	
 		}
+
+	
+	//마이페이지 회원정보 수정
+	public int updateMember(SqlSessionTemplate sqlSession, Member vo) {
+		return sqlSession.update("memberMapper.updateMember",vo);
+	}
 
 }
