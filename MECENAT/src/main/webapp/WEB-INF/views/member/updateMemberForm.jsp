@@ -12,39 +12,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width">
-<meta name="google-signin-client_id" content="113025989816-nnav0npepl2lv7h086hhmrekli0bk1tt.apps.googleusercontent.com">
-<meta property="og:title" content="MECENAT">
-<title>회원가입 | 통합회원 서비스|</title>
-<!-- 인터넷 -->
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/aos.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/bbs_new.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/fonts.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/layout_new.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/main_new.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/pop_all.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/reset.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/responsive_new.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/sitemap.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/slider.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/style.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/sub.css">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="./resources/sejongpac/static/commons/js/jquery-3.6.0.min.js"></script>
-<script src="./resources/sejongpac/static/commons/js/jquery-ui.1.12.1.min.js"></script>
-<script src="./resources/sejongpac/static/portal/js/slider.js"></script>
-<script src="./resources/sejongpac/static/ticket/ticket.js"></script>
-<link rel="stylesheet" href="./resources/sejongpac/static/portal/css/aos.css">
-<script src="./resources/sejongpac/static/portal/inc/netfunnel.js" charset="UTF-8"></script>
-<!-- 주소 찾기 API -->
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<style>
-body.hide-focus-ring *:focus {
-	outline: none !important;
-}
-</style>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width">
+	<meta name="google-signin-client_id" content="113025989816-nnav0npepl2lv7h086hhmrekli0bk1tt.apps.googleusercontent.com">
+	<meta property="og:title" content="MECENAT">
+	<title>회원가입 | 통합회원 서비스|</title>
+	<!-- 인터넷 -->
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/aos.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/bbs_new.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/fonts.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/layout_new.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/main_new.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/pop_all.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/responsive_new.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/sitemap.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/slider.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/style.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/sub.css">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="./resources/sejongpac/static/commons/js/jquery-3.6.0.min.js"></script>
+	<script src="./resources/sejongpac/static/commons/js/jquery-ui.1.12.1.min.js"></script>
+	<script src="./resources/sejongpac/static/portal/js/slider.js"></script>
+	<script src="./resources/sejongpac/static/ticket/ticket.js"></script>
+	<link rel="stylesheet" href="./resources/sejongpac/static/portal/css/aos.css">
+	<script src="./resources/sejongpac/static/portal/inc/netfunnel.js" charset="UTF-8"></script>
+	<!-- 주소 찾기 API -->
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<style>
+		body.hide-focus-ring *:focus {
+			outline: none !important;
+		}
+	</style>
 </head>
 <body class="vsc-initialized hide-focus-ring">
 	<section id="wrap">
@@ -52,15 +52,6 @@ body.hide-focus-ring *:focus {
 		<!-- Header Section Begin -->
 		<jsp:include page="../common/header.jsp" />
 		<!-- Header End -->
-		
-		<section id="sub_visual">
-			<div class="bg_w">
-				<div class="bg" style="background-image: url(./resources/sejongpac/static/commons/img/member/signupBackground.jpg); transform: translate(-19.9989px, 9.99961px) scale(1.1);"></div>
-			</div>
-			<h2 class="sub-t">
-				<strong class="ani" style="opacity: 1;">회원정보 수정</strong>
-			</h2>
-		</section>
 		
 		<div id="depth_w" class="">
 			<div class="inner">
@@ -78,7 +69,7 @@ body.hide-focus-ring *:focus {
 								<li><a href="https://www.sjartgroups.or.kr/sjartgroups/main/main.do" target="_blank" title="새창 열림">서울시예술단</a></li>
 							</ul>
 						</div>
-				</li>
+					</li>
 					<li>
 						<div class="rel">
 							<a href="#"><span>회원정보 수정</span></a>

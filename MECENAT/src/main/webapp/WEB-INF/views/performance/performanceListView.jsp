@@ -38,22 +38,24 @@
 </head>
 <body>
 	
-	<jsp:include page="../common/header2.jsp"/>
+	<jsp:include page="../common/header.jsp"/>
 	
 	<br><br>
 	<div class="content" align="center">
 	<h1>공연 목록</h1>
 		<c:if test="${loginUser.userId eq 'admin'}">
-			<form action="insertForm.perf" align="center">
+			<!-- <form action="insertForm.perf" align="center">
 				<input type="submit" value="관리자용: 등록하기">
-			</form>
+			</form> -->
+			
 		</c:if>
 		<br><br>
 		<!-- <h1 align="center"  style='color:white' >테스트 줄</h1> -->
 		<div class="list-area">
 		<c:forEach var="p" items="${pList}">
-			<div class="thumbnail" align="center">
+			<div class="thumbnail" id="thumbnailIndex" align="center">
 				<!-- 수정중 -->
+				
 				<c:choose>
 					<c:when test="${not empty p.originName}">
 						<img src="${p.changeName}" width="150px" height="200px">
@@ -64,11 +66,11 @@
 					</c:otherwise>
 				</c:choose>
 				
-				<p>${p.perfoTitle }</p>
-				
+				<p>${p.rentalCode },dd${p.perfoTitle }</p>
 	           	<%-- <c:if test="${loginUser.userId eq 'admin'}"> --%>
-	           		<button type="button" onclick="deletePerfList()">삭제</button>
+					<button type="button" onclick="deletePerfList()">삭제</button>
 				<%-- </c:if> --%>
+				
 			
 			</div>
 		</c:forEach>
@@ -92,6 +94,6 @@
 	
 	
 	<br><br><br><br><br><br><br>
-	<jsp:include page="../common/footer2.jsp"/>
+	<jsp:include page="../common/footer.jsp"/>
 </body>
 </html>

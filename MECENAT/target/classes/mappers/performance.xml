@@ -26,9 +26,66 @@
 	
 
 	<select id="selectPerformanceList" resultMap="performanceResultSet">
-		SELECT *
+		SELECT RENTAL_CODE,
+			   PERFO_TITLE,
+			   GENRE_NAME,
+			   DIRECTOR,
+			   CAST,
+			   PERFO_CONTENT,
+			   RUNNING_TIME,
+			   AGE_LIMIT,
+			   PRICE,
+			   ORIGIN_NAME, 
+			   CHANGE_NAME
 		FROM PERFORMANCE
+		GROUP BY RENTAL_CODE,
+			     PERFO_TITLE,
+			     GENRE_NAME,
+			     DIRECTOR,
+			     CAST,
+			     PERFO_CONTENT,
+			     RUNNING_TIME,
+			     AGE_LIMIT,
+			     PRICE,
+			     ORIGIN_NAME, 
+			     CHANGE_NAME
+		ORDER BY RENTAL_CODE
 	</select>
+	
+	<!-- selectDetailPerformance -->
+	<select id="selectDetailPerformance" resultMap="performanceResultSet">
+		SELECT RENTAL_CODE,
+			   PERFO_TITLE,
+			   GENRE_NAME,
+			   DIRECTOR,
+			   CAST,
+			   PERFO_CONTENT,
+			   RUNNING_TIME,
+			   AGE_LIMIT,
+			   PRICE,
+			   ORIGIN_NAME, 
+			   CHANGE_NAME
+		FROM PERFORMANCE
+		GROUP BY RENTAL_CODE,
+			     PERFO_TITLE,
+			     GENRE_NAME,
+			     DIRECTOR,
+			     CAST,
+			     PERFO_CONTENT,
+			     RUNNING_TIME,
+			     AGE_LIMIT,
+			     PRICE,
+			     ORIGIN_NAME, 
+			     CHANGE_NAME
+        HAVING RENTAL_CODE=#{rno}
+		ORDER BY RENTAL_CODE
+		
+	</select>
+	
+	
+	
+	
+	
 	
 	<insert id="insertPerformance">
 		INSERT INTO PERFORMANCE(PERFO_NO,

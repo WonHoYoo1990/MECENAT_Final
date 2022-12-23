@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.mecenat.performance.model.vo.Performance;
+import com.kh.mecenat.reservation.model.vo.RentApplication;
 
 
 @Repository
@@ -17,6 +18,18 @@ public class PerformanceDao {
 
 	public int insertPerformance(SqlSessionTemplate sqlSession, Performance p) {
 		return sqlSession.insert("performanceMapperMana.insertPerformance", p);
+	}
+
+	public ArrayList<RentApplication> selectRentalApplication(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("reservationMapper.selectRentalApplication");
+	}
+
+	public int performanceDao(SqlSessionTemplate sqlSession, int rno) {
+		return sqlSession.update("reservationMapper.updateApproveStatus", rno);
+	}
+
+	public Performance selectListPerformance(SqlSessionTemplate sqlSession, int rno) {
+		return sqlSession.selectOne("performanceMapperMana.selectDetailPerformance", rno);
 	}
 
 
