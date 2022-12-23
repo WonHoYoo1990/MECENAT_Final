@@ -12,25 +12,25 @@ import com.kh.mecenat.reservation.model.vo.RentApplication;
 @Repository
 public class ReservationDao {
 
-//	ÀüÃ¼ °ø¿¬ ¸®½ºÆ® Á¶È¸
-	public ArrayList<Performance> selectPerformanceList(SqlSessionTemplate sqlSession) {
+//	ì „ì²´ ê³µì—° ë¦¬ìŠ¤íŠ¸ ì¡°íšŒ
+	public ArrayList<Performance> selectPerformanceList(SqlSessionTemplate sqlSession, int rentalCode) {
 
-		ArrayList<Performance> list = (ArrayList)sqlSession.selectList("reservationMapper.selectPerformanceList");
+		ArrayList<Performance> list = (ArrayList)sqlSession.selectList("reservationMapper.selectPerformanceList", rentalCode);
 		
 		return list;
 	}
 
-//	°ø¿¬ ¼¼ºÎ³»¿ë Á¶È¸
+//	ê³µì—° ì„¸ë¶€ë‚´ìš© ì¡°íšŒ
 	public Performance selectPerformance(SqlSessionTemplate sqlSession, int perfoNo) {
 		return (Performance)sqlSession.selectOne("reservationMapper.selectPerformance", perfoNo);
 	}
 
-//	´ë°ü½ÅÃ»¼­ Á¦Ãâ
+//	ëŒ€ê´€ì‹ ì²­ì„œ ì œì¶œ
 	public int insertApplication(SqlSessionTemplate sqlSession, RentApplication ra) {
 		return sqlSession.insert("reservationMapper.insertApplication", ra);
 	}
 
-//	°ø¿¬È¦ Á¤º¸Á¶È¸
+//	ê³µì—°í™€ ì •ë³´ì¡°íšŒ
 	public Hall selectHallInfo(SqlSessionTemplate sqlSession, String hallName) {
 
 		return (Hall)sqlSession.selectOne("reservationMapper.selectHallInfo", hallName);
