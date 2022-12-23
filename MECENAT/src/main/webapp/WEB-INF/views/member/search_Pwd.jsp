@@ -86,22 +86,6 @@ body.hide-focus-ring *:focus {
 		<jsp:include page="../common/header.jsp" />
 		<!-- Header End -->
 
-
-
-
-
-		<section id="sub_visual">
-			<div class="bg_w">
-
-				<div class="bg" style="background-image: url(&quot;/static/portal/img/common/subvisual-common.jpg&quot;); transform: translate(-9.48087px, 10px) scale(1.1);"></div>
-
-			</div>
-
-			<h2 class="sub-t">
-				<strong class="ani" style="opacity: 1;">로그인</strong>
-			</h2>
-
-		</section>
 		
 		<div id="depth_w" class="">
 		<div class="inner">
@@ -132,11 +116,11 @@ body.hide-focus-ring *:focus {
 				
 				<li>
 					<div class="rel">
-					<a href="loginForm.me"><span>로그인</span></a>
+					<a href="findIdForm.me"><span>패스워드 찾기</span></a>
 					<ul class="depth" style="display: none;">
 					<li><a href="/portal/main/contents.do?menuNo=200099"><span>서비스소개</span></a></li>
 					<li><a href="loginForm.me"><span>로그인</span></a></li>
-					<li><a href="/portal/member/user/join.do?menuNo=200144"><span>회원가입</span></a></li>
+					<li><a href="signupForm.me"><span>회원가입</span></a></li>
 					<li><a href="findIdForm.me"><span>아이디 찾기</span></a></li>
 					<li><a href="findPwdForm.me"><span>패스워드 찾기</span></a></li>
 					<li><a href="/portal/main/contents.do?menuNo=200148"><span>개인정보처리방침</span></a></li>
@@ -207,7 +191,7 @@ body.hide-focus-ring *:focus {
 <article class="find_member inner member_com">
 <form class = "content" action="findPwd.me" method="post">
 	<div class="group">
-		<h3 class="tit-st4">간편찾기</h3>
+		<h3 class="tit-st4">비밀번호 간편찾기</h3>
 		<div class="box">
 			<div class="top" id="ck_input">
 			</div>
@@ -226,7 +210,7 @@ body.hide-focus-ring *:focus {
 								<div class="tel_confirm">
 									<label for="email" class="hide">이메일</label>
 									<input type="text" name="chkEmail" id="chkEmail">
-								<button type="submit" id="check" class="bg-black">인증번호 받기</button>
+								<button type="submit" id="check" class="bg-black btn-c">인증번호 받기</button>
 								</div>
 							</div>
 						</li>

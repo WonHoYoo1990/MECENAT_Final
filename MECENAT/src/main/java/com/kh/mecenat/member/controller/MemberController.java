@@ -57,11 +57,39 @@ public class MemberController {
 	public String updateMemberForm() {
 		return "member/updateMemberForm";
 	}
+	
+	
+	// 회원 정보 수정
+	@RequestMapping("update.me")
+	public String updateMember(Member vo,HttpSession session,Model model) {
+			
+		int result = memberService.updateMember(vo);
+		String newMemEncPwd = bCryptPasswordEncoder.encode(vo.getUserPwd());
+		vo.setUserPwd(newMemEncPwd);
+		
+		System.out.println("member"+vo);
+		System.out.println("newMemEncPwd"+newMemEncPwd);
+		System.out.println("vo.getuserpwd"+vo.getUserPwd());
+		
+		if(result>0) {
+			Member updateMember = memberService.loginMember(vo.getUserId());
+			session.setAttribute("loginUser", updateMember);
+			session.setAttribute("alertMsg", "회원 정보 수정이 완료되었습니다.");
+			return "redirect:/";
+			
+		}else {
+			model.addAttribute("errorMsg","회원 정보 수정 실패");
+			return "common/errorPage";
+		}
+	}
 
+	
 	// 회원가입 등록
 	@RequestMapping("signup.me")
 	public ModelAndView signup(Member m, ModelAndView mv, HttpSession session) {
-
+		
+		System.out.println("siup이양");
+		
 		String encPwd = bCryptPasswordEncoder.encode(m.getUserPwd());
 
 		m.setUserPwd(encPwd);
@@ -197,6 +225,7 @@ public class MemberController {
 
 		if (loginUser != null && bCryptPasswordEncoder.matches(m.getUserPwd(), loginUser.getUserPwd())) {
 			session.setAttribute("loginUser", loginUser);
+			session.setAttribute("alertMsg", "로그인 되었습니다.");
 			// setViewName : 요청 주소
 			return "redirect:/";
 
@@ -213,7 +242,7 @@ public class MemberController {
 
 		session.removeAttribute("loginUser");
 		// invalidate()로 하게되면 세션에 있는 다른 데이터도 초기화 되기 때문에 removeAttribute
-
+		session.setAttribute("alertMsg", "로그아웃 되었습니다.");
 		return "redirect:/";
 	}
 	
@@ -237,7 +266,7 @@ public class MemberController {
 			    Member memberSearch = memberService.memberIdSearch(m);
 			    
 			    model.addAttribute("m", memberSearch);
-			 
+			    
 			    
 			} catch (Exception e) {
 			    model.addAttribute("msg", "오류가 발생되었습니다.");
@@ -276,7 +305,7 @@ public class MemberController {
 				String tomail = chkEmail; //받는사람
 				String title = "[MECENAT] 비밀번호변경 인증 이메일 입니다"; 
 				String content = System.getProperty("line.separator") + "안녕하세요 회원님" + System.getProperty("line.separator")
-						+ "MECENAT 비밀번호찾기(변경) 인증번호는 " + num + " 입니다." + System.getProperty("line.separator"); // 
+						+ "MECENAT 비밀번호찾기(변경) 인증번호는 '" + num + "'입니다." + System.getProperty("line.separator"); // 
 
 				try {
 					MimeMessage message = mailSender.createMimeMessage();
@@ -311,10 +340,12 @@ public class MemberController {
 		//비밀번호 이메일 인증번호 확인
 		@RequestMapping(value = "search_Pwd_Email.me", method = RequestMethod.POST)
 		public String search_Pwd_Email(@RequestParam(value="email_injeung") String email_injeung,
-					@RequestParam(value = "num") String num) throws IOException{
+					@RequestParam(value = "num") String num, HttpSession session) throws IOException{
 				
 				if(email_injeung.equals(num)) {
+					session.setAttribute("alertMsg", "비밀번호 인증이 완료되었습니다.");
 					return "member/search_Pwd_New";
+					
 				}
 				else {
 					return "member/search_Pwd"; 
@@ -336,8 +367,8 @@ public class MemberController {
 			int result = memberService.search_Pwd_New(vo);
 			
 			if(result == 1) {
-				session.setAttribute("alertMsg", "비밀번호 변경이 완료되었습니다.");
 				session.removeAttribute("chkEmail");
+				session.setAttribute("alertMsg", "비밀번호 변경이 완료되었습니다.");
 				return "member/login"; 
 			}
 			else {
