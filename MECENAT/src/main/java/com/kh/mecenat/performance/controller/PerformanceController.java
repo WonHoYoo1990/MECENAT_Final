@@ -13,11 +13,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.mecenat.performance.model.service.PerformanceService;
 import com.kh.mecenat.performance.model.vo.Performance;
+import com.kh.mecenat.reservation.model.vo.RentApplication;
 
 @Controller
 public class PerformanceController {
@@ -25,12 +27,12 @@ public class PerformanceController {
 	@Autowired
 	private PerformanceService perfoService;
 	
-//	전체 공연 목록 뽑기('status=>"상영중")
+//	전체 공연 목록 뽑기('status=>"상영중(나중에 변경해야징)")
 	@RequestMapping("list.perf")
 	public String performanceList(Model model) {
-		System.out.println("list단");
+//		System.out.println("list단");
 		ArrayList<Performance> pList = perfoService.selectListPerformance();
-		System.out.println("pList : "+pList);
+//		System.out.println("pList : "+pList);
 		
 		model.addAttribute("pList",pList);
 		
@@ -62,6 +64,55 @@ public class PerformanceController {
 	public void performanceDelete() {
 		
 	}
+	
+//	승인페이지에 뿌려줄 RENTALAPPLICATION 뽑아오기
+	@RequestMapping("approveWaitForm.mana")
+	public String approveListForm(Model model) {
+//		System.out.println("dd");
+		
+		ArrayList<RentApplication> rList = perfoService.selectRentalApplication();
+		
+//		System.out.println(rList);
+		
+		model.addAttribute("rList",rList);
+		
+		return "performance/approveWaitForm";
+	}
+	
+	
+	
+	@RequestMapping("approve.perf")
+	public String approvePerformance(int rno) {
+//		System.out.println(rno);
+//		approveWaitForm.mana
+		int result = perfoService.approvePerformance(rno);
+		//http://localhost:8889/mecenat/approveWaitForm.mana
+
+		if(result>0) {
+			
+		}else {
+			
+		}
+		return "redirect:/approveWaitForm.mana";
+		
+		
+	}
+	
+	@RequestMapping("detail.perf")
+	public String performanceDateilForm(int rno, Model model) {
+//		System.out.println(rno);
+		
+		Performance pList = perfoService.selectListPerformance(rno);
+		
+//		System.out.println("아레노 들고 디테일폼으로 가려고하는즁" + pList);
+		
+		model.addAttribute("pList",pList);
+		
+		return "performance/performanceDetailForm";
+		
+	}
+	
+	
 	
 	
 	public String saveFile(MultipartFile upfile, HttpSession session) {
@@ -97,7 +148,11 @@ public class PerformanceController {
 		return changeName;		
 	}
 	
-	
+	// 예매 안내 페이지 이동
+	@RequestMapping("infomTicket.re")
+	public String infomTicket() {
+		return "reservation/ticketImfomTest";
+	}
 
 	// 좌석 배치도 페이지 이동
 	@RequestMapping("setInfom.perf")
@@ -105,7 +160,17 @@ public class PerformanceController {
 		return "performance/setInfom";
 	}
 	
-	// 된다
+	
+	
+	
+	
+	//asdfasdfasdfasdfasdfasdfasdf"asdf.mana"
+	@ResponseBody
+	@RequestMapping(value="testrCode.con", produces="application/json; charset=UTF-8")
+	public void asdf(int rCode) {
+		System.out.println("뚜루뚜뚜뚜뽀롱뽀뽀뽀"+rCode);
+	}
+	
 	
 	
 	

@@ -195,7 +195,6 @@ public class ReservationController {
 	public void selectPerformaceInfo() {
 	}
 	
-	// 예매 안내 페이지 이동
 	@RequestMapping("infomTicket.rv")
 	public String infomTicket() {
 		return "reservation/infomTicket";
@@ -211,6 +210,5 @@ public class ReservationController {
 	public String serchListRent() {
 		return "reservation/rentList";
 	}
-
 	
 }

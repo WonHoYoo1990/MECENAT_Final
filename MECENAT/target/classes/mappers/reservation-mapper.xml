@@ -138,4 +138,12 @@
 		AND STATUS = 'Y'
 	</update>
 
+	<!--  관리자)승인대기중인 list조회  -->
+	<select id="selectRentalApplication" resultMap="rentapplicationResult"> 
+		SELECT * FROM RENTAPPLICATION WHERE APPROVE_STATUS='승인대기'
+	</select>
+	<update id="updateApproveStatus">
+		UPDATE RENTAPPLICATION SET APPROVE_STATUS='승인'
+		WHERE RENTAL_CODE = #{rno}
+	</update>
 </mapper>
