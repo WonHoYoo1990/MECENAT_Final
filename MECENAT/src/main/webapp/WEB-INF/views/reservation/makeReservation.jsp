@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,13 +27,20 @@
 			background-color : lightpink;
 			cursor : pointer;        
         }
+        .pfDetail{
+        	border : 3px solid lightpink;
+        }
+        .pfDetail:hover{
+        	cursor : pointer;  
+        	background-color : pink;
+        }
     </style>
     
 </head>
 <body>
     <div id="reserveOuter">
         <div id="head-img" style="width:800px;">
-        <img src="resources/img/reserve/reserve_top.jpg" style="width:100%; height:auto;"/>
+        <img src="resources/img/reserve/center.jpg" style="width:100%; height:auto;"/>
         </div>
         <div id="reserve-step">
         <table style="width:800px;" border="1">
@@ -93,32 +102,41 @@
 							</tr>
 						</table>
                     </td>
-                    <td id="info-td" width="50%">
-						<table id="select-pfInfo" border="1">
-							<tr>
-								<th>공연 날짜 </th>
-								<td id="seleted-date"></td>
-								
-							</tr>
-							<tr>
-								<th>공연 시간</th>
-								<td>${list[1].runningTime}</td>
-							</tr>
-							<tr>
-								<th>잔여좌석수</th>
-								<td></td>
-							</tr>
-						</table>
+                    <td id="info-td" width="50%" align="left" style="padding:35px;">
+<!-- 						<table id='select-pfInfo' border='1'> -->
+<!-- 							<tr> -->
+<!-- 								<th width='120px'>공연 날짜 </th> -->
+<!-- 								<td id='seleted-date' width='200px'></td> -->
+<!-- 							</tr> -->
+<!-- 							<tr> -->
+<!-- 								<th>공연 시작시간</th> -->
+<!-- 								<td id='perfo-stime'></td> -->
+<!-- 							</tr> -->
+<!-- 							<tr> -->
+<!-- 								<th>공연 시간</th> -->
+<!-- 								<td id='perfo-rtime'></td> -->
+<!-- 							</tr> -->
+<!-- 							<tr> -->
+<!-- 								<th>잔여좌석수</th> -->
+<!-- 								<td id='soldout-seats'> -->
+																
+<!-- 								</td> -->
+<!-- 							</tr> -->
+<!-- 						</table> -->
                     </td>
                 </tr>
+                <tr>
+                	<td colspan="2">
+			        <div align="right" style="display:none;">
+			        	<button type="submit" class="site-btn">Make Reservation</button>
+			        </div>
+		        	</td>
+		        </tr>
             </table>
-        </div>
-        <div>
-        	<button type="submit" class="site-btn">Make Reservation</button>
         </div>
     </div>
     <script type="text/javascript">
-		var today = new Date();//오늘 날짜//내 컴퓨터 로컬을 기준으로 today에 Date 객체를 넣어줌
+		var today = new Date("${list[0].perfoEventDate}");//오늘 날짜//내 컴퓨터 로컬을 기준으로 today에 Date 객체를 넣어줌
 		function buildCalendar(){
 		
 		  var row = null
@@ -149,9 +167,9 @@
 		}
 		
 		  var dateNum = 0;
-		  var perfoStartDate = $("#perfoStartDate").val();
-		  var perfoEndDate = $("#perfoEndDate").val();
-		  
+		  var perfoStartDate = "${list[0].perfoEventDate}";
+		 
+		  var perfoEndDate = "${list[(list.size()-1)].perfoEventDate}";
 		  
 		  for(i = 1; i <= lastDate.getDate(); i++){//1일부터 마지막 일까지 돌림
 		  	cell = row.insertCell();
@@ -172,54 +190,63 @@
 		    fineDate = fineDate >= 10 ? fineDate : '0' + fineDate;
 		    findMonth = findMonth >= 10 ? findMonth : '0' + findMonth;
 	    	findPfDate = findYear + "-" + findMonth + "-" + fineDate;
-			
-	    	console.log("cell: " + cell);
-	    	
-	    	console.log("fineDate : " + fineDate );
-	    	console.log("fineDate : " + fineDate );
-	    	console.log("findMonth : " + findMonth);
-	    	console.log("findYear : " + findYear);
-		    
-			console.log("findPfDate : " + findPfDate );
-	    	
-	    	var perfoEventDate = "";
-	    	
-	    	<c:forEach items="${list}" var="p">
-				console.log("${p.perfoEventDate}"+${p.perfoEventDate});
-				console.log("findPfDate " + findPfDate );
-			
-				<c:if test="${p.perfoEventDate eq findPfDate}">
-					console.log(${p.perfoEventDate});
-	     			cell.bgColor = "pink";//셀의 배경색을 핑크로 
-				</c:if>
-      		</c:forEach>
-			
-	    		//여기에 공연날짜가 들어가야됨
-	    		cell.onclick = function(){
-			    	clickedYear = today.getFullYear();
-			    	clickedMonth = ( 1 + today.getMonth() );
-			    	clickedDate = this.getAttribute('id');
+    	 	
+		    <c:forEach items="${list}" var="p">
+	    		var perfoEventDate = "${p.perfoEventDate}";
+	    		if(perfoEventDate==findPfDate){
 				
-			    	clickedDate = clickedDate >= 10 ? clickedDate : '0' + clickedDate;
-			    	clickedMonth = clickedMonth >= 10 ? clickedMonth : '0' + clickedMonth;
-			    	clickedYMD = clickedYear + "-" + clickedMonth + "-" + clickedDate;
-			    	var aramDate = document.getElementById("seleted-date");
-			    	aramDate.innerHTML = clickedYMD;
-			    	this.setAttribute("style", "background-color:lightpink;");
-			    	
-			    	console.log(clickedYMD);
-			    	//list의 내용이랑 perfoStartDate<=clickedYMD || perfoEndDate>=clickedYMD 이면 
-			    	
+	     			cell.setAttribute('class', "pfDetail");
+	     			cell.setAttribute('value', "${p.perfoEventDate}");
+	     			if("${list[0].perfoEventDate}"==findPfDate){
+	     				cell.bgColor = "yellow";
+	     			}
+	    		}
+	        </c:forEach>
+	        
+	        cell.onclick = function(){
+				var perfoEventDate = this.getAttribute('value');
+     			if(this.getAttribute('value') != null){
+      				$(".pfDetail").css("background-color","white");
+     				this.setAttribute("style", "background-color:yellow;");
+//     				$("#seleted-date").html(perfoEventDate);
+     			}else if(this.getAttribute("style") != "background-color:white;"){
+ 					this.setAttribute("style", "background-color:white;");
+     			}
+     			
+     			$.ajax({
+					url : "perfoNum.rv",
+					data : {
+						perfoEventDate : perfoEventDate,
+     					rentalCode : ${ra.rentalCode}
+					},
+					success : function(result){
+						var resultStr = "";
 
-			    }
-	    	
+ 						resultStr += "<table id='select-pfInfo' border='1'>"
+								  +  "<tr><th width='120px'>공연 날짜 </th><td id='seleted-date' width='200px'>&nbsp;" + result.perfoEventDate + "</td></tr>"
+								  +  "<tr><th>공연 시작시간</th><td id='perfo-stime'>&nbsp;" + result.startTime + "</td></tr>"
+								  +  "<tr><th>공연 시간</th><td id='perfo-rtime'>&nbsp;" + result.runningTime + "</td></tr>"
+								  +  "<tr><th>잔여좌석수</th><td id='soldout-seats'>&nbsp;" + "100" + "</td></tr>"
+								  +  "</table>"
+				
+
+	 					$("#info-td").html(resultStr);
+					},
+					error : function(){
+						console.log("통신실패");	
+					}
+				})
+     			
+     			
+ 			}
+	        
 		    if (cnt % 7 == 1) {/*일요일 계산*/
 		    //1주일이 7일 이므로 일요일 구하기
 		    //월화수목금토일을 7로 나눴을때 나머지가 1이면 cnt가 1번째에 위치함을 의미한다
 		    	cell.innerHTML = "<font color=#F79DC2>" + i + "</font>";
 		        //1번째의 cell에만 색칠
 		    }
-		
+			
 		    if (cnt % 7 == 0){/* 1주일이 7일 이므로 토요일 구하기*/
 		    //월화수목금토일을 7로 나눴을때 나머지가 0이면 cnt가 7번째에 위치함을 의미한다
 		    	cell.innerHTML = "<font color=skyblue>" + i + "</font>";
@@ -227,28 +254,17 @@
 		    	row = calendar.insertRow();
 		        //토요일 다음에 올 셀을 추가
 		    }
-		  }
-		
+		    
+		    
+		  }//for(i = 1; i <= lastDate.getDate(); i++){//1일부터 마지막 일까지 돌림
+		  
 		  if(cnt % 7 != 0){
-			  
 		  	for(i = 0; i < 7 - (cnt % 7); i++){
 		  		cell = row.insertCell();
 		  	}
-		  }
+    	  }
 		  
-// 		<c:forEach items="${list}" var="p">
-// 			console.log(${p.perfoEventDate});
-			
-					
-// 			<c:if test="(${p.perfoEventDate}==findPfDate">
-// 			console.log(${p.perfoEventDate});
-//      		cell.bgColor = "pink";//셀의 배경색을 핑크로 
-// 			</c:if>
-//       	</c:forEach>
-		  
-		
-    		
-		}
+		}//function buildCalendar()
 		
 		function prevCalendar(){//이전 달
 			today = new Date(today.getFullYear(), today.getMonth()-1, today.getDate());

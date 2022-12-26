@@ -76,10 +76,10 @@
 					</c:otherwise>
 					</c:choose>
 				</ul>
-				<script>
-				var len = $(".tabs-st1 li").length;
-				$(".tabs-st1").addClass("li"+len);
-				</script>
+<!-- 				<script> -->
+// 				var len = $(".tabs-st1 li").length;
+// 				$(".tabs-st1").addClass("li"+len);
+<!-- 				</script> -->
 			</div>
 	
 			<article class="sub_page">
@@ -92,12 +92,7 @@
 						<div aria-live="polite" class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 778px;"><li class="item slick-slide slick-current slick-active" style="background-image: url(&quot;/static/organization/img/facility/1/bg.jpg&quot;); width: 389px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;" data-slick-index="0" aria-hidden="false" role="option" tabindex="-1"><span class="hide">대극장 정면 이미지</span></li><li class="item slick-slide" style="background-image: url(&quot;/static/organization/img/facility/1/bg2.jpg&quot;); width: 389px; position: relative; left: -389px; top: 0px; z-index: 998; opacity: 0;" data-slick-index="1" aria-hidden="true" role="option" tabindex="-1"><span class="hide">대극장 측면 이미지</span></li></div></div>
 						
 					</ul>
-					<div class="in inner">
-						<div class="btns com_s">
-							<button class="slick-prev slick-arrow" style="display: block;">이전</button>
-							<button class="slick-next slick-arrow" style="display: block;">다음</button>
-						</div>
-						
+					<div class="in inner">						
 						<img src="resources/img/reserve/concerthall_info.jpg" style="width:100%; height:auto;"/>
 						<h4 class="t">모든 장르의 공연을 담아낼 수 있는 <strong class="color-purple">종합 예술 공간</strong>입니다. </h4>
 						<p>세종대극장은 첨단 시설을 갖춘 세계적 수준의 공연장으로 1, 2, 3층에 걸쳐 3,022석의 객석을 갖추고 있으며 1, 2층 객석의자와 3층 벽면에 부착된 국내 유일의 LCD 모니터를 통해 공연자막과 동영상 서비스를 제공하고 있습니다. 특히 최신 음향 장치를 설치하여 객석 구석구석까지 소리가 잘 전달되는 탁월한 음향 수준을 구현했습니다. 또한 무대 전환을 도와주는 배튼이 총 102개로 전환 속도가 빨라 역동적인 무대를 만들어 낼 수 있습니다. 클래식뿐만 아니라 다양한 장르를 소화해 낼 수  있는 다목적홀로 해외 유명 연주자들도 찬사를 보내는 세계적 수준의 공연장입니다.</p>

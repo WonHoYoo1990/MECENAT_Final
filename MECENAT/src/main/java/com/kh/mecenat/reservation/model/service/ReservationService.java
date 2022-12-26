@@ -20,4 +20,10 @@ public interface ReservationService {
 //	공연홀 정보조회
 	Hall selectHallInfo(String hallName);
 
+	RentApplication selectRentApplication(int rentalCode);
+
+	Performance getReservationPerformance(Performance pf);
+
+
+
 }
