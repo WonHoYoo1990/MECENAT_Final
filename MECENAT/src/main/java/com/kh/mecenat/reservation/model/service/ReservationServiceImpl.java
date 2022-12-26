@@ -38,7 +38,7 @@ public class ReservationServiceImpl implements ReservationService{
 		return pfmc;
 	}
 
-//	대관신청서 제출
+//	대관신청서 제출!
 	@Override
 	public int insertApplication(RentApplication ra) {
 				
