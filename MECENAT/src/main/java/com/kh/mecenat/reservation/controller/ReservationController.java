@@ -97,17 +97,18 @@ public class ReservationController {
 	public String selectPerformaceForm(Model model//,
 									   /*int rentalCode*/) {
 
-//		ArrayList<Performance> list = reservationService.selectPerformanceList();
-//		model.addAttribute("list",list);
-//		System.out.println(list);
-		
 		int rentalCode = 1;
 		
 		ArrayList<Performance> list = reservationService.selectPerformanceList(rentalCode);
-		System.out.println("list : "+list);
+
+		Hall hall = reservationService.selectHallInfo(list.get(0).getHallName());
 		
-//		Performance pfmc =  reservationService.selectPerformance(rentalCode);
-		model.addAttribute("list",list);
+		RentApplication ra = reservationService.selectRentApplication(rentalCode);
+
+		String[] raArr = ra.getEventDate().split(",");
+
+		model.addAttribute("list",list).addAttribute("ra",ra).addAttribute("raArr",raArr).addAttribute(hall);
+		
 
 		return "reservation/makeReservation";
 	}
@@ -116,6 +117,21 @@ public class ReservationController {
 	@PostMapping("make.rv")
 	public void selectPerformaceInfo() {
 		
+	}
+	
+//예매페이지 중 날짜 및 회차 선택시 ajax로 해당 공연정보 전달
+	@ResponseBody
+	@RequestMapping(value="perfoNum.rv", produces = "application/json; charset=UTF-8")
+	public String perfoNum(String perfoEventDate, int rentalCode) {
+		
+		Performance pf = new Performance();
+		pf.setPerfoEventDate(perfoEventDate);
+		pf.setRentalCode(rentalCode);
+		
+		Performance pfmc = reservationService.getReservationPerformance(pf);
+		
+		
+		return new Gson().toJson(pfmc);
 	}
 	
 	

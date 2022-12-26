@@ -132,17 +132,31 @@
 			, '승인대기')
 	</insert>
 	
-	<!-- #혜원 - 공연장 선택 시 해당 공연장 전체 정보 조회 -->
+	<!-- #혜원만제 - 공연장 선택 시 해당 공연장 전체 정보 조회 -->
 	<select id="selectHallInfo" resultMap="hallResult">
 		SELECT *
 		FROM HALL
 		WHERE HALL_NAME = #{hallName}
 	</select>
-
+	
+	<!-- #혜원만제 - 해당날짜 및 렌탈코드로 공연 정보 조회해 예매페이지로 전달 -->
+	<select id="getReservationPerformance" resultMap="performanceResult">
+		SELECT *
+		FROM PERFORMANCE
+		WHERE PERFO_EVENT_DATE = #{perfoEventDate}
+		AND RENTAL_CODE = #{rentalCode}
+	</select>
+<!-- =================================================================================== -->
 	<!--  #유리 - 관리자)승인대기중인 list조회  -->
 	<select id="selectRentalApplication" resultMap="rentapplicationResult">
 		SELECT * FROM RENTAPPLICATION WHERE APPROVE_STATUS='승인대기'
 	</select>
+	
+	<select id="selectRentApplication" resultMap="rentapplicationResult">
+		SELECT * FROM RENTAPPLICATION WHERE RENTAL_CODE = #{rentalCode}
+	</select>
+	
+	
 	<update id="updateApproveStatus">
 		UPDATE RENTAPPLICATION SET APPROVE_STATUS='승인'
 		WHERE RENTAL_CODE = #{rno}

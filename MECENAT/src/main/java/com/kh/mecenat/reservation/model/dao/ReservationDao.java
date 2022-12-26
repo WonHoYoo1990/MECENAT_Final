@@ -36,5 +36,15 @@ public class ReservationDao {
 		return (Hall)sqlSession.selectOne("reservationMapper.selectHallInfo", hallName);
 	}
 
+	public RentApplication selectRentApplication(SqlSessionTemplate sqlSession, int rentalCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("reservationMapper.selectRentApplication", rentalCode);
+	}
+
+	public Performance getReservationPerformance(SqlSessionTemplate sqlSession, Performance pf) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("reservationMapper.getReservationPerformance", pf);
+	}
+
 	
 }
