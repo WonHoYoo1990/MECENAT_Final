@@ -448,8 +448,8 @@ a.bbs-btn-st2{display: inline-block;line-height: 4em;vertical-align: middle;}
 .schedule__date .item input[type="radio"]:focus + label:before{border:1px solid #fff; z-index:1; content:''; left: 0; right: 0; bottom:0; top:0; margin:auto; position:absolute;}
 .schedule__date .item input[type="radio"]:checked + label{background:#000; color:#fff;}
 .schedule__date .arrow{display:block; text-indent:-9999px; overflow:hidden; width:22px; height:22px; background-repeat:no-repeat; background-position:0 0;}
-.schedule__date .arrow.prev{background-image:url('../img/bbs/scheduleIcons_03.png');}
-.schedule__date .arrow.next{background-image:url('../img/bbs/scheduleIcons_05.png');}
+.schedule__date .arrow.prev{background-image:url('(../../commons/img/bbs/prev.gif');}
+.schedule__date .arrow.next{background-image:url('./static/commons/img/bbs/next.gif');}
 .schedule__date .txt{margin:0 1.250em; font-size:1.875em; font-weight:600; color:#222; line-height:1;}
 .schedule__date .title input{margin:0 1.250em; font-size:1.875em; font-weight:600; color:#222; line-height:1; background:transparent; border:0; width:165px; padding:0;}
 

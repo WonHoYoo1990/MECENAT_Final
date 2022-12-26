@@ -415,7 +415,7 @@
 										</div>
 										<div class="cont">
 											<strong class="t">내셔널지오그래픽 사진전 ＜포토아크, 너의 이름은＞</strong>
-											<div class="etc clearfix">
+											<div class="etc clrfix">
 												<span class="date"> 2022.04.12 - 2023.02.26 </span> <span class="place">기획전시</span>
 											</div>
 										</div>
@@ -523,6 +523,16 @@
 		
 		<!-- 베너  Start -->
 		<c:choose>
+			<c:when test="${fn:contains(path, 'performanceMain')}">
+				<section id="sub_visual" style="height: 500px; ">
+					<div class="bg_w">
+						<div class="bg" style="background-image: url(./resources/sejongpac/static/commons/img/member/signupBackground.jpg);"></div>
+					</div>
+					<h2 class="sub-t" style="margin-top: 100px;">
+						<strong class="ani" style="opacity: 1;">공연 일정</strong>
+					</h2>
+				</section>
+			</c:when>
 			<c:when test="${fn:contains(path, 'infomTicket')}">
 				<section id="sub_visual" style="height: 500px; ">
 					<div class="bg_w">

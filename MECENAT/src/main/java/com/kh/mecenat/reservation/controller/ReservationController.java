@@ -119,17 +119,18 @@ public class ReservationController {
 	}
 	
 	
+	//예매 안내 페이지 이동
 	@RequestMapping("infomTicket.rv")
 	public String infomTicket() {
 		return "reservation/infomTicket";
 	}
 	
-	
+	// 대관공고 페이지 이동??? 페이지 이상함
 	@RequestMapping("rentList.rv")
 	public String rentList() {
 		return "reservation/rentList";
 	}
-
+	// 대관공고 페이지내 공고 검색어 기능 기능구현 아직안함
 	@RequestMapping("serchListRent.rv")
 	public String serchListRent() {
 		return "reservation/rentList";
