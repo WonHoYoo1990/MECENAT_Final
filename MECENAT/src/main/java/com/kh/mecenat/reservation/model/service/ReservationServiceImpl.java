@@ -52,5 +52,18 @@ public class ReservationServiceImpl implements ReservationService{
 		return reservationDao.selectHallInfo(sqlSession, hallName);
 	}
 
+	@Override
+	public RentApplication selectRentApplication(int rentalCode) {
+		// TODO Auto-generated method stub
+		return reservationDao.selectRentApplication(sqlSession, rentalCode);
+	}
+
+	@Override
+	public Performance getReservationPerformance(Performance pf) {
+		Performance pfmc = reservationDao.getReservationPerformance(sqlSession, pf);
+		return pfmc;
+	}
+
+
 	
 }
