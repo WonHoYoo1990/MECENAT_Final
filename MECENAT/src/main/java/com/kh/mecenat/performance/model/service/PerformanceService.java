@@ -17,4 +17,7 @@ public interface PerformanceService {
 
 	public Performance selectListPerformance(int rno);
 
+	//서브메인 공연 리스트 뽑아오기
+	public ArrayList<Performance> subMainPerformanceList(String sdate);
+
 }
