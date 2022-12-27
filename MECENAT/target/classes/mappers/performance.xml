@@ -131,6 +131,13 @@
 		WHERE PERFO_EVENT_DATE = #{sdate}
 	</select>
 	
+	<!-- 서브메인페이지 공연 개수 -->
+	<select id="ListCountSubMainPerformance" resultType="int">
+		SELECT COUNT(*)
+		FROM PERFORMANCE
+		WHERE PERFO_EVENT_DATE = #{sdate}
+	</select>
+	
 	
 	
 	

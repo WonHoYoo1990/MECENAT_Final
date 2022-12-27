@@ -54,7 +54,6 @@
 		<!-- Header Section Begin -->
 		<jsp:include page="../common/header.jsp" />
 		<!-- Header End -->
-		<br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
 		
 		<dl class="accessibilityWrap">
 			<dt class="hide"><strong>바로가기 메뉴</strong></dt>
@@ -83,161 +82,143 @@
 		
 			<section id="today">
 				<div class="inner">
-					
-					<div class="in mCustomScrollbar _mCS_1"><div id="mCSB_1" class="mCustomScrollBox mCS-light mCSB_horizontal mCSB_inside" style="max-height: none;" tabindex="0"><div id="mCSB_1_container" class="mCSB_container" style="position: relative; top: 0px; left: -310px; width: 1673px;" dir="ltr">
-						<ul class="s clearfix">
-							
-								<li class="item" tabindex="0">
-									<div class="img">
-										
-										<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=2b59bbae5ad2d8e5c4a30c3dd7ad5380&amp;streFileNm=b2af8d74e1235276407b1cdf9a59e7dc24078277cccf491c8dad44ed96e373b4" alt="" class="mCS_img_loaded">
-										
-										<div class="hover" style="display: none; opacity: 1;">
-											<div class="table">
-												<div class="vertical">
-													<a href="https://academy.sejongpac.or.kr/academy/main/main.do" class="d">상세</a>
+					<div class="in mCustomScrollbar _mCS_1">
+						<div id="mCSB_1" class="mCustomScrollBox mCS-light mCSB_horizontal mCSB_inside" style="max-height: none;" tabindex="0">
+							<div id="mCSB_1_container" class="mCSB_container" style="position: relative; top: 0px; left: -310px; width: 1673px;" dir="ltr">
+								<ul class="s clearfix">
+								
+									<li class="item" tabindex="0">
+										<div class="img">
+											<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=2b59bbae5ad2d8e5c4a30c3dd7ad5380&amp;streFileNm=b2af8d74e1235276407b1cdf9a59e7dc24078277cccf491c8dad44ed96e373b4" alt="" class="mCS_img_loaded">
+											<div class="hover" style="display: none; opacity: 1;">
+												<div class="table">
+													<div class="vertical">
+														<a href="https://academy.sejongpac.or.kr/academy/main/main.do" class="d">상세</a>
+													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-									<div class="cont">
-										<strong class="t">세종 온 클래스 </strong>
-										<span class="date">
-											2022.10.24~2023.06.04
-										</span>
-									</div>
-								</li>
-							
-								<li class="item" tabindex="0">
-									<div class="img">
-										
-										<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=f82a3571b7df23a6aa38eb59781dbf2a&amp;streFileNm=c16f9bb18fd876aa07d90051d369fccd2b2061ad95b408c44731011a6c60517c" alt="유니버설발레단 호두까기 인형 2022.12.22(목)~12.31(토) 세종대극장" class="mCS_img_loaded">
-										
-										<div class="hover" style="display: none; opacity: 1;">
-											<div class="table">
-												<div class="vertical">
-													
+										<div class="cont">
+											<strong class="t">세종 온 클래스 </strong>
+											<span class="date">
+												2022.10.24~2023.06.04
+											</span>
+										</div>
+									</li>
+								
+									<li class="item" tabindex="0">
+										<div class="img">
+											<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=f82a3571b7df23a6aa38eb59781dbf2a&amp;streFileNm=c16f9bb18fd876aa07d90051d369fccd2b2061ad95b408c44731011a6c60517c" alt="유니버설발레단 호두까기 인형 2022.12.22(목)~12.31(토) 세종대극장" class="mCS_img_loaded">
+											<div class="hover" style="display: none; opacity: 1;">
+												<div class="table">
+													<div class="vertical">
 														<a href="#" onclick="javascript:showPerformPop('grpb2210111117a01');return false;" class="r ReservationTitle">예매</a>
-													
-													<a href="/portal/performance/performance/view.do?performIdx=33630&amp;menuNo=200004" class="d">상세</a>
+														<a href="/portal/performance/performance/view.do?performIdx=33630&amp;menuNo=200004" class="d">상세</a>
+													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-									<div class="cont">
-										<strong class="t">유니버설발레단 '호두까기인형' </strong>
-										<span class="date">
-											2022.12.22~2022.12.31
-										</span>
-									</div>
-								</li>
-							
-								<li class="item" tabindex="0">
-									<div class="img">
-										
-										<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=f82a3571b7df23a6aa38eb59781dbf2a&amp;streFileNm=cef1655f89b9cf076fee29b429f06a19610859f559405acebf035c508af9a606" alt="뮤지컬 캣츠 내한공연-서울 musical cats 2023.1.20(금)~03.12(일)세종대극장" class="mCS_img_loaded">
-										
-										<div class="hover" style="display: none; opacity: 1;">
-											<div class="table">
-												<div class="vertical">
-													
+										<div class="cont">
+											<strong class="t">유니버설발레단 '호두까기인형' </strong>
+											<span class="date">
+												2022.12.22~2022.12.31
+											</span>
+										</div>
+									</li>
+								
+									<li class="item" tabindex="0">
+										<div class="img">
+											
+											<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=f82a3571b7df23a6aa38eb59781dbf2a&amp;streFileNm=cef1655f89b9cf076fee29b429f06a19610859f559405acebf035c508af9a606" alt="뮤지컬 캣츠 내한공연-서울 musical cats 2023.1.20(금)~03.12(일)세종대극장" class="mCS_img_loaded">
+											
+											<div class="hover" style="display: none; opacity: 1;">
+												<div class="table">
+													<div class="vertical">
 														<a href="#" onclick="javascript:showPerformPop('grpm2210061638a01');return false;" class="r ReservationTitle">예매</a>
-													
-													<a href="/portal/performance/performance/view.do?performIdx=33622&amp;menuNo=200004" class="d">상세</a>
+														<a href="/portal/performance/performance/view.do?performIdx=33622&amp;menuNo=200004" class="d">상세</a>
+													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-									<div class="cont">
-										<strong class="t">뮤지컬 캣츠 내한공연-서울 (Musical CATS) </strong>
-										<span class="date">
-											2023.01.20~2023.03.12
-										</span>
-									</div>
-								</li>
-							
-								<li class="item" tabindex="0">
-									<div class="img">
-										
-										<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=10faa8fd4823b18cfb5fd36eda1e5ae0&amp;streFileNm=34445a499666db527745f1a0d44c59fd610859f559405acebf035c508af9a606" alt="내셔널지오그래픽 사진전 포토아크, 너의 이름은 2022년 04월 12일 화요일부터 2023년 02월 26일 일요일까지 꿈의숲 상상톡톡미술관에서 전시" class="mCS_img_loaded">
-										
-										<div class="hover" style="display: none; opacity: 1;">
-											<div class="table">
-												<div class="vertical">
-													
+										<div class="cont">
+											<strong class="t">뮤지컬 캣츠 내한공연-서울 (Musical CATS) </strong>
+											<span class="date">
+												2023.01.20~2023.03.12
+											</span>
+										</div>
+									</li>
+								
+									<li class="item" tabindex="0">
+										<div class="img">
+											
+											<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=10faa8fd4823b18cfb5fd36eda1e5ae0&amp;streFileNm=34445a499666db527745f1a0d44c59fd610859f559405acebf035c508af9a606" alt="내셔널지오그래픽 사진전 포토아크, 너의 이름은 2022년 04월 12일 화요일부터 2023년 02월 26일 일요일까지 꿈의숲 상상톡톡미술관에서 전시" class="mCS_img_loaded">
+											
+											<div class="hover" style="display: none; opacity: 1;">
+												<div class="table">
+													<div class="vertical">
 														<a href="#" onclick="javascript:showPerformPop('dt2203101117a01');return false;" class="r ReservationTitle">예매</a>
-													
-													<a href="/portal/performance/performance/view.do?performIdx=33012&amp;menuNo=200004" class="d">상세</a>
+														<a href="/portal/performance/performance/view.do?performIdx=33012&amp;menuNo=200004" class="d">상세</a>
+													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-									<div class="cont">
-										<strong class="t">내셔널지오그래픽 사진전 ＜포토아크, 너의 이름은＞ </strong>
-										<span class="date">
-											2022.04.12~2023.02.26
-										</span>
-									</div>
-								</li>
-							
-								<li class="item" tabindex="0">
-									<div class="img">
-										
-										<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=76331b7fb043b513c10e97964b50b143&amp;streFileNm=301bc04329066ee98076bb67c6ce74e96a7ff77472074eb1dad6fba65becd736" alt="셀럽이 사랑한 bag&amp;shoes 2022.12.31~2023.03.25 세종미술관" class="mCS_img_loaded">
-										
-										<div class="hover" style="display: none; opacity: 1;">
-											<div class="table">
-												<div class="vertical">
-													
+										<div class="cont">
+											<strong class="t">내셔널지오그래픽 사진전 ＜포토아크, 너의 이름은＞ </strong>
+											<span class="date">
+												2022.04.12~2023.02.26
+											</span>
+										</div>
+									</li>
+								
+									<li class="item" tabindex="0">
+										<div class="img">
+											<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=76331b7fb043b513c10e97964b50b143&amp;streFileNm=301bc04329066ee98076bb67c6ce74e96a7ff77472074eb1dad6fba65becd736" alt="셀럽이 사랑한 bag&amp;shoes 2022.12.31~2023.03.25 세종미술관" class="mCS_img_loaded">
+											<div class="hover" style="display: none; opacity: 1;">
+												<div class="table">
+													<div class="vertical">
 														<a href="#" onclick="javascript:showPerformPop('b5dt2212121427a01');return false;" class="r ReservationTitle">예매</a>
-													
-													<a href="/portal/performance/exhibit/view.do?performIdx=33784&amp;menuNo=200005" class="d">상세</a>
+														<a href="/portal/performance/exhibit/view.do?performIdx=33784&amp;menuNo=200005" class="d">상세</a>
+													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-									<div class="cont">
-										<strong class="t">셀럽이 사랑한 Bag&amp;Shoes </strong>
-										<span class="date">
-											2022.12.31~2023.03.25
-										</span>
-									</div>
-								</li>
-							
-								<li class="item" tabindex="0">
-									<div class="img">
-										
-										<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=76331b7fb043b513c10e97964b50b143&amp;streFileNm=4e76f98a7d39453f3260f2a8caf32aef5780e802885c9a2e4f5ff6a995362cef" alt="세종온클래스 2022-12-23~2023-06-24 세종예술아카데미" class="mCS_img_loaded">
-										
-										<div class="hover" style="display: none; opacity: 1;">
-											<div class="table">
-												<div class="vertical">
-													
-													<a href="https://academy.sejongpac.or.kr/academy/main/main.do" class="d">상세</a>
+										<div class="cont">
+											<strong class="t">셀럽이 사랑한 Bag&amp;Shoes </strong>
+											<span class="date">
+												2022.12.31~2023.03.25
+											</span>
+										</div>
+									</li>
+								
+									<li class="item" tabindex="0">
+										<div class="img">
+											<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=76331b7fb043b513c10e97964b50b143&amp;streFileNm=4e76f98a7d39453f3260f2a8caf32aef5780e802885c9a2e4f5ff6a995362cef" alt="세종온클래스 2022-12-23~2023-06-24 세종예술아카데미" class="mCS_img_loaded">
+											<div class="hover" style="display: none; opacity: 1;">
+												<div class="table">
+													<div class="vertical">
+														<a href="https://academy.sejongpac.or.kr/academy/main/main.do" class="d">상세</a>
+													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-									<div class="cont">
-										<strong class="t">세종 온 클래스 </strong>
-										<span class="date">
-											2022.10.24~2023.06.04
-										</span>
-									</div>
-								</li>
-							
-		
-						</ul>
-					</div>
-					<div id="mCSB_1_scrollbar_horizontal" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light mCSB_scrollTools_horizontal" style="display: block;">
-						<div class="mCSB_draggerContainer">
-							<div id="mCSB_1_dragger_horizontal" class="mCSB_dragger" style="position: absolute; min-width: 30px; display: block; width: 715px; max-width: 1084px; left: 203px;">
-								<div class="mCSB_dragger_bar"></div>
+										<div class="cont">
+											<strong class="t">세종 온 클래스 </strong>
+											<span class="date">
+												2022.10.24~2023.06.04
+											</span>
+										</div>
+									</li>
+								</ul>
 							</div>
-							<div class="mCSB_draggerRail"></div>
+							<div id="mCSB_1_scrollbar_horizontal" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light mCSB_scrollTools_horizontal" style="display: block;">
+								<div class="mCSB_draggerContainer">
+									<div id="mCSB_1_dragger_horizontal" class="mCSB_dragger" style="position: absolute; min-width: 30px; display: block; width: 715px; max-width: 1084px; left: 203px;">
+										<div class="mCSB_dragger_bar"></div>
+									</div>
+									<div class="mCSB_draggerRail"></div>
+								</div>
+							</div>
 						</div>
-					</div>
-					</div>
 					</div>
 					<script>
 					$("#today .in").mCustomScrollbar({
@@ -299,58 +280,66 @@
 				</form>
 				<script>
 					document.getElementById('period1').value = new Date().toISOString().substring(0, 10);
-				
+					
 					$('#period1').datepicker({
 					      dateFormat: 'yy-mm-dd', //데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
 					      language: 'kr', //달력의 언어 선택, 그에 맞는 js로 교체해줘야한다.
-					   }).on('changeDate', function (e) { });
-					
-					//날짜
-					$('#period1').on('change', function(){
-						console.log("hi ")
-						
-						var sdate = $("#period1").val();
-						console.log("sada : " + sdate)
-		
-						$.ajax({
-						    url : 'subMainPerformanceList.perf',           // 요청할 서버url
-						    data : {  // 보낼 데이터 (Object , String, Array)
-						      "sdate" : sdate
-						    },
-						    success : function(list) {  
-						        console.log("통신 성공 !");
-						        console.log("list : "+list);
-						        console.log("list.perfoTitle: "+list.perfoTitle);
-			    				
-			    				$(".bbs-today_thumb").html(list);
-						        
-						    },
-						    error : function(request, status, error) { // 결과 에러 콜백함수
-						        console.log("통신 실패 !");
-						        console.log(error)
-						    }
-						})
-						
-						
-					});
-					
+					   }).on('change', function () {
+						   
+						   var sdate = $("#period1").val();
+							console.log("sada : " + sdate)
+			
+							$.ajax({ // 공연 리스트 조회
+							    url : 'subMainPerformanceList.perf',
+							    data : {  // 보낼 데이터 (Object , String, Array)
+							      "sdate" : sdate
+							    },
+							    success : function(list) {  
+							        console.log("통신 성공 !");
+							        console.log("list : "+list);
+				    				
+				    				$(".bbs-today_thumb").html(list);
+							    },
+							    error : function(request, status, error) { // 결과 에러 콜백함수
+							        console.log("통신 실패 !");
+							        console.log(error)
+							    }
+							})
+							
+							$.ajax({ // 공연 리스트 개수 조회
+							    url : 'ListCountSubMainPerformance.perf',
+							    data : {  // 보낼 데이터 (Object , String, Array)
+							      "sdate" : sdate
+							    },
+							    success : function(count) {  
+							        console.log("통신 성공 COUNT !");
+							        console.log("count : "+count);
+				    				
+				    				$(".listCount .etc_w .color-navy").html(count);
+							    },
+							    error : function(request, status, error) { // 결과 에러 콜백함수
+							        console.log("통신 실패 COUNT!");
+							        console.log(error)
+							    }
+							})
+							
+							
+					   });
 				</script>
 		
 				<!-- 페이지 시작 -->
 				<article class="bbs-today_w">
 					<div class="inner">
-						<div class="top clearfix">
+						<div class="top clearfix listCount">
 							<div class="category">
 								<span class="active"><a href="javascript:void(0);" onclick="fn_SearchSort('2');" title="선택됨">관심순</a></span>
 								<span><a href="javascript:void(0);" onclick="fn_SearchSort('1');">최신순</a></span>
 							</div>
 		
 							<div class="etc_w">
-								<span>검색 결과 총 <strong class="color-navy">4</strong> 건</span>
-								<!-- <div class="clearfix type">
-									<button type="button" class="list">리스트로 보기</button>
-									<button type="button" class="thumb active">썸네일로 보기</button>
-								</div> -->
+								<span>검색 결과 총
+									<strong class="color-navy"> </strong> 건
+								</span>
 							</div>
 						</div>
 						
@@ -434,38 +423,6 @@
 									</div>
 								</div>
 							</li>
-						
-							<li tabindex="0">
-								<div class="img">
-									
-											<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=faec0c25744c22e99776405c0fa728020ced1ac91b5fc82bb55dac72d913a231&amp;streFileNm=e3fcd0381559eddbb3b1fdb21135b29539140131461b1ec4fbc79f9f1d2d9b11" alt="2023 한글일일달력 열세번째 이야기 한글일일달력 365일 365명 희망을 이야기하다">
-										
-								</div>
-								<div class="cont">
-									<strong class="t"> 2023 한글일일달력전 `365일 365명 희망을 이야기하다`</strong>
-									<div class="add">
-										세종이야기전시장
-									</div>
-									<div class="etc clearfix">
-										<span class="date">
-											2022.11.29 - 2023.01.02
-										</span>
-										<span class="place">
-											전시기타
-										</span>
-									</div>
-								</div>
-								<div class="hover" style="display: none; opacity: 1;">
-									<div class="table">
-										<div class="vertical">
-											
-												<a href="/portal/performance/performance/view.do?performIdx=33755&amp;menuNo=200004" class="d">상세</a>
-											
-										</div>
-									</div>
-								</div>
-							</li>
-						
 						</ul>
 		
 						<div class="paginationSet">
@@ -638,13 +595,10 @@
 			</div>
 		</section>
 		
-		<br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
 		<!-- footer Section Begin -->
 		<jsp:include page="../common/footer.jsp" />
 		<!-- footer End -->
 		
-		
-		
-		</section>
+	</section>
 </body>
 </html>

@@ -8,12 +8,11 @@ import org.springframework.stereotype.Repository;
 import com.kh.mecenat.performance.model.vo.Performance;
 import com.kh.mecenat.reservation.model.vo.RentApplication;
 
-
 @Repository
 public class PerformanceDao {
 
-	public ArrayList<Performance> selectListPerformance(SqlSessionTemplate sqlSession ) {
-		return (ArrayList)sqlSession.selectList("performanceMapperMana.selectPerformanceList");
+	public ArrayList<Performance> selectListPerformance(SqlSessionTemplate sqlSession) {
+		return (ArrayList) sqlSession.selectList("performanceMapperMana.selectPerformanceList");
 	}
 
 	public int insertPerformance(SqlSessionTemplate sqlSession, Performance p) {
@@ -21,7 +20,7 @@ public class PerformanceDao {
 	}
 
 	public ArrayList<RentApplication> selectRentalApplication(SqlSessionTemplate sqlSession) {
-		return (ArrayList)sqlSession.selectList("reservationMapper.selectRentalApplication");
+		return (ArrayList) sqlSession.selectList("reservationMapper.selectRentalApplication");
 	}
 
 	public int performanceDao(SqlSessionTemplate sqlSession, int rno) {
@@ -34,8 +33,12 @@ public class PerformanceDao {
 
 	// 서브 메인페이지 공연 리스트 뽑아오기
 	public ArrayList<Performance> subMainPerformanceList(SqlSessionTemplate sqlSession, String sdate) {
-		return (ArrayList)sqlSession.selectList("performanceMapperMana.subMainPerformanceList", sdate);
+		return (ArrayList) sqlSession.selectList("performanceMapperMana.subMainPerformanceList", sdate);
 	}
-
+	
+	// 서브 메인 공연리스트 개수
+	public int ListCountSubMainPerformance(SqlSessionTemplate sqlSession, String sdate) {
+		return sqlSession.selectOne("performanceMapperMana.ListCountSubMainPerformance", sdate);
+	}
 
 }
