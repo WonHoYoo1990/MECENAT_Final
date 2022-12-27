@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.mecenat.performance.model.vo.Performance;
+import com.kh.mecenat.performance.model.vo.Review;
 import com.kh.mecenat.reservation.model.vo.RentApplication;
 
 @Repository
@@ -39,6 +40,21 @@ public class PerformanceDao {
 	// 서브 메인 공연리스트 개수
 	public int ListCountSubMainPerformance(SqlSessionTemplate sqlSession, String sdate) {
 		return sqlSession.selectOne("performanceMapperMana.ListCountSubMainPerformance", sdate);
+	}
+
+
+
+	
+	
+	
+	public ArrayList<Review> selectReviewList(SqlSessionTemplate sqlSession, int rno) {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSession.selectList("performanceMapperMana.selectReviewList", rno);
+	}
+
+	public int insertReview(SqlSessionTemplate sqlSession, Review r) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("performanceMapperMana.insertReview", r);
 	}
 
 }
