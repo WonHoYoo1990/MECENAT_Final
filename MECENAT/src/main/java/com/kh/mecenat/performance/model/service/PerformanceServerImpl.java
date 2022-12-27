@@ -73,4 +73,20 @@ public class PerformanceServerImpl implements PerformanceService {
 		return performanceDao.insertReview(SqlSession, r);
 	}
 
+	@Override
+	public int cancelPerformance(int rcode) {
+		return performanceDao.cancelPerformance(SqlSession, rcode);
+	}
+
+	@Override
+	public RentApplication selectRentalApplicationR(int rno) {
+		return performanceDao.selectRentalApplicationR(SqlSession, rno);
+	}
+
+	@Override
+	public int updateRentalAppStatus(int rno) {
+		return performanceDao.updateRentalAppStatus(SqlSession, rno);
+	}
+
+
 }

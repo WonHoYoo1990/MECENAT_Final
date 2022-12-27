@@ -18,6 +18,12 @@ public interface PerformanceService {
 
 	public Performance selectListPerformance(int rno);
 
+	public int cancelPerformance(int rcode);
+
+	public RentApplication selectRentalApplicationR(int rno);
+
+	public int updateRentalAppStatus(int rno);
+
 	// 서브메인 공연 리스트 뽑아오기
 	public ArrayList<Performance> subMainPerformanceList(String sdate);
 
