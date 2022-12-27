@@ -13,16 +13,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
+import com.kh.mecenat.common.PageInfo;
 import com.kh.mecenat.performance.model.service.PerformanceService;
 import com.kh.mecenat.performance.model.vo.Performance;
 import com.kh.mecenat.reservation.model.vo.RentApplication;
 
-import oracle.net.aso.p;
+import javafx.scene.control.Pagination;
 
 @Controller
 public class PerformanceController {
@@ -164,7 +165,7 @@ public class PerformanceController {
 	}
 
 	// 서브 메인페이지 내에서 현재 페이지 공연 리스트 보여주기
-	@RequestMapping("subMainPerformanceList.perf" )
+	@RequestMapping("subMainPerformanceList.perf")
 	@ResponseBody
 	public ModelAndView subMainPerformanceList(String sdate, ModelAndView mv) {
 
@@ -177,7 +178,32 @@ public class PerformanceController {
 
 		return mv;
 	}
-	
+
+	// 게시글 총 개수 하는중 (-)
+	@RequestMapping("ListCountSubMainPerformance.perf")
+	@ResponseBody
+	public int ListCountSubMainPerformance(String sdate) {
+
+		// 페이징 처리를 위해 전체 게시글 개수 조회해오기
+		// 페이징 처리 pageLimit 10
+		// boardLimit 5
+		
+		System.out.println("listCount 안에 sdate: " + sdate);
+		
+
+		int listCount = perfoService.ListCountSubMainPerformance(sdate);
+
+//		int pageLimit = 5; // 페이지 보여질 갯수
+//		int boardLimit = 5; // 한 페이지에 게시글 보여질 갯수
+//		
+		System.out.println("listCount : " + listCount);
+//		System.out.println("pageLimit : " + pageLimit);
+//		System.out.println("boardLimit : " + boardLimit);
+//		
+//		PageInfo pi = Pagination.getPageinfo(listCount, currentPage, pageLimit, boardLimit);
+
+		return listCount;
+	}
 
 	// asdfasdfasdfasdfasdfasdfasdf"asdf.mana"
 	@ResponseBody
