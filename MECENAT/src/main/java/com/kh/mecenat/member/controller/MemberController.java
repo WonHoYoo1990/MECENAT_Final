@@ -30,8 +30,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.mecenat.member.model.service.MemberService;
 import com.kh.mecenat.member.model.vo.Member;
 
-import lombok.extern.slf4j.Slf4j;
-
 
 @Controller
 public class MemberController {

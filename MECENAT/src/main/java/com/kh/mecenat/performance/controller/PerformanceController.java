@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.kh.mecenat.performance.model.service.PerformanceService;
 import com.kh.mecenat.performance.model.vo.Performance;
 import com.kh.mecenat.reservation.model.vo.RentApplication;
@@ -33,34 +34,70 @@ public class PerformanceController {
 //		System.out.println("list단");
 		ArrayList<Performance> pList = perfoService.selectListPerformance();
 //		System.out.println("pList : "+pList);
-
+//		
 		model.addAttribute("pList", pList);
 
 		return "performance/performanceListView2";
+
 	}
 
 //	공연 등록폼 이동
 	@RequestMapping("insertForm.perf")
-	public String performanceInsertForm() {
+	public String performanceInsertForm(Model model, int rno) {
+		// 이거 performance가아니라 reservation이여야함...
+		Performance pList = perfoService.selectListPerformance(rno);
+		RentApplication rList = perfoService.selectRentalApplicationR(rno);
+
+		int updateStatus = perfoService.updateRentalAppStatus(rno);
+
+		System.out.println(rList);
+
+		model.addAttribute("rList", rList);
+		model.addAttribute("updateStatus", updateStatus);
 		return "performance/performanceInsert2";
+
 	}
 
 //	관리자용 공연 등록
 	@PostMapping("insert.perf")
-	public ModelAndView insertPerformance(Performance p, MultipartFile upfile, ModelAndView mv, HttpSession session) {
-		String changeName = saveFile(upfile, session);
-		p.setOriginName(upfile.getOriginalFilename());
-		p.setChangeName("resources/performanceFiles/" + changeName);
+	public ModelAndView insertPerformance(Performance p, int rcode, String eDate, String eTime, MultipartFile upfile, ModelAndView mv,
+			HttpSession session) {
 
-		int result = perfoService.insertPerformance(p);
+		System.out.println(eDate);
+		System.out.println(eTime);
+
+		String[] dateArr = eDate.split(",");
+		String[] timeArr = eTime.split(",");
+
+		int result = 0;
+		String changeName = saveFile(upfile, session);
+
+		for (int i = 0; i < dateArr.length; i++) {
+
+			String dateInx = dateArr[i];
+			String timeInx = timeArr[i];
+
+			p.setOriginName(upfile.getOriginalFilename());
+			p.setChangeName("resources/performanceFiles/" + changeName);
+
+			p.setRentalCode(rcode);
+			p.setPerfoEventDate(dateInx);
+			p.setStartTime(timeInx);
+			System.out.println(p);
+
+			result = perfoService.insertPerformance(p);
+
+		}
 
 		mv.setViewName("redirect:list.perf");
 
 		return mv;
+
 	}
 
 //	등록된공연 빼기용
 	@RequestMapping("delete.perf")
+
 	public void performanceDelete() {
 
 	}
@@ -68,7 +105,6 @@ public class PerformanceController {
 //	승인페이지에 뿌려줄 RENTALAPPLICATION 뽑아오기
 	@RequestMapping("approveWaitForm.mana")
 	public String approveListForm(Model model) {
-//		System.out.println("dd");
 
 		ArrayList<RentApplication> rList = perfoService.selectRentalApplication();
 
@@ -79,29 +115,32 @@ public class PerformanceController {
 		return "performance/approveWaitForm";
 	}
 
-	@RequestMapping("approve.perf")
-	public String approvePerformance(int rno) {
-//		System.out.println(rno);
-//		approveWaitForm.mana
-		int result = perfoService.approvePerformance(rno);
-		// http://localhost:8889/mecenat/approveWaitForm.mana
+	@ResponseBody
+	@RequestMapping(value = "approve.perf")
+	public String approvePerformance(int rcode) {
+//		System.out.println("appreve.perf입니다: rcode->" + rcode);
 
-		if (result > 0) {
+		int result = perfoService.approvePerformance(rcode);
 
-		} else {
-
-		}
 		return "redirect:/approveWaitForm.mana";
+	}
 
+	@ResponseBody
+	@RequestMapping(value = "cancel.perf")
+	public String cancelPerformance(int rcode) {
+//		System.out.println("appreve.perf입니다: rcode->" + rcode);
+
+		int result = perfoService.cancelPerformance(rcode);
+
+		return "redirect:/approveWaitForm.mana";
 	}
 
 	@RequestMapping("detail.perf")
 	public String performanceDateilForm(int rno, Model model) {
-//		System.out.println(rno);
 
 		Performance pList = perfoService.selectListPerformance(rno);
 
-//		System.out.println("아레노 들고 디테일폼으로 가려고하는즁" + pList);
+		System.out.println(pList);
 
 		model.addAttribute("pList", pList);
 
@@ -176,7 +215,7 @@ public class PerformanceController {
 	}
 
 	// 서브 메인페이지 내에서 공연 리스트 개수
-	@RequestMapping("subMainPerformanceListCount.perf") 
+	@RequestMapping("subMainPerformanceListCount.perf")
 	@ResponseBody
 	public int subMainPerformanceListCount(String sdate) {
 
@@ -186,11 +225,11 @@ public class PerformanceController {
 
 		return listCount;
 	}
-	
+
 	// 서브 메인페이지 내에서 공연 리스트 최신순 정렬
 	@RequestMapping("subMainPerformanceSearchSort1.perf")
 	public ModelAndView subMainPerformanceSearchSort1(String sdate, ModelAndView mv) {
-		
+
 		System.out.println("하잉?");
 		System.out.println("sdate : " + sdate);
 

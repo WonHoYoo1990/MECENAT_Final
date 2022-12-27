@@ -18,6 +18,8 @@
 		<typeAlias type="com.kh.mecenat.reservation.model.vo.RentApplication" alias="rentapplication"/>
 		<typeAlias type="com.kh.mecenat.reservation.model.vo.RentSystem" alias="rentsystem"/>
 		<typeAlias type="com.kh.mecenat.performance.model.vo.Performance" alias="performanceMana"/>
+		<typeAlias type="com.kh.mecenat.performance.model.vo.Review" alias="review"/>
+		
 	</typeAliases>
 
 	<mappers>

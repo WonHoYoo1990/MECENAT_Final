@@ -3,6 +3,7 @@ package com.kh.mecenat.performance.model.service;
 import java.util.ArrayList;
 
 import com.kh.mecenat.performance.model.vo.Performance;
+import com.kh.mecenat.performance.model.vo.Review;
 import com.kh.mecenat.reservation.model.vo.RentApplication;
 
 public interface PerformanceService {
@@ -17,6 +18,12 @@ public interface PerformanceService {
 
 	public Performance selectListPerformance(int rno);
 
+	public int cancelPerformance(int rcode);
+
+	public RentApplication selectRentalApplicationR(int rno);
+
+	public int updateRentalAppStatus(int rno);
+
 	// 서브메인 공연 리스트 조회
 	public ArrayList<Performance> subMainPerformanceList(String sdate);
 
@@ -25,5 +32,9 @@ public interface PerformanceService {
 
 	// 서브메인 공연 리스트 최신순 조회
 	public ArrayList<Performance> subMainPerformanceSearchSort1(String sdate);
+
+	public ArrayList<Review> selectRevieList(int rno);
+
+	public int insertReview(Review r);
 
 }

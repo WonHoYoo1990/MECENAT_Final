@@ -208,6 +208,7 @@
 								
 								<c:if test="${loginUser.userId eq 'admin' }">
 									<li><a href="approveWaitForm.mana">승인관리</a></li>	
+									<li><a href="">공연관리</a></li>	
 								</c:if>
 								
 						</ul></li>
@@ -288,7 +289,7 @@
 							<ul class="depth2">
 								<li><a href="/portal/bbs/B0000001/list.do?menuNo=200042"><span>새소식</span></a>
 									<ul class="depth3 bul-dot">
-										<li><a href="/portal/bbs/B0000001/list.do?menuNo=200042">세종소식</a></li>
+										<li><a href="noticeForm.no">세종소식</a></li>
 										<li><a href="/portal/bbs/B0000003/list.do?menuNo=200088">입찰공고</a></li>
 								</ul></li>
 								<li><a href="/portal/bbs/B0000017/list.do?menuNo=200040"><span>뉴스레터</span></a></li>
@@ -590,6 +591,16 @@
 					</div>
 					<h2 class="sub-t" style="margin-top: 100px;">
 						<strong class="ani" style="opacity: 1;">개인화 서비스</strong>
+					</h2>
+				</section>
+			</c:when>
+			<c:when test="${fn:contains(path, 'noticeForm')}">
+				<section id="sub_visual" style="height: 500px;">
+					<div class="bg_w">
+						<div class="bg" style="background-image: url(./resources/sejongpac/static/commons/img/member/signupBackground.jpg);"></div>
+					</div>
+					<h2 class="sub-t" style="margin-top: 100px;">
+						<strong class="ani" style="opacity: 1;">MECENAT 소식</strong>
 					</h2>
 				</section>
 			</c:when>

@@ -338,13 +338,13 @@
 									<div class="img">
 										<img src="./resources/sejongpac/static/portal/img/main/m1_3.gif" alt="">
 									</div>
-									<div class="txt">세종투데이</div>
+									<div class="txt">MECENAT 투데이</div>
 							</a></li>
-							<li><a href="/portal/bbs/B0000001/list.do?menuNo=200042">
+							<li><a href="noticeForm.no">
 									<div class="img">
 										<img src="./resources/sejongpac/static/portal/img/main/m1_4.gif" alt="">
 									</div>
-									<div class="txt">세종소식</div>
+									<div class="txt">MECENAT 소식</div>
 							</a></li>
 							<li><a href="/portal/main/contents.do?menuNo=200094">
 									<div class="img" style="top: 0px;">
