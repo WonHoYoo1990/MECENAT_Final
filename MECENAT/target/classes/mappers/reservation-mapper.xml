@@ -107,7 +107,7 @@
 			, #{rentalStartDate}
 			, #{rentalEndDate}
 			, #{eventDate}
-			, #{eventTime \]}
+			, #{eventTime}
 			, #{rentalPropose}
 			, SYSDATE
 			, '승인대기')
@@ -137,13 +137,32 @@
 		WHERE BOARD_NO = #{boardNo}
 		AND STATUS = 'Y'
 	</update>
+	
+	
+	<!-- 관리자(유리) -->
+	<select id="selectRentalApplicationR" resultMap="rentapplicationResult">
+		SELECT * FROM RENTAPPLICATION
+		WHERE RENTAL_CODE = #{rno}
+	</select>
 
 	<!--  관리자)승인대기중인 list조회  -->
 	<select id="selectRentalApplication" resultMap="rentapplicationResult"> 
-		SELECT * FROM RENTAPPLICATION WHERE APPROVE_STATUS='승인대기'
+		SELECT * FROM RENTAPPLICATION 
 	</select>
 	<update id="updateApproveStatus">
-		UPDATE RENTAPPLICATION SET APPROVE_STATUS='승인'
+		UPDATE RENTAPPLICATION
+		SET APPROVE_STATUS='승인'
 		WHERE RENTAL_CODE = #{rno}
 	</update>
+	<update id="updateCancelStatus">
+		UPDATE RENTAPPLICATION
+		SET APPROVE_STATUS='승인대기'
+		WHERE RENTAL_CODE = #{rno}
+	</update>
+	
+	
+	<!-- update status 변경해야함(등록으로) -->
+	
+	
+	
 </mapper>

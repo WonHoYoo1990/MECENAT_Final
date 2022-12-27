@@ -32,5 +32,20 @@ public class PerformanceDao {
 		return sqlSession.selectOne("performanceMapperMana.selectDetailPerformance", rno);
 	}
 
+	public int cancelPerformance(SqlSessionTemplate sqlSession, int rcode) {
+		return sqlSession.update("reservationMapper.updateCancelStatus",rcode);
+	}
+
+	public RentApplication selectRentalApplicationR(SqlSessionTemplate sqlSession, int rno) {
+		
+		return sqlSession.selectOne("reservationMapper.selectRentalApplicationR", rno);
+	}
+
+	public int updateRentalAppStatus(SqlSessionTemplate sqlSession, int rno) {
+		return sqlSession.update("reservationMapper.updateRentalAppStatus", rno);
+		
+	}
+	
+
 
 }

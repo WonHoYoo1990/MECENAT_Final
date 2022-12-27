@@ -5,7 +5,7 @@
 
 
 <mapper namespace="performanceMapperMana">
-	
+	<!-- EVENT_DATE -->
 	<resultMap type="performanceMana" id="performanceResultSet">
 	  	<result column="PERFO_NO" property="perfoNo"/>
 	  	<result column="RENTAL_CODE" property="rentalCode"/>
@@ -22,61 +22,24 @@
 	  	<result column="PRICE" property="price"/>
 	  	<result column="ORIGIN_NAME" property="originName"/>
 	  	<result column="CHANGE_NAME" property="changeName"/>
+	  	<result column="EVENT_TIME" property="eventTime"/>
+	  	<result column="EVENT_DATE" property="eventDate"/>
 	</resultMap>
 	
 
 	<select id="selectPerformanceList" resultMap="performanceResultSet">
-		SELECT RENTAL_CODE,
-			   PERFO_TITLE,
-			   GENRE_NAME,
-			   DIRECTOR,
-			   CAST,
-			   PERFO_CONTENT,
-			   RUNNING_TIME,
-			   AGE_LIMIT,
-			   PRICE,
-			   ORIGIN_NAME, 
-			   CHANGE_NAME
-		FROM PERFORMANCE
-		GROUP BY RENTAL_CODE,
-			     PERFO_TITLE,
-			     GENRE_NAME,
-			     DIRECTOR,
-			     CAST,
-			     PERFO_CONTENT,
-			     RUNNING_TIME,
-			     AGE_LIMIT,
-			     PRICE,
-			     ORIGIN_NAME, 
-			     CHANGE_NAME
-		ORDER BY RENTAL_CODE
+		SELECT RENTAL_CODE, PERFO_TITLE, GENRE_NAME, DIRECTOR, CAST, PERFO_CONTENT, RUNNING_TIME, AGE_LIMIT, PRICE, ORIGIN_NAME, CHANGE_NAME, EVENT_DATE, EVENT_TIME
+		FROM PERFORMANCE P
+		JOIN RENTAPPLICATION R USING(RENTAL_CODE)
+		GROUP BY RENTAL_CODE, PERFO_TITLE, GENRE_NAME, DIRECTOR, CAST, PERFO_CONTENT, RUNNING_TIME, AGE_LIMIT, PRICE, ORIGIN_NAME, CHANGE_NAME, EVENT_DATE, EVENT_TIME
 	</select>
 	
 	<!-- selectDetailPerformance -->
 	<select id="selectDetailPerformance" resultMap="performanceResultSet">
-		SELECT RENTAL_CODE,
-			   PERFO_TITLE,
-			   GENRE_NAME,
-			   DIRECTOR,
-			   CAST,
-			   PERFO_CONTENT,
-			   RUNNING_TIME,
-			   AGE_LIMIT,
-			   PRICE,
-			   ORIGIN_NAME, 
-			   CHANGE_NAME
-		FROM PERFORMANCE
-		GROUP BY RENTAL_CODE,
-			     PERFO_TITLE,
-			     GENRE_NAME,
-			     DIRECTOR,
-			     CAST,
-			     PERFO_CONTENT,
-			     RUNNING_TIME,
-			     AGE_LIMIT,
-			     PRICE,
-			     ORIGIN_NAME, 
-			     CHANGE_NAME
+		SELECT RENTAL_CODE, PERFO_TITLE, GENRE_NAME, DIRECTOR, CAST, PERFO_CONTENT, RUNNING_TIME, AGE_LIMIT, PRICE, ORIGIN_NAME, CHANGE_NAME, EVENT_DATE, EVENT_TIME
+		FROM PERFORMANCE P
+		JOIN RENTAPPLICATION R USING(RENTAL_CODE)
+		GROUP BY RENTAL_CODE, PERFO_TITLE, GENRE_NAME, DIRECTOR, CAST, PERFO_CONTENT, RUNNING_TIME, AGE_LIMIT, PRICE, ORIGIN_NAME, CHANGE_NAME, EVENT_DATE, EVENT_TIME
         HAVING RENTAL_CODE=#{rno}
 		ORDER BY RENTAL_CODE
 		
@@ -105,7 +68,7 @@
 								CHANGE_NAME)
 							
 						VALUES( SEQ_PERFONO.NEXTVAL,
-								3,
+								#{rentalCode},
 								#{perfoTitle},
 								#{genreName},
 								#{perfoEventDate},
@@ -119,10 +82,11 @@
 								#{price},
 								#{originName},
 								#{changeName}
-									)
-		
-	
+								)
 	</insert>
+	
+	
+
 	
 	
 	

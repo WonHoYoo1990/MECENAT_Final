@@ -28,5 +28,9 @@ public class Performance {
 	private int price;
 	private String originName;
 	private String changeName;
+	
+	private String eventTime;
+	private String eventDate;
+	
 
 }
