@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class Performance {
-
+	
 	private int perfoNo;
 	private int rentalCode;
 	private String perfoTitle;

@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
 import com.kh.mecenat.performance.model.service.PerformanceService;
 import com.kh.mecenat.performance.model.vo.Performance;
 import com.kh.mecenat.reservation.model.vo.RentApplication;
@@ -198,6 +197,40 @@ public class PerformanceController {
 	public String setInfom() {
 		return "performance/setInfom";
 	}
+
+	// 서브 메인페이지 이동
+	@RequestMapping("performanceMain.perf")
+	public String performanceMain() {
+		return "performance/performanceMain";
+	}
+
+	// 서브 메인페이지 내에서 현재 페이지 공연 리스트 보여주기
+	@RequestMapping("subMainPerformanceList.perf")
+	@ResponseBody
+	public ModelAndView subMainPerformanceList(String sdate, ModelAndView mv) {
+
+		System.out.println("sdate : " + sdate);
+
+		ArrayList<Performance> pList = perfoService.subMainPerformanceList(sdate);
+		System.out.println("pList : " + pList);
+
+		mv.addObject("pList", pList).setViewName("performance/performanceMainResult");
+
+		return mv;
+	}
+
+	// 게시글 총 개수 하는중 (-)
+	@RequestMapping("ListCountSubMainPerformance.perf")
+	@ResponseBody
+	public int ListCountSubMainPerformance(String sdate) {
+
+		int listCount = perfoService.ListCountSubMainPerformance(sdate);
+
+		System.out.println("listCount : " + listCount);
+
+		return listCount;
+	}
+
 
 	// asdfasdfasdfasdfasdfasdfasdf"asdf.mana"
 	@ResponseBody
