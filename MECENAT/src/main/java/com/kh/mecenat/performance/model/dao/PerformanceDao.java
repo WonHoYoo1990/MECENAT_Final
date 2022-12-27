@@ -46,6 +46,14 @@ public class PerformanceDao {
 		
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	// 서브 메인페이지 공연 리스트 뽑아오기
 	public ArrayList<Performance> subMainPerformanceList(SqlSessionTemplate sqlSession, String sdate) {

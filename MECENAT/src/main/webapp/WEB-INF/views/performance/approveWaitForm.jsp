@@ -28,6 +28,7 @@
 					<tr align="center">
 						
 						<th>신청인 ID</th>
+						<th>공연이름</th>
 						<th>공연홀이름</th>
 						<th>대관대표자명</th>
 						<th>상태</th>
@@ -42,22 +43,18 @@
 						
 						<tr align="center">
 							<td>${r.userId }</td>
+							<td>${r.rentalPropose }</td>
 							<td>${r.hallName }</td>
 							<td>${r.agentName }</td>
 							<td>${r.approveStatus }</td>
-							
 							<c:choose>
-								<c:when test="${r.approveStatus eq '승인대기' }">
+								<c:when test="${r.approveStatus eq '승인대기'}">
 									<td><button onclick="approveApp(${r.rentalCode});">승인허가</button></td>
-									<td></td>
 								</c:when>
-								<c:otherwise>
+								<c:when test="${r.approveStatus eq '승인'}">
 									<td><button onclick="cancelApp(${r.rentalCode});">승인취소</button></td>
-									
-									<c:if test="${r.approveStatus ne '등록' }">
-										<td><button onclick="location.href='insertForm.perf?rno=${r.rentalCode}'">Form작성</button></td>
-									</c:if>
-								</c:otherwise>
+									<td><button onclick="location.href='insertForm.perf?rno=${r.rentalCode}'">Form작성</button></td>
+								</c:when>
 							</c:choose>
 							<!-- Form작성이 완료되면 공연 관리페이지로 넘어가기 -->
 							
