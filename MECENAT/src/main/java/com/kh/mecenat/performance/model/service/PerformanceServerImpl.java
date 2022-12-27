@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.mecenat.performance.model.dao.PerformanceDao;
 import com.kh.mecenat.performance.model.vo.Performance;
+import com.kh.mecenat.performance.model.vo.Review;
 import com.kh.mecenat.reservation.model.vo.RentApplication;
 
 @Service
@@ -40,7 +41,36 @@ public class PerformanceServerImpl implements PerformanceService {
 
 	@Override
 	public Performance selectListPerformance(int rno) {
-		return performanceDao.selectListPerformance(SqlSession,  rno);
+		return performanceDao.selectListPerformance(SqlSession, rno);
+	}
+
+	// 서브메인 공연리스트 뽑아오기
+	@Override
+	public ArrayList<Performance> subMainPerformanceList(String sdate) {
+		return performanceDao.subMainPerformanceList(SqlSession, sdate);
+	}
+
+	// 서브 메인 공연리스트 개수
+	@Override
+	public int ListCountSubMainPerformance(String sdate) {
+		return performanceDao.ListCountSubMainPerformance(SqlSession, sdate);
+	}
+
+	
+	
+	
+	
+	
+	@Override
+	public ArrayList<Review> selectRevieList(int rno) {
+		// TODO Auto-generated method stub
+		return performanceDao.selectReviewList(SqlSession, rno);
+	}
+
+	@Override
+	public int insertReview(Review r) {
+		// TODO Auto-generated method stub
+		return performanceDao.insertReview(SqlSession, r);
 	}
 
 	@Override

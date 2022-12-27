@@ -86,22 +86,6 @@ body.hide-focus-ring *:focus {
 		<jsp:include page="../common/header.jsp" />
 		<!-- Header End -->
 
-
-
-
-
-		<section id="sub_visual">
-			<div class="bg_w">
-
-				<div class="bg" style="background-image: url(&quot;/static/portal/img/common/subvisual-common.jpg&quot;); transform: translate(-9.48087px, 10px) scale(1.1);"></div>
-
-			</div>
-
-			<h2 class="sub-t">
-				<strong class="ani" style="opacity: 1;">로그인</strong>
-			</h2>
-
-		</section>
 		
 		<div id="depth_w" class="">
 		<div class="inner">
@@ -132,13 +116,13 @@ body.hide-focus-ring *:focus {
 				
 				<li>
 					<div class="rel">
-					<a href="login.me"><span>로그인</span></a>
+					<a href="findIdForm.me"><span>아이디 찾기</span></a>
 					<ul class="depth" style="display: none;">
 					<li><a href="/portal/main/contents.do?menuNo=200099"><span>서비스소개</span></a></li>
-					<li><a href="login.me"><span>로그인</span></a></li>
-					<li><a href="/portal/member/user/join.do?menuNo=200144"><span>회원가입</span></a></li>
-					<li><a href="/portal/member/user/idSearch.do?menuNo=200145"><span>아이디 찾기</span></a></li>
-					<li><a href="searchPwd.me"><span>패스워드 찾기</span></a></li>
+					<li><a href="loginForm.me"><span>로그인</span></a></li>
+					<li><a href="signupForm.me"><span>회원가입</span></a></li>
+					<li><a href="findIdForm.me"><span>아이디 찾기</span></a></li>
+					<li><a href="findPwdForm.me"><span>패스워드 찾기</span></a></li>
 					<li><a href="/portal/main/contents.do?menuNo=200148"><span>개인정보처리방침</span></a></li>
 					<li><a href="/portal/main/contents.do?menuNo=200150"><span>이메일무단수집거부</span></a></li>
 					<li><a href="/portal/main/contents.do?menuNo=200164"><span>고객서비스헌장</span></a></li>
@@ -212,7 +196,7 @@ body.hide-focus-ring *:focus {
 				<c:choose> 
 				  <c:when test="${empty m}">                                                 
 					<li>
-		               <p class="mb-4">조회결과가 없습니다.</p>                                        
+		               <p class="mb-4">조회결과가 없습니다. <br> 입력하신 이름과 휴대폰 번호를 다시 확인해주세요. </p>                                        
 		          	</li>
 		          </c:when>  
 				  <c:otherwise>
@@ -230,7 +214,7 @@ body.hide-focus-ring *:focus {
 
 	<div class="bbs-btn clearfix tac">
 		<a href="loginForm.me" class="bbs-btn-st2 bg-purple3">로그인</a>
-		<a href="/portal/member/user/findPw.do?menuNo=200146" class="bbs-btn-st2 bg-black_r">비밀번호찾기</a>
+		<a href="findPwdForm.me" class="bbs-btn-st2 bg-black_r">비밀번호찾기</a>
 	</div>
 
 </article>

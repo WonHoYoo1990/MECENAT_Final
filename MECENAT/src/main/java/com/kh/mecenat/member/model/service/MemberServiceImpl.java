@@ -78,5 +78,11 @@ public class MemberServiceImpl implements MemberService {
 	public int search_Pwd_New(Member vo) {
 		return memberDao.search_Pwd_New(sqlSession, vo);	
 	}
+	
+	//마이페이지 회원정보 수정
+	@Override
+	public int updateMember(Member m) {
+		return memberDao.updateMember(sqlSession,m);
+	}
 
 }

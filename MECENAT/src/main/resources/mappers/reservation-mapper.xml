@@ -7,7 +7,7 @@
 		<result column="RENTAL_CODE" property="rentalCode"/>
 		<result column="PERFO_TITLE" property="perfoTitle"/>
 		<result column="GENRE_NAME" property="genreName"/>
-		<result column="PERFO_DATE" property="perfoDate"/>
+<!-- 		<result column="PERFO_DATE" property="perfoDate"/> -->
 		<result column="PERFO_EVENT_DATE" property="perfoEventDate"/>
 		<result column="DIRECTOR" property="director"/>
 		<result column="CAST" property="cast"/>
@@ -17,6 +17,8 @@
 		<result column="AGE_LIMIT" property="ageLimit"/>
 		<result column="PERFO_STATUS" property="perfoStatus"/>
 		<result column="PRICE" property="price"/>
+		<result column="ORIGIN_NAME" property="originName"/>
+		<result column="CHANGE_NAME" property="changeName"/>
 		<result column="HALL_NAME" property="hallName"/>
 	</resultMap>
 	
@@ -29,7 +31,7 @@
 		<result column="AGENT_NAME" property="agentName"/>
 		<result column="AGENT_PHONE" property="agentPhone"/>
 		<result column="AGENT_EMAIL" property="agentEmail"/>
-		<result column="PERFO_START_DATE" property="rentalStartDate"/>
+		<result column="RENTAL_START_DATE" property="rentalStartDate"/>
 		<result column="RENTAL_END_DATE" property="rentalEndDate"/>
 		<result column="EVENT_DATE" property="eventDate"/>
 		<result column="EVENT_TIME" property="eventTime"/>
@@ -78,10 +80,12 @@
 
 	<!-- #혜원만제 - 전체 공연리스트 조회(조정중) -->
 	<select id="selectPerformanceList" resultMap="performanceResult">
-		SELECT *
-		FROM PERFORMANCE
-		WHERE PERFO_STATUS = 'Y'
-		ORDER BY PERFO_START_DATE
+		SELECT P.*, HALL_NAME
+		FROM PERFORMANCE P
+		JOIN RENTAPPLICATION R ON(P.RENTAL_CODE=R.RENTAL_CODE)
+		WHERE P.RENTAL_CODE = #{rentalCode}
+		AND APPROVE_STATUS = '승인'
+		ORDER BY P.PERFO_EVENT_DATE
 	</select>
 	
 	
@@ -96,6 +100,21 @@
 	<!-- #혜원만제 - 대관신청서 insert -->
 	<insert id="insertApplication">
 		INSERT INTO RENTAPPLICATION
+			(RENTAL_CODE
+			, USER_ID
+			, HALL_NAME
+			, COVENANTEE_NAME
+			, COVENANTEE_PHONE
+			, AGENT_NAME
+			, AGENT_PHONE
+			, AGENT_EMAIL
+			, RENTAL_START_DATE
+			, RENTAL_END_DATE
+			, EVENT_DATE
+			, EVENT_TIME
+			, RENTAL_PROPOSE
+			, RENTAL_DATE
+			, APPROVE_STATUS)
 	    VALUES(SEQ_RENTALNO.NEXTVAL
 			, #{userId}
 			, #{hallName}
@@ -113,13 +132,36 @@
 			, '승인대기')
 	</insert>
 	
-	<!-- #혜원 - 공연장 선택 시 해당 공연장 전체 정보 조회 -->
+	<!-- #혜원만제 - 공연장 선택 시 해당 공연장 전체 정보 조회 -->
 	<select id="selectHallInfo" resultMap="hallResult">
 		SELECT *
 		FROM HALL
 		WHERE HALL_NAME = #{hallName}
 	</select>
+	
+	<!-- #혜원만제 - 해당날짜 및 렌탈코드로 공연 정보 조회해 예매페이지로 전달 -->
+	<select id="getReservationPerformance" resultMap="performanceResult">
+		SELECT *
+		FROM PERFORMANCE
+		WHERE PERFO_EVENT_DATE = #{perfoEventDate}
+		AND RENTAL_CODE = #{rentalCode}
+	</select>
 
+
+	<!--  #유리 - 관리자)승인대기중인 list조회  -->
+	<select id="selectRentalApplication" resultMap="rentapplicationResult">
+		SELECT * FROM RENTAPPLICATION WHERE APPROVE_STATUS='승인대기'
+	</select>
+	
+	<select id="selectRentApplication" resultMap="rentapplicationResult">
+		SELECT * FROM RENTAPPLICATION WHERE RENTAL_CODE = #{rentalCode}
+	</select>
+	
+	
+	<update id="updateApproveStatus">
+		UPDATE RENTAPPLICATION SET APPROVE_STATUS='승인'
+		WHERE RENTAL_CODE = #{rno}
+	</update>
 	
 	<update id="updateBoard">
 		UPDATE BOARD
@@ -162,7 +204,5 @@
 	
 	
 	<!-- update status 변경해야함(등록으로) -->
-	
-	
 	
 </mapper>

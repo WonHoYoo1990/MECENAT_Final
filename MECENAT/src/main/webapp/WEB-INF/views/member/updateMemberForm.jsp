@@ -12,39 +12,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width">
-<meta name="google-signin-client_id" content="113025989816-nnav0npepl2lv7h086hhmrekli0bk1tt.apps.googleusercontent.com">
-<meta property="og:title" content="MECENAT">
-<title>회원가입 | 통합회원 서비스|</title>
-<!-- 인터넷 -->
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/aos.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/bbs_new.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/fonts.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/layout_new.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/main_new.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/pop_all.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/reset.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/responsive_new.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/sitemap.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/slider.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/style.css">
-<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/sub.css">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="./resources/sejongpac/static/commons/js/jquery-3.6.0.min.js"></script>
-<script src="./resources/sejongpac/static/commons/js/jquery-ui.1.12.1.min.js"></script>
-<script src="./resources/sejongpac/static/portal/js/slider.js"></script>
-<script src="./resources/sejongpac/static/ticket/ticket.js"></script>
-<link rel="stylesheet" href="./resources/sejongpac/static/portal/css/aos.css">
-<script src="./resources/sejongpac/static/portal/inc/netfunnel.js" charset="UTF-8"></script>
-<!-- 주소 찾기 API -->
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<style>
-body.hide-focus-ring *:focus {
-	outline: none !important;
-}
-</style>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width">
+	<meta name="google-signin-client_id" content="113025989816-nnav0npepl2lv7h086hhmrekli0bk1tt.apps.googleusercontent.com">
+	<meta property="og:title" content="MECENAT">
+	<title>회원가입 | 통합회원 서비스|</title>
+	<!-- 인터넷 -->
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/aos.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/bbs_new.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/fonts.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/layout_new.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/main_new.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/pop_all.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/responsive_new.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/sitemap.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/slider.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/style.css">
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/sub.css">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="./resources/sejongpac/static/commons/js/jquery-3.6.0.min.js"></script>
+	<script src="./resources/sejongpac/static/commons/js/jquery-ui.1.12.1.min.js"></script>
+	<script src="./resources/sejongpac/static/portal/js/slider.js"></script>
+	<script src="./resources/sejongpac/static/ticket/ticket.js"></script>
+	<link rel="stylesheet" href="./resources/sejongpac/static/portal/css/aos.css">
+	<script src="./resources/sejongpac/static/portal/inc/netfunnel.js" charset="UTF-8"></script>
+	<!-- 주소 찾기 API -->
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<style>
+		body.hide-focus-ring *:focus {
+			outline: none !important;
+		}
+	</style>
 </head>
 <body class="vsc-initialized hide-focus-ring">
 	<section id="wrap">
@@ -52,15 +52,6 @@ body.hide-focus-ring *:focus {
 		<!-- Header Section Begin -->
 		<jsp:include page="../common/header.jsp" />
 		<!-- Header End -->
-		
-		<section id="sub_visual">
-			<div class="bg_w">
-				<div class="bg" style="background-image: url(./resources/sejongpac/static/commons/img/member/signupBackground.jpg); transform: translate(-19.9989px, 9.99961px) scale(1.1);"></div>
-			</div>
-			<h2 class="sub-t">
-				<strong class="ani" style="opacity: 1;">회원정보 수정</strong>
-			</h2>
-		</section>
 		
 		<div id="depth_w" class="">
 			<div class="inner">
@@ -78,7 +69,7 @@ body.hide-focus-ring *:focus {
 								<li><a href="https://www.sjartgroups.or.kr/sjartgroups/main/main.do" target="_blank" title="새창 열림">서울시예술단</a></li>
 							</ul>
 						</div>
-				</li>
+					</li>
 					<li>
 						<div class="rel">
 							<a href="#"><span>회원정보 수정</span></a>
@@ -153,19 +144,6 @@ body.hide-focus-ring *:focus {
 							var address =  memberAddr1 + memberAddr2;
 							
 							$("#address").val(address);
-							
-
-							if (regExp.test($("#userName").val())) {
-								alert("이름에 특수문자를 입력 할수 없습니다.");
-								$('#userName').focus();
-								return;
-							}
-
-							if ($("#chkuserIdYN").val() != 'Y') {
-								alert("아이디 중복체크를 하셔야 합니다.");
-								$('#userId').focus();
-								return;
-							}
 
 							if ($("#chkuserEmailYN").val() != 'Y') {
 								alert("이메일 중복체크를 하셔야 합니다.");
@@ -173,13 +151,6 @@ body.hide-focus-ring *:focus {
 								return;
 							}
 
-							v.add("userName", {
-								required : true
-							});
-							v.add("userId", {
-								pattern : "^[a-zA-Z0-9]{4,20}$",
-								message : "아이디는 특수문자를 제외한 4~20자입니다."
-							});
 							v.add("userPwd", {
 								required : true
 							});
@@ -333,7 +304,7 @@ body.hide-focus-ring *:focus {
 						// 이메일 중복 체크
 						$(function() {
 							$("#email").change(function() {
-								$("#chkuserEmailYN").val("N");
+								$("#chkuserEmailYN").val("Y");
 							});
 							
 							$(".chkuserEmail").click(function() {
@@ -375,7 +346,7 @@ body.hide-focus-ring *:focus {
 					</script>
 
 					<!-- {(joinExtCode,K)(joinExtID,1234528163)(joinExtEmail,hojin0703@nate.com)(joinExtName,김호진)(joinExtBirthDay,)(joinExtGender,)} -->
-					<form name="board" id="board" method="post">
+					<form name="board" id="board" method="post" action="update.me">
 						<input type="hidden" id="menuNo" name="menuNo" value="200144"> 
 						<input type="hidden" name="extId" id="extId" value=""> 
 						<input type="hidden" name="extCode" id="extCode" value=""> 
@@ -394,19 +365,18 @@ body.hide-focus-ring *:focus {
 						<article class="member_join inner member_com">
 							<div class="group">
 								<h3 class="tit-st4 rel">
-									기본정보입력 <span class="ab f16 color-purple">* 필수 입력 값</span>
+									회원정보수정 <span class="ab f16 color-purple">* 필수 입력 값</span>
 								</h3>
 								<ul class="sect">
 									<li class="item"><label for="userName" class="t">이름 <span class="color-purple">*</span></label>
 										<div class="cont">
-											<input type="text" name="userName" id="userName" value=""> <span class="txt ml">예매 등 서비스의 원활한 이용을 위해서 반드시 본명을 입력해주시기 바랍니다.</span>
+											<input type="text" name="userName" id="userName" value="${loginUser.userName}" readonly> <span class="txt ml">예매 등 서비스의 원활한 이용을 위해서 반드시 본명을 입력해주시기 바랍니다.</span>
 										</div>
 									</li>
 									<li class="item"><label for="userId" class="t">ID <span class="color-purple">*</span></label>
 										<div class="cont ck_id">
-											<input type="text" value="" name="userId" id="userId"> 
+											<input type="text" value="${loginUser.userId }" name="userId" id="userId" readonly> 
 											<input type="hidden" name="chkuserIdYN" id="chkuserIdYN" value="N">
-											<button type="button" class="bg-black chkuserId">중복확인</button>
 											<span class="txt ml">특수문자를 제외한 영문, 숫자 4~20자 이내</span>
 										</div>
 									</li>
@@ -427,6 +397,7 @@ body.hide-focus-ring *:focus {
 												<ul class="clearfix birth">
 													<li><label for="year" class="hide">연도 선택</label> 
 														<select name="birthdayYear" id="year">
+															<option value="${arr2[0]}">${arr2[0]}</option>
 															<option value="2022">2022</option>
 															<option value="2021">2021</option>
 															<option value="2020">2020</option>
@@ -552,8 +523,9 @@ body.hide-focus-ring *:focus {
 															<option value="1900">1900</option>
 														</select><span>년</span>
 													</li>
-													<li><label for="month" class="hide">월 선택</label> 
-														<select name="birthdayMonth" id="month">
+													<li><label for="month" class="hide" >월 선택</label> 
+														<select name="birthdayMonth" id="month" value="${arr2[1]}">
+															<option value="${arr2[1]}">${arr2[1]}</option>
 															<option value="1">1</option>
 															<option value="2">2</option>
 															<option value="3">3</option>
@@ -568,8 +540,9 @@ body.hide-focus-ring *:focus {
 															<option value="12">12</option>
 														</select> <span>월</span>
 													</li>
-													<li><label for="day" class="hide">일 선택</label> 
-														<select name="birthdayDay" id="day">
+													<li><label for="day" class="hide" >일 선택</label> 
+														<select name="birthdayDay" id="day" >
+															<option value="${arr2[2]}">${arr2[2]}</option>
 															<option value="1">1</option>
 															<option value="2">2</option>
 															<option value="3">3</option>
@@ -655,7 +628,7 @@ body.hide-focus-ring *:focus {
 										<div class="cont ck_email" >
 											<ul class="memberEmail clearfix">
 												<li class="e1"><label for="email" class="hide">이메일 아이디와 주소</label> 
-													<input type="text" name="email" id="email" value="">
+													<input type="text" name="email" id="email" value="${loginUser.email }">
 													<input type="hidden" name="chkuserEmailYN" id="chkuserEmailYN" value="N">
 													<button type="button" class="bg-black chkuserEmail">중복확인</button>
 												</li>
@@ -675,8 +648,8 @@ body.hide-focus-ring *:focus {
 															<option value="019">019</option>
 														</select>
 													</li>
-													<li><label for="tel2" class="hide">휴대폰 중간</label> <input type="text" name="tel2" id="tel2" class="small" maxlength="4" value="" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"></li>
-													<li><label for="tel3" class="hide">휴대폰 끝</label> <input type="text" name="tel3" id="tel3" class="small" maxlength="4" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"></li>
+													<li><label for="tel2" class="hide">휴대폰 중간</label> <input type="text" name="tel2" id="tel2" class="small" maxlength="4" value="${arr[1]}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"></li>
+													<li><label for="tel3" class="hide">휴대폰 끝</label> <input type="text" name="tel3" id="tel3" class="small" maxlength="4" value="${arr[2]}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"></li>
 												</ul>
 												<input type="hidden" name="userPhone" id="userPhone" value="">
 											</div>
@@ -685,6 +658,9 @@ body.hide-focus-ring *:focus {
 								</ul>
 							</div>
 							<br><br>
+							
+			
+							
 							<div class="bbs-btn_w clearfix tac flr mt">
 								<span class="fl">
 									<!-- <button type="submit" class="bbs-btn-st2 bg-black_r" onclick="formDelete();return false;" formaction="deleteMember.me">회원탈퇴</button> -->

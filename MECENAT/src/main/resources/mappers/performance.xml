@@ -85,6 +85,54 @@
 								)
 	</insert>
 	
+	<!-- 서브메인페이지 공연 리스트 뽑아오기 -->
+	<select id="subMainPerformanceList" resultMap="performanceResultSet">
+		SELECT * 
+		FROM PERFORMANCE
+		WHERE PERFO_EVENT_DATE = #{sdate}
+	</select>
+	
+	<!-- 서브메인페이지 공연 개수 -->
+	<select id="ListCountSubMainPerformance" resultType="int">
+		SELECT COUNT(*)
+		FROM PERFORMANCE
+		WHERE PERFO_EVENT_DATE = #{sdate}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<resultMap type="review" id="reviewResultSet">
+	  	<result column="REVIEW_NO" property="reviewNo"/>
+	  	<result column="REF_NO" property="refNo"/>
+	  	<result column="REVIEW_WRITER" property="reviewWriter"/>
+	  	<result column="STAR_RATE" property="starRate"/>	  	
+	  	<result column="REVIEW_CONTENT" property="content"/>	  	
+	  	<result column="WRITE_DATE" property="writeDate"/>
+	  	<result column="STATUS" property="status"/>	  	
+    </resultMap>
+	
+	<select id="selectReviewList" resultMap="reviewResultSet">
+  		SELECT *
+  		FROM REVIEW
+  		WHERE REF_NO = #{rno}
+  		AND STATUS = 'Y'
+  	</select>
+  	
+  	<insert id="insertReview">
+  		INSERT INTO REVIEW(REVIEW_NO, REF_NO, REVIEW_WRITER, STAR_RATE, REVIEW_CONTENT)
+  					VALUES(SEQ_REVIEWNO.NEXTVAL
+  							,#{refNo}
+  							,#{reviewWriter}
+  							,#{starRate}
+  							,#{content}
+  					)
+  	</insert>
 	
 
 	

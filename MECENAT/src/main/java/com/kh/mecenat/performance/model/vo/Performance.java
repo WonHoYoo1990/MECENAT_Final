@@ -1,9 +1,5 @@
 package com.kh.mecenat.performance.model.vo;
 
-import java.sql.Date;
-
-import com.kh.mecenat.member.model.vo.Member;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

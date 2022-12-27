@@ -53,7 +53,7 @@
 			<a itemprop="sameAs" href="https://blog.naver.com/sejongnanum"><span class="hide">블로그</span></a>
 			<a itemprop="sameAs" href="https://twitter.com/SEJONG_CENTER"><span class="hide">트위터</span></a>
 		</span>
-		<script src="/static/portal/js/ksearch/top_apc.js"></script>
+		<script src="./resources/sejongpac/static/portal/js/ksearch/top_apc.js"></script>
 		<div id="seoul-common-gnb"></div>
 		
 		
@@ -85,28 +85,21 @@
 					</li>
 					<li><a href="/portal/bbs/B0000002/list.do?menuNo=200012">대관안내</a>
 						<ul class="depth2">
-							<li><a href="https://www.sejongpac.or.kr/portal/bbs/B0000002/list.do?menuNo=200012">대관공고</a></li>
-							<li><a href="application.rv">대관신청</a></li>
-							<li class="arrow"><a href="/portal/main/contents.do?menuNo=200119">세종문화회관 대관</a>
+							<li><a href="rentList.rv">대관공고</a></li>
+							<li class="arrow"><a href="information.hl?hallName=Concert Hall">Concert Hall</a>
 								<ul class="depth3">
-									<li><a href="/portal/main/contents.do?menuNo=200119">공연대관</a></li>
-									<li><a href="/portal/main/contents.do?menuNo=200126">전시대관</a></li>
-									<li><a href="/portal/main/contents.do?menuNo=200134">대여안내</a></li>
+									<li><a href="information.hl?hallName=Concert Hall">Concert Hall 소개</a></li>
+									<li><a href="application.rv?hallName=Concert Hall">대관신청</a></li>
 								</ul>
 							</li>
-							<li class="arrow"><a href="/portal/main/contents.do?menuNo=200226">꿈의숲아트센터 대관</a>
+							<li class="arrow"><a href="information.hl?hallName=Dreaming Hall">Dreaming Hall</a>
 								<ul class="depth3">
-									<li><a href="/portal/main/contents.do?menuNo=200226">공연대관</a></li>
-									<li><a href="/portal/main/contents.do?menuNo=200228">전시대관</a></li>
-							</ul></li>
-							<li class="arrow"><a href="/portal/main/contents.do?menuNo=200142">기타대관</a>
-								<ul class="depth3">
-									<li><a href="/portal/main/contents.do?menuNo=200142">야외공간 대관</a></li>
-									<li><a href="/portal/main/contents.do?menuNo=200257">강의실 대여</a></li>
-							</ul></li>
-							<li><a href="/portal/main/contents.do?menuNo=200016">홈페이지 배너신청</a></li>
-							<li><a href="/portal/main/contents.do?menuNo=200172">티켓판매절차</a></li>
-					</ul></li>
+									<li><a href="information.hl?hallName=Dreaming Hall">Dreaming Hall 소개</a></li>
+									<li><a href="application.rv?hallName=Dreaming Hall">대관신청</a></li>
+							</ul>
+							</li>
+						</ul>
+					</li>
 					<li><a href="/portal/qestnar/qustnr/list.do?status=T&amp;menuNo=200027">참여공간</a>
 						<ul class="depth2">
 							<li class="arrow"><a href="/portal/qestnar/qustnr/list.do?status=T&amp;menuNo=200027">이벤트</a>
@@ -146,7 +139,7 @@
 									<li><a href="/portal/main/contents.do?menuNo=200091">회원제 소개</a></li>
 									<li><a href="/portal/singl/restaurant/list.do?menuNo=200093">제휴업체</a></li>
 							</ul></li>
-							<li class="arrow"><a href="/portal/main/contents.do?menuNo=200085">예매안내</a>
+							<li class="arrow"><a href="infomTicket.rv">예매안내</a>
 								<ul class="depth3">
 									<li><a href="/portal/main/contents.do?menuNo=200085">티켓 구입방법</a></li>
 									<li><a href="/portal/main/contents.do?menuNo=200222">티켓 수령방법</a></li>
@@ -208,7 +201,7 @@
 						<li class="li link" ><a href="loginForm.me">LOGIN</a></li>
 					</c:when>
 					<c:otherwise>
-						<li class="li link login_Y" style=""><a href="myPage.me" class="t">MYPAGE</a>
+						<li class="li link login_Y" style=""><a href="#" class="t">MYPAGE</a>
 							<ul class="depth">
 								<li><a href="myPage.me">MYPAGE</a></li>
 								<li><a href="logout.me">LOGOUT</a></li>
@@ -260,7 +253,7 @@
 						</ul></li>
 						<li><a href="/portal/bbs/B0000002/list.do?menuNo=200012">대관안내</a>
 							<ul class="depth2">
-								<li><a href="https://www.sejongpac.or.kr/portal/bbs/B0000002/list.do?menuNo=200012"><span>대관공고</span></a></li>
+								<li><a href="rentList.rv"><span>대관공고</span></a></li>
 								<li><a href="application.rv"><span>대관신청</span></a></li>
 								<li><a href="/portal/main/contents.do?menuNo=200119"><span>세종문화회관 대관</span></a>
 									<ul class="depth3 bul-dot">
@@ -295,7 +288,7 @@
 							<ul class="depth2">
 								<li><a href="/portal/bbs/B0000001/list.do?menuNo=200042"><span>새소식</span></a>
 									<ul class="depth3 bul-dot">
-										<li><a href="/portal/bbs/B0000001/list.do?menuNo=200042">세종소식</a></li>
+										<li><a href="noticeForm.no">세종소식</a></li>
 										<li><a href="/portal/bbs/B0000003/list.do?menuNo=200088">입찰공고</a></li>
 								</ul></li>
 								<li><a href="/portal/bbs/B0000017/list.do?menuNo=200040"><span>뉴스레터</span></a></li>
@@ -320,7 +313,7 @@
 										<li><a href="/portal/main/contents.do?menuNo=200091">회원제 소개</a></li>
 										<li><a href="/portal/singl/restaurant/list.do?menuNo=200093">제휴업체</a></li>
 								</ul></li>
-								<li><a href="/portal/main/contents.do?menuNo=200085"><span>예매안내</span></a>
+								<li><a href="infomTicket.rv"><span>예매안내</span></a>
 									<ul class="depth3 bul-dot">
 										<li><a href="/portal/main/contents.do?menuNo=200085">티켓 구입방법</a></li>
 										<li><a href="/portal/main/contents.do?menuNo=200222">티켓 수령방법</a></li>
@@ -401,7 +394,8 @@
 						<li class="l" id="top_apc_left">
 							<ul class="bbs-today_thumb clearfix" id="top_apc_left_list">
 								<!-- 상단 검색 추가 20200910 -->
-								<li><a href="https://academy.sejongpac.or.kr/academy/main/main.do">
+								<li>
+									<a href="https://academy.sejongpac.or.kr/academy/main/main.do">
 										<div class="img">
 											<img src="./resources/sejongpac/static/portal/img/bbs/no_img.gif" alt="세종문화회관 로고" class="no_img">
 											<!-- <img src="/static/portal/img/bbs/no_img.gif" alt="세종문화회관 로고" class="no_img" /> -->
@@ -412,20 +406,23 @@
 												<span class="date"> - </span> <span class="place"></span>
 											</div>
 										</div>
-								</a></li>
-								<li><a href="/portal/performance/performance/view.do?performIdx=33012&amp;menuNo=200004">
+									</a>
+								</li>
+								<li>
+									<a href="/portal/performance/performance/view.do?performIdx=33012&amp;menuNo=200004">
 										<div class="img">
 											<img src="https://www.sejongpac.or.kr/cmmn/file/linkedxmlImg.do?performIdx=33012" alt="내셔널지오그래픽 사진전 ＜포토아크, 너의 이름은＞">
 										</div>
 										<div class="cont">
 											<strong class="t">내셔널지오그래픽 사진전 ＜포토아크, 너의 이름은＞</strong>
-											<div class="etc clearfix">
+											<div class="etc clrfix">
 												<span class="date"> 2022.04.12 - 2023.02.26 </span> <span class="place">기획전시</span>
 											</div>
 										</div>
-								</a></li>
-						</ul>
-					</li>
+									</a>
+								</li>
+							</ul>
+						</li>
 						<!-- .l -->
 						<li class="r" id="top_apc_right">
 							<ul class="bbs-today_thumb clearfix" id="top_apc_right_list">
@@ -521,28 +518,102 @@
 		</header>
 		<!-- // -->
 		
-		<script type="text/javascript">
-			var urlStr = window.location.pathname
-			console.log("urlStr : "+ urlStr);
-			
-			var urlPath = "/mecenat/signupForm.me"
-			console.log("urlPath : "+ urlPath);
-			
-			var insertFormEq = (urlStr == urlPath)
-			console.log("insertFormEq: "+ insertFormEq);
-			
-		</script>
+		<!-- URL_path 값 -->
+		<c:set var="path" value="${requestScope['javax.servlet.forward.servlet_path']}" /> 
 		
-
 		<!-- 베너  Start -->
-		<section id="sub_visual" style="height: 500px;">
-			<div class="bg_w">
-				<div class="bg" style="background-image: url(./resources/sejongpac/static/commons/img/member/signupBackground.jpg);"></div>
-			</div>
-			<h2 class="sub-t">
-				<strong class="ani" style="opacity: 1;"></strong>
-			</h2>
-		</section>
+		<c:choose>
+			<c:when test="${fn:contains(path, 'performanceMain')}">
+				<section id="sub_visual" style="height: 500px; ">
+					<div class="bg_w">
+						<div class="bg" style="background-image: url(./resources/sejongpac/static/commons/img/member/signupBackground.jpg);"></div>
+					</div>
+					<h2 class="sub-t" style="margin-top: 100px;">
+						<strong class="ani" style="opacity: 1;">공연 일정</strong>
+					</h2>
+				</section>
+			</c:when>
+			<c:when test="${fn:contains(path, 'infomTicket')}">
+				<section id="sub_visual" style="height: 500px; ">
+					<div class="bg_w">
+						<div class="bg" style="background-image: url(./resources/sejongpac/static/commons/img/member/signupBackground.jpg);"></div>
+					</div>
+					<h2 class="sub-t" style="margin-top: 100px;">
+						<strong class="ani" style="opacity: 1;">티켓 구입방법</strong>
+					</h2>
+				</section>
+			</c:when>
+			<c:when test="${fn:contains(path, 'rentList')}">
+				<section id="sub_visual" style="height: 500px; ">
+					<div class="bg_w">
+						<div class="bg" style="background-image: url(./resources/sejongpac/static/commons/img/member/signupBackground.jpg);"></div>
+					</div>
+					<h2 class="sub-t" style="margin-top: 100px;">
+						<strong class="ani" style="opacity: 1;">대관공고</strong>
+					</h2>
+				</section>
+			</c:when>
+			<c:when test="${fn:contains(path, 'login')}">
+				<section id="sub_visual" style="height: 500px; ">
+					<div class="bg_w">
+						<div class="bg" style="background-image: url(./resources/sejongpac/static/commons/img/member/signupBackground.jpg);"></div>
+					</div>
+					<h2 class="sub-t" style="margin-top: 100px;">
+						<strong class="ani" style="opacity: 1;">로그인</strong>
+					</h2>
+				</section>
+			</c:when>
+			<c:when test="${fn:contains(path, 'signupForm')}">
+				<section id="sub_visual" style="height: 500px;">
+					<div class="bg_w">
+						<div class="bg" style="background-image: url(./resources/sejongpac/static/commons/img/member/signupBackground.jpg);"></div>
+					</div>
+					<h2 class="sub-t" style="margin-top: 100px;">
+						<strong class="ani" style="opacity: 1;">회원가입</strong>
+					</h2>
+				</section>
+			</c:when>
+			<c:when test="${fn:contains(path, 'updateMember')}">
+				<section id="sub_visual" style="height: 500px;">
+					<div class="bg_w">
+						<div class="bg" style="background-image: url(./resources/sejongpac/static/commons/img/member/signupBackground.jpg);"></div>
+					</div>
+					<h2 class="sub-t" style="margin-top: 100px;">
+						<strong class="ani" style="opacity: 1;">회원정보 수정</strong>
+					</h2>
+				</section>
+			</c:when>
+			<c:when test="${fn:contains(path, 'myPage')}">
+				<section id="sub_visual" style="height: 500px;">
+					<div class="bg_w">
+						<div class="bg" style="background-image: url(./resources/sejongpac/static/commons/img/member/signupBackground.jpg);"></div>
+					</div>
+					<h2 class="sub-t" style="margin-top: 100px;">
+						<strong class="ani" style="opacity: 1;">개인화 서비스</strong>
+					</h2>
+				</section>
+			</c:when>
+			<c:when test="${fn:contains(path, 'noticeForm')}">
+				<section id="sub_visual" style="height: 500px;">
+					<div class="bg_w">
+						<div class="bg" style="background-image: url(./resources/sejongpac/static/commons/img/member/signupBackground.jpg);"></div>
+					</div>
+					<h2 class="sub-t" style="margin-top: 100px;">
+						<strong class="ani" style="opacity: 1;">MECENAT 소식</strong>
+					</h2>
+				</section>
+			</c:when>
+			<c:otherwise>
+				<section id="sub_visual" style="height: 500px;">
+					<div class="bg_w">
+						<div class="bg" style="background-image: url(./resources/sejongpac/static/commons/img/member/signupBackground.jpg);"></div>
+					</div>
+					<h2 class="sub-t">
+						<strong class="ani" style="opacity: 1;"></strong>
+					</h2>
+				</section>
+			</c:otherwise>
+		</c:choose>
 		<!-- 배너 End -->
 
 
@@ -572,8 +643,6 @@
 				}
 			}
 			ReservationTitlePopWindow();
-
-			console.log("248");
 		</script>
 		<script src="./resources/sejongpac/static/portal/js/common.js"></script>
 		
