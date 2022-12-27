@@ -85,20 +85,27 @@
 								)
 	</insert>
 	
-	<!-- 서브메인페이지 공연 리스트 뽑아오기 -->
+	<!-- 서브메인 공연 리스트 조회-->
 	<select id="subMainPerformanceList" resultMap="performanceResultSet">
 		SELECT * 
 		FROM PERFORMANCE
 		WHERE PERFO_EVENT_DATE = #{sdate}
 	</select>
 	
-	<!-- 서브메인페이지 공연 개수 -->
-	<select id="ListCountSubMainPerformance" resultType="int">
+	<!-- 서브메인 공연 리스트 개수-->
+	<select id="subMainPerformanceListCount" resultType="int">
 		SELECT COUNT(*)
 		FROM PERFORMANCE
 		WHERE PERFO_EVENT_DATE = #{sdate}
 	</select>
 	
+	<!-- 서브메인 공연 리스트 최신순 조회 -->
+	<select id="subMainPerformanceSearchSort1" resultMap="performanceResultSet">
+		SELECT * 
+		FROM PERFORMANCE
+		WHERE PERFO_EVENT_DATE = #{sdate}
+		ORDER BY PERFO_EVENT_DATE
+	</select>
 	
 	
 	

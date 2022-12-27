@@ -33,46 +33,37 @@ public class PerformanceDao {
 	}
 
 	public int cancelPerformance(SqlSessionTemplate sqlSession, int rcode) {
-		return sqlSession.update("reservationMapper.updateCancelStatus",rcode);
+		return sqlSession.update("reservationMapper.updateCancelStatus", rcode);
 	}
 
 	public RentApplication selectRentalApplicationR(SqlSessionTemplate sqlSession, int rno) {
-		
+
 		return sqlSession.selectOne("reservationMapper.selectRentalApplicationR", rno);
 	}
 
 	public int updateRentalAppStatus(SqlSessionTemplate sqlSession, int rno) {
 		return sqlSession.update("reservationMapper.updateRentalAppStatus", rno);
-		
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
-	// 서브 메인페이지 공연 리스트 뽑아오기
+	}
+
+	// 서브메인 공연 리스트 조회
 	public ArrayList<Performance> subMainPerformanceList(SqlSessionTemplate sqlSession, String sdate) {
 		return (ArrayList) sqlSession.selectList("performanceMapperMana.subMainPerformanceList", sdate);
 	}
-	
+
 	// 서브 메인 공연리스트 개수
-	public int ListCountSubMainPerformance(SqlSessionTemplate sqlSession, String sdate) {
-		return sqlSession.selectOne("performanceMapperMana.ListCountSubMainPerformance", sdate);
+	public int subMainPerformanceListCount(SqlSessionTemplate sqlSession, String sdate) {
+		return sqlSession.selectOne("performanceMapperMana.subMainPerformanceListCount", sdate);
 	}
 
+	// 서브메인 공연 리스트 최신순 조회
+	public ArrayList<Performance> subMainPerformanceSearchSort1(SqlSessionTemplate sqlSession, String sdate) {
+		return (ArrayList) sqlSession.selectList("performanceMapperMana.subMainPerformanceSearchSort1", sdate);
+	}
 
-
-	
-	
-	
 	public ArrayList<Review> selectReviewList(SqlSessionTemplate sqlSession, int rno) {
 		// TODO Auto-generated method stub
-		return (ArrayList)sqlSession.selectList("performanceMapperMana.selectReviewList", rno);
+		return (ArrayList) sqlSession.selectList("performanceMapperMana.selectReviewList", rno);
 	}
 
 	public int insertReview(SqlSessionTemplate sqlSession, Review r) {

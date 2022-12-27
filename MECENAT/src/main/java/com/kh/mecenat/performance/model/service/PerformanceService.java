@@ -24,15 +24,15 @@ public interface PerformanceService {
 
 	public int updateRentalAppStatus(int rno);
 
-	// 서브메인 공연 리스트 뽑아오기
+	// 서브메인 공연 리스트 조회
 	public ArrayList<Performance> subMainPerformanceList(String sdate);
 
 	// 서브메인 공연 리스트 개수
-	public int ListCountSubMainPerformance(String sdate);
+	public int subMainPerformanceListCount(String sdate);
 
-	
-	
-	
+	// 서브메인 공연 리스트 최신순 조회
+	public ArrayList<Performance> subMainPerformanceSearchSort1(String sdate);
+
 	public ArrayList<Review> selectRevieList(int rno);
 
 	public int insertReview(Review r);

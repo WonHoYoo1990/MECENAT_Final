@@ -44,14 +44,14 @@ public class PerformanceController {
 //	공연 등록폼 이동
 	@RequestMapping("insertForm.perf")
 	public String performanceInsertForm(Model model, int rno) {
-		//이거 performance가아니라 reservation이여야함...
+		// 이거 performance가아니라 reservation이여야함...
 		Performance pList = perfoService.selectListPerformance(rno);
 		RentApplication rList = perfoService.selectRentalApplicationR(rno);
-		
+
 		int updateStatus = perfoService.updateRentalAppStatus(rno);
-		
+
 		System.out.println(rList);
-		
+
 		model.addAttribute("rList", rList);
 		model.addAttribute("updateStatus", updateStatus);
 		return "performance/performanceInsert2";
@@ -62,47 +62,42 @@ public class PerformanceController {
 	@PostMapping("insert.perf")
 	public ModelAndView insertPerformance(Performance p, int rcode, String eDate, String eTime, MultipartFile upfile, ModelAndView mv,
 			HttpSession session) {
-		
+
 		System.out.println(eDate);
 		System.out.println(eTime);
-		
-		String[] dateArr=eDate.split(",");
-		String[] timeArr=eTime.split(",");
-		
-		int result=0;
+
+		String[] dateArr = eDate.split(",");
+		String[] timeArr = eTime.split(",");
+
+		int result = 0;
 		String changeName = saveFile(upfile, session);
-		
-		for(int i =0 ;i<dateArr.length; i++) {
-			
+
+		for (int i = 0; i < dateArr.length; i++) {
+
 			String dateInx = dateArr[i];
 			String timeInx = timeArr[i];
-			
+
 			p.setOriginName(upfile.getOriginalFilename());
-			p.setChangeName("resources/performanceFiles/"+changeName);
-			
+			p.setChangeName("resources/performanceFiles/" + changeName);
+
 			p.setRentalCode(rcode);
 			p.setPerfoEventDate(dateInx);
 			p.setStartTime(timeInx);
 			System.out.println(p);
-			
+
 			result = perfoService.insertPerformance(p);
-			
-				
+
 		}
-		
-		
-		
+
 		mv.setViewName("redirect:list.perf");
-		
+
 		return mv;
-		
-		
+
 	}
 
 //	등록된공연 빼기용
 	@RequestMapping("delete.perf")
-	
-	
+
 	public void performanceDelete() {
 
 	}
@@ -112,11 +107,11 @@ public class PerformanceController {
 	public String approveListForm(Model model) {
 
 		ArrayList<RentApplication> rList = perfoService.selectRentalApplication();
-		
+
 //		System.out.println(rList);
-		
+
 		model.addAttribute("rList", rList);
-		
+
 		return "performance/approveWaitForm";
 	}
 
@@ -144,10 +139,9 @@ public class PerformanceController {
 	public String performanceDateilForm(int rno, Model model) {
 
 		Performance pList = perfoService.selectListPerformance(rno);
-		
+
 		System.out.println(pList);
-		
-		
+
 		model.addAttribute("pList", pList);
 
 		return "performance/performanceDetailForm";
@@ -197,6 +191,54 @@ public class PerformanceController {
 	@RequestMapping("setInfom.perf")
 	public String setInfom() {
 		return "performance/setInfom";
+	}
+
+	// 서브 메인페이지 이동
+	@RequestMapping("subMainPerformance.perf")
+	public String subMainPerformance() {
+		return "performance/subMainPerformance";
+	}
+
+	// 서브 메인페이지 내에서 현재 페이지 공연 리스트 보여주기
+	@RequestMapping("subMainPerformanceList.perf")
+	@ResponseBody
+	public ModelAndView subMainPerformanceList(String sdate, ModelAndView mv) {
+
+		System.out.println("sdate : " + sdate);
+
+		ArrayList<Performance> pList = perfoService.subMainPerformanceList(sdate);
+		System.out.println("pList : " + pList);
+
+		mv.addObject("pList", pList).setViewName("performance/subMainPerformanceList");
+
+		return mv;
+	}
+
+	// 서브 메인페이지 내에서 공연 리스트 개수
+	@RequestMapping("subMainPerformanceListCount.perf")
+	@ResponseBody
+	public int subMainPerformanceListCount(String sdate) {
+
+		int listCount = perfoService.subMainPerformanceListCount(sdate);
+
+		System.out.println("listCount : " + listCount);
+
+		return listCount;
+	}
+
+	// 서브 메인페이지 내에서 공연 리스트 최신순 정렬
+	@RequestMapping("subMainPerformanceSearchSort1.perf")
+	public ModelAndView subMainPerformanceSearchSort1(String sdate, ModelAndView mv) {
+
+		System.out.println("하잉?");
+		System.out.println("sdate : " + sdate);
+
+		ArrayList<Performance> pList = perfoService.subMainPerformanceSearchSort1(sdate);
+		System.out.println("pList : " + pList);
+
+		mv.addObject("pList", pList).setViewName("performance/subMainPerformanceList");
+
+		return mv;
 	}
 
 	// asdfasdfasdfasdfasdfasdfasdf"asdf.mana"
