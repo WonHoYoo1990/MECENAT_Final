@@ -112,10 +112,10 @@
 	<update id = "updateMember" parameterType="member">
 		UPDATE MEMBER
 		SET USER_PWD = #{userPwd}
-			,USER_ADDRESS = #{memberAddr}
+			,USER_BIRTHDAY = #{regNoDate}
+			,USER_ADDRESS = #{address}
 			,USER_EMAIL = #{email}
 			,USER_PHONE = #{userPhone}
-			,USER_BIRTHDAY = #{regNoDate}
 		WHERE USER_ID = #{userId}
 		AND STATUS = 'Y'
 	</update>
