@@ -381,9 +381,9 @@ a.bbs-btn-st2{display: inline-block;line-height: 4em;vertical-align: middle;}
 .bbs-today_w .bot strong,.bbs-today_w .bot span{display: block;position: relative;z-index: 1}
 .bbs-today_w .bot span{font-weight: 300;margin-top: 1em;text-transform: uppercase;letter-spacing: .1em;}
 .bbs-today_w .bot .img{position: absolute;left: 0;top:0;width: 100%;height:100%;background: url('') center center no-repeat;background-size:cover;transition:all ease-in-out .3s}
-.bbs-today_w .bot .img.bg1{background: url('../img/perform/t1.jpg')}
-.bbs-today_w .bot .img.bg2{background: url('../img/perform/t2.jpg')}
-.bbs-today_w .bot .img.bg3{background: url('../img/perform/t3.jpg')}
+.bbs-today_w .bot .img.bg1{background: url('../../commons/img/perform/t1.jpg')}
+.bbs-today_w .bot .img.bg2{background: url('../../commons/img/perform/t2.jpg')}
+.bbs-today_w .bot .img.bg3{background: url('../../commons/img/perform/t3.jpg')}
 .bbs-today_w .bot .item:hover .img{transform: scale(1.05);}
 
 .schedule_w{width: 100%;border:1px solid #000;font-size: 16px;font-size: 1rem;;margin-bottom: 60px;color:#000;font-weight: 500;}
@@ -448,8 +448,8 @@ a.bbs-btn-st2{display: inline-block;line-height: 4em;vertical-align: middle;}
 .schedule__date .item input[type="radio"]:focus + label:before{border:1px solid #fff; z-index:1; content:''; left: 0; right: 0; bottom:0; top:0; margin:auto; position:absolute;}
 .schedule__date .item input[type="radio"]:checked + label{background:#000; color:#fff;}
 .schedule__date .arrow{display:block; text-indent:-9999px; overflow:hidden; width:22px; height:22px; background-repeat:no-repeat; background-position:0 0;}
-.schedule__date .arrow.prev{background-image:url('(../../commons/img/bbs/prev.gif');}
-.schedule__date .arrow.next{background-image:url('./static/commons/img/bbs/next.gif');}
+.schedule__date .arrow.prev{background-image:url('../../commons/img/bbs/prev.gif');}
+.schedule__date .arrow.next{background-image:url('../../commons/img/bbs/next.gif');}
 .schedule__date .txt{margin:0 1.250em; font-size:1.875em; font-weight:600; color:#222; line-height:1;}
 .schedule__date .title input{margin:0 1.250em; font-size:1.875em; font-weight:600; color:#222; line-height:1; background:transparent; border:0; width:165px; padding:0;}
 

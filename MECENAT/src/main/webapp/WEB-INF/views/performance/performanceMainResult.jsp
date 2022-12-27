@@ -6,9 +6,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <c:forEach var="pList" items="${pList}">
-	<li tabindex="0">
+	<li tabindex="0" style="display: inline-block;">
 		<div class="img">
-			<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=faec0c25744c22e99776405c0fa728020ced1ac91b5fc82bb55dac72d913a231&amp;streFileNm=27421d60498f608e44a4bcda329fdf4139140131461b1ec4fbc79f9f1d2d9b11" alt="유니버설발레단 '호두까기인형' 2022.12.22(Thu) ~ 12.31 (Sat) 세종문화회관 대극장">
+			<img src="${pList.changeName}" alt="${pList.perfoTitle} ${pList.perfoEventDate}">
 		</div>
 		<div class="cont">
 			<strong class="t">${pList.perfoTitle}</strong>
