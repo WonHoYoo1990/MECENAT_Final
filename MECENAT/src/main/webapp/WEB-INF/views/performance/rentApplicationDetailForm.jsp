@@ -12,8 +12,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%-- 	<jsp:include page="../common/footer2.jsp"/>
+
+	<jsp:include page="../common/header.jsp"/>
 		<h1>하위</h1>
-	<jsp:include page="../common/footer2.jsp"/> --%>
+	<jsp:include page="../common/footer.jsp"/>
+
 </body>
 </html>

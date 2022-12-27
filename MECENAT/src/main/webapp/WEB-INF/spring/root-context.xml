@@ -11,8 +11,8 @@
 		<!-- 어느 DB에 접속할것인지 설정 -->
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-		<property name="username" value="MECENAT"/>
-		<property name="password" value="MECENAT"/>
+		<property name="username" value="MECENAT3"/>
+		<property name="password" value="MECENAT3"/>
 	</bean>		
 	
 	 <!-- 2단계. Mybatis Spring에서 제공하는 SQL 명령어 실행을 위한 도구 등록 -->
