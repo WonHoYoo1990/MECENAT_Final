@@ -86,27 +86,20 @@
 					<li><a href="/portal/bbs/B0000002/list.do?menuNo=200012">대관안내</a>
 						<ul class="depth2">
 							<li><a href="rentList.rv">대관공고</a></li>
-							<li><a href="application.rv">대관신청</a></li>
-							<li class="arrow"><a href="/portal/main/contents.do?menuNo=200119">세종문화회관 대관</a>
+							<li class="arrow"><a href="information.hl?hallName=Concert Hall">Concert Hall</a>
 								<ul class="depth3">
-									<li><a href="/portal/main/contents.do?menuNo=200119">공연대관</a></li>
-									<li><a href="/portal/main/contents.do?menuNo=200126">전시대관</a></li>
-									<li><a href="/portal/main/contents.do?menuNo=200134">대여안내</a></li>
+									<li><a href="information.hl?hallName=Concert Hall">Concert Hall 소개</a></li>
+									<li><a href="application.rv?hallName=Concert Hall">대관신청</a></li>
 								</ul>
 							</li>
-							<li class="arrow"><a href="/portal/main/contents.do?menuNo=200226">꿈의숲아트센터 대관</a>
+							<li class="arrow"><a href="information.hl?hallName=Dreaming Hall">Dreaming Hall</a>
 								<ul class="depth3">
-									<li><a href="/portal/main/contents.do?menuNo=200226">공연대관</a></li>
-									<li><a href="/portal/main/contents.do?menuNo=200228">전시대관</a></li>
-							</ul></li>
-							<li class="arrow"><a href="/portal/main/contents.do?menuNo=200142">기타대관</a>
-								<ul class="depth3">
-									<li><a href="/portal/main/contents.do?menuNo=200142">야외공간 대관</a></li>
-									<li><a href="/portal/main/contents.do?menuNo=200257">강의실 대여</a></li>
-							</ul></li>
-							<li><a href="/portal/main/contents.do?menuNo=200016">홈페이지 배너신청</a></li>
-							<li><a href="/portal/main/contents.do?menuNo=200172">티켓판매절차</a></li>
-					</ul></li>
+									<li><a href="information.hl?hallName=Dreaming Hall">Dreaming Hall 소개</a></li>
+									<li><a href="application.rv?hallName=Dreaming Hall">대관신청</a></li>
+							</ul>
+							</li>
+						</ul>
+					</li>
 					<li><a href="/portal/qestnar/qustnr/list.do?status=T&amp;menuNo=200027">참여공간</a>
 						<ul class="depth2">
 							<li class="arrow"><a href="/portal/qestnar/qustnr/list.do?status=T&amp;menuNo=200027">이벤트</a>
@@ -422,7 +415,7 @@
 										</div>
 										<div class="cont">
 											<strong class="t">내셔널지오그래픽 사진전 ＜포토아크, 너의 이름은＞</strong>
-											<div class="etc clearfix">
+											<div class="etc clrfix">
 												<span class="date"> 2022.04.12 - 2023.02.26 </span> <span class="place">기획전시</span>
 											</div>
 										</div>
@@ -530,6 +523,16 @@
 		
 		<!-- 베너  Start -->
 		<c:choose>
+			<c:when test="${fn:contains(path, 'performanceMain')}">
+				<section id="sub_visual" style="height: 500px; ">
+					<div class="bg_w">
+						<div class="bg" style="background-image: url(./resources/sejongpac/static/commons/img/member/signupBackground.jpg);"></div>
+					</div>
+					<h2 class="sub-t" style="margin-top: 100px;">
+						<strong class="ani" style="opacity: 1;">공연 일정</strong>
+					</h2>
+				</section>
+			</c:when>
 			<c:when test="${fn:contains(path, 'infomTicket')}">
 				<section id="sub_visual" style="height: 500px; ">
 					<div class="bg_w">

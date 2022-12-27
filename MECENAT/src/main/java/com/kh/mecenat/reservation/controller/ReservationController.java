@@ -1,5 +1,8 @@
 package com.kh.mecenat.reservation.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,191 +28,129 @@ public class ReservationController {
 	private ReservationService reservationService;
 	
 	
-//	����Ȧ ��ü ���� ��ȸ ������. �⺻ ù ������ AȦ���� ������ ��, BȦ Ŭ���� ajax�� ���� ����
-	@GetMapping("information1.hl")
-	public ModelAndView informHall(ModelAndView mv) {
-		
-		String hallName = "A";
+//	공연홀 전체 정보 조회 페이지. 기본 첫 페이지 A홀
+	@RequestMapping("information.hl")
+	public ModelAndView informHallA(ModelAndView mv,
+									@RequestParam(value="hallName",defaultValue="Concert Hall") String hallName)  {
+
 		Hall hall = reservationService.selectHallInfo(hallName);
 		
 		mv.addObject("hallName", hallName).setViewName("reservation/hallInformation");
 		return mv;
 	}
-	
-//	����Ȧ�� ajax ��ü ������ȸ
-	@ResponseBody
-	@RequestMapping(value="information2.hl", produces = "application/json; charset=UTF-8")
-	public String informHall(String hallName) {
 		
-		Hall hall = reservationService.selectHallInfo(hallName);
-		
-		return new Gson().toJson(hall);
-	}
-	
-	
-//	�����û Ŭ����
-	@GetMapping("application1.rv")
+	//대관 신청서 페이지로 가는 메서드
+	@GetMapping("application.rv")
 	public ModelAndView viewApplicationForm(HttpSession session
-//									 		,String hallName
+										 	,String hallName
 											,ModelAndView mv) {
-//		Member loginUser = session.getAttribute("loginUser");
-//		String userId = loginUser.getUserId();
+//			Member loginUser = session.getAttribute("loginUser");
+//			String userId = loginUser.getUserId();
 		String userId = "admin";
-		String hallName ="A";
 		
-		mv.addObject("userId",userId).addObject("hallName", hallName).setViewName("reservation/applicationForm1");
+		mv.addObject("userId",userId).addObject("hallName", hallName).setViewName("reservation/applicationForm");
 		return mv;
 	}
 	
-//	��� ��û �� �����ϼ���, �����ð� ����
+	//시간 입력 메서드
 	@ResponseBody
-	@RequestMapping(value="setTime.rv", produces = "text/html; charset=UTF-8")
+	@RequestMapping(value="setTime.rv", produces = "application/json; charset=UTF-8")
 	public String setTime(String eventDateList) {
 		String[] arr = eventDateList.split(",");
-		String str = "";
-		
-		for(int i=0; i<arr.length; i++) {
-			str +=	"<input type='text' id='startTimes' name='startTimes'  placeholder='�Ʒ� �������� Ȯ���ϼ���' required/><br>"
-			     +  "<label for='startTime'>"+arr[i]+" ��¥�� Ȯ���� �ּ���**</label>"
-			     +  "<br><br>";
-		}
-		return str;
+		return new Gson().toJson(arr);
 	}
-	
-//	test
-	@PostMapping("application1.rv")
+
+	//대관 신청서 입력받고 메인으로 가는 메서드
+	@PostMapping("application.rv")
 	public ModelAndView writeApplication(RentApplication ra
+										,String[] startTimes
 										,HttpSession session
 										,ModelAndView mv) {
-		int result = 0;
-		System.out.println(ra);
-		String events = ra.getEventDate();
-		String[] arr = events.split(",");
-		System.out.println("arr : "+arr);
-		session.setAttribute("ra", ra);
-		session.setAttribute("arr", arr);
+		String eventTime = "";
 		
-		RentApplication finalRa = null;
-		if(arr.length == arr.length) {
+		for(int i=0; i<startTimes.length; i++) {
 			
-			for(int i=0; i<arr.length; i++) {
-				
-				finalRa.setUserId(ra.getUserId());
-				finalRa.setHallName(ra.getHallName());
-				finalRa.setCovenanteeName(ra.getCovenanteeName());
-				finalRa.setCovenanteePhone(ra.getCovenanteePhone());
-				finalRa.setAgentName(ra.getAgentName());
-				finalRa.setAgentPhone(ra.getAgentPhone());
-				finalRa.setAgentEmail(ra.getAgentEmail());
-				finalRa.setRentalStartDate(ra.getRentalStartDate());
-				finalRa.setRentalEndDate(ra.getRentalEndDate());
-				finalRa.setEventDate(arr[i]);
-				finalRa.setEventTime(arr[i]);
-				finalRa.setRentalPropose(ra.getRentalPropose());	
-				
-				result += reservationService.insertApplication(finalRa);
+			if(i==0) {
+				eventTime += startTimes[i];
+			}else {
+				eventTime += ","+startTimes[i];
 			}
-			
 		}
 		
-		if(result==arr.length) {
-			session.removeAttribute("ra");
-			session.removeAttribute("arr");
-			session.setAttribute("alertMsg", "�����û �Ϸ�. ������������ Ȯ���ϼ���.");
+		ra.setEventTime(eventTime);
+		
+		int result = reservationService.insertApplication(ra); 
+
+		if(result>0) {
+			session.setAttribute("alertMsg", "대관신청 완료. 마이페이지를 확인하세요.");
 			mv.setViewName("redirect:/");
 		} else {
-			mv.addObject("errorMsg","�����û ��Ͻ���. �����ڿ��� �����ϼ���").setViewName("common/errorPage");
+			mv.addObject("errorMsg","대관신청 등록실패. 관리자에게 문의하세요").setViewName("common/errorPage");
 		}
 		
 		return mv;	
 	}
-	
-//	test
-	@RequestMapping("application2.rv")
-	public ModelAndView insertPerformance(ModelAndView mv
-										 ,HttpSession session
-										 ,RentApplication ra
-										 ,String[] startTimes) {
 		
-		System.out.println(startTimes+" : "+startTimes.length);
-		int result = 0;
-		String[] arr = (String[])session.getAttribute("arr");
-		RentApplication finalRa = null;
-		if(arr.length == startTimes.length) {
-			
-			for(int i=0; i<startTimes.length; i++) {
-				
-				finalRa.setUserId(ra.getUserId());
-				finalRa.setHallName(ra.getHallName());
-				finalRa.setCovenanteeName(ra.getCovenanteeName());
-				finalRa.setCovenanteePhone(ra.getCovenanteePhone());
-				finalRa.setAgentName(ra.getAgentName());
-				finalRa.setAgentPhone(ra.getAgentPhone());
-				finalRa.setAgentEmail(ra.getAgentEmail());
-				finalRa.setRentalStartDate(ra.getRentalStartDate());
-				finalRa.setRentalEndDate(ra.getRentalEndDate());
-				finalRa.setEventDate(arr[i]);
-				finalRa.setEventTime(startTimes[i]);
-				finalRa.setRentalPropose(ra.getRentalPropose());	
-				
-				result += reservationService.insertApplication(finalRa);
-			}
-			
-		}
-		
-		
-		if(result==startTimes.length) {
-			session.removeAttribute("ra");
-			session.removeAttribute("arr");
-			session.setAttribute("alertMsg", "�����û �Ϸ�. ������������ Ȯ���ϼ���.");
-			mv.setViewName("redirect:/");
-		} else {
-			mv.addObject("errorMsg","�����û ��Ͻ���. �����ڿ��� �����ϼ���").setViewName("common/errorPage");
-					}
-		
-		
-		return mv;
-	}
-	
-//	���� ������ ������
+
+//	예매 페이지 조정중
 	@GetMapping("make.rv")
 	public String selectPerformaceForm(Model model//,
-									   /*int perfoNo*/) {
+									   /*int rentalCode*/) {
 
-//		ArrayList<Performance> list = reservationService.selectPerformanceList();
-//		model.addAttribute("list",list);
-//		System.out.println(list);
+		int rentalCode = 1;
 		
-		int perfoNo = 1;
+		ArrayList<Performance> list = reservationService.selectPerformanceList(rentalCode);
+
+		Hall hall = reservationService.selectHallInfo(list.get(0).getHallName());
 		
-		Performance pfmc =  reservationService.selectPerformance(perfoNo);
-		model.addAttribute("pfmc",pfmc);
-		System.out.println(pfmc);
+		RentApplication ra = reservationService.selectRentApplication(rentalCode);
+
+		String[] raArr = ra.getEventDate().split(",");
+
+		model.addAttribute("list",list).addAttribute("ra",ra).addAttribute("raArr",raArr).addAttribute(hall);
 		
-		
-		
+
 		return "reservation/makeReservation";
 	}
 	
-//	���� ������ ������
+//	예매 페이지 조정중
 	@PostMapping("make.rv")
 	public void selectPerformaceInfo() {
+		
 	}
 	
+//예매페이지 중 날짜 및 회차 선택시 ajax로 해당 공연정보 전달
+	@ResponseBody
+	@RequestMapping(value="perfoNum.rv", produces = "application/json; charset=UTF-8")
+	public String perfoNum(String perfoEventDate, int rentalCode) {
+		
+		Performance pf = new Performance();
+		pf.setPerfoEventDate(perfoEventDate);
+		pf.setRentalCode(rentalCode);
+		
+		Performance pfmc = reservationService.getReservationPerformance(pf);
+		
+		
+		return new Gson().toJson(pfmc);
+	}
+	
+	
+	//예매 안내 페이지 이동
 	@RequestMapping("infomTicket.rv")
 	public String infomTicket() {
 		return "reservation/infomTicket";
 	}
 	
-	// 대관 공고 페이지 이동
+	// 대관공고 페이지 이동??? 페이지 이상함
 	@RequestMapping("rentList.rv")
 	public String rentList() {
 		return "reservation/rentList";
 	}
-	// 대관 공고 검색어
+	// 대관공고 페이지내 공고 검색어 기능 기능구현 아직안함
 	@RequestMapping("serchListRent.rv")
 	public String serchListRent() {
 		return "reservation/rentList";
 	}
 	
 }
+

@@ -20,17 +20,17 @@ public class ReservationServiceImpl implements ReservationService{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-//	ÀüÃ¼ °ø¿¬ ¸®½ºÆ® Á¶È¸
+//	ì „ì²´ ê³µì—° ë¦¬ìŠ¤íŠ¸ ì¡°íšŒ
 	@Override
-	public ArrayList<Performance> selectPerformanceList() {
+	public ArrayList<Performance> selectPerformanceList(int rentalCode) {
 		
 		
-		ArrayList<Performance> list = reservationDao.selectPerformanceList(sqlSession);
+		ArrayList<Performance> list = reservationDao.selectPerformanceList(sqlSession, rentalCode);
 		
 		return list;
 	}
 
-//	°ø¿¬ ¼¼ºÎ³»¿ë Á¶È¸
+//	ê³µì—° ì„¸ë¶€ë‚´ìš© ì¡°íšŒ
 	@Override
 	public Performance selectPerformance(int perfoNo) {
 		
@@ -38,19 +38,32 @@ public class ReservationServiceImpl implements ReservationService{
 		return pfmc;
 	}
 
-//	´ë°ü½ÅÃ»¼­ Á¦Ãâ
+//	ëŒ€ê´€ì‹ ì²­ì„œ ì œì¶œ!
 	@Override
 	public int insertApplication(RentApplication ra) {
 				
 		return reservationDao.insertApplication(sqlSession, ra);
 	}
 
-//	°ø¿¬È¦ Á¤º¸Á¶È¸
+//	ê³µì—°í™€ ì •ë³´ì¡°íšŒ
 	@Override
 	public Hall selectHallInfo(String hallName) {
 		
 		return reservationDao.selectHallInfo(sqlSession, hallName);
 	}
+
+	@Override
+	public RentApplication selectRentApplication(int rentalCode) {
+		// TODO Auto-generated method stub
+		return reservationDao.selectRentApplication(sqlSession, rentalCode);
+	}
+
+	@Override
+	public Performance getReservationPerformance(Performance pf) {
+		Performance pfmc = reservationDao.getReservationPerformance(sqlSession, pf);
+		return pfmc;
+	}
+
 
 	
 }

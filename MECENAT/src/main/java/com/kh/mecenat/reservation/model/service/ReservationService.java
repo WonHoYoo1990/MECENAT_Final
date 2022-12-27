@@ -8,16 +8,22 @@ import com.kh.mecenat.reservation.model.vo.RentApplication;
 
 public interface ReservationService {
 
-//	ÀüÃ¼ °ø¿¬ ¸®½ºÆ® Á¶È¸
-	ArrayList<Performance> selectPerformanceList();
+//	ì „ì²´ ê³µì—° ë¦¬ìŠ¤íŠ¸ ì¡°íšŒ
+	ArrayList<Performance> selectPerformanceList(int rentalCode);
 
-//	°ø¿¬ ¼¼ºÎ³»¿ë Á¶È¸
+//	ê³µì—° ì„¸ë¶€ë‚´ìš© ì¡°íšŒ
 	Performance selectPerformance(int perfoNo);
 
-//	´ë°ü½ÅÃ»¼­ Á¦Ãâ
+//	ëŒ€ê´€ì‹ ì²­ì„œ ì œì¶œ
 	int insertApplication(RentApplication ra);
 
-//	°ø¿¬È¦ Á¤º¸Á¶È¸
+//	ê³µì—°í™€ ì •ë³´ì¡°íšŒ
 	Hall selectHallInfo(String hallName);
+
+	RentApplication selectRentApplication(int rentalCode);
+
+	Performance getReservationPerformance(Performance pf);
+
+
 
 }

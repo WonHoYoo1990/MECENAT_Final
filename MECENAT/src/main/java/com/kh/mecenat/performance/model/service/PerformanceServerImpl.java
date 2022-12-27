@@ -43,4 +43,10 @@ public class PerformanceServerImpl implements PerformanceService {
 		return performanceDao.selectListPerformance(SqlSession,  rno);
 	}
 
+	// 서브메인 공연리스트 뽑아오기
+	@Override
+	public ArrayList<Performance> subMainPerformanceList(String sdate) {
+		return performanceDao.subMainPerformanceList(SqlSession, sdate);
+	}
+
 }

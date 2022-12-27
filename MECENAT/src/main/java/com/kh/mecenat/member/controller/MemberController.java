@@ -387,4 +387,6 @@ public class MemberController {
 				return "member/search_Pwd_New";
 			}
 	}
+		///d
+	
 }

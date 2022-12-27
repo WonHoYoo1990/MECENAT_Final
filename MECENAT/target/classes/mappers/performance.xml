@@ -124,6 +124,13 @@
 	
 	</insert>
 	
+	<!-- 서브메인페이지 공연 리스트 뽑아오기 -->
+	<select id="subMainPerformanceList" resultMap="performanceResultSet">
+		SELECT * 
+		FROM PERFORMANCE
+		WHERE PERFO_EVENT_DATE = #{sdate}
+	</select>
+	
 	
 	
 	
