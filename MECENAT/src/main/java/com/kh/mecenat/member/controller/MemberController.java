@@ -1,6 +1,11 @@
 package com.kh.mecenat.member.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
@@ -54,41 +59,54 @@ public class MemberController {
 
 	// 회원정보 수정 페이지 이동
 	@RequestMapping("updateMemberForm.me")
-	public String updateMemberForm() {
+	public String updateMemberForm(HttpSession session, Model model) {
+		
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		//전화번호 - 대로 자르기
+		String userPhone = loginUser.getUserPhone();
+		String[] arr = userPhone.split("-");
+
+		model.addAttribute("arr", arr); 
+		
+		//생일 - 대로 자르기
+		String regbdDate = loginUser.getRegNoDate();
+		String result1 = regbdDate.substring(0, 10);
+		
+		String[] arr2 = result1.split("-");
+
+		model.addAttribute("arr2", arr2); 
+		
 		return "member/updateMemberForm";
 	}
 	
 	
 	// 회원 정보 수정
 	@RequestMapping("update.me")
-	public String updateMember(Member vo,HttpSession session,Model model) {
+	public String updateMember(Member m,HttpSession session, Model model) {
 			
-		int result = memberService.updateMember(vo);
-		String newMemEncPwd = bCryptPasswordEncoder.encode(vo.getUserPwd());
-		vo.setUserPwd(newMemEncPwd);
+		int result = memberService.updateMember(m);
+		String newMemEncPwd = bCryptPasswordEncoder.encode(m.getUserPwd());
+		m.setUserPwd(newMemEncPwd);
 		
-		System.out.println("member"+vo);
-		System.out.println("newMemEncPwd"+newMemEncPwd);
-		System.out.println("vo.getuserpwd"+vo.getUserPwd());
 		
 		if(result>0) {
-			Member updateMember = memberService.loginMember(vo.getUserId());
+			Member updateMember = memberService.loginMember(m.getUserId());
 			session.setAttribute("loginUser", updateMember);
 			session.setAttribute("alertMsg", "회원 정보 수정이 완료되었습니다.");
-			return "redirect:/";
+			return "redirect:/index.jsp"; 
 			
 		}else {
 			model.addAttribute("errorMsg","회원 정보 수정 실패");
 			return "common/errorPage";
 		}
 	}
-
+	
 	
 	// 회원가입 등록
 	@RequestMapping("signup.me")
 	public ModelAndView signup(Member m, ModelAndView mv, HttpSession session) {
 		
-		System.out.println("siup이양");
 		
 		String encPwd = bCryptPasswordEncoder.encode(m.getUserPwd());
 
@@ -118,11 +136,6 @@ public class MemberController {
 		String userId = loginUser.getUserId();
 		String loginUserPwd = loginUser.getUserPwd();
 		
-		System.out.println("loginUser : " + loginUser);
-		System.out.println("userId : " + userId);
-		System.out.println("loginUserPwd : " + loginUserPwd);
-		System.out.println("userPwd : " + userPwd);
-
 
 		if (bCryptPasswordEncoder.matches(userPwd, loginUserPwd)) { // 입력한 비밀번호와 암호화 비밀번호가 일치할 경우
 			int result = memberService.deleteMember(userId);
@@ -150,7 +163,6 @@ public class MemberController {
 	@RequestMapping("checkDupId.me")
 	public String checkDupId(String checkId) {
 		
-		System.out.println("checkDupId : " +checkId);
 
 		int count = memberService.checkDupId(checkId);
 		

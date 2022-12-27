@@ -37,7 +37,7 @@ public interface MemberService {
 	int search_Pwd_New(Member vo);
 	
 	//마이페이지 회원정보 수정
-	int updateMember(Member vo);
+	int updateMember(Member m);
 	
 
 }

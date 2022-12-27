@@ -68,8 +68,8 @@ public class MemberDao {
 
 	
 	//마이페이지 회원정보 수정
-	public int updateMember(SqlSessionTemplate sqlSession, Member vo) {
-		return sqlSession.update("memberMapper.updateMember",vo);
+	public int updateMember(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.update("memberMapper.updateMember",m);
 	}
 
 }

@@ -81,8 +81,8 @@ public class MemberServiceImpl implements MemberService {
 	
 	//마이페이지 회원정보 수정
 	@Override
-	public int updateMember(Member vo) {
-		return memberDao.updateMember(sqlSession,vo);
+	public int updateMember(Member m) {
+		return memberDao.updateMember(sqlSession,m);
 	}
 
 }
