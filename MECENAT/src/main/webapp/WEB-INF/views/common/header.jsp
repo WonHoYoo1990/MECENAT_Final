@@ -208,6 +208,7 @@
 								
 								<c:if test="${loginUser.userId eq 'admin' }">
 									<li><a href="approveWaitForm.mana">승인관리</a></li>	
+									<li><a href="">공연관리</a></li>	
 								</c:if>
 								
 						</ul></li>

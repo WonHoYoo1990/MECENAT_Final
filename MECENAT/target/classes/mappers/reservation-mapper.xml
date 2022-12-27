@@ -7,7 +7,7 @@
 		<result column="RENTAL_CODE" property="rentalCode"/>
 		<result column="PERFO_TITLE" property="perfoTitle"/>
 		<result column="GENRE_NAME" property="genreName"/>
-<!-- 		<result column="PERFO_DATE" property="perfoDate"/> -->
+		<result column="PERFO_DATE" property="perfoDate"/>
 		<result column="PERFO_EVENT_DATE" property="perfoEventDate"/>
 		<result column="DIRECTOR" property="director"/>
 		<result column="CAST" property="cast"/>
@@ -148,20 +148,11 @@
 	</select>
 
 
-	<!--  #유리 - 관리자)승인대기중인 list조회  -->
-	<select id="selectRentalApplication" resultMap="rentapplicationResult">
-		SELECT * FROM RENTAPPLICATION WHERE APPROVE_STATUS='승인대기'
-	</select>
 	
 	<select id="selectRentApplication" resultMap="rentapplicationResult">
 		SELECT * FROM RENTAPPLICATION WHERE RENTAL_CODE = #{rentalCode}
 	</select>
 	
-	
-	<update id="updateApproveStatus">
-		UPDATE RENTAPPLICATION SET APPROVE_STATUS='승인'
-		WHERE RENTAL_CODE = #{rno}
-	</update>
 	
 	<update id="updateBoard">
 		UPDATE BOARD
@@ -189,7 +180,9 @@
 
 	<!--  관리자)승인대기중인 list조회  -->
 	<select id="selectRentalApplication" resultMap="rentapplicationResult"> 
-		SELECT * FROM RENTAPPLICATION 
+		SELECT *
+		FROM RENTAPPLICATION
+		WHERE APPROVE_STATUS != '등록'
 	</select>
 	<update id="updateApproveStatus">
 		UPDATE RENTAPPLICATION
@@ -202,7 +195,11 @@
 		WHERE RENTAL_CODE = #{rno}
 	</update>
 	
-	
 	<!-- update status 변경해야함(등록으로) -->
+	<update id="updateRentalAppStatus">
+		UPDATE RENTAPPLICATION
+		SET APPROVE_STATUS='등록'
+		WHERE RENTAL_CODE= #{rno}
+	</update>
 	
 </mapper>
