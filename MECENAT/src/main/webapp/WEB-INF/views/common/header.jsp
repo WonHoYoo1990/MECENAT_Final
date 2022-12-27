@@ -523,7 +523,7 @@
 		
 		<!-- 베너  Start -->
 		<c:choose>
-			<c:when test="${fn:contains(path, 'performanceMain')}">
+			<c:when test="${fn:contains(path, 'subMainPerformance')}">
 				<section id="sub_visual" style="height: 500px; ">
 					<div class="bg_w">
 						<div class="bg" style="background-image: url(./resources/sejongpac/static/commons/img/member/signupBackground.jpg);"></div>

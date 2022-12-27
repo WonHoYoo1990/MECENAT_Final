@@ -31,14 +31,19 @@ public class PerformanceDao {
 		return sqlSession.selectOne("performanceMapperMana.selectDetailPerformance", rno);
 	}
 
-	// 서브 메인페이지 공연 리스트 뽑아오기
+	// 서브메인 공연 리스트 조회
 	public ArrayList<Performance> subMainPerformanceList(SqlSessionTemplate sqlSession, String sdate) {
 		return (ArrayList) sqlSession.selectList("performanceMapperMana.subMainPerformanceList", sdate);
 	}
-	
+
 	// 서브 메인 공연리스트 개수
-	public int ListCountSubMainPerformance(SqlSessionTemplate sqlSession, String sdate) {
-		return sqlSession.selectOne("performanceMapperMana.ListCountSubMainPerformance", sdate);
+	public int subMainPerformanceListCount(SqlSessionTemplate sqlSession, String sdate) {
+		return sqlSession.selectOne("performanceMapperMana.subMainPerformanceListCount", sdate);
+	}
+
+	// 서브메인 공연 리스트 최신순 조회
+	public ArrayList<Performance> subMainPerformanceSearchSort1(SqlSessionTemplate sqlSession, String sdate) {
+		return (ArrayList) sqlSession.selectList("performanceMapperMana.subMainPerformanceSearchSort1", sdate);
 	}
 
 }

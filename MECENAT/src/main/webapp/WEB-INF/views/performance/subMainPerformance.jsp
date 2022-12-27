@@ -52,7 +52,8 @@
 			<div id="sub_page" style="padding:0">
 				<br><br>
 				<div class="">
-					<form name="frm" id="frm" method="post" action="subMainPerformanceList.perf">
+				
+					<form name="frm" id="frm" method="post" >
 						<input type="hidden" name="pageIndex" value="1">
 						<input type="hidden" name="searchSort" id="searchSort" value="2">
 			
@@ -61,7 +62,6 @@
 							<div class="schedule__date type2">
 								<a href="javascript:void(0);" class="arrow prev" >이전</a>
 								<div class="title">
-									<!-- <input type="text" name="sdate" id="period1" class="datepicker hasDatepicker" readonly="readonly" value=""> -->
 									<input type="text" name="sdate" id="period1" class="form-control" value="" readonly="readonly"/>
 								</div>
 								<a href="javascript:void(0);" class="arrow next">다음</a>
@@ -80,25 +80,26 @@
 								
 								<div class="write">
 									<input type="text" name="searchWrd" id="hall" placeholder="검색어를 입력하세요" value="">
-									<button type="button" onclick="fn_search('1')">검색</button>
+									<button type="button" formaction="subMainPerformanceSearch.per" onclick="fn_search('1')">검색</button>
 								</div>
 							</div>
 						</div>
 					</form>
 					<script>
+						// 날짜 String 형변환 및 문자열 자르기
 						document.getElementById('period1').value = new Date().toISOString().substring(0, 10);
 						
-						$('#period1').datepicker({
-						      dateFormat: 'yy-mm-dd', //데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
-						      language: 'kr', //달력의 언어 선택, 그에 맞는 js로 교체해줘야한다.
-						   }).on('change', function () {
+						$('#period1').datepicker({ //달력
+						      dateFormat: 'yy-mm-dd', 
+						      language: 'kr', 
+						   }).on('change', function () { // 달력 값이 변할 때마다
 							   
 							   var sdate = $("#period1").val();
 								console.log("sada : " + sdate)
 				
 								$.ajax({ // 공연 리스트 조회
 								    url : 'subMainPerformanceList.perf',
-								    data : {  // 보낼 데이터 (Object , String, Array)
+								    data : {  
 								      "sdate" : sdate
 								    },
 								    success : function(list) {  
@@ -114,8 +115,8 @@
 								})
 								
 								$.ajax({ // 공연 리스트 개수 조회
-								    url : 'ListCountSubMainPerformance.perf',
-								    data : {  // 보낼 데이터 (Object , String, Array)
+								    url : 'subMainPerformanceListCount.perf',
+								    data : {  
 								      "sdate" : sdate
 								    },
 								    success : function(count) {  
@@ -129,8 +130,6 @@
 								        console.log(error)
 								    }
 								})
-								
-								
 						   });
 					</script>
 			
@@ -139,8 +138,8 @@
 						<div class="inner">
 							<div class="top clearfix listCount">
 								<div class="category">
-									<span class="active"><a href="javascript:void(0);" onclick="fn_SearchSort('2');" title="선택됨">관심순</a></span>
-									<span><a href="javascript:void(0);" onclick="fn_SearchSort('1');">최신순</a></span>
+									<span class="active"><a href="javascript:void(0);" onclick="fn_SearchSort('1');" title="선택됨">최신순</a></span>
+									<span><a href="javascript:void(0);" onclick="fn_SearchSort('2');">관심순</a></span>
 								</div>
 			
 								<div class="etc_w">
@@ -221,8 +220,38 @@
 					<script>
 						
 						function fn_SearchSort(searchSort){
-							$("#searchSort").val(searchSort);
-							fn_search('1');
+							
+							var searchSort = searchSort;
+							console.log("searchSort : " + searchSort);
+							
+							var sdate = $("#period1").val();
+							console.log("sdate : " + sdate);
+							
+							if (searchSort == 1) {
+								$.ajax({ // 공연 리스트 최신순 조회
+								    url : 'subMainPerformanceSearchSort1.perf',
+								    data : {  
+								      "sdate" : sdate
+								    },
+								    success : function(list) {  
+								        console.log("통신 성공 !");
+								        console.log("list : "+list);
+					    				
+					    				$(".bbs-today_thumb").html(list);
+								    },
+								    error : function(request, status, error) { // 결과 에러 콜백함수
+								        console.log("통신 실패 !");
+								        console.log(error)
+								    }
+								})
+								
+							} else {
+								console.log(" 2?? " );
+
+							}
+							
+							/* $("#searchSort").val(searchSort);
+							fn_search('1'); */
 						}
 						
 						function fn_search(pageNo) {
@@ -304,7 +333,7 @@
 								})
 								
 								$.ajax({ // 공연 리스트 개수 조회
-								    url : 'ListCountSubMainPerformance.perf',
+								    url : 'subMainPerformanceListCount.perf',
 								    data : {  // 보낼 데이터 (Object , String, Array)
 								      "sdate" : sdate
 								    },
@@ -347,7 +376,7 @@
 								})
 								
 								$.ajax({ // 공연 리스트 개수 조회
-								    url : 'ListCountSubMainPerformance.perf',
+								    url : 'subMainPerformanceListCount.perf',
 								    data : {  // 보낼 데이터 (Object , String, Array)
 								      "sdate" : sdate
 								    },

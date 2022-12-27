@@ -155,9 +155,9 @@ public class PerformanceController {
 	}
 
 	// 서브 메인페이지 이동
-	@RequestMapping("performanceMain.perf")
-	public String performanceMain() {
-		return "performance/performanceMain";
+	@RequestMapping("subMainPerformance.perf")
+	public String subMainPerformance() {
+		return "performance/subMainPerformance";
 	}
 
 	// 서브 메인페이지 내에서 현재 페이지 공연 리스트 보여주기
@@ -170,21 +170,36 @@ public class PerformanceController {
 		ArrayList<Performance> pList = perfoService.subMainPerformanceList(sdate);
 		System.out.println("pList : " + pList);
 
-		mv.addObject("pList", pList).setViewName("performance/performanceMainResult");
+		mv.addObject("pList", pList).setViewName("performance/subMainPerformanceList");
 
 		return mv;
 	}
 
-	// 게시글 총 개수 하는중 (-)
-	@RequestMapping("ListCountSubMainPerformance.perf")
+	// 서브 메인페이지 내에서 공연 리스트 개수
+	@RequestMapping("subMainPerformanceListCount.perf") 
 	@ResponseBody
-	public int ListCountSubMainPerformance(String sdate) {
+	public int subMainPerformanceListCount(String sdate) {
 
-		int listCount = perfoService.ListCountSubMainPerformance(sdate);
+		int listCount = perfoService.subMainPerformanceListCount(sdate);
 
 		System.out.println("listCount : " + listCount);
 
 		return listCount;
+	}
+	
+	// 서브 메인페이지 내에서 공연 리스트 최신순 정렬
+	@RequestMapping("subMainPerformanceSearchSort1.perf")
+	public ModelAndView subMainPerformanceSearchSort1(String sdate, ModelAndView mv) {
+		
+		System.out.println("하잉?");
+		System.out.println("sdate : " + sdate);
+
+		ArrayList<Performance> pList = perfoService.subMainPerformanceSearchSort1(sdate);
+		System.out.println("pList : " + pList);
+
+		mv.addObject("pList", pList).setViewName("performance/subMainPerformanceList");
+
+		return mv;
 	}
 
 	// asdfasdfasdfasdfasdfasdfasdf"asdf.mana"
