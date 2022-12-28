@@ -40,6 +40,8 @@
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="/favicon.ico" type="image/x-icon">
 	
+	<link rel="stylesheet" type="text/css" href="./resources/css/bootstrap.min.css">
+	
 </head>
 <body class="hide-focus-ring">
 	<section id="wrap">
@@ -208,6 +210,7 @@
 								
 								<c:if test="${loginUser.userId eq 'admin' }">
 									<li><a href="approveWaitForm.mana">승인관리</a></li>	
+									<li><a href="">공연관리</a></li>	
 								</c:if>
 								
 						</ul></li>
@@ -523,7 +526,7 @@
 		
 		<!-- 베너  Start -->
 		<c:choose>
-			<c:when test="${fn:contains(path, 'performanceMain')}">
+			<c:when test="${fn:contains(path, 'subMainPerformance')}">
 				<section id="sub_visual" style="height: 500px; ">
 					<div class="bg_w">
 						<div class="bg" style="background-image: url(./resources/sejongpac/static/commons/img/member/signupBackground.jpg);"></div>

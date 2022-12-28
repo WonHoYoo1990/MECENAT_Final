@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class Performance {
-
+	
 	private int perfoNo;
 	private int rentalCode;
 	private String perfoTitle;
@@ -24,5 +24,9 @@ public class Performance {
 	private int price;
 	private String originName;
 	private String changeName;
+	
+	private String eventTime;
+	private String eventDate;
+	
 
 }

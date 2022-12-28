@@ -54,10 +54,10 @@
 	<br>
 	<div class="content" align="center">
 		<h1>공연 목록</h1>
-		<c:if test="${loginUser.userId eq 'admin'}">
-			<!-- <form action="insertForm.perf">
+		<c:if test="${loginUser.userId eq 'admin2'}">
+			<form action="insertForm.perf">
 				<input type="submit" value="관리자용: 등록하기">
-			</form> -->
+			</form>
 
 		</c:if>
 		<br>
@@ -71,7 +71,6 @@
 					<c:choose>
 						<c:when test="${not empty p.originName}">
 							<img src="${p.changeName}" width="150px" height="200px">
-							<a href="${p.changeName}">${p.originName}</a>
 						</c:when>
 						<c:otherwise>
 							<img src="resources/performanceFiles/nocover.png" width="150px"
@@ -89,7 +88,8 @@
 			</c:forEach>
 		</div>
 	</div>
-
+	
+	<!-- detail이동하는 script -->
 	<script>
 		$(function(){
 			$(".thumbnail").click(function(){
@@ -97,6 +97,10 @@
 			})
 		})
 	</script>
+	
+	
+	
+	
 
 
 	<br><br><br><br><br><br><br><br>

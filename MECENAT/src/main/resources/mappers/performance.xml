@@ -5,7 +5,7 @@
 
 
 <mapper namespace="performanceMapperMana">
-	
+	<!-- EVENT_DATE -->
 	<resultMap type="performanceMana" id="performanceResultSet">
 	  	<result column="PERFO_NO" property="perfoNo"/>
 	  	<result column="RENTAL_CODE" property="rentalCode"/>
@@ -22,61 +22,24 @@
 	  	<result column="PRICE" property="price"/>
 	  	<result column="ORIGIN_NAME" property="originName"/>
 	  	<result column="CHANGE_NAME" property="changeName"/>
+	  	<result column="EVENT_TIME" property="eventTime"/>
+	  	<result column="EVENT_DATE" property="eventDate"/>
 	</resultMap>
 	
 
 	<select id="selectPerformanceList" resultMap="performanceResultSet">
-		SELECT RENTAL_CODE,
-			   PERFO_TITLE,
-			   GENRE_NAME,
-			   DIRECTOR,
-			   CAST,
-			   PERFO_CONTENT,
-			   RUNNING_TIME,
-			   AGE_LIMIT,
-			   PRICE,
-			   ORIGIN_NAME, 
-			   CHANGE_NAME
-		FROM PERFORMANCE
-		GROUP BY RENTAL_CODE,
-			     PERFO_TITLE,
-			     GENRE_NAME,
-			     DIRECTOR,
-			     CAST,
-			     PERFO_CONTENT,
-			     RUNNING_TIME,
-			     AGE_LIMIT,
-			     PRICE,
-			     ORIGIN_NAME, 
-			     CHANGE_NAME
-		ORDER BY RENTAL_CODE
+		SELECT RENTAL_CODE, PERFO_TITLE, GENRE_NAME, DIRECTOR, CAST, PERFO_CONTENT, RUNNING_TIME, AGE_LIMIT, PRICE, ORIGIN_NAME, CHANGE_NAME, EVENT_DATE, EVENT_TIME
+		FROM PERFORMANCE P
+		JOIN RENTAPPLICATION R USING(RENTAL_CODE)
+		GROUP BY RENTAL_CODE, PERFO_TITLE, GENRE_NAME, DIRECTOR, CAST, PERFO_CONTENT, RUNNING_TIME, AGE_LIMIT, PRICE, ORIGIN_NAME, CHANGE_NAME, EVENT_DATE, EVENT_TIME
 	</select>
 	
 	<!-- selectDetailPerformance -->
 	<select id="selectDetailPerformance" resultMap="performanceResultSet">
-		SELECT RENTAL_CODE,
-			   PERFO_TITLE,
-			   GENRE_NAME,
-			   DIRECTOR,
-			   CAST,
-			   PERFO_CONTENT,
-			   RUNNING_TIME,
-			   AGE_LIMIT,
-			   PRICE,
-			   ORIGIN_NAME, 
-			   CHANGE_NAME
-		FROM PERFORMANCE
-		GROUP BY RENTAL_CODE,
-			     PERFO_TITLE,
-			     GENRE_NAME,
-			     DIRECTOR,
-			     CAST,
-			     PERFO_CONTENT,
-			     RUNNING_TIME,
-			     AGE_LIMIT,
-			     PRICE,
-			     ORIGIN_NAME, 
-			     CHANGE_NAME
+		SELECT RENTAL_CODE, PERFO_TITLE, GENRE_NAME, DIRECTOR, CAST, PERFO_CONTENT, RUNNING_TIME, AGE_LIMIT, PRICE, ORIGIN_NAME, CHANGE_NAME, EVENT_DATE, EVENT_TIME
+		FROM PERFORMANCE P
+		JOIN RENTAPPLICATION R USING(RENTAL_CODE)
+		GROUP BY RENTAL_CODE, PERFO_TITLE, GENRE_NAME, DIRECTOR, CAST, PERFO_CONTENT, RUNNING_TIME, AGE_LIMIT, PRICE, ORIGIN_NAME, CHANGE_NAME, EVENT_DATE, EVENT_TIME
         HAVING RENTAL_CODE=#{rno}
 		ORDER BY RENTAL_CODE
 		
@@ -105,7 +68,7 @@
 								CHANGE_NAME)
 							
 						VALUES( SEQ_PERFONO.NEXTVAL,
-								3,
+								#{rentalCode},
 								#{perfoTitle},
 								#{genreName},
 								#{perfoEventDate},
@@ -119,23 +82,37 @@
 								#{price},
 								#{originName},
 								#{changeName}
-									)
-		
-	
+								)
 	</insert>
 	
-	<!-- 서브메인페이지 공연 리스트 뽑아오기 -->
+	<!-- 서브메인 공연 리스트 조회-->
 	<select id="subMainPerformanceList" resultMap="performanceResultSet">
 		SELECT * 
 		FROM PERFORMANCE
 		WHERE PERFO_EVENT_DATE = #{sdate}
 	</select>
 	
-	<!-- 서브메인페이지 공연 개수 -->
-	<select id="ListCountSubMainPerformance" resultType="int">
+	<!-- 서브메인 공연 리스트 개수-->
+	<select id="subMainPerformanceListCount" resultType="int">
 		SELECT COUNT(*)
 		FROM PERFORMANCE
 		WHERE PERFO_EVENT_DATE = #{sdate}
+	</select>
+	
+	<!-- 서브메인 공연 리스트 최신순 조회 -->
+	<select id="subMainPerformanceSearchSort1" resultMap="performanceResultSet">
+		SELECT * 
+		FROM PERFORMANCE
+		WHERE PERFO_EVENT_DATE = #{sdate}
+		ORDER BY PERFO_EVENT_DATE
+	</select>
+
+	<!-- 서브메인 공연 리스트 관심순 조회 -->
+	<select id="subMainPerformanceSearchSort2" resultMap="performanceResultSet">
+		SELECT * 
+		FROM PERFORMANCE
+		WHERE PERFO_EVENT_DATE = #{sdate}
+		ORDER BY PERFO_COUNT DESC
 	</select>
 	
 	
@@ -145,8 +122,34 @@
 	
 	
 	
+	<resultMap type="review" id="reviewResultSet">
+	  	<result column="REVIEW_NO" property="reviewNo"/>
+	  	<result column="REF_NO" property="refNo"/>
+	  	<result column="REVIEW_WRITER" property="reviewWriter"/>
+	  	<result column="STAR_RATE" property="starRate"/>	  	
+	  	<result column="REVIEW_CONTENT" property="content"/>	  	
+	  	<result column="WRITE_DATE" property="writeDate"/>
+	  	<result column="STATUS" property="status"/>	  	
+    </resultMap>
 	
+	<select id="selectReviewList" resultMap="reviewResultSet">
+  		SELECT *
+  		FROM REVIEW
+  		WHERE REF_NO = #{rno}
+  		AND STATUS = 'Y'
+  	</select>
+  	
+  	<insert id="insertReview">
+  		INSERT INTO REVIEW(REVIEW_NO, REF_NO, REVIEW_WRITER, STAR_RATE, REVIEW_CONTENT)
+  					VALUES(SEQ_REVIEWNO.NEXTVAL
+  							,#{refNo}
+  							,#{reviewWriter}
+  							,#{starRate}
+  							,#{content}
+  					)
+  	</insert>
 	
+
 	
 </mapper>
 
