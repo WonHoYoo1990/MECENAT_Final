@@ -61,6 +61,9 @@ public class PerformanceDao {
 		return (ArrayList) sqlSession.selectList("performanceMapperMana.subMainPerformanceSearchSort1", sdate);
 	}
 
+	
+	
+	
 	public ArrayList<Review> selectReviewList(SqlSessionTemplate sqlSession, int rno) {
 		// TODO Auto-generated method stub
 		return (ArrayList) sqlSession.selectList("performanceMapperMana.selectReviewList", rno);

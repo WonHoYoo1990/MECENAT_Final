@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.kh.mecenat.performance.model.service.PerformanceService;
 import com.kh.mecenat.performance.model.vo.Performance;
+import com.kh.mecenat.performance.model.vo.Review;
 import com.kh.mecenat.reservation.model.vo.RentApplication;
 
 @Controller
@@ -247,5 +248,31 @@ public class PerformanceController {
 	public void asdf(int rCode) {
 		System.out.println("뚜루뚜뚜뚜뽀롱뽀뽀뽀" + rCode);
 	}
+	
+	
+	
+	
+	
+	//댓글 리스트 조회
+		@ResponseBody
+		@RequestMapping(value="rlist.bo",produces="application/json; charset=UTF-8")
+		public String selectReviewList(int rno) {
+			
+			ArrayList<Review> list = perfoService.selectReviewList(rno);		
+			
+			
+			return new Gson().toJson(list);
+			
+		}
+		@ResponseBody
+		@RequestMapping(value="rinsert.bo", produces="text/html; charset=UTF-8")
+		public String insertReview(Review r) {
+			
+			int result = perfoService.insertReview(r);
+			
+//			System.out.println(result);
+			
+			return result > 0? "yes" : "no";
+		}
 
 }
