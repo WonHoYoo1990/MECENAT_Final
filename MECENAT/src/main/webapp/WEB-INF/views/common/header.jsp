@@ -497,7 +497,6 @@
 				function drawTopLeftList() {
 					$.post("/portal/search/search/headerPerform.do?viewType=CONTBODY",
 							null, function(data) {
-										console.log(data);
 										$("#top_apc_left_list").html(data);
 									});
 				}

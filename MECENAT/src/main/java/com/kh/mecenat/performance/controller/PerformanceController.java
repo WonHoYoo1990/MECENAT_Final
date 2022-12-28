@@ -230,7 +230,6 @@ public class PerformanceController {
 	@RequestMapping("subMainPerformanceSearchSort1.perf")
 	public ModelAndView subMainPerformanceSearchSort1(String sdate, ModelAndView mv) {
 
-		System.out.println("하잉?");
 		System.out.println("sdate : " + sdate);
 
 		ArrayList<Performance> pList = perfoService.subMainPerformanceSearchSort1(sdate);
@@ -240,19 +239,47 @@ public class PerformanceController {
 
 		return mv;
 	}
+
 	// 서브 메인페이지 내에서 공연 리스트 관심순 정렬
 	@RequestMapping("subMainPerformanceSearchSort2.perf")
 	public ModelAndView subMainPerformanceSearchSort2(String sdate, ModelAndView mv) {
-		
-		System.out.println("하잉?");
+
 		System.out.println("sdate : " + sdate);
-		
+
 		ArrayList<Performance> pList = perfoService.subMainPerformanceSearchSort2(sdate);
 		System.out.println("pList : " + pList);
-		
+
 		mv.addObject("pList", pList).setViewName("performance/subMainPerformanceList");
-		
+
 		return mv;
+	}
+
+	// 서브 메인페이지 내에서 공연 검색어 리스트 검색 조회
+	@RequestMapping("subMainPerformanceSearch.perf")
+	public ModelAndView subMainPerformanceSearch(String searchWrd, ModelAndView mv) {
+
+		System.out.println("하잉");
+
+		System.out.println("searchWrd : " + searchWrd);
+
+		ArrayList<Performance> pList = perfoService.subMainPerformanceSearch(searchWrd);
+		System.out.println("pList : " + pList);
+
+		mv.addObject("pList", pList).setViewName("performance/subMainPerformanceList");
+
+		return mv;
+	}
+
+	// 서브 메인페이지 내에서 검색어 리스트 개수 조회
+	@RequestMapping("subMainPerformanceSearchCount.perf")
+	@ResponseBody
+	public int subMainPerformanceSearchCount(String searchWrd) {
+
+		int listCount = perfoService.subMainPerformanceSearchCount(searchWrd);
+
+		System.out.println("listCount : " + listCount);
+
+		return listCount;
 	}
 
 	// asdfasdfasdfasdfasdfasdfasdf"asdf.mana"

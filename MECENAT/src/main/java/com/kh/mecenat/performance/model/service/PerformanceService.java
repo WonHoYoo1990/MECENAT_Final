@@ -35,10 +35,15 @@ public interface PerformanceService {
 
 	// 서브메인 공연 리스트 관심순 조회
 	public ArrayList<Performance> subMainPerformanceSearchSort2(String sdate);
-	
+
+	// 서브 메인페이지 내에서 공연 리스트 검색 조회
+	public ArrayList<Performance> subMainPerformanceSearch(String searchWrd);
+
+	// 서브 메인페이지 내에서 검색어 리스트 개수 조회
+	public int subMainPerformanceSearchCount(String searchWrd);
+
 	public ArrayList<Review> selectRevieList(int rno);
 
 	public int insertReview(Review r);
-
 
 }
