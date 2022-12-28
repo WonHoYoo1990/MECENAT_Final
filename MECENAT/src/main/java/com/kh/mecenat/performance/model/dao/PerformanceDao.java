@@ -60,9 +60,11 @@ public class PerformanceDao {
 	public ArrayList<Performance> subMainPerformanceSearchSort1(SqlSessionTemplate sqlSession, String sdate) {
 		return (ArrayList) sqlSession.selectList("performanceMapperMana.subMainPerformanceSearchSort1", sdate);
 	}
-
 	
-	
+	// 서브메인 공연 리스트 관심순 조회
+	public ArrayList<Performance> subMainPerformanceSearchSort2(SqlSessionTemplate sqlSession, String sdate) {
+		return (ArrayList) sqlSession.selectList("performanceMapperMana.subMainPerformanceSearchSort2", sdate);
+	}
 	
 	public ArrayList<Review> selectReviewList(SqlSessionTemplate sqlSession, int rno) {
 		// TODO Auto-generated method stub
@@ -73,5 +75,7 @@ public class PerformanceDao {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("performanceMapperMana.insertReview", r);
 	}
+
+	
 
 }

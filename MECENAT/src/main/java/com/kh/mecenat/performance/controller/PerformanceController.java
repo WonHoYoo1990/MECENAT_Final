@@ -241,6 +241,20 @@ public class PerformanceController {
 
 		return mv;
 	}
+	// 서브 메인페이지 내에서 공연 리스트 관심순 정렬
+	@RequestMapping("subMainPerformanceSearchSort2.perf")
+	public ModelAndView subMainPerformanceSearchSort2(String sdate, ModelAndView mv) {
+		
+		System.out.println("하잉?");
+		System.out.println("sdate : " + sdate);
+		
+		ArrayList<Performance> pList = perfoService.subMainPerformanceSearchSort2(sdate);
+		System.out.println("pList : " + pList);
+		
+		mv.addObject("pList", pList).setViewName("performance/subMainPerformanceList");
+		
+		return mv;
+	}
 
 	// asdfasdfasdfasdfasdfasdfasdf"asdf.mana"
 	@ResponseBody

@@ -39,6 +39,7 @@
 	<link rel="stylesheet" href="./resources/sejongpac/static/portal/css/aos.css">
 	<script src="./resources/sejongpac/static/portal/inc/netfunnel.js" charset="UTF-8"></script>
 	
+	
 </head>
 <body class="vsc-initialized">
 	<section id="wrap">
@@ -86,6 +87,42 @@
 						</div>
 					</form>
 					<script>
+						$(function() {
+							subMainPerformanceList();
+						})
+						
+						function subMainPerformanceList() { //subMainPerformance 첫페이지시 list 조회
+							
+							var sdate = $("#period1").val();
+			
+							$.ajax({ // 공연 리스트 조회
+							    url : 'subMainPerformanceList.perf',
+							    data : {  
+							      "sdate" : sdate
+							    },
+							    success : function(list) {  
+				    				$(".bbs-today_thumb").html(list);
+							    },
+							    error : function() {
+							        console.log("통신 실패!");
+							    }
+							})
+							
+							$.ajax({ // 공연 리스트 개수 조회
+							    url : 'subMainPerformanceListCount.perf',
+							    data : {  
+							      "sdate" : sdate
+							    },
+							    success : function(count) {  
+				    				$(".listCount .etc_w .color-navy").html(count);
+							    },
+							    error : function() {
+							        console.log("통신 실패 COUNT!");
+							    }
+							})
+						}
+						
+					
 						// 날짜 String 형변환 및 문자열 자르기
 						document.getElementById('period1').value = new Date().toISOString().substring(0, 10);
 						
@@ -138,8 +175,8 @@
 						<div class="inner">
 							<div class="top clearfix listCount">
 								<div class="category">
-									<span class="active"><a href="javascript:void(0);" onclick="fn_SearchSort('1');" title="선택됨">최신순</a></span>
-									<span><a href="javascript:void(0);" onclick="fn_SearchSort('2');">관심순</a></span>
+									<span class="active" id="searchShort1"><a href="javascript:void(0);" onclick="fn_SearchSort('1');" title="선택됨">최신순</a></span>
+									<span class="" id="searchShort2"><a href="javascript:void(0);" onclick="fn_SearchSort('2');">관심순</a></span>
 								</div>
 			
 								<div class="etc_w">
@@ -219,7 +256,7 @@
 					</article>
 					<script>
 						
-						function fn_SearchSort(searchSort){
+						function fn_SearchSort(searchSort){ // 리스트 정렬
 							
 							var searchSort = searchSort;
 							console.log("searchSort : " + searchSort);
@@ -227,7 +264,8 @@
 							var sdate = $("#period1").val();
 							console.log("sdate : " + sdate);
 							
-							if (searchSort == 1) {
+							if (searchSort == 1) { // 최신순 클릭시 
+								
 								$.ajax({ // 공연 리스트 최신순 조회
 								    url : 'subMainPerformanceSearchSort1.perf',
 								    data : {  
@@ -239,19 +277,40 @@
 					    				
 					    				$(".bbs-today_thumb").html(list);
 								    },
-								    error : function(request, status, error) { // 결과 에러 콜백함수
+								    error : function() { 
 								        console.log("통신 실패 !");
-								        console.log(error)
 								    }
 								})
 								
-							} else {
+								// 관심순 class 제거 및 최신순 class 추가
+								document.getElementById('searchShort2').classList.remove('active');
+								document.getElementById('searchShort1').classList.add('active');
+								
+							} else { // 관심순 클릭시
 								console.log(" 2?? " );
+							
+								// 최신순 class 제거 및 관심순 class 추가
+								document.getElementById('searchShort1').classList.remove('active');
+								document.getElementById('searchShort2').classList.add('active');
+								
+								$.ajax({ // 공연 리스트 관심순 조회
+								    url : 'subMainPerformanceSearchSort2.perf',
+								    data : {  
+								      "sdate" : sdate
+								    },
+								    success : function(list) {  
+								        console.log("통신 성공 !");
+								        console.log("list : "+list);
+					    				
+					    				$(".bbs-today_thumb").html(list);
+								    },
+								    error : function() { 
+								        console.log("통신 실패 !");
+								    }
+								})
+								
 
 							}
-							
-							/* $("#searchSort").val(searchSort);
-							fn_search('1'); */
 						}
 						
 						function fn_search(pageNo) {
