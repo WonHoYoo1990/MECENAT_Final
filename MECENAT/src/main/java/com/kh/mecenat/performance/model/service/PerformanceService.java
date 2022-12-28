@@ -33,8 +33,13 @@ public interface PerformanceService {
 	// 서브메인 공연 리스트 최신순 조회
 	public ArrayList<Performance> subMainPerformanceSearchSort1(String sdate);
 
-	public ArrayList<Review> selectRevieList(int rno);
 
+
+	//리뷰 등록
 	public int insertReview(Review r);
+	
+	//리뷰 조회
+	public ArrayList<Review> selectReviewList(int rno);
+
 
 }
