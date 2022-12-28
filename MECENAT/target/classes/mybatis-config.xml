@@ -20,6 +20,7 @@
 		<typeAlias type="com.kh.mecenat.performance.model.vo.Performance" alias="performanceMana"/>
 		<typeAlias type="com.kh.mecenat.notice.model.vo.Notice" alias="notice"/>
 		<typeAlias type="com.kh.mecenat.notice.model.vo.NoticeType" alias="noticeType"/>
+
 	</typeAliases>
 
 	<mappers>
