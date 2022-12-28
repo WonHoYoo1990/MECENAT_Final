@@ -62,6 +62,11 @@ public class PerformanceServerImpl implements PerformanceService {
 		return performanceDao.subMainPerformanceSearchSort1(SqlSession, sdate);
 	}
 
+	// 서브메인 공연 리스트 관심순 조회
+	@Override
+	public ArrayList<Performance> subMainPerformanceSearchSort2(String sdate) {
+		return performanceDao.subMainPerformanceSearchSort2(SqlSession, sdate);
+	}
 	
 	
 	
@@ -93,6 +98,7 @@ public class PerformanceServerImpl implements PerformanceService {
 	public int updateRentalAppStatus(int rno) {
 		return performanceDao.updateRentalAppStatus(SqlSession, rno);
 	}
+
 
 
 }

@@ -40,6 +40,8 @@
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="/favicon.ico" type="image/x-icon">
 	
+	<link rel="stylesheet" type="text/css" href="./resources/css/bootstrap.min.css">
+	
 </head>
 <body class="hide-focus-ring">
 	<section id="wrap">
