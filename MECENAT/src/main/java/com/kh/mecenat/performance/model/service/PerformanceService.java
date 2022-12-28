@@ -38,7 +38,12 @@ public interface PerformanceService {
 	
 	public ArrayList<Review> selectRevieList(int rno);
 
+	//리뷰 등록
 	public int insertReview(Review r);
+	
+	//리뷰 조회
+	public ArrayList<Review> selectReviewList(int rno);
+
 
 
 }
