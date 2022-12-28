@@ -27,7 +27,7 @@
 	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/slider.css">
 	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/style.css">
 	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/sub.css">
-	<link rel="stylesheet" type="text/css" href="./resources/css/bootstrap.min.css">
+	
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	
 	<script src="./resources/sejongpac/static/commons/js/jquery-3.6.0.min.js"></script>
@@ -114,9 +114,9 @@
 					</ul></li>
 					<li><a href="/portal/bbs/B0000001/list.do?menuNo=200042">뉴스·소식</a>
 						<ul class="depth2">
-							<li class="arrow"><a href="noticeForm.no">새소식</a>
+							<li class="arrow"><a href="/portal/bbs/B0000001/list.do?menuNo=200042">새소식</a>
 								<ul class="depth3">
-									<li><a href="noticeForm.no">세종소식</a></li>
+									<li><a href="/portal/bbs/B0000001/list.do?menuNo=200042">세종소식</a></li>
 									<li><a href="/portal/bbs/B0000003/list.do?menuNo=200088">입찰공고</a></li>
 							</ul></li>
 							<li><a href="/portal/bbs/B0000017/list.do?menuNo=200040">뉴스레터</a></li>

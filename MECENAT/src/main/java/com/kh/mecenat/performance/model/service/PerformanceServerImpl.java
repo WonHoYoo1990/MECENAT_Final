@@ -68,6 +68,10 @@ public class PerformanceServerImpl implements PerformanceService {
 		return performanceDao.subMainPerformanceSearchSort2(SqlSession, sdate);
 	}
 	
+	
+	
+	
+	
 	@Override
 	public ArrayList<Review> selectRevieList(int rno) {
 		// TODO Auto-generated method stub
@@ -93,18 +97,6 @@ public class PerformanceServerImpl implements PerformanceService {
 	@Override
 	public int updateRentalAppStatus(int rno) {
 		return performanceDao.updateRentalAppStatus(SqlSession, rno);
-	}
-
-	@Override
-	public ArrayList<Review> selectReviewList(int rno) {
-		// TODO Auto-generated method stub
-		return performanceDao.selectReviewList(SqlSession, rno);
-	}
-
-	@Override
-	public int insertReview(Review r) {
-		// TODO Auto-generated method stub
-		return performanceDao.insertReview(SqlSession, r);
 	}
 
 

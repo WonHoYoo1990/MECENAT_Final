@@ -374,82 +374,80 @@
 		}
 		
 		
-		$(function(){
-			selectReviewList();	
-		})
-		       
-
-	         
-			function selectReviewList(){
-				$.ajax({
-					url : "rlist.bo",
-					data: {
-						rno: ${pList.rentalCode}
-					},
-					success : function(list){
-						var str = "";
-						
-						for(var i in list){
-							var star1 = "";	
-							
-							switch(list[i].starRate){
-								case 1:star1 = "★";break;
-								case 2:star1 = "★★";break;
-								case 3:star1 = "★★★";break;
-								case 4:star1 = "★★★★";break;
-								case 5:star1 = "★★★★★";break;
-							}
-						
-							console.log(list);
-							
-							str += 	"<tr>"
-								  +     "<input type='hidden' id='deleteNo' value='"+list[i].reviewNo+"'>"
-							  	  + 	"<td class='idcolor' id='idcolor' style='color: black;'>"+list[i].reviewWriter+"</td>"
-								  + 	"<td class='starcolor'>"+star1+"</td>"
-								  + 	"<td class='reviewtext' style='color: black;'>"+list[i].content+"</td>"
-								  + 	"<td class='datecolor' width='100px;'>"+list[i].writeDate +"</td>"
-//									  +     "<td>"+"<button type='button' id='deleteb' class='deleteb' 'width=50' style='border:none; font-size:10px; color:gray'> 삭제</button>"+"</td>"
-								  + "</tr>";
-						}					
-						
-						$("#reviewArea>tbody").html(str);
-			
-					},
-					error : function(){
-						console.log("통신 실패2");
-					}
-				}); 
-			}
-		
-		function createReview() {
-			
-			var $vali = $("#reviewContents");
-			var listVar = $('input[name=reviewStar]:checked').val();
-			
-			$.ajax({
-				
-				url: "rinsert.bo",
-				data: {
-					refNo:${pList.rentalCode},
-					reviewWriter: "${loginUser.userId}",
-					content: $vali.val(),
-					starRate: listVar 
-				},
-				success: function(result) {
-					if(result == "yes") {
-						selectReviewList();
-						$vali.val("");
-					}
-				},
-				error: function() {
-					console.log("통신실패");
-				}
-			})
-		}
-		
     </script>
+	$(function(){
+		selectReviewList();	
+	})
+	       
+
+         
+		function selectReviewList(){
+			$.ajax({
+				url : "rlist.bo",
+				data: {
+					rno: ${pList.rentalCode}
+				},
+				success : function(list){
+					var str = "";
+					
+					for(var i in list){
+						var star1 = "";	
+						
+						switch(list[i].starRate){
+							case 1:star1 = "★";break;
+							case 2:star1 = "★★";break;
+							case 3:star1 = "★★★";break;
+							case 4:star1 = "★★★★";break;
+							case 5:star1 = "★★★★★";break;
+						}
+					
+						console.log(list);
+						
+						str += 	"<tr>"
+							  +     "<input type='hidden' id='deleteNo' value='"+list[i].reviewNo+"'>"
+						  	  + 	"<td class='idcolor' id='idcolor' style='color: black;'>"+list[i].reviewWriter+"</td>"
+							  + 	"<td class='starcolor'>"+star1+"</td>"
+							  + 	"<td class='reviewtext' style='color: black;'>"+list[i].content+"</td>"
+							  + 	"<td class='datecolor' width='100px;'>"+list[i].writeDate +"</td>"
+//								  +     "<td>"+"<button type='button' id='deleteb' class='deleteb' 'width=50' style='border:none; font-size:10px; color:gray'> 삭제</button>"+"</td>"
+							  + "</tr>";
+					}					
+					
+					$("#reviewArea>tbody").html(str);
+		
+				},
+				error : function(){
+					console.log("통신 실패2");
+				}
+			}); 
+		}
 	
-	
+	function createReview() {
+		
+		var $vali = $("#reviewContents");
+		var listVar = $('input[name=reviewStar]:checked').val();
+		
+		$.ajax({
+			
+			url: "rinsert.bo",
+			data: {
+				refNo:${pList.rentalCode},
+				reviewWriter: "${loginUser.userId}",
+				content: $vali.val(),
+				starRate: listVar 
+			},
+			success: function(result) {
+				if(result == "yes") {
+					selectReviewList();
+					$vali.val("");
+				}
+			},
+			error: function() {
+				console.log("통신실패");
+			}
+		})
+	}
+	</script>
 	
 	
 	
