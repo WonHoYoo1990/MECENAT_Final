@@ -80,13 +80,14 @@
 								<label for="hall_ck4">교육</label>
 								
 								<div class="write">
-									<input type="text" name="searchWrd" id="hall" placeholder="검색어를 입력하세요" value="">
-									<button type="button" formaction="subMainPerformanceSearch.per" onclick="fn_search('1')">검색</button>
+									<input type="text" name="searchWrd" id="searchWrd" placeholder="검색어를 입력하세요" value="">
+									<!-- <button type="button" formaction="subMainPerformanceSearch.perf" onclick="fn_search('1')">검색</button> -->
+									<button type="button" id="searchWrdBtn">검색</button>
 								</div>
 							</div>
 						</div>
 					</form>
-					<script>
+					<script type="text/javascript">
 						$(function() {
 							subMainPerformanceList();
 						})
@@ -132,7 +133,6 @@
 						   }).on('change', function () { // 달력 값이 변할 때마다
 							   
 							   var sdate = $("#period1").val();
-								console.log("sada : " + sdate)
 				
 								$.ajax({ // 공연 리스트 조회
 								    url : 'subMainPerformanceList.perf',
@@ -141,13 +141,11 @@
 								    },
 								    success : function(list) {  
 								        console.log("통신 성공 !");
-								        console.log("list : "+list);
 					    				
 					    				$(".bbs-today_thumb").html(list);
 								    },
-								    error : function(request, status, error) { // 결과 에러 콜백함수
+								    error : function() { 
 								        console.log("통신 실패 !");
-								        console.log(error)
 								    }
 								})
 								
@@ -158,17 +156,52 @@
 								    },
 								    success : function(count) {  
 								        console.log("통신 성공 COUNT !");
-								        console.log("count : "+count);
 					    				
 					    				$(".listCount .etc_w .color-navy").html(count);
 								    },
-								    error : function(request, status, error) { // 결과 에러 콜백함수
+								    error : function() { 
 								        console.log("통신 실패 COUNT!");
-								        console.log(error)
 								    }
 								})
 						   });
+						
+						$('#searchWrdBtn').on('click', function() { //검색어 버튼 클릭시
+							
+							var searchWrd = $("#searchWrd").val();
+							
+							$.ajax({ // 공연 리스트 검색어 조회
+							    url : 'subMainPerformanceSearch.perf',
+							    data : {  
+							      "searchWrd" : searchWrd 
+							    },
+							    success : function(result) {  
+							        console.log("통신 성공!");
+				    				
+				    				$(".bbs-today_thumb").html(result);
+							    },
+							    error : function() {
+							        console.log("통신 실패!");
+							    }
+							})
+
+							$.ajax({ // 검색어 리스트 개수 조회
+								    url : 'subMainPerformanceSearchCount.perf',
+								    data : {  
+								      "searchWrd" : searchWrd
+								    },
+								    success : function(count) {  
+								        console.log("통신 성공 COUNT !");
+					    				
+					    				$(".listCount .etc_w .color-navy").html(count);
+								    },
+								    error : function() { 
+								        console.log("통신 실패 COUNT!");
+								    }
+								})
+						})
 					</script>
+					
+					
 			
 					<!-- 페이지 시작 -->
 					<article class="bbs-today_w">
@@ -259,10 +292,8 @@
 						function fn_SearchSort(searchSort){ // 리스트 정렬
 							
 							var searchSort = searchSort;
-							console.log("searchSort : " + searchSort);
 							
 							var sdate = $("#period1").val();
-							console.log("sdate : " + sdate);
 							
 							if (searchSort == 1) { // 최신순 클릭시 
 								
@@ -273,7 +304,6 @@
 								    },
 								    success : function(list) {  
 								        console.log("통신 성공 !");
-								        console.log("list : "+list);
 					    				
 					    				$(".bbs-today_thumb").html(list);
 								    },
@@ -287,8 +317,7 @@
 								document.getElementById('searchShort1').classList.add('active');
 								
 							} else { // 관심순 클릭시
-								console.log(" 2?? " );
-							
+								
 								// 최신순 class 제거 및 관심순 class 추가
 								document.getElementById('searchShort1').classList.remove('active');
 								document.getElementById('searchShort2').classList.add('active');
@@ -381,13 +410,11 @@
 								    },
 								    success : function(list) {  
 								        console.log("통신 성공 !");
-								        console.log("list : "+list);
 					    				
 					    				$(".bbs-today_thumb").html(list);
 								    },
 								    error : function(request, status, error) { // 결과 에러 콜백함수
 								        console.log("통신 실패 !");
-								        console.log(error)
 								    }
 								})
 								
@@ -398,13 +425,11 @@
 								    },
 								    success : function(count) {  
 								        console.log("통신 성공 COUNT !");
-								        console.log("count : "+count);
 					    				
 					    				$(".listCount .etc_w .color-navy").html(count);
 								    },
 								    error : function(request, status, error) { // 결과 에러 콜백함수
 								        console.log("통신 실패 COUNT!");
-								        console.log(error)
 								    }
 								})
 							});
@@ -413,7 +438,6 @@
 								var sdate = new Date($("#period1").val());
 								sdate.setDate(sdate.getDate() + 1);
 								sdate = dateFormat(sdate);
-								console.log("sada : " + sdate)
 				
 								$("#period1").val(sdate);
 	
@@ -424,13 +448,11 @@
 								    },
 								    success : function(list) {  
 								        console.log("통신 성공 !");
-								        console.log("list : "+list);
 					    				
 					    				$(".bbs-today_thumb").html(list);
 								    },
 								    error : function(request, status, error) { // 결과 에러 콜백함수
 								        console.log("통신 실패 !");
-								        console.log(error)
 								    }
 								})
 								
@@ -441,13 +463,11 @@
 								    },
 								    success : function(count) {  
 								        console.log("통신 성공 COUNT !");
-								        console.log("count : "+count);
 					    				
 					    				$(".listCount .etc_w .color-navy").html(count);
 								    },
 								    error : function(request, status, error) { // 결과 에러 콜백함수
 								        console.log("통신 실패 COUNT!");
-								        console.log(error)
 								    }
 								})
 								

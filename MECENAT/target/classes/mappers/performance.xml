@@ -115,8 +115,21 @@
 		ORDER BY PERFO_COUNT DESC
 	</select>
 	
+	<!-- 서브 메인페이지 내에서 공연 리스트 검색 조회 -->
+	<select id="subMainPerformanceSearch" resultMap="performanceResultSet">
+		SELECT * 
+		FROM PERFORMANCE
+		WHERE PERFO_TITLE LIKE '%'||#{searchWrd}||'%'
+		ORDER BY PERFO_EVENT_DATE
+	</select>
 	
-	
+	<!-- 서브 메인페이지 내에서 검색어 리스트 개수 조회-->
+	<select id="subMainPerformanceSearchCount" resultType="int">
+		SELECT COUNT(*)
+		FROM PERFORMANCE
+		WHERE PERFO_TITLE LIKE '%'||#{searchWrd}||'%'
+		ORDER BY PERFO_EVENT_DATE
+	</select>
 	
 	
 	
