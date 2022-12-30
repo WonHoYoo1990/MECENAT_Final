@@ -27,5 +27,30 @@ public class NoticeDao {
 		
 		return (ArrayList)sqlSession.selectList("noticeMapper.selectList",null,rowBounds);
 	}
+	
+	//공지사항 게시글 조회수
+	public int increaseCount(SqlSessionTemplate sqlSession, int nno) {
+		return sqlSession.update("noticeMapper.increaseCount",nno);
+	}
 
+	//공지사항 상세보기
+	public Notice selectBoard(SqlSessionTemplate sqlSession, int nno) {
+		return sqlSession.selectOne("noticeMapper.selectBoard",nno);
+	}
+
+	//공지사항 등록
+	public int insertNotice(SqlSessionTemplate sqlSession, Notice n) {
+		return sqlSession.insert("noticeMapper.insertNotice",n);
+	}
+
+	//공지사항 게시글 삭제
+	public int deleteNotcie(SqlSessionTemplate sqlSession, int nno) {
+		return sqlSession.update("noticeMapper.deleteNotcie", nno);
+	}
+	
+	//공지사항 게시글 수정
+	public int updateNotice(SqlSessionTemplate sqlSession, Notice n) {
+		return sqlSession.update("noticeMapper.updateNotice", n);
+	}
+ 
 }
