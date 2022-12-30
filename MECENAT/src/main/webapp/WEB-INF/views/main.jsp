@@ -122,7 +122,6 @@
 			
 			<!-- // -->
 			<span itemscope="" itemtype="http://schema.org/Organization" style="display: none;">
-				<link itemprop="url" href="https://www.sejongpac.or.kr"> 
 				<a itemprop="sameAs" href="https://www.youtube.com/channel/UCCqaPJqI5q1kfO51qWWOjrQ"><span class="hide">유튜브</span></a> 
 				<a itemprop="sameAs" href="https://www.instagram.com/sejongcenter/"><span class="hide">인스타그램</span></a> 
 				<a itemprop="sameAs" href="https://www.facebook.com/sjcenter"><span class="hide">페이스북</span></a> 
@@ -340,7 +339,7 @@
 									</div>
 									<div class="txt">MECENAT 투데이</div>
 							</a></li>
-							<li><a href="noticeForm.no">
+							<li><a href="list.no">
 									<div class="img">
 										<img src="./resources/sejongpac/static/portal/img/main/m1_4.gif" alt="">
 									</div>

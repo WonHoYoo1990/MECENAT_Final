@@ -25,16 +25,6 @@
 </dl>
 
 
-<!-- /테스트/ -->
-
-<span itemscope="" itemtype="http://schema.org/Organization" style="display: none;">
-<a itemprop="sameAs" href="https://www.youtube.com/channel/UCCqaPJqI5q1kfO51qWWOjrQ"><span class="hide">유튜브</span></a>
-<a itemprop="sameAs" href="https://www.instagram.com/sejongcenter/"><span class="hide">인스타그램</span></a>
-<a itemprop="sameAs" href="https://www.facebook.com/sjcenter"><span class="hide">페이스북</span></a>
-<a itemprop="sameAs" href="https://blog.naver.com/sejongnanum"><span class="hide">블로그</span></a>
-<a itemprop="sameAs" href="https://twitter.com/SEJONG_CENTER"><span class="hide">트위터</span></a>
-</span>
-
 <script src="/static/portal/js/ksearch/top_apc.js"></script>
 <script src="/static/portal/js/jquery.rwdImageMaps.js"></script>
 
@@ -88,9 +78,6 @@
 					<ul class="depth" style="display: none;">
 					
 						<li><a href="/portal/bbs/B0000001/list.do?menuNo=200042"><span>세종소식</span></a></li>
-					
-						<li><a href="/portal/bbs/B0000003/list.do?menuNo=200088"><span>입찰공고</span></a></li>
-					
 						</ul>
 					</div>
 				</li>
@@ -100,6 +87,14 @@
 		</div>
 	</div>
 	<script>
+	
+	$(document).ready(function() {
+		var msg = "${alertMsg}";
+		if(msg != ""){
+		alert(msg);    
+		}
+		});
+	
 	$(window).resize(function(){
 		if ( $(window).width() > 1024 ){
 			$("#depth_w .rel").hover(function(){
@@ -149,7 +144,6 @@
 
 		<ul class="clearfix tabs-st3" id="etc_gubun">
 			<li class="active"><a href="#"><span>전체</span></a></li>
-			<li class=""><a href="#"><span>입찰공고</span></a></li>
 			<li class=""><a href="#"><span>채용공고</span></a></li>
 			<li class=""><a href="#"><span>대관공고</span></a></li>
 			<li class=""><a href="#"><span>안내</span></a></li>
@@ -157,7 +151,7 @@
 			<li class=""><a href="#"><span>티켓오픈안내</span></a></li>
 		</ul>
 
-		<div class="txt">세종문화회관의 공지사항 및 최신 소식을 알려드립니다.</div>
+		<div class="txt">MECENAT의 공지사항 및 최신 소식을 알려드립니다.</div>
 
 		<form name="frm" id="frm" method="get" action="/portal/bbs/B0000001/list.do">
 			<input type="hidden" name="bbsId">
@@ -173,7 +167,7 @@
 		</form>
 
 	</div>
-	<c:if test="${not empty loginUser}">
+	<c:if test="${not empty loginUser and loginUser.userId eq 'admin'}">
 	<a class="btn btn-secondary" style="float:right;" href="insert.no">공지사항 작성</a>
 	</c:if>
 	<table class="bbs-list" id="noticeList">
@@ -191,12 +185,12 @@
 					<td>
 						<span>공지</span>
 					</td>
-					<td class="tit"><a href="/portal/bbs/B0000001/view.do?nttId=45433&amp;menuNo=200042&amp;pageIndex=1">[안내] &nbsp;코로나19 확산방지를 위한 세종문화회관 관람안내</a></td>
+					<td class="tit"><a href="/portal/bbs/B0000001/view.do?nttId=45433&amp;menuNo=200042&amp;pageIndex=1">[안내] &nbsp;코로나19 확산방지를 위한 	MECENAT 관람안내</a></td>
 					<td>2022.05.04</td>
 					<td class="hit">2779</td>
 				</tr>
 				<c:forEach var="n" items="${list}">
-					<tr>
+					<tr onclick="location.href='detail.no?nno=${n.noticeNo}'">
 						<td>${n.noticeNo }</td>
 						<td>${n.noticeTitle}</td>
 						<td>${n.noticeDate}</td>
@@ -261,31 +255,6 @@
 
 
 <script>
-
-$(function() {
-	allNotice();
-})
-
-function allNotice() {
-	$.ajax({
-	    url : 'list.no',           // 요청할 서버url
-	    data : {
-	    	// 보낼 데이터 (Object , String, Array)
-	    },
-	    success : function(result) { // 결과 성공 콜백함수
-	        console.log(result);
-	        console.log("통신 성공");
-	        
-	    },
-	    error : function(request, status, error) { // 결과 에러 콜백함수
-	        console.log("통신 성공 실패");
-	        console.log(error)
-	    }
-	    
-	})
-	
-}
-
 
 function search(pageNo) {
 	if( $("#searchWrd").val() == null || $("#searchWrd").val() == "" ) {

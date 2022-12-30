@@ -26,9 +26,12 @@ public class Notice {
 	private String userId;
 	private String noticeTitle;
 	private String noticeContent;
+	private String originName;
+	private String changeName;
 	private Date noticeDate;
 	private int noticeCount;
 	private String status;
+	
 	
 
 }

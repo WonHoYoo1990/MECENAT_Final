@@ -31,5 +31,35 @@ public class NoticeServiceImpl implements NoticeService{
 	public ArrayList<Notice> selectList(PageInfo pi) {
 		return noticeDao.selectList(sqlSession,pi);
 	}
+	
+	//공지사항 게시글 조회수 
+	@Override
+	public int increaseCount(int nno) {
+		return noticeDao.increaseCount(sqlSession,nno);
+	}
+	
+	//공지사항 게시글 디테일 보기
+	@Override
+	public Notice selectBoard(int nno) { 
+		return noticeDao.selectBoard(sqlSession,nno);
+	}
+
+	//공지사항 게시글 등록
+	@Override
+	public int insertNotice(Notice n) {
+		return noticeDao.insertNotice(sqlSession,n);
+	}
+
+	//공지사항 게시글 삭제
+	@Override
+	public int deleteNotcie(int nno) {
+		return noticeDao.deleteNotcie(sqlSession, nno);
+	}
+
+	//공지사항 게시글 수정
+	@Override
+	public int updateNotice(Notice n) {
+		return noticeDao.updateNotice(sqlSession, n);
+	}
 
 }
