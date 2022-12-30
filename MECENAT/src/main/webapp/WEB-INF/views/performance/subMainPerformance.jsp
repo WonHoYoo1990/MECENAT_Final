@@ -39,6 +39,7 @@
 	<link rel="stylesheet" href="./resources/sejongpac/static/portal/css/aos.css">
 	<script src="./resources/sejongpac/static/portal/inc/netfunnel.js" charset="UTF-8"></script>
 	
+	
 </head>
 <body class="vsc-initialized">
 	<section id="wrap">
@@ -52,7 +53,8 @@
 			<div id="sub_page" style="padding:0">
 				<br><br>
 				<div class="">
-					<form name="frm" id="frm" method="post" action="subMainPerformanceList.perf">
+				
+					<form name="frm" id="frm" method="post" >
 						<input type="hidden" name="pageIndex" value="1">
 						<input type="hidden" name="searchSort" id="searchSort" value="2">
 			
@@ -61,7 +63,6 @@
 							<div class="schedule__date type2">
 								<a href="javascript:void(0);" class="arrow prev" >이전</a>
 								<div class="title">
-									<!-- <input type="text" name="sdate" id="period1" class="datepicker hasDatepicker" readonly="readonly" value=""> -->
 									<input type="text" name="sdate" id="period1" class="form-control" value="" readonly="readonly"/>
 								</div>
 								<a href="javascript:void(0);" class="arrow next">다음</a>
@@ -79,68 +80,136 @@
 								<label for="hall_ck4">교육</label>
 								
 								<div class="write">
-									<input type="text" name="searchWrd" id="hall" placeholder="검색어를 입력하세요" value="">
-									<button type="button" onclick="fn_search('1')">검색</button>
+									<input type="text" name="searchWrd" id="searchWrd" placeholder="검색어를 입력하세요" value="">
+									<!-- <button type="button" formaction="subMainPerformanceSearch.perf" onclick="fn_search('1')">검색</button> -->
+									<button type="button" id="searchWrdBtn">검색</button>
 								</div>
 							</div>
 						</div>
 					</form>
-					<script>
+					<script type="text/javascript">
+						$(function() {
+							subMainPerformanceList();
+						})
+						
+						function subMainPerformanceList() { //subMainPerformance 첫페이지시 list 조회
+							
+							var sdate = $("#period1").val();
+			
+							$.ajax({ // 공연 리스트 조회
+							    url : 'subMainPerformanceList.perf',
+							    data : {  
+							      "sdate" : sdate
+							    },
+							    success : function(list) {  
+				    				$(".bbs-today_thumb").html(list);
+							    },
+							    error : function() {
+							        console.log("통신 실패!");
+							    }
+							})
+							
+							$.ajax({ // 공연 리스트 개수 조회
+							    url : 'subMainPerformanceListCount.perf',
+							    data : {  
+							      "sdate" : sdate
+							    },
+							    success : function(count) {  
+				    				$(".listCount .etc_w .color-navy").html(count);
+							    },
+							    error : function() {
+							        console.log("통신 실패 COUNT!");
+							    }
+							})
+						}
+						
+					
+						// 날짜 String 형변환 및 문자열 자르기
 						document.getElementById('period1').value = new Date().toISOString().substring(0, 10);
 						
-						$('#period1').datepicker({
-						      dateFormat: 'yy-mm-dd', //데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
-						      language: 'kr', //달력의 언어 선택, 그에 맞는 js로 교체해줘야한다.
-						   }).on('change', function () {
+						$('#period1').datepicker({ //달력
+						      dateFormat: 'yy-mm-dd', 
+						      language: 'kr', 
+						   }).on('change', function () { // 달력 값이 변할 때마다
 							   
 							   var sdate = $("#period1").val();
-								console.log("sada : " + sdate)
 				
 								$.ajax({ // 공연 리스트 조회
 								    url : 'subMainPerformanceList.perf',
-								    data : {  // 보낼 데이터 (Object , String, Array)
+								    data : {  
 								      "sdate" : sdate
 								    },
 								    success : function(list) {  
 								        console.log("통신 성공 !");
-								        console.log("list : "+list);
 					    				
 					    				$(".bbs-today_thumb").html(list);
 								    },
-								    error : function(request, status, error) { // 결과 에러 콜백함수
+								    error : function() { 
 								        console.log("통신 실패 !");
-								        console.log(error)
 								    }
 								})
 								
 								$.ajax({ // 공연 리스트 개수 조회
-								    url : 'ListCountSubMainPerformance.perf',
-								    data : {  // 보낼 데이터 (Object , String, Array)
+								    url : 'subMainPerformanceListCount.perf',
+								    data : {  
 								      "sdate" : sdate
 								    },
 								    success : function(count) {  
 								        console.log("통신 성공 COUNT !");
-								        console.log("count : "+count);
 					    				
 					    				$(".listCount .etc_w .color-navy").html(count);
 								    },
-								    error : function(request, status, error) { // 결과 에러 콜백함수
+								    error : function() { 
 								        console.log("통신 실패 COUNT!");
-								        console.log(error)
 								    }
 								})
-								
-								
 						   });
+						
+						$('#searchWrdBtn').on('click', function() { //검색어 버튼 클릭시
+							
+							var searchWrd = $("#searchWrd").val();
+							
+							$.ajax({ // 공연 리스트 검색어 조회
+							    url : 'subMainPerformanceSearch.perf',
+							    data : {  
+							      "searchWrd" : searchWrd 
+							    },
+							    success : function(result) {  
+							        console.log("통신 성공!");
+				    				
+				    				$(".bbs-today_thumb").html(result);
+							    },
+							    error : function() {
+							        console.log("통신 실패!");
+							    }
+							})
+
+							$.ajax({ // 검색어 리스트 개수 조회
+								    url : 'subMainPerformanceSearchCount.perf',
+								    data : {  
+								      "searchWrd" : searchWrd
+								    },
+								    success : function(count) {  
+								        console.log("통신 성공 COUNT !");
+					    				
+					    				$(".listCount .etc_w .color-navy").html(count);
+								    },
+								    error : function() { 
+								        console.log("통신 실패 COUNT!");
+								    }
+								})
+						})
 					</script>
+					
+					
 			
 					<!-- 페이지 시작 -->
 					<article class="bbs-today_w">
 						<div class="inner">
 							<div class="top clearfix listCount">
 								<div class="category">
-									<span class="active"><a href="javascript:void(0);" onclick="fn_SearchSort('2');" title="선택됨">관심순</a></span>
-									<span><a href="javascript:void(0);" onclick="fn_SearchSort('1');">최신순</a></span>
+									<span class="active" id="searchShort1"><a href="javascript:void(0);" onclick="fn_SearchSort('1');" title="선택됨">최신순</a></span>
+									<span class="" id="searchShort2"><a href="javascript:void(0);" onclick="fn_SearchSort('2');">관심순</a></span>
 								</div>
 			
 								<div class="etc_w">
@@ -220,9 +289,57 @@
 					</article>
 					<script>
 						
-						function fn_SearchSort(searchSort){
-							$("#searchSort").val(searchSort);
-							fn_search('1');
+						function fn_SearchSort(searchSort){ // 리스트 정렬
+							
+							var searchSort = searchSort;
+							
+							var sdate = $("#period1").val();
+							
+							if (searchSort == 1) { // 최신순 클릭시 
+								
+								$.ajax({ // 공연 리스트 최신순 조회
+								    url : 'subMainPerformanceSearchSort1.perf',
+								    data : {  
+								      "sdate" : sdate
+								    },
+								    success : function(list) {  
+								        console.log("통신 성공 !");
+					    				
+					    				$(".bbs-today_thumb").html(list);
+								    },
+								    error : function() { 
+								        console.log("통신 실패 !");
+								    }
+								})
+								
+								// 관심순 class 제거 및 최신순 class 추가
+								document.getElementById('searchShort2').classList.remove('active');
+								document.getElementById('searchShort1').classList.add('active');
+								
+							} else { // 관심순 클릭시
+								
+								// 최신순 class 제거 및 관심순 class 추가
+								document.getElementById('searchShort1').classList.remove('active');
+								document.getElementById('searchShort2').classList.add('active');
+								
+								$.ajax({ // 공연 리스트 관심순 조회
+								    url : 'subMainPerformanceSearchSort2.perf',
+								    data : {  
+								      "sdate" : sdate
+								    },
+								    success : function(list) {  
+								        console.log("통신 성공 !");
+								        console.log("list : "+list);
+					    				
+					    				$(".bbs-today_thumb").html(list);
+								    },
+								    error : function() { 
+								        console.log("통신 실패 !");
+								    }
+								})
+								
+
+							}
 						}
 						
 						function fn_search(pageNo) {
@@ -293,30 +410,26 @@
 								    },
 								    success : function(list) {  
 								        console.log("통신 성공 !");
-								        console.log("list : "+list);
 					    				
 					    				$(".bbs-today_thumb").html(list);
 								    },
 								    error : function(request, status, error) { // 결과 에러 콜백함수
 								        console.log("통신 실패 !");
-								        console.log(error)
 								    }
 								})
 								
 								$.ajax({ // 공연 리스트 개수 조회
-								    url : 'ListCountSubMainPerformance.perf',
+								    url : 'subMainPerformanceListCount.perf',
 								    data : {  // 보낼 데이터 (Object , String, Array)
 								      "sdate" : sdate
 								    },
 								    success : function(count) {  
 								        console.log("통신 성공 COUNT !");
-								        console.log("count : "+count);
 					    				
 					    				$(".listCount .etc_w .color-navy").html(count);
 								    },
 								    error : function(request, status, error) { // 결과 에러 콜백함수
 								        console.log("통신 실패 COUNT!");
-								        console.log(error)
 								    }
 								})
 							});
@@ -325,7 +438,6 @@
 								var sdate = new Date($("#period1").val());
 								sdate.setDate(sdate.getDate() + 1);
 								sdate = dateFormat(sdate);
-								console.log("sada : " + sdate)
 				
 								$("#period1").val(sdate);
 	
@@ -336,30 +448,26 @@
 								    },
 								    success : function(list) {  
 								        console.log("통신 성공 !");
-								        console.log("list : "+list);
 					    				
 					    				$(".bbs-today_thumb").html(list);
 								    },
 								    error : function(request, status, error) { // 결과 에러 콜백함수
 								        console.log("통신 실패 !");
-								        console.log(error)
 								    }
 								})
 								
 								$.ajax({ // 공연 리스트 개수 조회
-								    url : 'ListCountSubMainPerformance.perf',
+								    url : 'subMainPerformanceListCount.perf',
 								    data : {  // 보낼 데이터 (Object , String, Array)
 								      "sdate" : sdate
 								    },
 								    success : function(count) {  
 								        console.log("통신 성공 COUNT !");
-								        console.log("count : "+count);
 					    				
 					    				$(".listCount .etc_w .color-navy").html(count);
 								    },
 								    error : function(request, status, error) { // 결과 에러 콜백함수
 								        console.log("통신 실패 COUNT!");
-								        console.log(error)
 								    }
 								})
 								

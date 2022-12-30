@@ -44,7 +44,7 @@ public class PerformanceServerImpl implements PerformanceService {
 		return performanceDao.selectListPerformance(SqlSession, rno);
 	}
 
-	// 서브메인 공연리스트 뽑아오기
+	// 서브메인 공연 리스트 조회
 	@Override
 	public ArrayList<Performance> subMainPerformanceList(String sdate) {
 		return performanceDao.subMainPerformanceList(SqlSession, sdate);
@@ -52,15 +52,34 @@ public class PerformanceServerImpl implements PerformanceService {
 
 	// 서브 메인 공연리스트 개수
 	@Override
-	public int ListCountSubMainPerformance(String sdate) {
-		return performanceDao.ListCountSubMainPerformance(SqlSession, sdate);
+	public int subMainPerformanceListCount(String sdate) {
+		return performanceDao.subMainPerformanceListCount(SqlSession, sdate);
 	}
 
-	
-	
-	
-	
-	
+	// 서브메인 공연 리스트 최신순 조회
+	@Override
+	public ArrayList<Performance> subMainPerformanceSearchSort1(String sdate) {
+		return performanceDao.subMainPerformanceSearchSort1(SqlSession, sdate);
+	}
+
+	// 서브메인 공연 리스트 관심순 조회
+	@Override
+	public ArrayList<Performance> subMainPerformanceSearchSort2(String sdate) {
+		return performanceDao.subMainPerformanceSearchSort2(SqlSession, sdate);
+	}
+
+	// 서브 메인페이지 내에서 공연 리스트 검색 조회
+	@Override
+	public ArrayList<Performance> subMainPerformanceSearch(String searchWrd) {
+		return performanceDao.subMainPerformanceSearch(SqlSession, searchWrd);
+	}
+
+	// 서브 메인페이지 내에서 검색어 리스트 개수 조회
+	@Override
+	public int subMainPerformanceSearchCount(String searchWrd) {
+		return performanceDao.subMainPerformanceSearchCount(SqlSession, searchWrd);
+	}
+
 	@Override
 	public ArrayList<Review> selectRevieList(int rno) {
 		// TODO Auto-generated method stub

@@ -334,7 +334,7 @@
 											</svg>
 					<div id="m1" class="inner aos-init aos-animate" data-aos="fade-up">
 						<ul class="clearfix s">
-							<li><a href="performanceMain.perf">
+							<li><a href="subMainPerformance.perf">
 									<div class="img">
 										<img src="./resources/sejongpac/static/portal/img/main/m1_3.gif" alt="">
 									</div>

@@ -27,7 +27,7 @@
 	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/slider.css">
 	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/style.css">
 	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/sub.css">
-	
+	<link rel="stylesheet" type="text/css" href="./resources/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	
 	<script src="./resources/sejongpac/static/commons/js/jquery-3.6.0.min.js"></script>
@@ -39,6 +39,8 @@
 	
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+	
+	<link rel="stylesheet" type="text/css" href="./resources/css/bootstrap.min.css">
 	
 </head>
 <body class="hide-focus-ring">
@@ -112,9 +114,9 @@
 					</ul></li>
 					<li><a href="/portal/bbs/B0000001/list.do?menuNo=200042">뉴스·소식</a>
 						<ul class="depth2">
-							<li class="arrow"><a href="/portal/bbs/B0000001/list.do?menuNo=200042">새소식</a>
+							<li class="arrow"><a href="list.no?currentPage=1">새소식</a>
 								<ul class="depth3">
-									<li><a href="/portal/bbs/B0000001/list.do?menuNo=200042">세종소식</a></li>
+									<li><a href="list.no?currentPage=1">세종소식</a></li>
 									<li><a href="/portal/bbs/B0000003/list.do?menuNo=200088">입찰공고</a></li>
 							</ul></li>
 							<li><a href="/portal/bbs/B0000017/list.do?menuNo=200040">뉴스레터</a></li>
@@ -495,7 +497,6 @@
 				function drawTopLeftList() {
 					$.post("/portal/search/search/headerPerform.do?viewType=CONTBODY",
 							null, function(data) {
-										console.log(data);
 										$("#top_apc_left_list").html(data);
 									});
 				}
@@ -524,7 +525,7 @@
 		
 		<!-- 베너  Start -->
 		<c:choose>
-			<c:when test="${fn:contains(path, 'performanceMain')}">
+			<c:when test="${fn:contains(path, 'subMainPerformance')}">
 				<section id="sub_visual" style="height: 500px; ">
 					<div class="bg_w">
 						<div class="bg" style="background-image: url(./resources/sejongpac/static/commons/img/member/signupBackground.jpg);"></div>

@@ -218,5 +218,8 @@
 		WHERE RENTAL_CODE= #{rno}
 	</update>
 	
+<<<<<<< HEAD
 	
+=======
+>>>>>>> refs/remotes/origin/main
 </mapper>
