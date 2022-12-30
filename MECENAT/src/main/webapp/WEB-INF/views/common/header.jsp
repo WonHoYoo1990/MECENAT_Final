@@ -209,7 +209,7 @@
 								
 								<c:if test="${loginUser.userId eq 'admin' }">
 									<li><a href="approveWaitForm.mana">승인관리</a></li>	
-									<li><a href="">공연관리</a></li>	
+									<li><a href="playPerformanceForm.mana">공연관리</a></li>	
 								</c:if>
 								
 						</ul></li>
@@ -496,7 +496,6 @@
 				function drawTopLeftList() {
 					$.post("/portal/search/search/headerPerform.do?viewType=CONTBODY",
 							null, function(data) {
-										console.log(data);
 										$("#top_apc_left_list").html(data);
 									});
 				}

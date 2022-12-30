@@ -296,8 +296,6 @@
 				}
 			}
 			ReservationTitlePopWindow();
-
-			console.log("248");
 		</script>
 		<script src="./resources/sejongpac/static/portal/js/common.js"></script>
 	</section>

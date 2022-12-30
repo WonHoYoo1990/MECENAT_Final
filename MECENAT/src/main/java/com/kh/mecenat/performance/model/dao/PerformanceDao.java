@@ -60,15 +60,25 @@ public class PerformanceDao {
 	public ArrayList<Performance> subMainPerformanceSearchSort1(SqlSessionTemplate sqlSession, String sdate) {
 		return (ArrayList) sqlSession.selectList("performanceMapperMana.subMainPerformanceSearchSort1", sdate);
 	}
-	
+
 	// 서브메인 공연 리스트 관심순 조회
 	public ArrayList<Performance> subMainPerformanceSearchSort2(SqlSessionTemplate sqlSession, String sdate) {
 		return (ArrayList) sqlSession.selectList("performanceMapperMana.subMainPerformanceSearchSort2", sdate);
 	}
-	
+
+	// 서브 메인페이지 내에서 공연 리스트 검색 조회
+	public ArrayList<Performance> subMainPerformanceSearch(SqlSessionTemplate sqlSession, String searchWrd) {
+		return (ArrayList) sqlSession.selectList("performanceMapperMana.subMainPerformanceSearch", searchWrd);
+	}
+
+	// 서브 메인페이지 내에서 검색어 리스트 개수 조회
+	public int subMainPerformanceSearchCount(SqlSessionTemplate sqlSession, String searchWrd) {
+		return sqlSession.selectOne("performanceMapperMana.subMainPerformanceSearchCount", searchWrd);
+	}
+
 	public ArrayList<Review> selectReviewList(SqlSessionTemplate sqlSession, int rno) {
 		// TODO Auto-generated method stub
-		return (ArrayList) sqlSession.selectList("performanceMapperMana.selectReviewList", rno);
+		return (ArrayList)sqlSession.selectList("performanceMapperMana.selectReviewList", rno);
 	}
 
 	public int insertReview(SqlSessionTemplate sqlSession, Review r) {
@@ -76,6 +86,21 @@ public class PerformanceDao {
 		return sqlSession.insert("performanceMapperMana.insertReview", r);
 	}
 
-	
+	public ArrayList<Performance> selectPlayPerformance(SqlSessionTemplate sqlSession) {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSession.selectList("performanceMapperMana.selectPlayPerformance");
+	}
+
+	public int updateStatus(SqlSessionTemplate sqlSession,Performance p) {
+		return sqlSession.update("performanceMapperMana.updateStatus", p);
+	}
+
+	public int performanceDelete(SqlSessionTemplate sqlSession, int rcode) {
+		return sqlSession.update("performanceMapperMana.performanceDelete", rcode);
+	}
+
+	public int nopePerformance(SqlSessionTemplate sqlSession, int rcode) {
+		return sqlSession.update("reservationMapper.nopePerformance",rcode);
+	}
 
 }

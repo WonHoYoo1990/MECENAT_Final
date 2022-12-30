@@ -17,6 +17,8 @@
 		<result column="AGE_LIMIT" property="ageLimit"/>
 		<result column="PERFO_STATUS" property="perfoStatus"/>
 		<result column="PRICE" property="price"/>
+		<result column="PERFO_COUNT" property="perfoCount"/>
+		<result column="PERFO_DELETE_STATUS" property="perfoDeleteStatus"/>
 		<result column="ORIGIN_NAME" property="originName"/>
 		<result column="CHANGE_NAME" property="changeName"/>
 		<result column="HALL_NAME" property="hallName"/>
@@ -184,6 +186,9 @@
 		FROM RENTAPPLICATION
 		WHERE APPROVE_STATUS != '등록'
 	</select>
+	
+	
+	<!-- 승인관리 -->
 	<update id="updateApproveStatus">
 		UPDATE RENTAPPLICATION
 		SET APPROVE_STATUS='승인'
@@ -194,6 +199,13 @@
 		SET APPROVE_STATUS='승인대기'
 		WHERE RENTAL_CODE = #{rno}
 	</update>
+	<update id="nopePerformance">
+		UPDATE RENTAPPLICATION
+		SET APPROVE_STATUS='미승인'
+		WHERE RENTAL_CODE = #{rno}
+	</update>
+	
+	
 	
 	<!-- update status 변경해야함(등록으로) -->
 	<update id="updateRentalAppStatus">
