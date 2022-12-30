@@ -206,10 +206,6 @@
 	</update>
 	
 	
-	<!-- 공연 삭제 -->
-	<delete id="performanceDelete">
-		
-	</delete>
 	
 	<!-- update status 변경해야함(등록으로) -->
 	<update id="updateRentalAppStatus">
@@ -218,8 +214,4 @@
 		WHERE RENTAL_CODE= #{rno}
 	</update>
 	
-<<<<<<< HEAD
-	
-=======
->>>>>>> refs/remotes/origin/main
 </mapper>
