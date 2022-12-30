@@ -20,33 +20,48 @@
 	  	<result column="AGE_LIMIT" property="ageLimit"/>
 	  	<result column="PERFO_STATUS" property="perfoStatus"/>
 	  	<result column="PRICE" property="price"/>
+	  	<result column="PERFO_COUNT" property="perfoCount"/>
+	  	<result column="PERFO_DELETE_STATUS" property="perfoDeleteStatus"/>
 	  	<result column="ORIGIN_NAME" property="originName"/>
 	  	<result column="CHANGE_NAME" property="changeName"/>
 	  	<result column="EVENT_TIME" property="eventTime"/>
 	  	<result column="EVENT_DATE" property="eventDate"/>
+	  	<result column="AGENT_NAME" property="agentName"/>
+	  	<result column="AGENT_PHONE" property="agentPhone"/>
+	  	<result column="AGENT_EMAIL" property="agentEmail"/>
+	  	<result column="HALL_NAME" property="hallName"/>
+	  	
 	</resultMap>
 	
 
 	<select id="selectPerformanceList" resultMap="performanceResultSet">
-		SELECT RENTAL_CODE, PERFO_TITLE, GENRE_NAME, DIRECTOR, CAST, PERFO_CONTENT, RUNNING_TIME, AGE_LIMIT, PRICE, ORIGIN_NAME, CHANGE_NAME, EVENT_DATE, EVENT_TIME
+		SELECT RENTAL_CODE, PERFO_TITLE, GENRE_NAME, DIRECTOR, CAST, PERFO_CONTENT, RUNNING_TIME, AGE_LIMIT,PERFO_STATUS, PRICE, ORIGIN_NAME, CHANGE_NAME
 		FROM PERFORMANCE P
 		JOIN RENTAPPLICATION R USING(RENTAL_CODE)
-		GROUP BY RENTAL_CODE, PERFO_TITLE, GENRE_NAME, DIRECTOR, CAST, PERFO_CONTENT, RUNNING_TIME, AGE_LIMIT, PRICE, ORIGIN_NAME, CHANGE_NAME, EVENT_DATE, EVENT_TIME
+		GROUP BY RENTAL_CODE, PERFO_TITLE, GENRE_NAME, DIRECTOR, CAST, PERFO_CONTENT, RUNNING_TIME, AGE_LIMIT,PERFO_STATUS, PRICE, ORIGIN_NAME, CHANGE_NAME
 	</select>
 	
 	<!-- selectDetailPerformance -->
 	<select id="selectDetailPerformance" resultMap="performanceResultSet">
-		SELECT RENTAL_CODE, PERFO_TITLE, GENRE_NAME, DIRECTOR, CAST, PERFO_CONTENT, RUNNING_TIME, AGE_LIMIT, PRICE, ORIGIN_NAME, CHANGE_NAME, EVENT_DATE, EVENT_TIME
+		SELECT RENTAL_CODE, PERFO_TITLE, GENRE_NAME, DIRECTOR, CAST, PERFO_CONTENT, RUNNING_TIME, AGE_LIMIT, PRICE,PERFO_STATUS, ORIGIN_NAME, CHANGE_NAME, EVENT_DATE, EVENT_TIME, HALL_NAME
 		FROM PERFORMANCE P
 		JOIN RENTAPPLICATION R USING(RENTAL_CODE)
-		GROUP BY RENTAL_CODE, PERFO_TITLE, GENRE_NAME, DIRECTOR, CAST, PERFO_CONTENT, RUNNING_TIME, AGE_LIMIT, PRICE, ORIGIN_NAME, CHANGE_NAME, EVENT_DATE, EVENT_TIME
-        HAVING RENTAL_CODE=#{rno}
+		GROUP BY RENTAL_CODE, PERFO_TITLE, GENRE_NAME, DIRECTOR, CAST, PERFO_CONTENT, RUNNING_TIME, AGE_LIMIT, PRICE,PERFO_STATUS, ORIGIN_NAME, CHANGE_NAME, EVENT_DATE, EVENT_TIME, HALL_NAME
+		HAVING RENTAL_CODE=#{rno}
 		ORDER BY RENTAL_CODE
 		
 	</select>
 	
-	
-	
+	<!-- performanceList+담당자정보 -->
+	<select id="selectPlayPerformance" resultMap="performanceResultSet">
+		SELECT RENTAL_CODE, PERFO_TITLE, GENRE_NAME, DIRECTOR,AGENT_NAME,AGENT_PHONE,AGENT_EMAIL
+		 	 , PERFO_STATUS, PRICE, ORIGIN_NAME, CHANGE_NAME, HALL_NAME, EVENT_TIME,EVENT_DATE
+		FROM PERFORMANCE
+		JOIN RENTAPPLICATION USING(RENTAL_CODE)
+		GROUP BY RENTAL_CODE, PERFO_TITLE, GENRE_NAME, DIRECTOR,AGENT_NAME,AGENT_PHONE,AGENT_EMAIL, HALL_NAME, EVENT_TIME,EVENT_DATE
+		       , PERFO_STATUS, PRICE, ORIGIN_NAME, CHANGE_NAME
+		ORDER BY RENTAL_CODE
+	</select>
 	
 	
 	
@@ -130,11 +145,26 @@
   							,#{refNo}
   							,#{reviewWriter}
   							,#{starRate}
-  							,#{content}
-  					)
+  							,#{content})
   	</insert>
 	
-
+	
+	<update id="updateStatus">
+		UPDATE PERFORMANCE
+		SET PERFO_STATUS = #{perfoStatus}
+		WHERE RENTAL_CODE = #{rentalCode}
+	</update>
+	
+	<delete id="performanceDelete">
+		DELETE FROM PERFORMANCE
+		WHERE RENTAL_CODE=#{rcode}
+	</delete>
+	
+	
+	
+	
+	
+	
 	
 </mapper>
 

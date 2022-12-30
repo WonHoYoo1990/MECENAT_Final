@@ -41,24 +41,25 @@ public class PerformanceController {
 
 	}
 
-//	공연 등록폼 이동
+//	유리)공연 등록폼 이동
 	@RequestMapping("insertForm.perf")
 	public String performanceInsertForm(Model model, int rno) {
-		//이거 performance가아니라 reservation이여야함...
+		
 		Performance pList = perfoService.selectListPerformance(rno);
 		RentApplication rList = perfoService.selectRentalApplicationR(rno);
 		
-		int updateStatus = perfoService.updateRentalAppStatus(rno);
+//		int updateStatus = perfoService.updateRentalAppStatus(rno);
 		
 		System.out.println(rList);
 		
 		model.addAttribute("rList", rList);
-		model.addAttribute("updateStatus", updateStatus);
+		
+		
 		return "performance/performanceInsert2";
 
 	}
 
-//	관리자용 공연 등록
+//	유리)관리자용 공연 등록
 	@PostMapping("insert.perf")
 	public ModelAndView insertPerformance(Performance p, int rcode, String eDate, String eTime, MultipartFile upfile, ModelAndView mv,
 			HttpSession session) {
@@ -89,7 +90,9 @@ public class PerformanceController {
 			
 				
 		}
-		
+		if(result>0) {
+			perfoService.updateRentalAppStatus(rcode);
+		}
 		
 		
 		mv.setViewName("redirect:list.perf");
@@ -99,15 +102,20 @@ public class PerformanceController {
 		
 	}
 
-//	등록된공연 빼기용
-	@RequestMapping("delete.perf")
-	
-	
-	public void performanceDelete() {
-
+//	유리)공연삭제(performance에서만 삭제함)
+	@ResponseBody
+	@RequestMapping(value = "deletePerf.perf")
+	public void performanceDelete(int rcode) {
+		System.out.println(rcode+"삭제버튼 클릭");
+		
+//		perfoService.performanceDelete(rcode);
+		
+//		return "performance/playPerformanceForm";
 	}
 
-//	승인페이지에 뿌려줄 RENTALAPPLICATION 뽑아오기
+	
+	
+//	유리)승인페이지에 뿌려줄 RENTALAPPLICATION 뽑아오기
 	@RequestMapping("approveWaitForm.mana")
 	public String approveListForm(Model model) {
 
@@ -129,7 +137,7 @@ public class PerformanceController {
 
 		return "redirect:/approveWaitForm.mana";
 	}
-
+//	유리)승인취소
 	@ResponseBody
 	@RequestMapping(value = "cancel.perf")
 	public String cancelPerformance(int rcode) {
@@ -139,13 +147,23 @@ public class PerformanceController {
 
 		return "redirect:/approveWaitForm.mana";
 	}
+	
+//	유리) 승인 거부
+	@ResponseBody
+	@RequestMapping(value = "nope.perf")
+	public String nopePerformance(int rcode) {
+//		System.out.println(rcode+"미승인");
+		int result = perfoService.nopePerformance(rcode);
+		return "redirect:/approveWaitForm.mana";
+	}
 
+//유리)detailForm으로 이동
 	@RequestMapping("detail.perf")
 	public String performanceDateilForm(int rno, Model model) {
 
 		Performance pList = perfoService.selectListPerformance(rno);
 		
-		System.out.println(pList);
+//		System.out.println(pList);
 		
 		
 		model.addAttribute("pList", pList);
@@ -198,12 +216,61 @@ public class PerformanceController {
 	public String setInfom() {
 		return "performance/setInfom";
 	}
-
-	// asdfasdfasdfasdfasdfasdfasdf"asdf.mana"
-	@ResponseBody
-	@RequestMapping(value = "testrCode.con", produces = "application/json; charset=UTF-8")
-	public void asdf(int rCode) {
-		System.out.println("뚜루뚜뚜뚜뽀롱뽀뽀뽀" + rCode);
+	
+//	유리) 상영중인 공연 관리하기
+	@RequestMapping("playPerformanceForm.mana")
+	public String playPerformanceForm(Model model) {
+		
+		ArrayList<Performance> pList = perfoService.selectPlayPerformance();
+		
+		String[] dateArr = new String[pList.size()];
+		String sp ="";
+		for(int i=0; i<pList.size(); i++) {
+			dateArr[i] = pList.get(i).getEventDate();
+			
+			String[] dateSArr = dateArr[i].split(",");
+			
+			sp="";
+			
+			if(dateSArr.length != 1) {
+				sp += dateSArr[0] + " ~ " + dateSArr[dateSArr.length-1];
+			}else {
+				sp+= dateSArr[0];
+			}
+			dateArr[i] = sp;
+			
+			pList.get(i).setEventDate(sp);
+			
+//			System.out.println(pList.get(i).getEventDate());
+		}
+		
+		model.addAttribute("pList", pList);
+		
+		return "performance/playPerformanceForm";
 	}
-
+	
+	
+	
+//	유리) PERFO_STATUS 변경
+	
+	@ResponseBody
+	@RequestMapping(value = "statusChange.perf")
+	public void updateStatus(int rcode, String statusVal) {
+		System.out.println(rcode + statusVal);
+		
+		Performance p = new Performance();
+		p.setRentalCode(rcode);
+		p.setPerfoStatus(statusVal);
+		
+		System.out.println(p);
+		
+		int updateStatus = perfoService.updateStatus(p);
+		
+	}
+	
+	
+	
+	
+	
+	
 }

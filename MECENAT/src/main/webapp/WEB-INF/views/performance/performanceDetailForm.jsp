@@ -157,6 +157,7 @@
 		<p>${pList. changeName}</p>
 		<p>${pList. eventDate}</p>
 		<p>${pList. eventTime}</p>	
+		<p>${pList. hallName}</p>
 		
 	</div>
 	--%>
@@ -191,6 +192,7 @@
 								<div class="txt">
 									<div class="tit">
 										<h2 class="t">${pList. perfoTitle}</h2>
+										
 									</div>
 									<ul class="detail">
 										<li><span class="dt">기간</span><p id="date"></p></li>
@@ -198,6 +200,7 @@
 										<li><span class="dt">연령</span>${pList. ageLimit}</li>
 										<li><span class="dt">티켓</span>${pList. price}</li>
 										<li><span class="dt">시간</span><p id="time"></p></li>
+										<li><span class="dt">홀</span>${pList. hallName}</li>
 										<li><span class="dt">문의</span>KH교육 당산지원 1234-4567</li>
 										
 									</ul>
