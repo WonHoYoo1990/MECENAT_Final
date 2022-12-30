@@ -46,4 +46,12 @@ public interface PerformanceService {
 
 	public int insertReview(Review r);
 
+	public ArrayList<Performance> selectPlayPerformance();
+
+	public int updateStatus(Performance p);
+
+	public int performanceDelete(int rcode);
+
+	public int nopePerformance(int rcode);
+
 }

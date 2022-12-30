@@ -24,6 +24,7 @@ public class ReservationDao {
 	public Performance selectPerformance(SqlSessionTemplate sqlSession, int perfoNo) {
 		return (Performance)sqlSession.selectOne("reservationMapper.selectPerformance", perfoNo);
 	}
+	
 
 //	대관신청서 제출
 	public int insertApplication(SqlSessionTemplate sqlSession, RentApplication ra) {
