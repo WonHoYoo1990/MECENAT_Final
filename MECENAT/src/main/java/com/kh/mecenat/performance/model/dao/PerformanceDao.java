@@ -96,7 +96,7 @@ public class PerformanceDao {
 	}
 
 	public int performanceDelete(SqlSessionTemplate sqlSession, int rcode) {
-		return sqlSession.delete("performanceMapperMana.performanceDelete", rcode);
+		return sqlSession.update("performanceMapperMana.performanceDelete", rcode);
 	}
 
 	public int nopePerformance(SqlSessionTemplate sqlSession, int rcode) {

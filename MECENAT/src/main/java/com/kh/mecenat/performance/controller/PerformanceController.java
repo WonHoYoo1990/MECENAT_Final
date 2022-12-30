@@ -100,12 +100,12 @@ public class PerformanceController {
 //	유리)공연삭제(performance에서만 삭제함)
 	@ResponseBody
 	@RequestMapping(value = "deletePerf.perf")
-	public void performanceDelete(int rcode) {
+	public String performanceDelete(int rcode) {
 		System.out.println(rcode+"삭제버튼 클릭");
 		
-//		perfoService.performanceDelete(rcode);
+		perfoService.performanceDelete(rcode);
 		
-//		return "performance/playPerformanceForm";
+		return "performance/playPerformanceForm";
 	}
 
 	
@@ -158,7 +158,7 @@ public class PerformanceController {
 
 		Performance pList = perfoService.selectListPerformance(rno);
 		
-//		System.out.println(pList);
+		System.out.println(pList);
 		model.addAttribute("pList", pList);
 
 		return "performance/performanceDetailForm";
@@ -349,7 +349,6 @@ public class PerformanceController {
 		int updateStatus = perfoService.updateStatus(p);
 		
 	}
-	
 	
 	
 	

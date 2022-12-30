@@ -232,17 +232,21 @@
 			}
 			
 			function deletePerf(rcode){
-				$.ajax({
-					url: "deletePerf.perf",
-					data: {
-						rcode: rcode
-					},
-					success : function(){
-					},
-					error: function(){
-						console.log("실패");
-					}
-				});
+				if(confirm("삭제시 되돌릴 수 없습니다.\n 정말로 삭제하시겠습니까?")){
+					$.ajax({
+						url: "deletePerf.perf",
+						data: {
+							rcode: rcode
+						},
+						success : function(){
+							location.reload();
+							alert("삭제 완료");
+						},
+						error: function(){
+							console.log("실패");
+						}
+					});
+				}
 			}
 		</script>
 		

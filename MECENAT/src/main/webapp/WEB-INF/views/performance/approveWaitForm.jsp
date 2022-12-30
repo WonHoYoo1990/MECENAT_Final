@@ -56,7 +56,7 @@
 				
 				<tbody>
 					<c:forEach var="r" items="${rList}" varStatus="status">
-						<c:if test="${r.approveStatus ne '미승인'}">
+						<c:if test="${r.approveStatus ne '미승인' }">
 						<tr align="center">
 							<td>${r.userId }</td>
 							<td>${r.rentalPropose }</td>
