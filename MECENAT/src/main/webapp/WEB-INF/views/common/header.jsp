@@ -112,12 +112,11 @@
 							</ul></li>
 							<li><a href="/portal/main/contents.do?menuNo=200025">세종투어</a></li>
 					</ul></li>
-					<li><a href="/portal/bbs/B0000001/list.do?menuNo=200042">뉴스·소식</a>
+					<li><a href="list.no">뉴스·소식</a>
 						<ul class="depth2">
-							<li class="arrow"><a href="list.no?currentPage=1">새소식</a>
+							<li class="arrow"><a href="list.no">새소식</a>
 								<ul class="depth3">
-									<li><a href="list.no?currentPage=1">세종소식</a></li>
-									<li><a href="/portal/bbs/B0000003/list.do?menuNo=200088">입찰공고</a></li>
+									<li><a href="list.no">MECENAT 소식</a></li>
 							</ul></li>
 							<li><a href="/portal/bbs/B0000017/list.do?menuNo=200040">뉴스레터</a></li>
 							<li><a href="/portal/bbs/B0000040/list.do?menuNo=200199">세종문화N</a></li>
@@ -210,7 +209,7 @@
 								
 								<c:if test="${loginUser.userId eq 'admin' }">
 									<li><a href="approveWaitForm.mana">승인관리</a></li>	
-									<li><a href="">공연관리</a></li>	
+									<li><a href="playPerformanceForm.mana">공연관리</a></li>	
 								</c:if>
 								
 						</ul></li>

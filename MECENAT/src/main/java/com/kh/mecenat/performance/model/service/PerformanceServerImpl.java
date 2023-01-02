@@ -107,4 +107,25 @@ public class PerformanceServerImpl implements PerformanceService {
 		return performanceDao.updateRentalAppStatus(SqlSession, rno);
 	}
 
+	@Override
+	public ArrayList<Performance> selectPlayPerformance() {
+		return performanceDao.selectPlayPerformance(SqlSession);
+	}
+
+	@Override
+	public int updateStatus(Performance p) {
+		return performanceDao.updateStatus(SqlSession, p);
+	}
+
+	@Override
+	public int performanceDelete(int rcode) {
+		return performanceDao.performanceDelete(SqlSession, rcode);
+	}
+
+	@Override
+	public int nopePerformance(int rcode) {
+		return performanceDao.nopePerformance(SqlSession, rcode);
+	}
+
+
 }
