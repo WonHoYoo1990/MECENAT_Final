@@ -278,7 +278,7 @@
 							<h2 class="t">유니버설발레단 '호두까기인형'</h2>
 							
 							<div class="sns" data-snstitle="유니버설발레단 '호두까기인형'" id="link-clipboard" data-clipboard-text="https://www.sejongpac.or.kr:443/portal/performance/performance/view.do?performIdx=33630&amp;menuNo=200004&amp;sdate=2022-12-26&amp;searchWrd=&amp;searchSort=1&amp;searchCnd=1&amp;searchPlaceCdStr=P%2CALL&amp;edate=2023-01-26&amp;searchPackage=&amp;pageIndex=1">
-								<button type="button" data-sns="facebook" title="새창 열림"><img src="/static/portal/img/common/sns_f_new.png" alt="페이스북"></button>
+								<button type="button" data-sns="facebook" title="새창 열림"><img src="./resources/sejongpac/static/portal/img/common/m/sns_f.gif" alt="페이스북"></button>
 								<button type="button" data-sns="naver" title="새창 열림"><img src="/static/portal/img/common/sns_b_new.png" alt="블로그"></button>
 								<button type="button" data-sns="kakao" title="새창 열림"><img src="/static/portal/img/common/sns_kakao.png" alt="카카오"></button>
 								<!-- <button type="button" data-sns="insta" title="새창 열림"><img src="/static/portal/img/common/sns_i_new.png" alt="인스타" /></button> -->

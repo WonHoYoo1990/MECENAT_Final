@@ -74,11 +74,6 @@
 								<label for="hall_ck1">전체</label>
 								<input type="checkbox" name="searchTypeData" class="searchType" id="hall_ck2" value="1001,1002,1008,1006,9006,9014">
 								<label for="hall_ck2">공연 </label>
-								<input type="checkbox" name="searchTypeData" class="searchType" id="hall_ck3" value="2001,2002,3008,3009,9008,9007">
-								<label for="hall_ck3">전시 </label>
-								<input type="checkbox" name="searchTypeData" class="searchType" id="hall_ck4" value="2006,2007">
-								<label for="hall_ck4">교육</label>
-								
 								<div class="write">
 									<input type="text" name="searchWrd" id="searchWrd" placeholder="검색어를 입력하세요" value="">
 									<!-- <button type="button" formaction="subMainPerformanceSearch.perf" onclick="fn_search('1')">검색</button> -->
@@ -88,42 +83,47 @@
 						</div>
 					</form>
 					<script type="text/javascript">
-						$(function() {
-							subMainPerformanceList();
+						$(()=>{
+							subMainPerformanceList(); // 해당 날짜 list 조회
 						})
 						
-						function subMainPerformanceList() { //subMainPerformance 첫페이지시 list 조회
+						function sdateList (){ // 날짜별 list 조회 및 개수 조회
 							
 							var sdate = $("#period1").val();
-			
+							
 							$.ajax({ // 공연 리스트 조회
 							    url : 'subMainPerformanceList.perf',
 							    data : {  
 							      "sdate" : sdate
 							    },
-							    success : function(list) {  
+							    success : (list) => {  
+							        console.log("통신 성공!");
 				    				$(".bbs-today_thumb").html(list);
 							    },
-							    error : function() {
+							    error : () => {
 							        console.log("통신 실패!");
 							    }
-							})
+							});
 							
 							$.ajax({ // 공연 리스트 개수 조회
 							    url : 'subMainPerformanceListCount.perf',
 							    data : {  
 							      "sdate" : sdate
 							    },
-							    success : function(count) {  
+							    success : (count) => {  
+							        console.log("통신 성공 COUNT!");
 				    				$(".listCount .etc_w .color-navy").html(count);
 							    },
-							    error : function() {
+							    error : () => {
 							        console.log("통신 실패 COUNT!");
 							    }
-							})
+							});
 						}
 						
-					
+						function subMainPerformanceList() { //subMainPerformance 첫페이지시 list 조회
+							sdateList();
+						}
+						
 						// 날짜 String 형변환 및 문자열 자르기
 						document.getElementById('period1').value = new Date().toISOString().substring(0, 10);
 						
@@ -131,38 +131,7 @@
 						      dateFormat: 'yy-mm-dd', 
 						      language: 'kr', 
 						   }).on('change', function () { // 달력 값이 변할 때마다
-							   
-							   var sdate = $("#period1").val();
-				
-								$.ajax({ // 공연 리스트 조회
-								    url : 'subMainPerformanceList.perf',
-								    data : {  
-								      "sdate" : sdate
-								    },
-								    success : function(list) {  
-								        console.log("통신 성공 !");
-					    				
-					    				$(".bbs-today_thumb").html(list);
-								    },
-								    error : function() { 
-								        console.log("통신 실패 !");
-								    }
-								})
-								
-								$.ajax({ // 공연 리스트 개수 조회
-								    url : 'subMainPerformanceListCount.perf',
-								    data : {  
-								      "sdate" : sdate
-								    },
-								    success : function(count) {  
-								        console.log("통신 성공 COUNT !");
-					    				
-					    				$(".listCount .etc_w .color-navy").html(count);
-								    },
-								    error : function() { 
-								        console.log("통신 실패 COUNT!");
-								    }
-								})
+								sdateList();
 						   });
 						
 						$('#searchWrdBtn').on('click', function() { //검색어 버튼 클릭시
@@ -185,20 +154,37 @@
 							})
 
 							$.ajax({ // 검색어 리스트 개수 조회
-								    url : 'subMainPerformanceSearchCount.perf',
-								    data : {  
-								      "searchWrd" : searchWrd
-								    },
-								    success : function(count) {  
-								        console.log("통신 성공 COUNT !");
-					    				
-					    				$(".listCount .etc_w .color-navy").html(count);
-								    },
-								    error : function() { 
-								        console.log("통신 실패 COUNT!");
-								    }
-								})
+							    url : 'subMainPerformanceSearchCount.perf',
+							    data : {  
+							      "searchWrd" : searchWrd
+							    },
+							    success : function(count) {  
+							        console.log("통신 성공 COUNT !");
+				    				
+				    				$(".listCount .etc_w .color-navy").html(count);
+							    },
+							    error : function() { 
+							        console.log("통신 실패 COUNT!");
+							    }
+							})
 						})
+						
+						$('[name="searchTypeData"]').click(function(){ // 카테고리 버튼 클릭시
+							
+							var searchType = $(this).val();
+							console.log("this() : " + searchType)
+							
+							if(searchType == "ALL"){ //전체 버튼 클릭시
+								$('.searchType').prop('checked', false);
+								sdateList();
+							}else{ // 전체 카테고리 외 클릭시
+								$('.searchType_all').prop('checked', false);
+								sdateList();
+							}
+							
+							// fn_search('1');
+						});
+						
 					</script>
 					
 					
@@ -288,7 +274,6 @@
 						</div>
 					</article>
 					<script>
-						
 						function fn_SearchSort(searchSort){ // 리스트 정렬
 							
 							var searchSort = searchSort;
@@ -304,7 +289,6 @@
 								    },
 								    success : function(list) {  
 								        console.log("통신 성공 !");
-					    				
 					    				$(".bbs-today_thumb").html(list);
 								    },
 								    error : function() { 
@@ -329,8 +313,6 @@
 								    },
 								    success : function(list) {  
 								        console.log("통신 성공 !");
-								        console.log("list : "+list);
-					    				
 					    				$(".bbs-today_thumb").html(list);
 								    },
 								    error : function() { 
@@ -347,141 +329,87 @@
 							document.frm.submit();
 						}
 				
-						$(".bbs-today_thumb >li").hover(function(){
-							$(this).find(".hover").stop().fadeIn(150);
-						},function(){
-							$(this).find(".hover").stop().fadeOut(150);
-						})
-						$(".bbs-today_thumb li").focus(function(){
-							$(this).find(".hover").stop().fadeIn(150);
-						})
-						$(".bbs-today_thumb a:last-child").focusout(function(){
-							$(this).closest(".hover").stop().fadeOut(150);
-						})
-				
-						$(function() {
-							var txt1=[];
-							$('[name="searchTypeData"]').click(function(){
-								var searchType = $(this).val();
-								if(searchType == "ALL"){
-									$('.searchType').prop('checked', false);
-								}else{
-									$('.searchType_all').prop('checked', false);
-								}
-								
-								fn_search('1');
-							});
+						$('.prev').on('click', ()=>{ // 달력 이전 버튼 클릭시 
+							var sdate = new Date($("#period1").val());
+							sdate.setDate(sdate.getDate() - 1);
+							sdate = dateFormat(sdate);
+							console.log("sada : " + sdate)
+			
+							$("#period1").val(sdate);
 							
-							$('[name="searchTypeData"]:checked').each(function(){
-								txt1.push($(this).next().text().trim());
-							});
-							txt1 = txt1.join(',');
-							$("#hallt").val(txt1);
-				
-						  	$(".schedule_w .s2 input[type='text'],.schedule_w .s3 input[type='text']").focus(function(){
-								$(this).closest(".item").find(".pop").fadeIn(150);
-							});
-				
-							$(".pop button").click(function(){
-								$(".pop").fadeOut(150)
-							});
-				
-							$('.bg-black_r').on('click', function(){
-								var txt2=[];
-								$('[name="searchTypeData"]:checked').each(function(){
-									txt2.push($(this).next().text().trim());
-								});
-								txt2 = txt2.join(',');
-								$("#hallt").val(txt2);
-							});
+							$.ajax({ // 공연 리스트 조회
+							    url : 'subMainPerformanceList.perf',
+							    data : {  // 보낼 데이터 (Object , String, Array)
+							      "sdate" : sdate
+							    },
+							    success : (list) => {  
+							        console.log("통신 성공 !");
+				    				$(".bbs-today_thumb").html(list);
+							    },
+							    error : () => { // 결과 에러 콜백함수
+							        console.log("통신 실패 !");
+							    }
+							})
 							
-							$('.prev').on('click', function(){
-								var sdate = new Date($("#period1").val());
-								sdate.setDate(sdate.getDate() - 1);
-								sdate = dateFormat(sdate);
-								console.log("sada : " + sdate)
-				
-								$("#period1").val(sdate);
-								
-								$.ajax({ // 공연 리스트 조회
-								    url : 'subMainPerformanceList.perf',
-								    data : {  // 보낼 데이터 (Object , String, Array)
-								      "sdate" : sdate
-								    },
-								    success : function(list) {  
-								        console.log("통신 성공 !");
-					    				
-					    				$(".bbs-today_thumb").html(list);
-								    },
-								    error : function(request, status, error) { // 결과 에러 콜백함수
-								        console.log("통신 실패 !");
-								    }
-								})
-								
-								$.ajax({ // 공연 리스트 개수 조회
-								    url : 'subMainPerformanceListCount.perf',
-								    data : {  // 보낼 데이터 (Object , String, Array)
-								      "sdate" : sdate
-								    },
-								    success : function(count) {  
-								        console.log("통신 성공 COUNT !");
-					    				
-					    				$(".listCount .etc_w .color-navy").html(count);
-								    },
-								    error : function(request, status, error) { // 결과 에러 콜백함수
-								        console.log("통신 실패 COUNT!");
-								    }
-								})
-							});
+							$.ajax({ // 공연 리스트 개수 조회
+							    url : 'subMainPerformanceListCount.perf',
+							    data : {  // 보낼 데이터 (Object , String, Array)
+							      "sdate" : sdate
+							    },
+							    success : (count) => {  
+							        console.log("통신 성공 COUNT !");
+				    				$(".listCount .etc_w .color-navy").html(count);
+							    },
+							    error : () => { // 결과 에러 콜백함수
+							        console.log("통신 실패 COUNT!");
+							    }
+							})
+						});
 							
-							$('.next').on('click', function(){
-								var sdate = new Date($("#period1").val());
-								sdate.setDate(sdate.getDate() + 1);
-								sdate = dateFormat(sdate);
-				
-								$("#period1").val(sdate);
-	
-								$.ajax({ // 공연 리스트 조회
-								    url : 'subMainPerformanceList.perf',
-								    data : {  // 보낼 데이터 (Object , String, Array)
-								      "sdate" : sdate
-								    },
-								    success : function(list) {  
-								        console.log("통신 성공 !");
-					    				
-					    				$(".bbs-today_thumb").html(list);
-								    },
-								    error : function(request, status, error) { // 결과 에러 콜백함수
-								        console.log("통신 실패 !");
-								    }
-								})
-								
-								$.ajax({ // 공연 리스트 개수 조회
-								    url : 'subMainPerformanceListCount.perf',
-								    data : {  // 보낼 데이터 (Object , String, Array)
-								      "sdate" : sdate
-								    },
-								    success : function(count) {  
-								        console.log("통신 성공 COUNT !");
-					    				
-					    				$(".listCount .etc_w .color-navy").html(count);
-								    },
-								    error : function(request, status, error) { // 결과 에러 콜백함수
-								        console.log("통신 실패 COUNT!");
-								    }
-								})
-								
-							});
+						$('.next').on('click', ()=>{ // 달력 다음 버튼 클릭시
+							var sdate = new Date($("#period1").val());
+							sdate.setDate(sdate.getDate() + 1);
+							sdate = dateFormat(sdate);
+			
+							$("#period1").val(sdate);
+
+							$.ajax({ // 공연 리스트 조회
+							    url : 'subMainPerformanceList.perf',
+							    data : {  // 보낼 데이터 (Object , String, Array)
+							      "sdate" : sdate
+							    },
+							    success : (list) => {  
+							        console.log("통신 성공 !");
+				    				$(".bbs-today_thumb").html(list);
+							    },
+							    error : () => { // 결과 에러 콜백함수
+							        console.log("통신 실패 !");
+							    }
+							})
 							
-							function dateFormat(date) {
-							    var year = date.getFullYear();
-							    var month = ("0" + (1 + date.getMonth())).slice(-2);
-							    var day = ("0" + date.getDate()).slice(-2);
-				
-							    return year + "-" + month + "-" + day;
-							}
+							$.ajax({ // 공연 리스트 개수 조회
+							    url : 'subMainPerformanceListCount.perf',
+							    data : {  // 보낼 데이터 (Object , String, Array)
+							      "sdate" : sdate
+							    },
+							    success : (count) => {
+							        console.log("통신 성공 COUNT !");
+				    				$(".listCount .etc_w .color-navy").html(count);
+							    },
+							    error : () => { // 결과 에러 콜백함수
+							        console.log("통신 실패 COUNT!");
+							    }
+							})
 							
 						});
+							
+						function dateFormat(date) { // date 형변환
+						    var year = date.getFullYear();
+						    var month = ("0" + (1 + date.getMonth())).slice(-2);
+						    var day = ("0" + date.getDate()).slice(-2);
+			
+						    return year + "-" + month + "-" + day;
+						}	
 					</script>
 				</div>
 			</div>
@@ -490,7 +418,7 @@
 		<!-- footer Section Begin -->
 		<jsp:include page="../common/footer.jsp" />
 		<!-- footer End -->
-		
+		<script src="./resources/sejongpac/static/portal/js/common.js"></script>
 	</section>
 </body>
 </html>

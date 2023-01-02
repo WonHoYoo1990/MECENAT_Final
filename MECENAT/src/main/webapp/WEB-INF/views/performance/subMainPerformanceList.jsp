@@ -18,13 +18,28 @@
 				<span class="place">${pList.genreName}</span>
 			</div>
 		</div>
-		<div class="hover" style="display: none; opacity: 1;">
+		<div class="hover" style="display: none;">
 			<div class="table">
 				<div class="vertical">
-					<a href="#" onclick="javascript:showPerformPop('grpb2210111117a01');return false;" class="r ReservationTitle">예매</a>
-					<a href="/portal/performance/performance/view.do?performIdx=33630&amp;menuNo=200004" class="d">상세</a>
+					<a href="make.rv?perfoNo=${pList.perfoNo}" class="r ReservationTitle">예매</a>
+					<a href="detail.perf?rno=${pList.rentalCode}" class="d">상세</a>
 				</div>
 			</div>
 		</div>
 	</li>
 </c:forEach>
+
+<script type="text/javascript">
+	// 리스트별 예매 및 상세 페이지 반응형 UI
+	$(".bbs-today_thumb li").hover(function(){
+		$(this).find(".hover").stop().fadeIn(150);
+	},function(){
+		$(this).find(".hover").stop().fadeOut(150);
+	})
+	$(".bbs-today_thumb li").focus(function(){
+		$(this).find(".hover").stop().fadeIn(150);
+	})
+	$(".bbs-today_thumb a:last-child").focusout(function(){
+		$(this).closest(".hover").stop().fadeOut(150);
+	})
+</script>
