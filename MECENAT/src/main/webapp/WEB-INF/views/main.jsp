@@ -272,7 +272,7 @@
 								<dl class="sns_w">
 									<dt>sns</dt>
 									<dd>
-										<span><a href="https://www.youtube.com/channel/UCCqaPJqI5q1kfO51qWWOjrQ" title="새창으로 열립니다." target="_blank"><img src="./resources/sejongpac/static/portal/img/common/sns_y_w.png" alt="유튜브"></a></span> <span><a href="https://www.instagram.com/sejongcenter" title="새창으로 열립니다." target="_blank"><img src="./resources/sejongpac/static/portal/img/common/sns_i_w.png" alt="인스타그램"></a></span> <span><a href="https://www.facebook.com/sjcenter" title="새창으로 열립니다." target="_blank"><img src="./resources/sejongpac/static/portal/img/common/sns_f_w.png" alt="페이스북"></a></span> <span><a href="http://blog.naver.com/sejongnanum" title="새창으로 열립니다." target="_blank"><img src="./resources/sejongpac/static/portal/img/common/sns_b_w.png" alt="블로그"></a></span> <span><a href="https://twitter.com/SEJONG_CENTER" title="새창으로 열립니다." target="_blank"><img src="./resources/sejongpac/static/portal/img/common/sns_t_w.png" alt="트위터"></a></span>
+										<span><a href="https://www.youtube.com/channel/UCCqaPJqI5q1kfO51qWWOjrQ" title="새창으로 열립니다." target="_blank"><img src="./resources/sejongpac/static/portal/img/common/sns_y_w.png" alt="유튜브"></a></span> <span><a href="https://www.instagram.com/sejongcenter" title="새창으로 열립니다." target="_blank"><img src="./resources/sejongpac/static/portal/img/common/sns_i_w.png" alt="인스타그램"></a></span> <span><a href="https://www.facebook.com/sjcenter" title="새창으로 열립니다." target="_blank"><img src="./resources/sejongpac/static/portal/img/common/m/sns_f.gif" alt="페이스북"></a></span> <span><a href="http://blog.naver.com/sejongnanum" title="새창으로 열립니다." target="_blank"><img src="./resources/sejongpac/static/portal/img/common/sns_b_w.png" alt="블로그"></a></span> <span><a href="https://twitter.com/SEJONG_CENTER" title="새창으로 열립니다." target="_blank"><img src="./resources/sejongpac/static/portal/img/common/sns_t_w.png" alt="트위터"></a></span>
 									</dd>
 								</dl>
 								
@@ -345,7 +345,7 @@
 									</div>
 									<div class="txt">MECENAT 소식</div>
 							</a></li>
-							<li><a href="/portal/main/contents.do?menuNo=200094">
+							<li><a href="setInfom.perf">
 									<div class="img" style="top: 0px;">
 										<img src="./resources/sejongpac/static/portal/img/main/m1_5.gif" alt="">
 									</div>
@@ -357,7 +357,7 @@
 									</div>
 									<div class="txt">예매안내</div>
 							</a></li>
-							<li><a href="/portal/main/contents.do?menuNo=200082">
+							<li><a href="directions.cs">
 									<div class="img" style="top: 0px;">
 										<img src="./resources/sejongpac/static/portal/img/main/m1_6.gif" alt="">
 									</div>
