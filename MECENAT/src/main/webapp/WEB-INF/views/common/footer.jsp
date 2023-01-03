@@ -46,6 +46,7 @@ body.hide-focus-ring *:focus {
 
 /*popup*/
 .popup_layer {
+	
 }
 
 /*팝업 박스*/
@@ -215,17 +216,13 @@ body.hide-focus-ring *:focus {
 						var num = num;
 
 						console.clear()
-						console.log("num : " + num);
-						console.log("하잉");
 
 						switch (num) {
 						case "1":
-							console.log("하잉1");
 							document.getElementById("popup_layer1").style.display = "block";
 							break;
 
 						case "2":
-							console.log("하잉2");
 							document.getElementById("popup_layer2").style.display = "block";
 							break;
 
@@ -240,9 +237,6 @@ body.hide-focus-ring *:focus {
 						var num = num;
 
 						console.clear()
-						console.log("num-1 : " + num);
-
-						console.log("하잉-1");
 						switch (num) {
 						case "1":
 							document.getElementById("popup_layer1").style.display = "none";
