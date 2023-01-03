@@ -59,7 +59,7 @@
 		<div id="seoul-common-gnb"></div>
 		
 		
-		<!-- // -->
+		<!-- //test 01 -->
 		<header id="header" class="clearfix">
 			<h1 id="logo" >
 				<a href="index.jsp" style="background-image: url('resources/sejongpac/static/commons/img/common/MECENATlogo.jpg'); background-size: cover;">MECENAT</a>
