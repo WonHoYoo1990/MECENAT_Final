@@ -28,4 +28,5 @@ public class Performance {
 	private String  originName;//	ORIGIN_NAME
 	private String  changeName;//	CHANGE_NAME
 	private String  hallName;//	HALL_NAME
+	private int remainingSeats;//	남은 좌석수
 }
