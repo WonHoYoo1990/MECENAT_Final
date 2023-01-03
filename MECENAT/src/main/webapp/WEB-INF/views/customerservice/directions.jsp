@@ -55,7 +55,7 @@
 	<section id="wrap">
 		<!-- Header Section Begin -->
 		<jsp:include page="../common/header.jsp" />
-		<!-- Header End 1-->
+		<!-- Header End 2-->
 		
 		<div id="depth_w" class="">
 			<div class="inner">
