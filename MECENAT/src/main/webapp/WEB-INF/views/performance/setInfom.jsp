@@ -360,6 +360,10 @@
 			</div>
 		</div>
 		<script>
+			
+		element.addEventListener('animationiteration', function(){
+		});
+		
 			$(function() {
 				$("#show1").on("click",function() {
 					this.style.backgroundColor = "gray";
