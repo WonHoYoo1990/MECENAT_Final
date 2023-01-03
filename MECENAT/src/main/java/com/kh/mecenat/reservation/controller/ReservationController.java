@@ -1,7 +1,6 @@
 package com.kh.mecenat.reservation.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import javax.servlet.http.HttpSession;
 
@@ -19,7 +18,9 @@ import com.google.gson.Gson;
 import com.kh.mecenat.reservation.model.service.ReservationService;
 import com.kh.mecenat.reservation.model.vo.Hall;
 import com.kh.mecenat.reservation.model.vo.Performance;
+import com.kh.mecenat.reservation.model.vo.Purchase;
 import com.kh.mecenat.reservation.model.vo.RentApplication;
+import com.kh.mecenat.reservation.model.vo.Seat;
 
 @Controller
 public class ReservationController {
@@ -90,13 +91,11 @@ public class ReservationController {
 		
 		return mv;	
 	}
-		
-
-//	예매 페이지 조정중
+	
+	//예매 페이지로 가는 메서드
 	@GetMapping("make.rv")
 	public String selectPerformaceForm(Model model//,
 									   /*int rentalCode*/) {
-
 		int rentalCode = 1;
 		
 		ArrayList<Performance> list = reservationService.selectPerformanceList(rentalCode);
@@ -109,31 +108,67 @@ public class ReservationController {
 
 		model.addAttribute("list",list).addAttribute("ra",ra).addAttribute("raArr",raArr).addAttribute(hall);
 		
-
 		return "reservation/makeReservation";
 	}
 	
-//	예매 페이지 조정중
-	@PostMapping("make.rv")
-	public void selectPerformaceInfo() {
-		
-	}
-	
-//예매페이지 중 날짜 및 회차 선택시 ajax로 해당 공연정보 전달
+	//예매페이지 중 날짜 및 회차 선택시 ajax로 해당 공연정보 전달
 	@ResponseBody
 	@RequestMapping(value="perfoNum.rv", produces = "application/json; charset=UTF-8")
-	public String perfoNum(String perfoEventDate, int rentalCode) {
-		
+	public String perfoNum(String perfoEventDate, int rentalCode, String hallName) {
+		int result;
 		Performance pf = new Performance();
+		
 		pf.setPerfoEventDate(perfoEventDate);
 		pf.setRentalCode(rentalCode);
 		
 		Performance pfmc = reservationService.getReservationPerformance(pf);
+		Hall hallSeats = reservationService.getHallSeats(hallName);
+		int purchaseSeats = reservationService.getPurchaseSeats(pfmc.getPerfoNo());
 		
-		
+		result = hallSeats.getHallSeats() - purchaseSeats;
+		pfmc.setRemainingSeats(result);
 		return new Gson().toJson(pfmc);
 	}
 	
+	//좌석 선택 페이지로 가는 메서드
+	@PostMapping("selectSeats.rv")
+	public ModelAndView selectPerformaceInfo(ModelAndView mv, int rentalCode, int perfoNo) {
+		RentApplication ra = reservationService.selectRentApplication(rentalCode);
+		Performance performance = reservationService.selectPerformance(perfoNo);
+		ArrayList<Seat> sosl = reservationService.selectSoldOutSeats(perfoNo);
+		ArrayList<Seat> asat = reservationService.selectAllSeats(ra.getHallName());
+		
+		mv.addObject("ra", ra).addObject("performance", performance).addObject("asat", asat).addObject("sosl", sosl).setViewName("reservation/makeReservation2");
+		return mv;
+	}
+	
+	//할인 선택 페이지 조정중
+	@PostMapping("discount.rv")
+	public ModelAndView discount(ModelAndView mv, int rentalCode, int perfoNo, String[] selectedSeats) {
+		RentApplication ra = reservationService.selectRentApplication(rentalCode);
+		Performance performance = reservationService.selectPerformance(perfoNo);
+		ArrayList<String> allSeats = new ArrayList<String>();
+		String seatTier;
+		String seatCode;
+		Seat chkSeat = new Seat();
+		Purchase p = new Purchase();
+
+		String userId = "woney93"; //나중에 세션에서 로그인아이디 받아오기
+
+		for(String i : selectedSeats) {
+			chkSeat.setHallName(ra.getHallName());
+			chkSeat.setSeatCode(i.substring(1));
+			int seatNo = reservationService.selectSeatNo(chkSeat);
+			p.setSeatNo(seatNo);
+			p.setUserId(userId);
+			p.setPerfoNo(perfoNo);
+			reservationService.blockSeats(p);
+			allSeats.add(i);
+		}
+
+		mv.addObject("ra", ra).addObject("performance", performance).addObject("allSeats", allSeats).setViewName("reservation/makeReservation3");
+		return mv;
+	}
 	
 	//예매 안내 페이지 이동
 	@RequestMapping("infomTicket.rv")
