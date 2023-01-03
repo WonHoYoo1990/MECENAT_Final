@@ -12,43 +12,154 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width">
-	<meta name="google-signin-client_id" content="113025989816-nnav0npepl2lv7h086hhmrekli0bk1tt.apps.googleusercontent.com">
-	<meta property="og:title" content="세종문화회관">
-	<meta property="og:image" content="https://www.sejongpac.or.kr/static/portal/img/main/201105_mtimg.jpg">
-	<title>Footer | Template|</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width">
+<meta name="google-signin-client_id" content="113025989816-nnav0npepl2lv7h086hhmrekli0bk1tt.apps.googleusercontent.com">
+<meta property="og:title" content="세종문화회관">
+<meta property="og:image" content="https://www.sejongpac.or.kr/static/portal/img/main/201105_mtimg.jpg">
+<title>Footer | Template|</title>
+<!-- 인터넷 -->
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/aos.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/bbs_new.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/fonts.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/layout_new.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/main_new.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/pop_all.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/reset.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/responsive_new.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/sitemap.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/slider.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/style.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/sub.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="./resources/sejongpac/static/commons/js/jquery-3.6.0.min.js"></script>
+<script src="./resources/sejongpac/static/commons/js/jquery-ui.1.12.1.min.js"></script>
+<script src="./resources/sejongpac/static/portal/js/slider.js"></script>
+<script src="./resources/sejongpac/static/ticket/ticket.js"></script>
+<link rel="stylesheet" href="./resources/sejongpac/static/portal/css/aos.css">
+<script src="./resources/sejongpac/static/portal/inc/netfunnel.js" charset="UTF-8"></script>
+<style>
+body.hide-focus-ring *:focus {
+	outline: none !important;
+}
+
+/*popup*/
+.popup_layer {
 	
-	<!-- 인터넷 -->
-	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/aos.css">
-	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/bbs_new.css">
-	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/fonts.css">
-	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/layout_new.css">
-	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/main_new.css">
-	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/pop_all.css">
-	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/responsive_new.css">
-	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/sitemap.css">
-	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/slider.css">
-	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/style.css">
-	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/sub.css">
-	
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-	
-	<script src="./resources/sejongpac/static/commons/js/jquery-3.6.0.min.js"></script>
-	<script src="./resources/sejongpac/static/commons/js/jquery-ui.1.12.1.min.js"></script>
-	<script src="./resources/sejongpac/static/portal/js/slider.js"></script>
-	<script src="./resources/sejongpac/static/ticket/ticket.js"></script>
-	<link rel="stylesheet" href="./resources/sejongpac/static/portal/css/aos.css">
-	<script src="./resources/sejongpac/static/portal/inc/netfunnel.js" charset="UTF-8"></script>
-	
-	
-	<style>
-		body.hide-focus-ring *:focus {
-			outline: none !important;
-		}
-	</style>
+}
+
+/*팝업 박스*/
+.popup_box {
+	margin-top: 200px;
+	margin-left: 550px;
+	padding-top: 0px;
+	border: solid;
+	top: 50%;
+	left: 50%;
+	overflow: auto;
+	height: 400px;
+	width: 375px;
+	transform: translate(-50%, -50%);
+	z-index: 10020;
+	box-sizing: border-box;
+	background: #fff;
+	color: gray;
+	box-shadow: 2px 5px 10px 0px rgba(0, 0, 0, 0.35);
+	-webkit-box-shadow: 2px 5px 10px 0px rgba(0, 0, 0, 0.35);
+	-moz-box-shadow: 2px 5px 10px 0px rgba(0, 0, 0, 0.35);
+}
+/*컨텐츠 영역*/
+.popup_box .popup_cont {
+	padding: 50px;
+	line-height: 1.4rem;
+	font-size: 14px;
+}
+
+.popup_box .popup_cont h2 {
+	padding: 15px 0;
+	color: #333;
+	margin: 0;
+}
+
+.popup_box .popup_cont p {
+	border-top: 1px solid #666;
+	padding-top: 30px;
+	height: 400px;
+}
+/*버튼영역*/
+.popup_box .popup_btn {
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+	height: 70px;
+	background: #ECECEC;
+	word-break: break-word;
+}
+
+.popup_box .popup_btn a {
+	position: relative;
+	display: table-cell;
+	height: 70px;
+	font-size: 17px;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	background: #ECECEC;
+}
+
+.popup_box .popup_btn a:before {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 26px;
+	right: 29px;
+	width: 1px;
+	height: 21px;
+	background: #fff;
+	-moz-transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+.popup_box .popup_btn a:after {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 26px;
+	right: 29px;
+	width: 1px;
+	height: 21px;
+	background: #fff;
+	-moz-transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.popup_box .popup_btn a.close_day {
+	background: #5d5d5d;
+}
+
+.popup_box .popup_btn a.close_day:before, .popup_box .popup_btn a.close_day:after
+	{
+	display: none;
+}
+/*오버레이 뒷배경*/
+.popup_overlay {
+	position: fixed;
+	top: 0px;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	z-index: 1001;;
+	background: rgba(0, 0, 0, 0.5);
+}
+/*popup*/
+</style>
 </head>
 <body class="hide-focus-ring">
 	<section id="wrap">
@@ -90,6 +201,50 @@
 						<li><a href="/portal/singl/siteMap/list.do?menuNo=200162">사이트 맵</a></li>
 					</ul>
 				</div>
+
+				<script type="text/javascript">
+					//팝업 띄우기
+					function openPop(num) {
+						var num = num;
+
+						console.clear()
+
+						switch (num) {
+						case "1":
+							document.getElementById("popup_layer1").style.display = "block";
+							break;
+
+						case "2":
+							document.getElementById("popup_layer2").style.display = "block";
+							break;
+
+						default:
+							break;
+						}
+
+					}
+
+					//팝업 닫기
+					function closePop(num) {
+						var num = num;
+
+						console.clear()
+						switch (num) {
+						case "1":
+							document.getElementById("popup_layer1").style.display = "none";
+							break;
+
+						case "2":
+							document.getElementById("popup_layer2").style.display = "none";
+							break;
+
+						default:
+							break;
+						}
+
+					}
+				</script>
+
 			</div>
 			<div class="txt inner">
 				<div class="foot_notice">
