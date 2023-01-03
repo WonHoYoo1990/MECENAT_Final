@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
+	<meta charset="UTF-8"> 
 	<title>공연장 위치 | MECENAT |</title>
 	<!-- 인터넷 -->
 	<link rel="apple-touch-icon" sizes="180x180" href="/static/commons/img/favicon_180.png">
@@ -55,7 +55,7 @@
 	<section id="wrap">
 		<!-- Header Section Begin -->
 		<jsp:include page="../common/header.jsp" />
-		<!-- Header End 07-->
+		<!-- Header End 08-->
 		
 		<div id="depth_w" class="">
 			<div class="inner">
