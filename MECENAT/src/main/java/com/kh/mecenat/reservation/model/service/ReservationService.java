@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 import com.kh.mecenat.reservation.model.vo.Hall;
 import com.kh.mecenat.reservation.model.vo.Performance;
+import com.kh.mecenat.reservation.model.vo.Purchase;
 import com.kh.mecenat.reservation.model.vo.RentApplication;
+import com.kh.mecenat.reservation.model.vo.Seat;
 
 public interface ReservationService {
 
@@ -24,6 +26,16 @@ public interface ReservationService {
 
 	Performance getReservationPerformance(Performance pf);
 
+	Hall getHallSeats(String hallName);
 
+	int getPurchaseSeats(int perfoNo);
+
+	ArrayList<Seat> selectSoldOutSeats(int perfoNo);
+
+	ArrayList<Seat> selectAllSeats(String hallName);
+
+	void blockSeats(Purchase p);
+
+	int selectSeatNo(Seat s);
 
 }

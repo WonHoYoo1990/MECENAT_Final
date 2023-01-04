@@ -17,7 +17,6 @@
 		<result column="AGE_LIMIT" property="ageLimit"/>
 		<result column="PERFO_STATUS" property="perfoStatus"/>
 		<result column="PRICE" property="price"/>
-		<result column="PERFO_COUNT" property="perfoCount"/>
 		<result column="PERFO_DELETE_STATUS" property="perfoDeleteStatus"/>
 		<result column="ORIGIN_NAME" property="originName"/>
 		<result column="CHANGE_NAME" property="changeName"/>
@@ -74,10 +73,20 @@
 		<result column="RENTAL_CODE" property="rentalCode"/>
 		<result column="SEAT_NO" property="seatNo"/>
 		<result column="PAYMENT_NO" property="paymentNo"/>
+		<result column="PERFO_NO" property="perfoNo"/>
 		<result column="CUSTOMERSERVICE_STATUS" property="customerserviceStatus"/>
 		<result column="PURCHASE_DATE" property="purchaseDate"/>
 		<result column="RESERVATION_DATE" property="reservationDate"/>
 		<result column="TOTAL_PRICE" property="totalPrice"/>
+	</resultMap>
+	
+	<resultMap type="seat" id="seatResult">
+		<result column="SEAT_NO" property="seatNo"/>
+		<result column="SEAT_CODE" property="seatCode"/>
+		<result column="HALL_NAME" property="hallName"/>
+		<result column="SEAT_TIER" property="seatTier"/>
+		<result column="SEAT_PRICE" property="seatPrice"/>
+		<result column="SEAT_STATUS" property="seatStatus"/>
 	</resultMap>
 
 	<!-- #혜원만제 - 전체 공연리스트 조회(조정중) -->
@@ -95,8 +104,8 @@
 	<select id="selectPerformance" resultMap="performanceResult">
 		SELECT *
 		FROM PERFORMANCE
-		WHERE PERFO_STATUS = 'Y'
-		AND PERFO_NO = #{perfoNo}
+		WHERE PERFO_NO = #{perfoNo}
+		AND PERFO_STATUS = '공연중'
 	</select>
 	
 	<!-- #혜원만제 - 대관신청서 insert -->
@@ -134,6 +143,21 @@
 			, '승인대기')
 	</insert>
 	
+	<!-- #혜원만제 - 해당 공연의 판매된 전체 좌석 -->
+	<select id="selectSoldOutSeats" resultMap="seatResult">
+		SELECT *
+		FROM SEAT S
+		JOIN PURCHASE P ON (S.SEAT_NO = P.SEAT_NO)
+		WHERE P.PERFO_NO = #{perfoNo}
+	</select>
+	
+	<!-- #혜원만제 - 해당 공연의 판매된 전체 좌석 -->
+	<select id="selectAllSeats" resultMap="seatResult">
+		SELECT *
+		FROM SEAT
+		WHERE HALL_NAME = #{hallName}
+	</select>
+	
 	<!-- #혜원만제 - 공연장 선택 시 해당 공연장 전체 정보 조회 -->
 	<select id="selectHallInfo" resultMap="hallResult">
 		SELECT *
@@ -148,32 +172,41 @@
 		WHERE PERFO_EVENT_DATE = #{perfoEventDate}
 		AND RENTAL_CODE = #{rentalCode}
 	</select>
-
-
 	
-	<select id="selectRentApplication" resultMap="rentapplicationResult">
+	<!-- #혜원만제 - 홀 좌석 수 조회 -->
+	<select id="getHallSeats" resultMap="hallResult">
+		SELECT HALL_SEATS
+		FROM HALL
+		WHERE HALL_NAME = #{hallName}
+	</select>
+	
+	<!-- #혜원만제 - 예매완료된 좌석 조회 -->
+	<select id="getPurchaseSeats" resultType="_int">
+		SELECT COUNT(*)
+		FROM PURCHASE
+		WHERE PERFO_NO = #{perfoNo}
+	</select>
+	
+	<!-- #혜원만제 - 선택한 좌석 뒷사람이 못고르게 막기 -->
+	<insert id="blockSeats">
+		INSERT INTO PURCHASE (PURCHASE_NO, USER_ID, SEAT_NO, PERFO_NO)
+		VALUES(SEQ_PURCHASENO.NEXTVAL, #{userId}, #{seatNo}, #{perfoNo})
+	</insert>
+	
+	<!-- #혜원만제 - 특정 홀의 좌석고유번호 가져오기 -->
+	<select id="selectSeatNo" resultType="_int">
+		SELECT SEAT_NO
+		FROM SEAT
+		WHERE HALL_NAME = #{hallName}
+		AND SEAT_CODE = #{seatCode}
+	</select>
+	
+	<select id="selectRentApplication1" resultMap="rentapplicationResult">
 		SELECT * FROM RENTAPPLICATION WHERE RENTAL_CODE = #{rentalCode}
 	</select>
 	
-	
-	<update id="updateBoard">
-		UPDATE BOARD
-		SET BOARD_TITLE = #{boardTitle}
-		,BOARD_CONTENT = #{boardContent}
-		,ORIGIN_NAME = #{originName}
-		,CHANGE_NAME = #{changeName}
-		WHERE STATUS = 'Y'
-		AND BOARD_NO = #{boardNo}
-	</update>
+<!-- =================================================================================== -->
 
-	<update id="deleteBoard" parameterType="int">
-		UPDATE BOARD
-		SET STATUS = 'N'
-		WHERE BOARD_NO = #{boardNo}
-		AND STATUS = 'Y'
-	</update>
-	
-	
 	<!-- 관리자(유리) -->
 	<select id="selectRentalApplicationR" resultMap="rentapplicationResult">
 		SELECT * FROM RENTAPPLICATION
@@ -186,7 +219,6 @@
 		FROM RENTAPPLICATION
 		WHERE APPROVE_STATUS != '등록'
 	</select>
-	
 	
 	<!-- 승인관리 -->
 	<update id="updateApproveStatus">

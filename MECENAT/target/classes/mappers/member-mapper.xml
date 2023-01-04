@@ -58,6 +58,7 @@
 		<result column="ENROLL_DATE" property="enrollDate"/>
 		<result column="UPDATE_DATE" property="updateDate"/>
 		<result column="USER_GRADE" property="userGrade"/>
+		<result column="BLACKLIST" property="blacklist"/>
 		<result column="STATUS" property="status"/>
 	</resultMap>
 	
@@ -89,10 +90,7 @@
 	</select>
 	
 	<!-- 관리자) 멤버 전체 조회 -->
-	<select id="selectAllMemberList" resultMap="memberResultSet">
-		SELECT *
-		FROM MEMBER
-	</select>
+	
 	
 	<!-- 회원정보조회 -->
 	<select id="selectMember" parameterType="String" resultMap="memberResultSet">
@@ -119,5 +117,65 @@
 		WHERE USER_ID = #{userId}
 		AND STATUS = 'Y'
 	</update>
-		
+	
+	<update id="blackMember" parameterType="member">
+		UPDATE MEMBER
+		SET BLACKLIST = 'Y'
+		WHERE USER_ID = #{userId}
+		AND BLACKLIST = 'N'
+	</update>
+	
+	<update id="blackCancelMember" parameterType="member">
+		UPDATE MEMBER
+		SET BLACKLIST = 'N'
+		WHERE USER_ID = #{userId}
+		AND BLACKLIST = 'Y'
+	</update>
+	
+	
+	<select id="selectListMember" resultType="_int">
+		SELECT COUNT(*)
+		FROM MEMBER
+	</select>
+	
+	<select id="selectAllMemberList" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
+		ORDER BY STATUS DESC
+	</select>
+	
+	<select id="dList" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
+		WHERE USER_ID = #{userId}
+	</select>
+	
+	
+	<resultMap type="review" id="reviewResultSet">
+	  	<result column="REVIEW_NO" property="reviewNo"/>
+	  	<result column="REF_NO" property="refNo"/>
+	  	<result column="REVIEW_WRITER" property="reviewWriter"/>
+	  	<result column="STAR_RATE" property="starRate"/>	  	
+	  	<result column="REVIEW_CONTENT" property="content"/>	  	
+	  	<result column="WRITE_DATE" property="writeDate"/>
+	  	<result column="STATUS" property="status"/>	  	
+    </resultMap>
+	
+	<select id="selectReviewList" resultMap="reviewResultSet">
+		SELECT *
+		FROM REVIEW
+		WHERE REVIEW_WRITER = #{userId}
+	</select>
+	
+	
+	
+	
+	
+    
+
+    
+    
+  
+  	
+  	
 </mapper>

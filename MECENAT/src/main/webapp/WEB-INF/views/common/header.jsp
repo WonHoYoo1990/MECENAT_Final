@@ -209,7 +209,8 @@
 								
 								<c:if test="${loginUser.userId eq 'admin' }">
 									<li><a href="approveWaitForm.mana">승인관리</a></li>	
-									<li><a href="playPerformanceForm.mana">공연관리</a></li>	
+									<li><a href="playPerformanceForm.mana">공연관리</a></li>
+									<li><a href="memberManage.form">회원관리</a></li>
 								</c:if>
 								
 						</ul></li>
@@ -373,7 +374,7 @@
 					<div class="bot">
 						<div class="sns">
 							<!-- <span><a href="http://vt.tiktok.com/JX2o3Q/" target="_blank" title="새창으로 열립니다."><img src="/static/portal/img/common/m/sns_t.gif" alt="틱톡" /></a></span> -->
-							<span><a href="https://twitter.com/SEJONG_CENTER​" target="_blank" title="새창으로 열립니다."><img src="./resources/sejongpac/static/portal/img/common/m/sns_t2.gif" alt="트위터"></a></span> <span><a href="https://www.facebook.com/sjcenter" target="_blank" title="새창으로 열립니다."><img src="/static/portal/img/common/m/sns_f.gif" alt="페이스북"></a></span> <span><a href="http://blog.naver.com/sejongnanum" target="_blank" title="새창으로 열립니다."><img src="/static/portal/img/common/m/sns_b.gif" alt="블로그"></a></span> <span><a href="https://www.instagram.com/sejongcenter/" target="_blank" title="새창으로 열립니다."><img src="/static/portal/img/common/m/sns_i.gif" alt="인스타그램"></a></span> <span><a href="https://www.youtube.com/channel/UCCqaPJqI5q1kfO51qWWOjrQ" target="_blank" title="새창으로 열립니다."><img src="/static/portal/img/common/m/sns_y.gif" alt="유튜브"></a></span>
+							<span><a href="https://twitter.com/SEJONG_CENTER​" target="_blank" title="새창으로 열립니다."><img src="./resources/sejongpac/static/portal/img/common/m/sns_t2.gif" alt="트위터"></a></span> <span><a href="https://www.facebook.com/sjcenter" target="_blank" title="새창으로 열립니다."><img src="./resources/sejongpac/static/portal/img/common/m/sns_f.gif" alt="페이스북"></a></span> <span><a href="http://blog.naver.com/sejongnanum" target="_blank" title="새창으로 열립니다."><img src="/static/portal/img/common/m/sns_b.gif" alt="블로그"></a></span> <span><a href="https://www.instagram.com/sejongcenter/" target="_blank" title="새창으로 열립니다."><img src="/static/portal/img/common/m/sns_i.gif" alt="인스타그램"></a></span> <span><a href="https://www.youtube.com/channel/UCCqaPJqI5q1kfO51qWWOjrQ" target="_blank" title="새창으로 열립니다."><img src="/static/portal/img/common/m/sns_y.gif" alt="유튜브"></a></span>
 						</div>
 					</div>
 				</div>
@@ -524,6 +525,26 @@
 		
 		<!-- 베너  Start -->
 		<c:choose>
+			<c:when test="${fn:contains(path, 'setInfom')}">
+				<section id="sub_visual" style="height: 500px; ">
+					<div class="bg_w">
+						<div class="bg" style="background-image: url(./resources/sejongpac/static/commons/img/member/signupBackground.jpg);"></div>
+					</div>
+					<h2 class="sub-t" style="margin-top: 100px;">
+						<strong class="ani" style="opacity: 1;">좌석 배치도</strong>
+					</h2>
+				</section>
+			</c:when>
+			<c:when test="${fn:contains(path, 'directions')}">
+				<section id="sub_visual" style="height: 500px; ">
+					<div class="bg_w">
+						<div class="bg" style="background-image: url(./resources/sejongpac/static/commons/img/member/signupBackground.jpg);"></div>
+					</div>
+					<h2 class="sub-t" style="margin-top: 100px;">
+						<strong class="ani" style="opacity: 1;">오시는 길</strong>
+					</h2>
+				</section>
+			</c:when>
 			<c:when test="${fn:contains(path, 'subMainPerformance')}">
 				<section id="sub_visual" style="height: 500px; ">
 					<div class="bg_w">

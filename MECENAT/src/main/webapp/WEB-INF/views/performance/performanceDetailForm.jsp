@@ -139,7 +139,7 @@
 </head>
 <body>
 	<jsp:include page="../common/header.jsp" />
-	<%-- 
+
 	<h1 align="center">detailForm</h1>
 
 	<div align="center">
@@ -149,18 +149,12 @@
 		<p>${pList. director}</p>
 		<p>${pList. cast}</p>
 		<p>${pList. perfoContent}</p>
-		<p>${pList. startTime}</p>
 		<p>${pList. runningTime}</p>
 		<p>${pList. ageLimit}</p>
 		<p>${pList. price}</p>
 		<p>${pList. originName}</p>
 		<p>${pList. changeName}</p>
-		<p>${pList. eventDate}</p>
-		<p>${pList. eventTime}</p>	
-		<p>${pList. hallName}</p>
-		
 	</div>
-	--%>
 
 
 
@@ -176,9 +170,13 @@
 						<div class="sv_top">
 							<div class="in">
 								<div class="poster">
+									<!-- 포스터 테스트 -->
+									<!-- <img src="/static/portal/img/thumb/poster_temp.jpg" alt="" /> -->
+
+									
 									<c:choose>
-										<c:when test="${not empty pList.changeName}">
-											<img src="${pList.changeName}">
+										<c:when test="${not empty p.originName}">
+											<img src="${p.changeName}">
 										</c:when>
 										<c:otherwise>
 											<img src="resources/performanceFiles/nocover.png">
@@ -192,20 +190,19 @@
 								<div class="txt">
 									<div class="tit">
 										<h2 class="t">${pList. perfoTitle}</h2>
-										
 									</div>
 									<ul class="detail">
-										<li><span class="dt">기간</span><p id="date"></p></li>
+										<li><span class="dt">기간</span> 2023.01.05 (목)</li>
 										<li><span class="dt">장소</span> 세종대극장</li>
+										<li><span class="dt">시간</span> 오후 7시 30분&nbsp; (공연시간 :
+											120 분 / 인터미션 : 15 분)</li>
 										<li><span class="dt">연령</span>${pList. ageLimit}</li>
 										<li><span class="dt">티켓</span>${pList. price}</li>
-										<li><span class="dt">시간</span><p id="time"></p></li>
-										<li><span class="dt">홀</span>${pList. hallName}</li>
+
 										<li><span class="dt">문의</span>KH교육 당산지원 1234-4567</li>
-										
+
 									</ul>
-									
-									
+
 									<div class="schedule_btn2 clearfix mt20">
  										<form action="testrCode.con" method="post">
  											<input type="hidden" value="${pList. rentalCode}" name="rCode">
@@ -276,7 +273,7 @@
 
 
 			<c:choose>
-				<c:when test="${not empty loginUser }">
+				<c:when test="${not empty loginUser and loginUser.blacklist eq 'N'}">
 					                <fieldset>
                   <span class="text-bold"></span>
                         <input type="radio" class="reviewStar" name="reviewStar" value=5 id="rate1"><label for="rate1">★</label>
@@ -307,7 +304,7 @@
 	
 	                <div>
 	                  <textarea type="text" class="col-auto form-control" name=reviewContents id="reviewContents"
-	                  placeholder="후기 작성 하시오" readonly></textarea>
+	                  placeholder="블랙리스트 및 미로그인 유저는 후기 작성불가" readonly></textarea>
 	                </div>
 				</c:otherwise>
 			</c:choose>
@@ -345,39 +342,14 @@
 				</article>
 				
 
+<!-- aaa -->
+
 			</div>
 		</div>
 
 	</div>
 	
-	<!-- 문자열(date, time)분할->배열에 넣어주는 script -->
 	<script>
-        
-		var eventD="${pList. eventDate}";
-		var eventT="${pList. eventTime}";
-		
-		var arrD = eventD.split(",");
-		var arrT = eventT.split(",");
-		
-		var str1 = "";
-		
-		var element1 = document.getElementById("time");
-		
-		for(var i=0; i<arrD.length; i++){
-			str1 += arrD[i]+ " / " + arrT[i] + "\n";
-		}
-		element1.innerText = str1;
-		
-		var element2 = document.getElementById("date");
-		
-		if(arrD[0] != arrD[arrD.length-1]){
-			element2.innerText = arrD[0] + " ~ " + arrD[arrD.length-1];
-		} else{
-			element2.innerText = arrD[0];
-		}
-		
-		
-    </script>
 	$(function(){
 		selectReviewList();	
 	})
@@ -455,5 +427,5 @@
 	
 	
 	<jsp:include page="../common/footer.jsp" />
-	</body>
+</body>
 </html>

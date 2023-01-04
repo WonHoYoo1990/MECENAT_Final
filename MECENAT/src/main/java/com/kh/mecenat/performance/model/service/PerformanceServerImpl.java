@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.mecenat.common.PageInfo;
 import com.kh.mecenat.performance.model.dao.PerformanceDao;
 import com.kh.mecenat.performance.model.vo.Performance;
 import com.kh.mecenat.performance.model.vo.Review;
@@ -24,6 +25,8 @@ public class PerformanceServerImpl implements PerformanceService {
 		return performanceDao.selectListPerformance(SqlSession);
 	}
 
+	
+	
 	@Override
 	public int insertPerformance(Performance p) {
 		return performanceDao.insertPerformance(SqlSession, p);
@@ -67,21 +70,10 @@ public class PerformanceServerImpl implements PerformanceService {
 	public ArrayList<Performance> subMainPerformanceSearchSort2(String sdate) {
 		return performanceDao.subMainPerformanceSearchSort2(SqlSession, sdate);
 	}
-
-	// 서브 메인페이지 내에서 공연 리스트 검색 조회
+	
+	
 	@Override
-	public ArrayList<Performance> subMainPerformanceSearch(String searchWrd) {
-		return performanceDao.subMainPerformanceSearch(SqlSession, searchWrd);
-	}
-
-	// 서브 메인페이지 내에서 검색어 리스트 개수 조회
-	@Override
-	public int subMainPerformanceSearchCount(String searchWrd) {
-		return performanceDao.subMainPerformanceSearchCount(SqlSession, searchWrd);
-	}
-
-	@Override
-	public ArrayList<Review> selectRevieList(int rno) {
+	public ArrayList<Review> selectReviewList(int rno) {
 		// TODO Auto-generated method stub
 		return performanceDao.selectReviewList(SqlSession, rno);
 	}
@@ -106,26 +98,37 @@ public class PerformanceServerImpl implements PerformanceService {
 	public int updateRentalAppStatus(int rno) {
 		return performanceDao.updateRentalAppStatus(SqlSession, rno);
 	}
-
+	
+	@Override
+	public ArrayList<Performance> selectPlayPerformance(PageInfo pi) {
+		return performanceDao.selectPlayPerformance(SqlSession, pi);
+	}
 	@Override
 	public ArrayList<Performance> selectPlayPerformance() {
 		return performanceDao.selectPlayPerformance(SqlSession);
 	}
 
+
+
 	@Override
-	public int updateStatus(Performance p) {
-		return performanceDao.updateStatus(SqlSession, p);
+	public ArrayList<Performance> selectListgenre(String genreName) {
+		// TODO Auto-generated method stub
+		return performanceDao.selectListgenre(SqlSession, genreName);
 	}
 
 	@Override
-	public int performanceDelete(int rcode) {
-		return performanceDao.performanceDelete(SqlSession, rcode);
+	public int selectListCount() {
+		return performanceDao.selectListCount(SqlSession);
 	}
 
 	@Override
-	public int nopePerformance(int rcode) {
-		return performanceDao.nopePerformance(SqlSession, rcode);
+	public ArrayList<Performance> selectPlayEndPerformance(PageInfo pi) {
+		return performanceDao.selectPlayEndPerformance(SqlSession, pi);
 	}
 
+	@Override
+	public int selectEndListCount() {
+		return performanceDao.selectEndListCount(SqlSession);
+	}
 
 }

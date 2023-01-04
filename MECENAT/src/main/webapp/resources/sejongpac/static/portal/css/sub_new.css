@@ -402,15 +402,15 @@ a.btn-st3{line-height: 4.286em;}
 .location .tit .t dt span{display: block;}
 .location .tit .t dd{margin-top: 2em;padding-top:2.5em;background: url('') left top no-repeat; background-size:1.500em;line-height: 1.35;}
 .location .bul-dot .color-purple{color: #AE4A00}
-.location .tit .t .add{background-image: url('../img/customer/loc/ico_add.png')}
-.location .tit .t .tel{background-image: url('../img/customer/loc/ico_tel.png')}
+.location .tit .t .add{background-image: url("../../img/customer/ico_add.png");}
+.location .tit .t .tel{background-image: url('../../img/customer/ico_tel.png')}
 .location .tit .t .link{padding-top: 0;}
 .location .tit .t .link p{font-size: 16px;font-size: 1rem;margin-bottom: 2em;line-height: 1.5;}
 .location .tit .t .link a{display: block;text-align: center;font-size: 14px;font-size: 0.875rem;font-weight: 500;width: 15.000em;height: 4.286em;line-height: 4em;background: #fff; border:1px solid #000; color: #000}
 .location .tit .t .link span{padding-left: 2.5em;background: url('.') left center no-repeat;background-size:1.429em;}
 .location .tit .t .naver{margin-top: 5px;}
-.location .tit .t .daum span{background-image: url('../img/customer/loc/loc_d.png')}
-.location .tit .t .naver span{background-image: url('../img/customer/loc/loc_n.png')}
+.location .tit .t .daum span{background-image: url('../img/customer/loc_d.png')}
+.location .tit .t .naver span{background-image: url('../img/customer/loc_n.png')}
 .location .tit .area{width: 1050px;float: right;}
 .loc_tabs{letter-spacing: -0.08em;padding-right: 95px;word-break:keep-all}
 .loc_tabs .active{color:#fff;background: #000 url('../img/customer/loc/tabs_active.png') 95% center no-repeat;font-weight: 700; width: 100%}

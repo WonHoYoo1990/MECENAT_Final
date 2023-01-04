@@ -28,6 +28,7 @@
 		<typeAlias
 			type="com.kh.mecenat.performance.model.vo.Performance"
 			alias="performanceMana" />
+		<typeAlias type="com.kh.mecenat.reservation.model.vo.Seat" alias="seat"/>
 		<typeAlias type="com.kh.mecenat.performance.model.vo.Review"
 			alias="review" />
 		<typeAlias type="com.kh.mecenat.notice.model.vo.Notice"

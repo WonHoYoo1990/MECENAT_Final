@@ -21,5 +21,7 @@ public class Member {
 	private Date enrollDate; // ENROLL_DATE DATE
 	private Date updateDate; // UPDATE_DATE DATE
 	private String userGrade; // USER_GRADE NUMBER
+	private String blacklist;
 	private String status; // STATUS VARCHAR2
 }
+
