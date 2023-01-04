@@ -125,7 +125,7 @@
 						<ul class="depth2">
 							<li class="arrow"><a href="/portal/main/contents.do?menuNo=200082">이용안내</a>
 								<ul class="depth3">
-									<li><a href="/portal/main/contents.do?menuNo=200082">오시는길</a></li>
+									<li><a href="directions.cs">오시는길</a></li>
 									<li><a href="/portal/main/contents.do?menuNo=200049">편의시설</a></li>
 									<li><a href="/portal/main/contents.do?menuNo=200050">장애인해피콜서비스</a></li>
 									<li><a href="/portal/main/contents.do?menuNo=200051">분실물찾기</a></li>
@@ -147,7 +147,7 @@
 									<li><a href="/portal/main/contents.do?menuNo=200087">예매 취소, 변경안내</a></li>
 									<li><a href="/portal/main/contents.do?menuNo=200173">예매약관</a></li>
 							</ul></li>
-							<li><a href="/portal/main/contents.do?menuNo=200047">관람예절</a></li>
+							<li><a href="etiquette.cs">관람예절</a></li>
 					</ul></li>
 					<li><a href="https://www.sjartgroups.or.kr/sjartgroups/main/main.do" target="_blank" title="새창으로 열립니다.">서울시예술단</a>
 						<ul class="depth2">

@@ -35,16 +35,13 @@ public class PerformanceController {
 //	전체 공연 목록 뽑기('status=>"상영중(나중에 변경해야징)")
 	@RequestMapping("list.perf")
 	public String performanceList(Model model) {
-		
+
 		ArrayList<Performance> pList = perfoService.selectListPerformance();
-		
+
 		model.addAttribute("pList", pList);
 
 		return "performance/performanceListView2";
 	}
-	
-	
-	
 
 //	공연 등록폼 이동
 	@RequestMapping("insertForm.perf")
@@ -61,8 +58,6 @@ public class PerformanceController {
 		model.addAttribute("updateStatus", updateStatus);
 		return "performance/performanceInsert2";
 	}
-	
-	
 
 //	관리자용 공연 등록
 	@PostMapping("insert.perf")
@@ -198,58 +193,56 @@ public class PerformanceController {
 	public String setInfom() {
 		return "performance/setInfom";
 	}
-	
+
 //	유리) 상영중인 공연 관리하기
 	@RequestMapping("playPerformanceForm.mana")
-	public String playPerformanceForm(@RequestParam(value="currentPage", defaultValue = "1") int currentPage,  
-									  @RequestParam(value="currentPageUnd", defaultValue = "1") int currentPageUnd, Model model)  {
-		
+	public String playPerformanceForm(@RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
+			@RequestParam(value = "currentPageUnd", defaultValue = "1") int currentPageUnd, Model model) {
+
 		int listCount = perfoService.selectListCount();
 		int listEndCount = perfoService.selectEndListCount();
 		int pageLimit = 10;
 		int boardLimit = 2;
-		
+
 		System.out.println(listCount);
-		
+
 		PageInfo pi = Pagination.getPageinfo(listCount, currentPage, pageLimit, boardLimit);
 		PageInfo piUnd = Pagination.getPageinfo(listEndCount, currentPageUnd, pageLimit, boardLimit);
-		
+
 		model.addAttribute("pi", pi);
 		model.addAttribute("piUnd", piUnd);
-		
-		
+
 		ArrayList<Performance> eList = perfoService.selectPlayEndPerformance(piUnd);
 		System.out.println(eList);
 		ArrayList<Performance> pList = perfoService.selectPlayPerformance(pi);
-		
+
 //		ArrayList<Performance> pList = perfoService.selectPlayPerformance();
-		
+
 		String[] dateArr = new String[pList.size()];
-		String sp ="";
-		for(int i=0; i<pList.size(); i++) {
+		String sp = "";
+		for (int i = 0; i < pList.size(); i++) {
 			dateArr[i] = pList.get(i).getEventDate();
-			
+
 			String[] dateSArr = dateArr[i].split(",");
-			
-			sp="";
-			
-			if(dateSArr.length != 1) {
-				sp += dateSArr[0] + " ~ " + dateSArr[dateSArr.length-1];
-			}else {
-				sp+= dateSArr[0];
+
+			sp = "";
+
+			if (dateSArr.length != 1) {
+				sp += dateSArr[0] + " ~ " + dateSArr[dateSArr.length - 1];
+			} else {
+				sp += dateSArr[0];
 			}
 			dateArr[i] = sp;
-			
+
 			pList.get(i).setEventDate(sp);
-			
+
 //			System.out.println(pList.get(i).getEventDate());
 		}
 		model.addAttribute("eList", eList);
 		model.addAttribute("pList", pList);
-		
+
 		return "performance/playPerformanceForm";
 	}
-
 
 	// 서브 메인페이지 이동
 	@RequestMapping("subMainPerformance.perf")
@@ -298,96 +291,121 @@ public class PerformanceController {
 
 		return mv;
 	}
+
 	// 서브 메인페이지 내에서 공연 리스트 관심순 정렬
 	@RequestMapping("subMainPerformanceSearchSort2.perf")
 	public ModelAndView subMainPerformanceSearchSort2(String sdate, ModelAndView mv) {
-		
+
 		System.out.println("하잉?");
 		System.out.println("sdate : " + sdate);
-		
+
 		ArrayList<Performance> pList = perfoService.subMainPerformanceSearchSort2(sdate);
 		System.out.println("pList : " + pList);
-		
+
 		mv.addObject("pList", pList).setViewName("performance/subMainPerformanceList");
-		
+
 		return mv;
 	}
 
-	// asdfasdfasdfasdfasdfasdfasdf"asdf.mana"
-	@ResponseBody
-	@RequestMapping(value = "testrCode.con", produces = "application/json; charset=UTF-8")
-	public void asdf(int rCode) {
-		System.out.println("뚜루뚜뚜뚜뽀롱뽀뽀뽀" + rCode);
+	// 서브 메인페이지 내에서 공연 검색어 리스트 검색 조회
+	@RequestMapping("subMainPerformanceSearch.perf")
+	public ModelAndView subMainPerformanceSearch(String searchWrd, ModelAndView mv) {
+
+		System.out.println("하잉");
+
+		System.out.println("searchWrd : " + searchWrd);
+
+		ArrayList<Performance> pList = perfoService.subMainPerformanceSearch(searchWrd);
+		System.out.println("pList : " + pList);
+
+		mv.addObject("pList", pList).setViewName("performance/subMainPerformanceList");
+
+		return mv;
 	}
-	
-		@ResponseBody
+
+	// 서브 메인페이지 내에서 검색어 리스트 개수 조회
+	@RequestMapping("subMainPerformanceSearchCount.perf")
+	@ResponseBody
+	public int subMainPerformanceSearchCount(String searchWrd) {
+
+		int listCount = perfoService.subMainPerformanceSearchCount(searchWrd);
+
+		System.out.println("listCount : " + listCount);
+
+		return listCount;
+	}
+
+	@ResponseBody
 	@RequestMapping(value = "statusChange.perf")
 	public void updateStatus(int rcode, String statusVal) {
-		
+
 		System.out.println(rcode + statusVal);
-		
+
 		Performance p = new Performance();
 		p.setRentalCode(rcode);
 		p.setPerfoStatus(statusVal);
-		
+
 		System.out.println(p);
-		
+
 		int updateStatus = perfoService.updateStatus(p);
-		
+
 //		if (updateStatus >0){
 //			System.out.println("update했음");
 //		} else {
 //			System.out.println("실패");
 //		}
-		
+
 	}
-	
-		//댓글 리스트 조회
-		@ResponseBody
-		@RequestMapping(value="rlist.bo",produces="application/json; charset=UTF-8")
-		public String selectReviewList(int rno) {
-			
-			ArrayList<Review> list = perfoService.selectReviewList(rno);		
-			
+
+	// 댓글 리스트 조회
+	@ResponseBody
+	@RequestMapping(value = "rlist.bo", produces = "application/json; charset=UTF-8")
+	public String selectReviewList(int rno) {
+
+		ArrayList<Review> list = perfoService.selectReviewList(rno);
+
 //			System.out.println(rno);
-			
-			return new Gson().toJson(list);
-			
-		}
-		@ResponseBody
-		@RequestMapping(value="rinsert.bo", produces="text/html; charset=UTF-8")
-		public String insertReview(Review r) {
-			
-			int result = perfoService.insertReview(r);
-			
+
+		return new Gson().toJson(list);
+
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "rinsert.bo", produces = "text/html; charset=UTF-8")
+	public String insertReview(Review r) {
+
+		int result = perfoService.insertReview(r);
+
 //			System.out.println(result);
-			
-			return result > 0? "yes" : "no";
-		}
-		@RequestMapping("list.new")
-		public String kkkkk(Model model) {
-			 System.out.println("dd");
-			
-			 ArrayList<Performance> pList = perfoService.selectListNew();
-			 
-			 System.out.println(pList);
-			 
-			 model.addAttribute("pList", pList);
-			 
-			 return "performance/performanceListView2";
-		}
-		@RequestMapping("list.genre")
-		public String genre(Model model, String genreName) {
-			
-			System.out.println(genreName);
-			
-			ArrayList<Performance> pList = perfoService.selectListgenre(genreName);
-			
-			System.out.println(pList);
-			
-			model.addAttribute("pList", pList);
-			
-			return "performance/performanceListView2";
-		}
-		
+
+		return result > 0 ? "yes" : "no";
+	}
+
+	@RequestMapping("list.new")
+	public String kkkkk(Model model) {
+		System.out.println("dd");
+
+		ArrayList<Performance> pList = perfoService.selectListNew();
+
+		System.out.println(pList);
+
+		model.addAttribute("pList", pList);
+
+		return "performance/performanceListView2";
+	}
+
+	@RequestMapping("list.genre")
+	public String genre(Model model, String genreName) {
+
+		System.out.println(genreName);
+
+		ArrayList<Performance> pList = perfoService.selectListgenre(genreName);
+
+		System.out.println(pList);
+
+		model.addAttribute("pList", pList);
+
+		return "performance/performanceListView2";
+	}
+
 }
