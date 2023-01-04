@@ -22,20 +22,11 @@ public class Performance {
 	private int ageLimit;
 	private String perfoStatus;
 	private int price;
-	private int perfoCount;
-	private String perfoDeleteStatus;
 	private String originName;
 	private String changeName;
 	
 	private String eventTime;
 	private String eventDate;
-	
-	private String agentName;
-	private String agentPhone;
-	private String agentEmail;
-	
-	private String hallName;
-	
 	
 
 }

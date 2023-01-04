@@ -6,8 +6,10 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.mecenat.common.PageInfo;
 import com.kh.mecenat.member.model.dao.MemberDao;
 import com.kh.mecenat.member.model.vo.Member;
+import com.kh.mecenat.performance.model.vo.Review;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -84,5 +86,58 @@ public class MemberServiceImpl implements MemberService {
 	public int updateMember(Member m) {
 		return memberDao.updateMember(sqlSession,m);
 	}
+
+	//블랙시키기
+	@Override
+	public int blackMember(String userId) {
+		// TODO Auto-generated method stub
+		return memberDao.blackMember(sqlSession, userId);
+	}
+	
+	//블랙해제
+	@Override
+	public int blackCancelMember(String userId) {
+		// TODO Auto-generated method stub
+		return memberDao.blackCancelMember(sqlSession, userId);
+	}
+
+	
+	@Override
+	public int selectListCount() {
+		// TODO Auto-generated method stub
+		return memberDao.selectListCount(sqlSession);
+	}
+
+	@Override
+	public ArrayList<Member> selectAllMemberList(PageInfo pi) {
+		// TODO Auto-generated method stub
+		return memberDao.selectAllMemberList(sqlSession, pi);
+	}
+
+
+	@Override
+	public Member selectm(String userId) {
+		// TODO Auto-generated method stub
+		return memberDao.selectm(sqlSession, userId);
+	}
+
+	
+	@Override
+	public ArrayList<Review> selectReviewList(String userId) {
+		// TODO Auto-generated method stub
+		return memberDao.selectReviewList(sqlSession, userId);
+	}
+
+	
+	
+	
+	
+	
+
+	
+	
+
+	
+
 
 }

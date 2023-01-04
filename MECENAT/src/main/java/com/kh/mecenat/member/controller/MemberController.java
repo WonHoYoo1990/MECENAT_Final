@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
@@ -27,8 +28,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.kh.mecenat.common.PageInfo;
+import com.kh.mecenat.common.Pagination;
 import com.kh.mecenat.member.model.service.MemberService;
 import com.kh.mecenat.member.model.vo.Member;
+import com.kh.mecenat.performance.model.vo.Review;
 
 
 @Controller
@@ -72,7 +77,7 @@ public class MemberController {
 		String result1 = regbdDate.substring(0, 10);
 		
 		String[] arr2 = result1.split("-");
-
+		
 		model.addAttribute("arr2", arr2); 
 		
 		return "member/updateMemberForm";
@@ -386,5 +391,100 @@ public class MemberController {
 			}
 	}
 		///d
+		
+//		//관리자 회원 리스트
+//		@RequestMapping("memberManage.form")
+//		public String memberListForm(@RequestParam(value="currentPage",defaultValue="1") int currentPage,Model model) {
+//			
+//			ArrayList<Member> mList = memberService.selectAllMemberList();
+//			
+//			System.out.println(mList);
+//			
+//			model.addAttribute("mList", mList);
+//			
+//			return "member/manageAllMember";
+//		}
+		
+		//관리자 회원 리스트
+		@RequestMapping("memberManage.form")
+		public String memberListForm(@RequestParam(value="currentPage",defaultValue="1") int currentPage,Model model) {
+					
+			
+			int listCount = memberService.selectListCount();
+			int pageLimit = 10;
+			int boardLimit = 10;
+			
+			PageInfo pi = Pagination.getPageinfo(listCount, currentPage, pageLimit, boardLimit);
+
+			ArrayList<Member> mList = memberService.selectAllMemberList(pi);
+					
+			System.out.println(mList);
+					
+			model.addAttribute("mList", mList);
+			model.addAttribute("pi", pi);
+					
+		    return "member/manageAllMember";
+		}
+		
+		//강퇴시켜버리기
+		@RequestMapping("delete.user")
+		public ModelAndView kickMember(String userId, HttpSession session, ModelAndView mv) {
+			
+			int result = memberService.deleteMember(userId);
+
+			if(result > 0) {
+//				session.setAttribute("alertMsg", "강퇴 시켜버렸다~");
+				mv.setViewName("redirect:/memberManage.form");
+			} else {
+//				session.setAttribute("alertMsg", "강퇴 실패ㅠㅠ");
+				mv.addObject("errorMsg", "탈퇴 처리 실패").setViewName("common/errorPage");
+			}
+			
+			return mv;	
+		}
+		//블랙
+		@RequestMapping("black.user")
+		public ModelAndView blackMember(String userId, ModelAndView mv) {
+			
+			int result = memberService.blackMember(userId);
+			
+			if(result > 0) {
+				mv.setViewName("redirect:/memberManage.form");
+			} else {
+				mv.addObject("errorMsg", "블랙 처리 실패").setViewName("common/errorPage");
+			}
+			
+			return mv;
+		}
+		
+		//블랙풀기
+		@RequestMapping("blackc.user")
+		public ModelAndView blackCancelMember(String userId, ModelAndView mv) {
+			
+			int result = memberService.blackCancelMember(userId);
+			
+			if(result > 0) {
+				mv.setViewName("redirect:/memberManage.form");
+			} else {
+				mv.addObject("errorMsg", "블랙 해제 실패").setViewName("common/errorPage");
+			}
+			
+			return mv;
+		}
+		
+
+		@RequestMapping("kk.kk")
+		public ModelAndView ddd(String userId, ModelAndView mv) {
+			Member m = memberService.selectm(userId);
+			ArrayList<Review>list = memberService.selectReviewList(userId);
+			
+			mv.addObject("m", m).setViewName("member/ma");
+			mv.addObject("list", list).setViewName("member/ma");
+			
+			System.out.println(list);
+			
+			return mv;
+		}
+
 	
 }
