@@ -9,6 +9,8 @@ import com.kh.mecenat.reservation.model.vo.RentApplication;
 public interface PerformanceService {
 	// 공연 목록 뽑아오기
 	public ArrayList<Performance> selectListPerformance();
+	
+	
 
 	public int insertPerformance(Performance p);
 
@@ -35,23 +37,19 @@ public interface PerformanceService {
 
 	// 서브메인 공연 리스트 관심순 조회
 	public ArrayList<Performance> subMainPerformanceSearchSort2(String sdate);
-
-	// 서브 메인페이지 내에서 공연 리스트 검색 조회
-	public ArrayList<Performance> subMainPerformanceSearch(String searchWrd);
-
-	// 서브 메인페이지 내에서 검색어 리스트 개수 조회
-	public int subMainPerformanceSearchCount(String searchWrd);
-
-	public ArrayList<Review> selectRevieList(int rno);
+	
 
 	public int insertReview(Review r);
 
-	public ArrayList<Performance> selectPlayPerformance();
+	public ArrayList<Review> selectReviewList(int rno);
 
-	public int updateStatus(Performance p);
+	public ArrayList<Performance> selectListNew();
 
-	public int performanceDelete(int rcode);
+	public ArrayList<Performance> selectListgenre(String genreName);
 
-	public int nopePerformance(int rcode);
+	
+	
+	
+	
 
 }
