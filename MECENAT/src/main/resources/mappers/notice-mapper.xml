@@ -5,15 +5,27 @@
 	<resultMap type="notice" id="noticeResultSet">
 		<result column="NOTICE_NO" property="noticeNo"/>
 		<result column="BOARD_CODE" property="boardCode"/>
+		<result column="BOARD_NAME" property="boardName"/>
 		<result column="USER_ID" property="userId"/>
 		<result column="NOTICE_TITLE" property="noticeTitle"/>
 		<result column="NOTICE_CONTENT" property="noticeContent"/>
 		<result column="ORIGIN_NAME" property="originName"/>
 		<result column="CHANGE_NAME" property="changeName"/>
 		<result column="NOTICE_DATE" property="noticeDate"/>
-		<result column="NOTICE_COUNT" property="noticeCount"/>
 		<result column="STATUS" property="status"/>
+		<result column="NOTICE_COUNT" property="noticeCount"/>
 	</resultMap>
+	
+	<resultMap type="noticeType" id="noticeTypeResultSet">
+		<result column="BOARD_CODE" property="boardCode"/>
+		<result column="BOARD_NAME" property="boardName"/>
+	</resultMap>
+	
+	<select id="selectCategoryList" resultMap="noticeTypeResultSet">
+		SELECT BOARD_CODE,
+			   BOARD_NAME
+		FROM NOTICE_TYPE
+	</select>
 	
 	<!-- 공지사항 개수 조회 -->
 	<select id="selectListCount" resultType="_int">
@@ -26,12 +38,16 @@
 	<select id="selectList" resultMap="noticeResultSet">
 		SELECT NOTICE_NO,
 				USER_ID,
+				BOARD_CODE,
+				BOARD_NAME,
 				NOTICE_TITLE,
 				ORIGIN_NAME,
 				NOTICE_DATE,
 				NOTICE_COUNT
 		FROM NOTICE 
+        JOIN NOTICE_TYPE USING (BOARD_CODE)
 		WHERE STATUS = 'Y' 
+		AND BOARD_CODE LIKE '%'||#{boardCode}||'%'
 		ORDER BY NOTICE_NO DESC
 	</select>
 	
@@ -47,6 +63,7 @@
 	<select id="selectBoard" resultMap="noticeResultSet">
 		SELECT NOTICE_NO,
 				USER_ID,
+				BOARD_CODE,
 				NOTICE_TITLE,
 				NOTICE_CONTENT,
 				NOTICE_DATE,
@@ -76,7 +93,7 @@
 					CHANGE_NAME)
 					
 					VALUES(SEQ_NOTICENO.NEXTVAL
-							,'1'
+							,#{boardCode}
 							,#{noticeTitle}
 							,#{noticeContent}
 							,#{userId}
@@ -99,11 +116,13 @@
 	<update id="updateNotice">
 		UPDATE NOTICE
 		SET NOTICE_TITLE = #{noticeTitle}
+		   ,BOARD_CODE = #{boardCode}
 		   ,NOTICE_CONTENT = #{noticeContent}
 		   ,ORIGIN_NAME = #{originName}
 		   ,CHANGE_NAME = #{changeName}
 		WHERE NOTICE_NO = #{noticeNo}
 		AND STATUS = 'Y'
 	</update>
+	
 
 </mapper>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kh.mecenat.common.PageInfo;
 import com.kh.mecenat.notice.model.dao.NoticeDao;
 import com.kh.mecenat.notice.model.vo.Notice;
+import com.kh.mecenat.notice.model.vo.NoticeType;
 
 @Service
 public class NoticeServiceImpl implements NoticeService{
@@ -28,8 +29,8 @@ public class NoticeServiceImpl implements NoticeService{
 
 	//공지사항 리스트+페이칭 처리
 	@Override
-	public ArrayList<Notice> selectList(PageInfo pi) {
-		return noticeDao.selectList(sqlSession,pi);
+	public ArrayList<Notice> selectList(PageInfo pi, String boardCode) {
+		return noticeDao.selectList(sqlSession,pi,boardCode);
 	}
 	
 	//공지사항 게시글 조회수 
@@ -61,5 +62,13 @@ public class NoticeServiceImpl implements NoticeService{
 	public int updateNotice(Notice n) {
 		return noticeDao.updateNotice(sqlSession, n);
 	}
+
+	//공지사항 타입 리스트 받아오기
+	@Override 
+	public ArrayList<NoticeType> selectCategoryList(String boardCode) {
+		return noticeDao.selectCategoryList(sqlSession, boardCode);
+	}
+
+
 
 }

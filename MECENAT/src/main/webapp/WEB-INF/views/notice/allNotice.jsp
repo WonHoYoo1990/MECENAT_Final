@@ -15,6 +15,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style>
+.bbs-list > tbody{
+ 
+}
+th:nth-of-type(5) { display: none; }
+td:nth-of-type(5) { display: none; }
+</style>
+
 </head>
 <body>
 <section id="wrap">
@@ -143,12 +151,12 @@
 	<div class="bbs-category clearfix">
 
 		<ul class="clearfix tabs-st3" id="etc_gubun">
-			<li class="active"><a href="#"><span>전체</span></a></li>
-			<li class=""><a href="#"><span>채용공고</span></a></li>
-			<li class=""><a href="#"><span>대관공고</span></a></li>
-			<li class=""><a href="#"><span>안내</span></a></li>
-			<li class=""><a href="#"><span>합격자발표</span></a></li>
-			<li class=""><a href="#"><span>티켓오픈안내</span></a></li>
+			<li class="active"><a href=""><span>전체</span></a></li>
+			<li class=""><a href=""><span>채용공고</span></a></li>
+			<li class=""><a href=""><span>대관공고</span></a></li>
+			<li class=""><a href=""><span>안내</span></a></li>
+			<li class=""><a href=""><span>합격자발표</span></a></li>
+			<li class=""><a href=""><span>티켓오픈안내</span></a></li>
 		</ul>
 
 		<div class="txt">MECENAT의 공지사항 및 최신 소식을 알려드립니다.</div>
@@ -178,9 +186,10 @@
 				<th scope="col" class="tit">제목</th>
 				<th scope="col" class="date">작성일</th>
 				<th scope="col" class="hit">조회수</th>
+				<th scope="col" class="boardCode">boardCode</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody >
 				<tr>
 					<td>
 						<span>공지</span>
@@ -191,15 +200,18 @@
 				</tr>
 				<c:forEach var="n" items="${list}">
 					<tr onclick="location.href='detail.no?nno=${n.noticeNo}'">
-						<td>${n.noticeNo }</td>
-						<td>${n.noticeTitle}</td>
+						<td>${n.noticeNo}</td>
+						<td style="text-align:left">[${n.boardName}]${n.noticeTitle}</td>
 						<td>${n.noticeDate}</td>
 						<td>${n.noticeCount}</td>
+						<td>${n.boardCode}</td>
                     </tr>
                 </c:forEach>
 		</tbody>
 	</table>
-
+	<script>
+	
+	</script>
 	
 		<div class="paginationSet">
 			<ul class="pagination pagination-centered">
@@ -264,7 +276,40 @@ function search(pageNo) {
 	document.frm.pageIndex.value = pageNo;
 	document.frm.submit();
 }
+
+
+$(document).ready(function(){
+	$('#etc_gubun').find('li').each(function(){
+		$(this).find('a').click(function(){
+			var etcGubun = $(this).find('span').html();
+			if(etcGubun == "전체") {
+				etcGubun = '0';
+			}else if(etcGubun == "채용공고"){
+				etcGubun = '1';
+			}
+			else if(etcGubun == "대관공고"){
+				etcGubun = '2';
+			
+			}else if(etcGubun == "안내"){
+				etcGubun = '3';
+			
+			}else if(etcGubun == "합격자발표"){
+				etcGubun = '4';
+			
+			}else if(etcGubun == "티켓오픈안내"){
+				etcGubun = '5';
+			}
+			location.href="list.no?boardCode="+etcGubun;
+			return false;
+		});
+
+	});
+});
+
+
+
 </script>
+
 
 		</div>
 	</div>

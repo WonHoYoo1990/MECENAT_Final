@@ -53,7 +53,13 @@
 							</p>
 							
 						</div>
-							<a href="${n.changeName }" download="${n.originName }">${n.originName }</a>
+						<c:choose>
+							<c:when test="${not empty n.originName}">
+								<a href="${n.changeName }" download="${n.originName }">
+									<img id="contentImg" src="${filePath}${n.changeName}" width="1000" height="800"></img>
+								</a>
+							</c:when>
+						</c:choose>
 					</div>
 					
 						
