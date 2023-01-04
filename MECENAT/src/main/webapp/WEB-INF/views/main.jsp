@@ -339,7 +339,7 @@
 									</div>
 									<div class="txt">MECENAT 투데이</div>
 							</a></li>
-							<li><a href="list.no">
+							<li><a href="list.no?boardCode=0">
 									<div class="img">
 										<img src="./resources/sejongpac/static/portal/img/main/m1_4.gif" alt="">
 									</div>
