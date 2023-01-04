@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>${list[0].perfoTitle} 예매하기</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <style type="text/css">
         #calendar tr td{
@@ -34,28 +34,137 @@
         	cursor : pointer;  
         	background-color : pink;
         }
+        
+         #modal {
+       		margin : 100px;
+            width: 50%;
+            height: 50%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            -webkit-backdrop-filter: blur(1.5px);
+            padding-top:10%;
+        }
+        #modal-window {
+        	width: 95%;
+            height: auto;
+            background: rgba(251,248,232,0.9);
+            backdrop-filter: blur( 13.5px );
+            -webkit-backdrop-filter: blur( 13.5px );
+            border-radius: 10px;
+            border: 1px solid rgba( 255, 255, 255, 0.18 );
+            position: relative;
+            top: -100px;
+            padding: 5%;
+        }
+        #modal .title {
+            padding-left: 10px;
+            display: inline;
+            color: black;
+            
+        }
+        #modal .title h2 {
+            display: inline;
+        }
+        #modal .close-area {
+            display: inline;
+            float: right;
+            padding-right: 10px;
+            cursor: pointer;
+            color: black;
+            font-size: 25px;
+            font-weight : bold;
+        }
+        
+        #modal .content {
+            margin-top: 20px;
+            padding: 0px 10px;
+            color: black;
+            font-size : 14px;
+        }
+        .site-btn {
+			font-size: 11px;
+			color: white;
+			background: #2ea4ff;
+			font-weight: 700;
+			border: none;
+			border-radius: 2px;
+			letter-spacing: 2px;
+			text-transform: uppercase;
+			display: inline-block;
+			padding: 10px 20px;
+			width: 100%;
+		}
     </style>
     
 </head>
 <body>
-    <div id="reserveOuter">
-        <div id="head-img" style="width:800px;">
-        <img src="resources/img/reserve/center.jpg" style="width:100%; height:auto;"/>
+
+	<div id="modal" class="modal-overlay">
+        <div id="modal-window" class="modal-window">
+            <div class="title">
+                <h2>구매전 필독 안내</h2>
+            </div>
+            <div class="close-area">X</div>
+	            <div align="center">
+		            <div class="content" align="left">
+						<p>구매 매수 제한이 적용되는 할인티켓 구매 시, 제한 매수 확인 바랍니다.<br>
+						(초과 구매 또는 증빙자료 미지참시 할인 불가. 차액 지불 후 티켓 수령 가능)<br>
+						장애인석(휠체어석)은 휠체어 사용 장애인 전용공간으로 좌석이 존재하지 않으니 구매 시 주의 바랍니다.<br>
+						(현장에서 휠체어 미사용 시, 티켓 수령 및 입장이 제한됩니다.)<br>
+						예매 및 환불관련 자세한 사항은 홈페이지 예매안내를 참고 바랍니다.<br>
+						공연에 따라 입장연령이 제한될 수 있습니다.<br>
+						예매자는 본 안내페이지의 모든 내용을 숙지 및 동의한 것으로 간주합니다.<br><br>
+		
+						◈ 8세 이상 관람가 (2016년 12월 31일 이전 출생자 입장 가능)<br>
+						- 관람 연령 기준은 생년월일을 가장 최우선으로 적용되며, <br>	
+						** 초등학생의 경우 생년월일 확인이 가능한 증빙서류를 지참하셔야 합니다. (티켓수령시 및 객석 입장시 제시)<br><br>	
+											
+						◈ 할인 받은 내역이 있으신 경우, 해당 증빙서류를 지참하여 할인 대상자 본인이 직접 수령해야합니다.<br>	
+						본인 관람이 아니거나 미지참 시, 정가에 대한 차액을 지불해야만 티켓 수령이 가능합니다.<br>	
+						◈ 공연이 시작된 이후에는 예매한 등급에 관계없이 지정된 시간에 지연 관객석으로 안내 받게 됩니다.<br>	
+						◈ 많은 관객들로 주차 및 교통난이 예상됩니다. 가급적 대중교통을 이용 부탁드립니다.<br>	<br>	
+		
+						공연 당일은 관람 연령 제한등 어떠한 사유로도 환불 및 변경이 불가능하오니 예매 전 관련정보를 충분히 숙지해주시기 바랍니다.<br></p>
+		            </div>
+	            </div>
+        </div>
+    </div>
+    
+    <script>
+    	document.addEventListener("DOMContentLoaded", function(){
+	        const modal = document.getElementById("modal")
+			    modal.style.display = "flex"
+			    
+	    	const closeBtn = modal.querySelector(".close-area")
+	    	closeBtn.addEventListener("click", e => {
+	    	    modal.style.display = "none"
+			})
+    	},{once : true});
+    </script>
+<form action='selectSeats.rv' method='post'>
+    <div id="reserveOuter" style="width:65%;">
+        <div id="head-img" style="width:100%;">
+        <img src="resources/img/reserve/center-top.jpg" style="width:100%; height:auto;"/>
         </div>
         <div id="reserve-step">
-        <table style="width:800px;" border="1">
+        <table style="width:100%;" border="1">
         	<tr>
-        		<th style="width:130px;">1. 프로그램</th>
-        		<th>2. 장소</th>
-        		<th>3. 날짜</th>
-        		<th>4. 회차</th>
-        		<th>5. 인원</th>
-        		<th>6. 결제</th>
+        		<th style="width:130px;">1. 프로그램<br><p>${list[0].perfoTitle}</p></th>
+        		<th>2. 장소<br><p>${list[0].hallName}</p></th>
+        		<th id="top-select-date">3. 날짜</th>
+        		<th id="top-select-time">4. 관람시간</th>
+        		<th>5. 인원<br></th>
+        		<th>6. 결제<br></th>
         	</tr>
         </table>
         </div>
-        <div id="concert-info">
-        	<table style="width:800px;" border="1">
+        <div id="concert-info" style="width:100%;">
+        	<table style="width:100%;" border="1">
         		<tr>
         			<td rowspan="4">${list[0].changeName }</td>
         			<td colspan="2">${list[0].perfoTitle }</td>
@@ -63,18 +172,22 @@
         		<tr>
         			<td>기간</td>
         			<td>${list[0].perfoEventDate }~${list[(list.size()-1)].perfoEventDate }</td>
+<!--         		rentalCode로 조회한 ArrayList<Performance> list에서 시작날짜(0번째 인덱스) ~ 종료날짜(마지막 인덱스) -->
         		</tr>
         		<tr>
         			<td>장소</td>
         			<td>${list[0].hallName }</td>
         		</tr>
         		<tr>
-        			<td colspan="2"></td>
+        			<td>출연진</td>
+        			<td id="actors-td"></td>
         		</tr>
         	</table>
+        	<input type='hidden' id='perfoNo' name='perfoNo' value=''>
+        	<input type='hidden' id='rentalCode' name='rentalCode' value='${ra.rentalCode}'>
         </div>
-        <div id="select-date">
-            <table id="date-select" border="1" width="800px">
+        <div id="select-date" style="width:100%;">
+            <table id="date-select" border="1" style="width:100%;">
                 <tr>
                     <th>1. 날짜 선택</th>
                     <th>2. 회차 선택</th>
@@ -102,39 +215,20 @@
 							</tr>
 						</table>
                     </td>
-                    <td id="info-td" width="50%" align="left" style="padding:35px;">
-<!-- 						<table id='select-pfInfo' border='1'> -->
-<!-- 							<tr> -->
-<!-- 								<th width='120px'>공연 날짜 </th> -->
-<!-- 								<td id='seleted-date' width='200px'></td> -->
-<!-- 							</tr> -->
-<!-- 							<tr> -->
-<!-- 								<th>공연 시작시간</th> -->
-<!-- 								<td id='perfo-stime'></td> -->
-<!-- 							</tr> -->
-<!-- 							<tr> -->
-<!-- 								<th>공연 시간</th> -->
-<!-- 								<td id='perfo-rtime'></td> -->
-<!-- 							</tr> -->
-<!-- 							<tr> -->
-<!-- 								<th>잔여좌석수</th> -->
-<!-- 								<td id='soldout-seats'> -->
-																
-<!-- 								</td> -->
-<!-- 							</tr> -->
-<!-- 						</table> -->
+                    <td id="info-td" width="50%" align="center" style="padding:35px;">
                     </td>
                 </tr>
-                <tr>
-                	<td colspan="2">
-			        <div align="right" style="display:none;">
-			        	<button type="submit" class="site-btn">Make Reservation</button>
-			        </div>
-		        	</td>
-		        </tr>
             </table>
         </div>
     </div>
+</form>
+	<script>
+// 		$( document ).ready(function confirmWin() {
+			
+// 			var result = 
+
+// 		});
+	</script>
     <script type="text/javascript">
 		var today = new Date("${list[0].perfoEventDate}");//오늘 날짜//내 컴퓨터 로컬을 기준으로 today에 Date 객체를 넣어줌
 		function buildCalendar(){
@@ -198,63 +292,67 @@
 	     			cell.setAttribute('class', "pfDetail");
 	     			cell.setAttribute('value', "${p.perfoEventDate}");
 	     			if("${list[0].perfoEventDate}"==findPfDate){
-	     				cell.bgColor = "yellow";
+	     				cell.bgColor = "lightpink";
 	     			}
 	    		}
 	        </c:forEach>
 	        
-	        cell.onclick = function(){
+	        cell.onclick = function(){//실제 공연날 클릭
 				var perfoEventDate = this.getAttribute('value');
      			if(this.getAttribute('value') != null){
       				$(".pfDetail").css("background-color","white");
-     				this.setAttribute("style", "background-color:yellow;");
+     				this.setAttribute("style", "background-color:lightpink;");
 //     				$("#seleted-date").html(perfoEventDate);
      			}else if(this.getAttribute("style") != "background-color:white;"){
  					this.setAttribute("style", "background-color:white;");
      			}
      			
-     			$.ajax({
+     			$.ajax({//선택한 공연 정보
 					url : "perfoNum.rv",
 					data : {
 						perfoEventDate : perfoEventDate,
-     					rentalCode : ${ra.rentalCode}
+     					rentalCode : ${ra.rentalCode},
+     					hallName : "${list[0].hallName}"
 					},
 					success : function(result){
 						var resultStr = "";
+						var resultStr2 = "";
 
  						resultStr += "<table id='select-pfInfo' border='1'>"
 								  +  "<tr><th width='120px'>공연 날짜 </th><td id='seleted-date' width='200px'>&nbsp;" + result.perfoEventDate + "</td></tr>"
 								  +  "<tr><th>공연 시작시간</th><td id='perfo-stime'>&nbsp;" + result.startTime + "</td></tr>"
 								  +  "<tr><th>공연 시간</th><td id='perfo-rtime'>&nbsp;" + result.runningTime + "</td></tr>"
-								  +  "<tr><th>잔여좌석수</th><td id='soldout-seats'>&nbsp;" + "100" + "</td></tr>"
-								  +  "</table>"
-				
-
+								  +  "<tr><th>잔여좌석수</th><td id='soldout-seats'>&nbsp;" + result.remainingSeats + "</td></tr>";
+						if(result.remainingSeats > 0){//잔여좌석수가 1개 이상일 경우 버튼이 보이도록, 0일경우는 안보임/
+							resultStr +=  "<table style='width:50%;'><tr><td colspan='2' align='center'><button type='submit' class='site-btn' id='next-btn'>Make Reservation</button></td></tr></table>";
+						}
+						resultStr +=  "</table>";
+					    			
+						
 	 					$("#info-td").html(resultStr);
+	 					$("#top-select-date").html("3. 날짜<br><p>"+ result.perfoEventDate +"</p>")
+ 						$("#top-select-time").html("4. 관람시간<br><p>"+ result.startTime +"</p>")
+ 						$("#perfoNo").val(result.perfoNo);
+ 						$("#actors-td").text(result.cast);
+
 					},
 					error : function(){
-						console.log("통신실패");	
+						console.log("통신실패");
 					}
-				})
-     			
-     			
- 			}
+				})//$.ajax({//선택한 공연 정보
+     		
+ 			}//cell.onclick = function(){//실제 공연날 클릭
 	        
-		    if (cnt % 7 == 1) {/*일요일 계산*/
-		    //1주일이 7일 이므로 일요일 구하기
-		    //월화수목금토일을 7로 나눴을때 나머지가 1이면 cnt가 1번째에 위치함을 의미한다
-		    	cell.innerHTML = "<font color=#F79DC2>" + i + "</font>";
-		        //1번째의 cell에만 색칠
+			if(cnt % 7 == 1) {/*일요일 계산*/
+			    //1주일이 7일 이므로 일요일 구하기
+			    //월화수목금토일을 7로 나눴을때 나머지가 1이면 cnt가 1번째에 위치함을 의미한다
+		    	cell.innerHTML = "<font color=#F79DC2>" + i + "</font>"; //1번째의 cell에만 색칠
 		    }
-			
-		    if (cnt % 7 == 0){/* 1주일이 7일 이므로 토요일 구하기*/
-		    //월화수목금토일을 7로 나눴을때 나머지가 0이면 cnt가 7번째에 위치함을 의미한다
-		    	cell.innerHTML = "<font color=skyblue>" + i + "</font>";
-		        //7번째의 cell에만 색칠
-		    	row = calendar.insertRow();
-		        //토요일 다음에 올 셀을 추가
+		    if(cnt % 7 == 0){/* 1주일이 7일 이므로 토요일 구하기*/
+		    	//월화수목금토일을 7로 나눴을때 나머지가 0이면 cnt가 7번째에 위치함을 의미한다	
+		    	cell.innerHTML = "<font color=skyblue>" + i + "</font>"; //7번째의 cell에만 색칠
+		    	row = calendar.insertRow(); //토요일 다음에 올 셀을 추가
 		    }
-		    
 		    
 		  }//for(i = 1; i <= lastDate.getDate(); i++){//1일부터 마지막 일까지 돌림
 		  
@@ -262,7 +360,7 @@
 		  	for(i = 0; i < 7 - (cnt % 7); i++){
 		  		cell = row.insertCell();
 		  	}
-    	  }
+    	  }//if(cnt % 7 != 0){
 		  
 		}//function buildCalendar()
 		

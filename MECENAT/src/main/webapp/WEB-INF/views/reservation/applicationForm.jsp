@@ -19,7 +19,8 @@
 	<!-- 비밀번호 <i>태그  -->
 	<link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"> 
 	
-	<title> Anime | Template</title>
+	<title>${hallName} 대관신청</title>
+<!-- 	<link rel="stylesheet" type="text/css" href="./resources/css/bootstrap.min.css"> -->
 	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/aos.css">
 	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/bbs_new.css">
 	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/fonts.css">
@@ -32,7 +33,6 @@
 	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/slider.css">
 	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/style.css">
 	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/sub.css">
-	<link rel="stylesheet" type="text/css" href="./resources/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	
 	<script src="./resources/sejongpac/static/commons/js/jquery-3.6.0.min.js"></script>
@@ -64,14 +64,13 @@
             font-size: 20px;
             font-family: 굴림;
             border:2px border-color:#3333FF;
-            border-radius: 8px;/*모서리 둥글게*/
             color : black;
         }
         .date-cell{
         	color:black;
         }
         .date-number{
-			border : 2px solid #FFF7de;
+			border : 2px solid red;
 			color: black;        
         }
         .date-number:hover{
@@ -86,13 +85,17 @@
         	width:80%;
         	heigh:40px;
         }
-        .login__form form .input__item {
+        
+        .application__form{
+        	width: 80%;
+        }
+        .application__form form .input__item {
 	position: relative;
 	width: 370px;
 	margin-bottom: 20px;
 }
 
-.login__form form .input__item:before {
+.application__form form .input__item:before {
 	position: absolute;
 	left: 50px;
 	top: 10px;
@@ -102,7 +105,7 @@
 	content: "";
 }
 
-.login__form form .input__item input {
+.application__form form .input__item input {
 	height: 50px;
 	width: 100%;
 	font-size: 15px;
@@ -112,27 +115,27 @@
 	padding-left: 76px;
 }
 
-.login__form form .input__item input::-webkit-input-placeholder {
+.application__form form .input__item input::-webkit-input-placeholder {
 	color: gray;
 }
 
-.login__form form .input__item input::-moz-placeholder {
+.application__form form .input__item input::-moz-placeholder {
 	color: gray;
 }
 
-.login__form form .input__item input:-ms-input-placeholder {
+.application__form form .input__item input:-ms-input-placeholder {
 	color: gray;
 }
 
-.login__form form .input__item input::-ms-input-placeholder {
+.application__form form .input__item input::-ms-input-placeholder {
 	color: gray;
 }
 
-.login__form form .input__item input::placeholder {
+.application__form form .input__item input::placeholder {
 	color: gray;
 }
 
-.login__form form .input__item span {
+.application__form form .input__item span {
 	color: gray;
 	font-size: 20px;
 	position: absolute;
@@ -141,12 +144,12 @@
 
 }
 
-.login__form form button {
+.application__form form button {
 	border-radius: 0;
  	margin-top: 10px; 
 }
 
-.login__form form .input__item {
+.application__form form .input__item {
 		width: auto;
 	}
 	
@@ -186,6 +189,11 @@
 
 #calendar{
 }
+.inform-board{background-size:cover; height: 200px; padding-top: 8%;}
+.calendar-div{-ms-flex:0 0 50%;flex:0 0 50%;max-width:50%;,float:left;}
+.roww{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-15px;margin-left:-15px}
+.containerr{width:100%;padding:30px;margin:auto}
+
 	</style>
 </head>
 
@@ -197,24 +205,18 @@
 		
 	</script>
 	<!-- Normal Breadcrumb Begin -->
-	<secion id="cont" tabindex="0">
-		<div class="container">
-		    <div class="row">
-		        <div class="col-lg-12 text-center">
-		            <div class="normal__breadcrumb__text"  style="background-size:cover; height: 200px; padding-top: 8%;" >
-		                 <h2 style="color:black;">Hall Rental Application</h2>
-		                <p style="color:black; font-weight:bold;">Before apply document,<br> check Hall information and rental policy</p>
-		            </div>
-		        </div>
-		    </div>
+	<secion id="cont" tabindex="0" align="center">
+		<div class="containerr" align="center">
+            <h2 style="color:black;">Hall Rental Application</h2>
+              <p style="color:black; font-weight:bold;">Before apply document,<br> check Hall information and rental policy</p>
 		</div>
 	</section>
 	<!-- Normal Breadcrumb End -->
 	<!-- Signup Section Begin -->
-	<section class="signup spad">
+	<section class="signup spad" style="width:80%; margin:auto;">
 		<div class="container">	
-			<div class="row">
-				<div class="col-lg-6">
+			<div class="roww">
+				<div class="calendar-div">
 					<div class="login__social__links" align="center">
 						<div id="calendar-box">
 						<table id="calendar" align="center">
@@ -239,8 +241,8 @@
 						<p align="center" style="font-size:15px; color:black;">해당 날짜의 공연 시작시간을 입력하세요<br>(*대관 가능시간 : 10:00 ~ 20:00, 30분단위 선택가능*)</p>
 					</div>
 				</div>
-				<div class="col-lg-6">
-					<div class="login__form">
+				<div class="calendar-div">
+					<div class="application__form" align="left">
 						<h3>Rent Application</h3>
 						<form action="application1.rv" method="post" id="applicationForm">
 							<div id="timesDiv">
@@ -289,7 +291,7 @@
  									})
 								</script>
 							<div class="input__item"><!-- 선택한 공연일 -->			
-								<input type="text" id="eventDates" name="eventDate"  placeholder="실제 공연 날짜" readonly/>	
+								<input type="text" id="eventDates" name="eventDates"  placeholder="실제 공연 날짜" readonly/>
 								<label for="eventDates"><span class="iconBox"><img src="resources/img/icons/com.png"></span>실제 공연일</label>
 							</div>
 							<div class="input__item"><!-- 대표자 이름 -->
@@ -424,12 +426,22 @@
 	    						},
 	    						success : function(result){
 	    							var resultStr = "";
-	    			 				for(var i=0; i < result.length; i++){
+	    							var resultStr2 = "";
+	    							result.sort();
+	    							
+	    			 				for(var i = 0; i < result.length; i++){
 	    		 						resultStr += "<div class='input__item' id='timeSetting' align='center'>"
 	    		 								   + "<input type='time' id='startTimes' class='startTimes' name='startTimes' min='10:00' max='20:00' step='1800' placeholder='공연일을 확인하세요' required/><br>"
 	    		 					    		   + "<label for='startTime'><span class='iconBox'><img src='resources/img/icons/com.png'></span>"+result[i]+" 날짜를 확인해 주세요**</label></div>";
-	    		 					}
+ 		 					    		if(i == 0) {
+ 		    		 						resultStr2 += result[i];
+ 		    		 					}else {
+ 		    		 						resultStr2 += "," + result[i];
+ 		    		 					}
+	    			 				}
 	    		 					$("#timesDiv").html(resultStr);
+	    		 					$("#eventDates").val(resultStr2);
+	    		 					
 	    						},
 	    						error : function(){
 	    							console.log("통신실패");	
@@ -442,6 +454,7 @@
 			    }//cell.onclick = function()
 			    
 	    	}//if((findPfDate>=perfoStartDate)&&(findPfDate<=perfoEndDate))
+	    		
 		    if(cnt % 7 == 1) {/*일요일 계산*/
 			    //1주일이 7일 이므로 일요일 구하기
 			    //월화수목금토일을 7로 나눴을때 나머지가 1이면 cnt가 1번째에 위치함을 의미한다
