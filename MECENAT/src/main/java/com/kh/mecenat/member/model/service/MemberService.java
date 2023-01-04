@@ -2,7 +2,9 @@ package com.kh.mecenat.member.model.service;
 
 import java.util.ArrayList;
 
+import com.kh.mecenat.common.PageInfo;
 import com.kh.mecenat.member.model.vo.Member;
+import com.kh.mecenat.performance.model.vo.Review;
 
 public interface MemberService {
 
@@ -38,6 +40,30 @@ public interface MemberService {
 	
 	//마이페이지 회원정보 수정
 	int updateMember(Member m);
+
+	int blackMember(String userId);
 	
+	int blackCancelMember(String userId);
+
+	int selectListCount();
+
+	ArrayList<Member> selectAllMemberList(PageInfo pi);
+	
+	Member selectm(String userId);
+	
+	ArrayList<Review> selectReviewList(String userId);
+
+	
+
+	
+	
+	
+
+	
+
+
+	
+	
+
 
 }

@@ -16,6 +16,7 @@ public class Purchase {
 	private int rentalCode;//	RENTAL_CODE
 	private int seatNo;//	SEAT_NO
 	private int paymentNo;//	PAYMENT_NO
+	private int perfoNo;//	PERFO_NO
 	private String customerserviceStatus;//	CUSTOMERSERVICE_STATUS
 	private Date purchaseDate;//	PURCHASE_DATE
 	private Date reservationDate;//	RESERVATION_DATE

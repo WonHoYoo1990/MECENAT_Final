@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import com.kh.mecenat.reservation.model.dao.ReservationDao;
 import com.kh.mecenat.reservation.model.vo.Hall;
 import com.kh.mecenat.reservation.model.vo.Performance;
+import com.kh.mecenat.reservation.model.vo.Purchase;
 import com.kh.mecenat.reservation.model.vo.RentApplication;
+import com.kh.mecenat.reservation.model.vo.Seat;
 
 @Service 
 public class ReservationServiceImpl implements ReservationService{
@@ -64,6 +66,34 @@ public class ReservationServiceImpl implements ReservationService{
 		return pfmc;
 	}
 
+	@Override
+	public Hall getHallSeats(String hallName) {
+		return reservationDao.getHallSeats(sqlSession, hallName);
+	}
 
+	@Override
+	public int getPurchaseSeats(int perfoNo) {
+		return reservationDao.getPurchaseSeats(sqlSession, perfoNo);
+	}
+
+	@Override
+	public ArrayList<Seat> selectSoldOutSeats(int perfoNo) {
+		return reservationDao.selectSoldOutSeats(sqlSession, perfoNo);
+	}
+
+	@Override
+	public ArrayList<Seat> selectAllSeats(String hallName) {
+		return reservationDao.selectAllSeats(sqlSession, hallName);
+	}
+
+	@Override
+	public void blockSeats(Purchase p) {
+		reservationDao.blockSeats(sqlSession, p);
+	}
+
+	@Override
+	public int selectSeatNo(Seat s) {
+		return reservationDao.selectSeatNo(sqlSession, s);
+	}
 	
 }
