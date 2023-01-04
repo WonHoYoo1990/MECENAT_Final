@@ -13,11 +13,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.kh.mecenat.common.PageInfo;
+import com.kh.mecenat.common.Pagination;
 import com.kh.mecenat.performance.model.service.PerformanceService;
 import com.kh.mecenat.performance.model.vo.Performance;
 import com.kh.mecenat.reservation.model.vo.RentApplication;
@@ -31,10 +34,9 @@ public class PerformanceController {
 //	전체 공연 목록 뽑기('status=>"상영중(나중에 변경해야징)")
 	@RequestMapping("list.perf")
 	public String performanceList(Model model) {
-//		System.out.println("list단");
+		
 		ArrayList<Performance> pList = perfoService.selectListPerformance();
-//		System.out.println("pList : "+pList);
-//		
+		
 		model.addAttribute("pList", pList);
 
 		return "performance/performanceListView2";
@@ -212,9 +214,28 @@ public class PerformanceController {
 	
 //	유리) 상영중인 공연 관리하기
 	@RequestMapping("playPerformanceForm.mana")
-	public String playPerformanceForm(Model model) {
+	public String playPerformanceForm(@RequestParam(value="currentPage", defaultValue = "1") int currentPage,  
+									  @RequestParam(value="currentPageUnd", defaultValue = "1") int currentPageUnd, Model model)  {
 		
-		ArrayList<Performance> pList = perfoService.selectPlayPerformance();
+		int listCount = perfoService.selectListCount();
+		int listEndCount = perfoService.selectEndListCount();
+		int pageLimit = 10;
+		int boardLimit = 2;
+		
+		System.out.println(listCount);
+		
+		PageInfo pi = Pagination.getPageinfo(listCount, currentPage, pageLimit, boardLimit);
+		PageInfo piUnd = Pagination.getPageinfo(listEndCount, currentPageUnd, pageLimit, boardLimit);
+		
+		model.addAttribute("pi", pi);
+		model.addAttribute("piUnd", piUnd);
+		
+		
+		ArrayList<Performance> eList = perfoService.selectPlayEndPerformance(piUnd);
+		System.out.println(eList);
+		ArrayList<Performance> pList = perfoService.selectPlayPerformance(pi);
+		
+//		ArrayList<Performance> pList = perfoService.selectPlayPerformance();
 		
 		String[] dateArr = new String[pList.size()];
 		String sp ="";
@@ -236,7 +257,7 @@ public class PerformanceController {
 			
 //			System.out.println(pList.get(i).getEventDate());
 		}
-		
+		model.addAttribute("eList", eList);
 		model.addAttribute("pList", pList);
 		
 		return "performance/playPerformanceForm";
@@ -338,6 +359,7 @@ public class PerformanceController {
 	@ResponseBody
 	@RequestMapping(value = "statusChange.perf")
 	public void updateStatus(int rcode, String statusVal) {
+		
 		System.out.println(rcode + statusVal);
 		
 		Performance p = new Performance();
@@ -347,6 +369,12 @@ public class PerformanceController {
 		System.out.println(p);
 		
 		int updateStatus = perfoService.updateStatus(p);
+		
+//		if (updateStatus >0){
+//			System.out.println("update했음");
+//		} else {
+//			System.out.println("실패");
+//		}
 		
 	}
 	

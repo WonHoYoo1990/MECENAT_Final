@@ -2,9 +2,11 @@ package com.kh.mecenat.performance.model.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.mecenat.common.PageInfo;
 import com.kh.mecenat.performance.model.vo.Performance;
 import com.kh.mecenat.performance.model.vo.Review;
 import com.kh.mecenat.reservation.model.vo.RentApplication;
@@ -86,6 +88,15 @@ public class PerformanceDao {
 		return sqlSession.insert("performanceMapperMana.insertReview", r);
 	}
 
+	public ArrayList<Performance> selectPlayPerformance(SqlSessionTemplate sqlSession, PageInfo pi) {
+		
+		int limit = pi.getBoardLimit();
+		int offset = (pi.getCurrentPage()-1)*limit;
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return (ArrayList)sqlSession.selectList("performanceMapperMana.selectPlayPerformance", null, rowBounds);
+	}
 	public ArrayList<Performance> selectPlayPerformance(SqlSessionTemplate sqlSession) {
 		// TODO Auto-generated method stub
 		return (ArrayList)sqlSession.selectList("performanceMapperMana.selectPlayPerformance");
@@ -102,5 +113,22 @@ public class PerformanceDao {
 	public int nopePerformance(SqlSessionTemplate sqlSession, int rcode) {
 		return sqlSession.update("reservationMapper.nopePerformance",rcode);
 	}
+
+	public int selectListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("performanceMapperMana.selectListCount");
+	}
+
+	public ArrayList<Performance> selectPlayEndPerformance(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int limit = pi.getBoardLimit();
+		int offset = (pi.getCurrentPage()-1)*limit;
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		return (ArrayList)sqlSession.selectList("performanceMapperMana.selectPlayEndPerformance", null, rowBounds);
+	}
+
+	public int selectEndListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("performanceMapperMana.selectEndListCount");
+	}
+
 
 }
