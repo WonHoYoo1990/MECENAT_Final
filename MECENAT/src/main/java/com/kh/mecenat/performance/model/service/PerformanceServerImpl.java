@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.mecenat.common.PageInfo;
 import com.kh.mecenat.performance.model.dao.PerformanceDao;
 import com.kh.mecenat.performance.model.vo.Performance;
 import com.kh.mecenat.performance.model.vo.Review;
@@ -99,8 +100,12 @@ public class PerformanceServerImpl implements PerformanceService {
 	}
 	
 	@Override
-	public ArrayList<Performance> selectListNew() {
-		return performanceDao.selectListNew(SqlSession);
+	public ArrayList<Performance> selectPlayPerformance(PageInfo pi) {
+		return performanceDao.selectPlayPerformance(SqlSession, pi);
+	}
+	@Override
+	public ArrayList<Performance> selectPlayPerformance() {
+		return performanceDao.selectPlayPerformance(SqlSession);
 	}
 
 
@@ -111,8 +116,19 @@ public class PerformanceServerImpl implements PerformanceService {
 		return performanceDao.selectListgenre(SqlSession, genreName);
 	}
 
-	
+	@Override
+	public int selectListCount() {
+		return performanceDao.selectListCount(SqlSession);
+	}
 
+	@Override
+	public ArrayList<Performance> selectPlayEndPerformance(PageInfo pi) {
+		return performanceDao.selectPlayEndPerformance(SqlSession, pi);
+	}
 
+	@Override
+	public int selectEndListCount() {
+		return performanceDao.selectEndListCount(SqlSession);
+	}
 
 }

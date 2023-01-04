@@ -2,6 +2,7 @@ package com.kh.mecenat.performance.model.service;
 
 import java.util.ArrayList;
 
+import com.kh.mecenat.common.PageInfo;
 import com.kh.mecenat.performance.model.vo.Performance;
 import com.kh.mecenat.performance.model.vo.Review;
 import com.kh.mecenat.reservation.model.vo.RentApplication;
@@ -47,9 +48,20 @@ public interface PerformanceService {
 
 	public ArrayList<Performance> selectListgenre(String genreName);
 
-	
-	
-	
-	
+	public ArrayList<Performance> selectPlayPerformance(PageInfo pi);
+	public ArrayList<Performance> selectPlayPerformance();
+
+	public int updateStatus(Performance p);
+
+	public int performanceDelete(int rcode);
+
+	public int nopePerformance(int rcode);
+
+	public int selectListCount();
+
+	public ArrayList<Performance> selectPlayEndPerformance(PageInfo pi);
+
+	public int selectEndListCount();
+
 
 }
