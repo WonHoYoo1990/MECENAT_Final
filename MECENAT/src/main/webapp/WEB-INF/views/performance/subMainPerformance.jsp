@@ -47,8 +47,6 @@
 		<jsp:include page="../common/header.jsp" />
 		<!-- Header End -->
 		
-		
-		
 		<section id="cont" tabindex="0">
 			<div id="sub_page" style="padding:0">
 				<br><br>
@@ -137,6 +135,7 @@
 						$('#searchWrdBtn').on('click', function() { //검색어 버튼 클릭시
 							
 							var searchWrd = $("#searchWrd").val();
+							console.log("searchWrd : " + searchWrd);
 							
 							$.ajax({ // 공연 리스트 검색어 조회
 							    url : 'subMainPerformanceSearch.perf',
