@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import com.kh.mecenat.common.PageInfo;
 import com.kh.mecenat.common.Pagination;
 import com.kh.mecenat.notice.model.service.NoticeService;
 import com.kh.mecenat.notice.model.vo.Notice;
+import com.kh.mecenat.notice.model.vo.NoticeType;
 
 
 @Controller
@@ -41,8 +43,8 @@ public class NoticeController {
 	//공지사항 리스트+페이징 처리
 	@RequestMapping("list.no")
 	public String selectList(@RequestParam(value="currentPage",defaultValue="1") int currentPage,
-							Model model) {
-		
+							 @RequestParam(value="boardCode",defaultValue="1") String boardCode,
+							 Model model) {
 		
 		
 		int listCount = noticeService.selectListCount();
@@ -51,14 +53,17 @@ public class NoticeController {
 		
 		PageInfo pi = Pagination.getPageinfo(listCount, currentPage, pageLimit, boardLimit);
 		
-		ArrayList<Notice> list = noticeService.selectList(pi);
+		ArrayList<Notice> list = noticeService.selectList(pi, boardCode);
+		ArrayList<NoticeType> list2 = noticeService.selectCategoryList(boardCode);
 		
 		model.addAttribute("list", list);
-		model.addAttribute("pi", pi); 
+		model.addAttribute("list2", list2);
+		model.addAttribute("pi", pi);
+
 		
 		return "notice/allNotice";
 	}
-	
+	 
 	//공지사항 상세보기+조회수 증가
 	@RequestMapping("detail.no")
 	public ModelAndView selectBoard(int nno,
@@ -66,9 +71,10 @@ public class NoticeController {
 		
 		int count = noticeService.increaseCount(nno);
 		
+		
 		if(count>0) {	
 			Notice n = noticeService.selectBoard(nno);
-			
+
 			if(n!=null) {
 				mv.addObject("n", n).setViewName("notice/noticeDetailView");		
 			} else {
@@ -84,7 +90,13 @@ public class NoticeController {
 	
 	//공지사항 작성 페이지로 이동
 	@GetMapping("insert.no")
-	public String insertNotice() {
+	public String insertNotice(Model model, String boardCode) {
+		
+		ArrayList<NoticeType> list2 = noticeService.selectCategoryList(boardCode);
+		
+		model.addAttribute("list2", list2 );
+		
+		
 		return "notice/noticeEnrollForm";
 	}
 	
@@ -146,7 +158,7 @@ public class NoticeController {
 		return changeName;
 	}
 	
-	//공지사항 삭제
+		//공지사항 삭제
 		@RequestMapping("delete.no")
 		public String boardDelete(int nno,
 								String filePath,

@@ -22,7 +22,8 @@ public class Notice {
 //	STATUS	VARCHAR2(1 BYTE)
 	
 	private int noticeNo;
-	private int boardCode;
+	private String boardCode;
+	private String boardName;
 	private String userId;
 	private String noticeTitle;
 	private String noticeContent;
@@ -31,6 +32,7 @@ public class Notice {
 	private Date noticeDate;
 	private int noticeCount;
 	private String status;
+	
 	
 	
 

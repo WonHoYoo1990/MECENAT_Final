@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.kh.mecenat.common.PageInfo;
 import com.kh.mecenat.notice.model.vo.Notice;
+import com.kh.mecenat.notice.model.vo.NoticeType;
 
 public interface NoticeService {
 	
@@ -11,7 +12,7 @@ public interface NoticeService {
 	int selectListCount();
 
 	//공지사항 리스트 조회 + 페이징 처리
-	ArrayList<Notice> selectList(PageInfo pi);
+	ArrayList<Notice> selectList(PageInfo pi, String boardCode);
 
 	//공지사항 게시글 조회수
 	int increaseCount(int nno);
@@ -27,5 +28,11 @@ public interface NoticeService {
 
 	//공지사항 게시글 수정
 	int updateNotice(Notice n);
+
+	//보드 타입 리스트 받아오기
+	ArrayList<NoticeType> selectCategoryList(String boardCode);
+
+
+
 
 }

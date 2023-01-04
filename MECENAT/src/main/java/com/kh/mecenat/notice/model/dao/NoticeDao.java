@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.mecenat.common.PageInfo;
 import com.kh.mecenat.notice.model.vo.Notice;
+import com.kh.mecenat.notice.model.vo.NoticeType;
 
 @Repository
 public class NoticeDao {
@@ -18,14 +19,14 @@ public class NoticeDao {
 	}
 	
 	//공지사항 리스트+페이칭 처리
-	public ArrayList<Notice> selectList(SqlSessionTemplate sqlSession, PageInfo pi) {
+	public ArrayList<Notice> selectList(SqlSessionTemplate sqlSession, PageInfo pi, String boardCode) {
 		
 		int limit = pi.getBoardLimit();
 		int offset = (pi.getCurrentPage()-1) * limit;
 		
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		return (ArrayList)sqlSession.selectList("noticeMapper.selectList",null,rowBounds);
+		return (ArrayList)sqlSession.selectList("noticeMapper.selectList",boardCode,rowBounds);
 	}
 	
 	//공지사항 게시글 조회수
@@ -51,6 +52,10 @@ public class NoticeDao {
 	//공지사항 게시글 수정
 	public int updateNotice(SqlSessionTemplate sqlSession, Notice n) {
 		return sqlSession.update("noticeMapper.updateNotice", n);
+	}
+
+	public ArrayList<NoticeType> selectCategoryList(SqlSessionTemplate sqlSession, String boardCode) {
+		return (ArrayList)sqlSession.selectList("noticeMapper.selectCategoryList", boardCode);
 	}
  
 }

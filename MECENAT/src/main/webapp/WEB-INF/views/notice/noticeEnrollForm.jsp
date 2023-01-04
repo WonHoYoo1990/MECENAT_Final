@@ -19,7 +19,7 @@
 <script src="/static/portal/js/jquery.rwdImageMaps.js"></script>
 <style>
 #title{
-	width:1000px;
+	width:800px;
 }
 #content{
 	width:1000px;
@@ -47,6 +47,11 @@
 							<div class="t">
 								<form id="enrollForm" method="post" action="" enctype="multipart/form-data">
 									<div align="center" id="noticeEnroll">
+										<select name="boardCode" id="boardCode">
+											<c:forEach items="${list2}" var="noticeType">
+												<option value="${noticeType.boardCode}" name="boardCode" id="boardCode">${noticeType.boardName}</option> 
+											</c:forEach>
+										</select>
 										<input type="text" name="noticeTitle" id="title"> <br><br>
 										<input type="text" name="noticeContent" id="content"> <br><br>
 										<input type="file" name="upfile" id="upfile">
@@ -64,6 +69,8 @@
 			</div>
 		</div>
 	</div>
+
+
 	
 	<!-- footer Section Begin -->
 	<jsp:include page="../common/footer.jsp" />

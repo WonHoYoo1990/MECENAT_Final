@@ -12,6 +12,6 @@ public class NoticeType {
 //	BOARD_CODE	NUMBER
 //	BOARD_NAME	VARCHAR2(30 BYTE)
 	
-	private int boardCode;
+	private String boardCode;
 	private String boardName;
 }
