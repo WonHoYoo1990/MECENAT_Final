@@ -18,12 +18,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
 import com.kh.mecenat.common.PageInfo;
 import com.kh.mecenat.common.Pagination;
 import com.kh.mecenat.performance.model.service.PerformanceService;
 import com.kh.mecenat.performance.model.vo.Performance;
-import com.kh.mecenat.performance.model.vo.Review;
 import com.kh.mecenat.reservation.model.vo.RentApplication;
 
 @Controller
@@ -35,75 +33,93 @@ public class PerformanceController {
 //	전체 공연 목록 뽑기('status=>"상영중(나중에 변경해야징)")
 	@RequestMapping("list.perf")
 	public String performanceList(Model model) {
-
+//		System.out.println("list단");
 		ArrayList<Performance> pList = perfoService.selectListPerformance();
-
+//		System.out.println("pList : "+pList);
+//		
 		model.addAttribute("pList", pList);
 
 		return "performance/performanceListView2";
+
 	}
 
-//	공연 등록폼 이동
+//	유리)공연 등록폼 이동
 	@RequestMapping("insertForm.perf")
 	public String performanceInsertForm(Model model, int rno) {
-		// 이거 performance가아니라 reservation이여야함...
 		Performance pList = perfoService.selectListPerformance(rno);
 		RentApplication rList = perfoService.selectRentalApplicationR(rno);
-
-		int updateStatus = perfoService.updateRentalAppStatus(rno);
-
+		
+		
+//		int updateStatus = perfoService.updateRentalAppStatus(rno);
+		
 		System.out.println(rList);
 
 		model.addAttribute("rList", rList);
-		model.addAttribute("updateStatus", updateStatus);
+		
+		
 		return "performance/performanceInsert2";
+
 	}
 
-//	관리자용 공연 등록
+//	유리)관리자용 공연 등록
 	@PostMapping("insert.perf")
-	public ModelAndView insertPerformance(Performance p, int rcode, String eDate, String eTime, MultipartFile upfile, ModelAndView mv,
-			HttpSession session) {
+	public ModelAndView insertPerformance(Performance p, int rcode, String eDate, String eTime, MultipartFile upfile,
+		   ModelAndView mv, HttpSession session) {
 
 		System.out.println(eDate);
 		System.out.println(eTime);
 
 		String[] dateArr = eDate.split(",");
 		String[] timeArr = eTime.split(",");
-
+		
+		
+		
 		int result = 0;
 		String changeName = saveFile(upfile, session);
-
-		for (int i = 0; i < dateArr.length; i++) {
-
-			String dateInx = dateArr[i];
-			String timeInx = timeArr[i];
-
+		
+			
+		for (int j = 0; j < dateArr.length; j++) {
+			
+			String dateInx = dateArr[j];
+			String timeInx = timeArr[j];
+			
 			p.setOriginName(upfile.getOriginalFilename());
 			p.setChangeName("resources/performanceFiles/" + changeName);
-
+			
+	
 			p.setRentalCode(rcode);
 			p.setPerfoEventDate(dateInx);
 			p.setStartTime(timeInx);
 			System.out.println(p);
-
+	
 			result = perfoService.insertPerformance(p);
-
+			if(result>0) {
+				int updateStatus = perfoService.updateRentalAppStatus(rcode);
+			}
 		}
-
+		if(result>0) {
+			perfoService.updateRentalAppStatus(rcode);
+		}
 		mv.setViewName("redirect:list.perf");
 
 		return mv;
 
 	}
 
-//	등록된공연 빼기용
-	@RequestMapping("delete.perf")
-
-	public void performanceDelete() {
-
+//	유리)공연삭제(performance에서만 삭제함)
+	@ResponseBody
+	@RequestMapping(value = "deletePerf.perf")
+	public String performanceDelete(int rcode) {
+		System.out.println(rcode+"삭제버튼 클릭");
+		
+		perfoService.performanceDelete(rcode);
+		
+		return "performance/playPerformanceForm";
 	}
 
-//	승인페이지에 뿌려줄 RENTALAPPLICATION 뽑아오기
+	
+	
+//	유리)승인페이지에 뿌려줄 RENTALAPPLICATION 뽑아오기
 	@RequestMapping("approveWaitForm.mana")
 	public String approveListForm(Model model) {
 
@@ -125,7 +141,7 @@ public class PerformanceController {
 
 		return "redirect:/approveWaitForm.mana";
 	}
-
+//	유리)승인취소
 	@ResponseBody
 	@RequestMapping(value = "cancel.perf")
 	public String cancelPerformance(int rcode) {
@@ -135,14 +151,23 @@ public class PerformanceController {
 
 		return "redirect:/approveWaitForm.mana";
 	}
+	
+//	유리) 승인 거부
+	@ResponseBody
+	@RequestMapping(value = "nope.perf")
+	public String nopePerformance(int rcode) {
+//		System.out.println(rcode+"미승인");
+		int result = perfoService.nopePerformance(rcode);
+		return "redirect:/approveWaitForm.mana";
+	}
 
+//유리)detailForm으로 이동
 	@RequestMapping("detail.perf")
 	public String performanceDateilForm(int rno, Model model) {
 
 		Performance pList = perfoService.selectListPerformance(rno);
-
+		
 		System.out.println(pList);
-
 		model.addAttribute("pList", pList);
 
 		return "performance/performanceDetailForm";
@@ -196,31 +221,27 @@ public class PerformanceController {
 
 //	유리) 상영중인 공연 관리하기
 	@RequestMapping("playPerformanceForm.mana")
-	public String playPerformanceForm(@RequestParam(value = "currentPage", defaultValue = "1") int currentPage,
-			@RequestParam(value = "currentPageUnd", defaultValue = "1") int currentPageUnd, Model model) {
-
+	public String selectList(@RequestParam(value="currentPage", defaultValue = "1")int currentPage,
+							 @RequestParam(value="currentPageEnd", defaultValue = "1")int currentPageEnd,
+							 Model model) {
+		
 		int listCount = perfoService.selectListCount();
 		int listEndCount = perfoService.selectEndListCount();
 		int pageLimit = 10;
-		int boardLimit = 2;
-
-		System.out.println(listCount);
-
+		int boardLimit = 5;
+		
 		PageInfo pi = Pagination.getPageinfo(listCount, currentPage, pageLimit, boardLimit);
-		PageInfo piUnd = Pagination.getPageinfo(listEndCount, currentPageUnd, pageLimit, boardLimit);
-
-		model.addAttribute("pi", pi);
-		model.addAttribute("piUnd", piUnd);
-
-		ArrayList<Performance> eList = perfoService.selectPlayEndPerformance(piUnd);
-		System.out.println(eList);
+		PageInfo piEnd = Pagination.getPageinfo(listEndCount, currentPageEnd, pageLimit, boardLimit);
+		
 		ArrayList<Performance> pList = perfoService.selectPlayPerformance(pi);
-
-//		ArrayList<Performance> pList = perfoService.selectPlayPerformance();
-
+		
+		ArrayList<Performance> eList = perfoService.selectEndPlayPerformance(piEnd);
+		
 		String[] dateArr = new String[pList.size()];
-		String sp = "";
-		for (int i = 0; i < pList.size(); i++) {
+		String sp ="";
+		
+		for(int i=0; i<pList.size(); i++) {
+
 			dateArr[i] = pList.get(i).getEventDate();
 
 			String[] dateSArr = dateArr[i].split(",");
@@ -235,12 +256,34 @@ public class PerformanceController {
 			dateArr[i] = sp;
 
 			pList.get(i).setEventDate(sp);
-
-//			System.out.println(pList.get(i).getEventDate());
 		}
-		model.addAttribute("eList", eList);
+		
+		dateArr = new String[eList.size()];
+		sp ="";
+		for(int i=0; i<eList.size(); i++) {
+			dateArr[i] = pList.get(i).getEventDate();
+			
+			String[] dateSArr = dateArr[i].split(",");
+			
+			sp="";
+			
+			if(dateSArr.length != 1) {
+				sp += dateSArr[0] + " ~ " + dateSArr[dateSArr.length-1];
+			}else {
+				sp+= dateSArr[0];
+			}
+			dateArr[i] = sp;
+			
+			eList.get(i).setEventDate(sp);
+		}
+		
+		
+		model.addAttribute("pi",pi);
+		model.addAttribute("piEnd", piEnd);
+		
 		model.addAttribute("pList", pList);
 
+		model.addAttribute("eList", eList);
 		return "performance/playPerformanceForm";
 	}
 
@@ -281,7 +324,6 @@ public class PerformanceController {
 	@RequestMapping("subMainPerformanceSearchSort1.perf")
 	public ModelAndView subMainPerformanceSearchSort1(String sdate, ModelAndView mv) {
 
-		System.out.println("하잉?");
 		System.out.println("sdate : " + sdate);
 
 		ArrayList<Performance> pList = perfoService.subMainPerformanceSearchSort1(sdate);
@@ -296,7 +338,6 @@ public class PerformanceController {
 	@RequestMapping("subMainPerformanceSearchSort2.perf")
 	public ModelAndView subMainPerformanceSearchSort2(String sdate, ModelAndView mv) {
 
-		System.out.println("하잉?");
 		System.out.println("sdate : " + sdate);
 
 		ArrayList<Performance> pList = perfoService.subMainPerformanceSearchSort2(sdate);
@@ -334,7 +375,10 @@ public class PerformanceController {
 
 		return listCount;
 	}
-
+	
+	
+//	유리) PERFO_STATUS 변경
+	
 	@ResponseBody
 	@RequestMapping(value = "statusChange.perf")
 	public void updateStatus(int rcode, String statusVal) {
@@ -348,6 +392,8 @@ public class PerformanceController {
 		System.out.println(p);
 
 		int updateStatus = perfoService.updateStatus(p);
+		
+	}
 
 //		if (updateStatus >0){
 //			System.out.println("update했음");
