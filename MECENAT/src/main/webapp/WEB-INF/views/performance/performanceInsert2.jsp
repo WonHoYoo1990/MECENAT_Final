@@ -114,12 +114,18 @@
 					            	<th><label for="upfile">표지 사진: </label></th>
 					            	<td><input type="file" id="upfile" class="form-control-file border" name="upfile"></td>
 					            </tr>
-					            <input type="text" name="rcode" value="${rList.rentalCode }">
+					            
+					            
+					            
+					            
+					            
+					            <input type="hidden" name="rcode" value="${rList.rentalCode }">
 					            <input type="hidden" name="eDate" value="${rList. eventDate}">
 					            <input type="hidden" name="eTime" value="${rList. eventTime}">
 					        </table>
 					        <br>
-
+							
+							
 							<div align="center">
 								<button type="submit" class="btn btn-primary">등록하기</button>
 								<button type="reset" class="btn btn-danger">취소하기</button>

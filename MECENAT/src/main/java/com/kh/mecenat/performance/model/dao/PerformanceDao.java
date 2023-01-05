@@ -17,8 +17,7 @@ public class PerformanceDao {
 	public ArrayList<Performance> selectListPerformance(SqlSessionTemplate sqlSession) {
 		return (ArrayList) sqlSession.selectList("performanceMapperMana.selectPerformanceList");
 	}
-	
-	
+
 	public int insertPerformance(SqlSessionTemplate sqlSession, Performance p) {
 		return sqlSession.insert("performanceMapperMana.insertPerformance", p);
 	}
@@ -63,15 +62,25 @@ public class PerformanceDao {
 	public ArrayList<Performance> subMainPerformanceSearchSort1(SqlSessionTemplate sqlSession, String sdate) {
 		return (ArrayList) sqlSession.selectList("performanceMapperMana.subMainPerformanceSearchSort1", sdate);
 	}
-	
+
 	// 서브메인 공연 리스트 관심순 조회
 	public ArrayList<Performance> subMainPerformanceSearchSort2(SqlSessionTemplate sqlSession, String sdate) {
 		return (ArrayList) sqlSession.selectList("performanceMapperMana.subMainPerformanceSearchSort2", sdate);
 	}
-	
+
+	// 서브 메인페이지 내에서 공연 리스트 검색 조회
+	public ArrayList<Performance> subMainPerformanceSearch(SqlSessionTemplate sqlSession, String searchWrd) {
+		return (ArrayList) sqlSession.selectList("performanceMapperMana.subMainPerformanceSearch", searchWrd);
+	}
+
+	// 서브 메인페이지 내에서 검색어 리스트 개수 조회
+	public int subMainPerformanceSearchCount(SqlSessionTemplate sqlSession, String searchWrd) {
+		return sqlSession.selectOne("performanceMapperMana.subMainPerformanceSearchCount", searchWrd);
+	}
+
 	public ArrayList<Review> selectReviewList(SqlSessionTemplate sqlSession, int rno) {
 		// TODO Auto-generated method stub
-		return (ArrayList) sqlSession.selectList("performanceMapperMana.selectReviewList", rno);
+		return (ArrayList)sqlSession.selectList("performanceMapperMana.selectReviewList", rno);
 	}
 
 	public int insertReview(SqlSessionTemplate sqlSession, Review r) {
@@ -88,15 +97,13 @@ public class PerformanceDao {
 		
 		return (ArrayList)sqlSession.selectList("performanceMapperMana.selectPlayPerformance", null, rowBounds);
 	}
-	public ArrayList<Performance> selectPlayPerformance(SqlSessionTemplate sqlSession) {
-		// TODO Auto-generated method stub
-		return (ArrayList) sqlSession.selectList("performanceMapperMana.selectListNew");
+	
+	public int updateStatus(SqlSessionTemplate sqlSession,Performance p) {
+		return sqlSession.update("performanceMapperMana.updateStatus", p);
 	}
 
-
-	public ArrayList<Performance> selectListgenre(SqlSessionTemplate sqlSession, String genreName) {
-		// TODO Auto-generated method stub
-		return (ArrayList) sqlSession.selectList("performanceMapperMana.selectListgenre", genreName);
+	public int performanceDelete(SqlSessionTemplate sqlSession, int rcode) {
+		return sqlSession.update("performanceMapperMana.performanceDelete", rcode);
 	}
 
 	public int nopePerformance(SqlSessionTemplate sqlSession, int rcode) {
@@ -117,6 +124,14 @@ public class PerformanceDao {
 
 	public int selectEndListCount(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("performanceMapperMana.selectEndListCount");
+	}
+
+	public ArrayList<Performance> selectEndPlayPerformance(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int limit = pi.getBoardLimit();
+		int offset = (pi.getCurrentPage()-1)*limit;
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		return (ArrayList)sqlSession.selectList("performanceMapperMana.selectEndPlayPerformance", null, rowBounds);
 	}
 
 
