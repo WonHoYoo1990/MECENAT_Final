@@ -76,6 +76,7 @@ public class PerformanceServerImpl implements PerformanceService {
 	}
 
 	// 서브 메인페이지 내에서 검색어 리스트 개수 조회
+
 	@Override
 	public int subMainPerformanceSearchCount(String searchWrd) {
 		return performanceDao.subMainPerformanceSearchCount(SqlSession, searchWrd);

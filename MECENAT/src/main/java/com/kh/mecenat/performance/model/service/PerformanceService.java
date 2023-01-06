@@ -37,6 +37,7 @@ public interface PerformanceService {
 	// 서브메인 공연 리스트 관심순 조회
 	public ArrayList<Performance> subMainPerformanceSearchSort2(String sdate);
 
+
 	// 서브 메인페이지 내에서 공연 리스트 검색 조회
 	public ArrayList<Performance> subMainPerformanceSearch(String searchWrd);
 
@@ -60,6 +61,5 @@ public interface PerformanceService {
 	public ArrayList<Performance> selectEndPlayPerformance(PageInfo pi);
 
 	public int selectEndListCount();
-
 
 }

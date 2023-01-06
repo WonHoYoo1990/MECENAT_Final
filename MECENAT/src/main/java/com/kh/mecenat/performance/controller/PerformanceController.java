@@ -218,7 +218,7 @@ public class PerformanceController {
 	public String setInfom() {
 		return "performance/setInfom";
 	}
-	
+
 //	유리) 상영중인 공연 관리하기
 	@RequestMapping("playPerformanceForm.mana")
 	public String selectList(@RequestParam(value="currentPage", defaultValue = "1")int currentPage,
@@ -241,21 +241,21 @@ public class PerformanceController {
 		String sp ="";
 		
 		for(int i=0; i<pList.size(); i++) {
+
 			dateArr[i] = pList.get(i).getEventDate();
-			
+
 			String[] dateSArr = dateArr[i].split(",");
-			
-			sp="";
-			
-			if(dateSArr.length != 1) {
-				sp += dateSArr[0] + " ~ " + dateSArr[dateSArr.length-1];
-			}else {
-				sp+= dateSArr[0];
+
+			sp = "";
+
+			if (dateSArr.length != 1) {
+				sp += dateSArr[0] + " ~ " + dateSArr[dateSArr.length - 1];
+			} else {
+				sp += dateSArr[0];
 			}
 			dateArr[i] = sp;
-			
+
 			pList.get(i).setEventDate(sp);
-			
 		}
 		
 		dateArr = new String[eList.size()];
@@ -282,8 +282,8 @@ public class PerformanceController {
 		model.addAttribute("piEnd", piEnd);
 		
 		model.addAttribute("pList", pList);
+
 		model.addAttribute("eList", eList);
-		
 		return "performance/playPerformanceForm";
 	}
 
@@ -375,7 +375,6 @@ public class PerformanceController {
 
 		return listCount;
 	}
-
 	
 	
 //	유리) PERFO_STATUS 변경
@@ -383,26 +382,76 @@ public class PerformanceController {
 	@ResponseBody
 	@RequestMapping(value = "statusChange.perf")
 	public void updateStatus(int rcode, String statusVal) {
+
 		System.out.println(rcode + statusVal);
-		
+
 		Performance p = new Performance();
 		p.setRentalCode(rcode);
 		p.setPerfoStatus(statusVal);
-		
+
 		System.out.println(p);
-		
+
 		int updateStatus = perfoService.updateStatus(p);
 		
 	}
 	
-	
+	//yuri myPage date값 가져오기....
 	@ResponseBody
 	@RequestMapping(value = "searchList.perf")
 	public void searchList(String FirstDate, String LastDate) {
 		System.out.println(FirstDate);
 		System.out.println(LastDate);
 	}
-	
-	
-	
+
+	// 댓글 리스트 조회
+	@ResponseBody
+	@RequestMapping(value = "rlist.bo", produces = "application/json; charset=UTF-8")
+	public String selectReviewList(int rno) {
+
+		ArrayList<Review> list = perfoService.selectReviewList(rno);
+
+//			System.out.println(rno);
+
+		return new Gson().toJson(list);
+
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "rinsert.bo", produces = "text/html; charset=UTF-8")
+	public String insertReview(Review r) {
+
+		int result = perfoService.insertReview(r);
+
+//			System.out.println(result);
+
+		return result > 0 ? "yes" : "no";
+	}
+
+	@RequestMapping("list.new")
+	public String kkkkk(Model model) {
+		System.out.println("dd");
+
+		ArrayList<Performance> pList = perfoService.selectListNew();
+
+		System.out.println(pList);
+
+		model.addAttribute("pList", pList);
+
+		return "performance/performanceListView2";
+	}
+
+	@RequestMapping("list.genre")
+	public String genre(Model model, String genreName) {
+
+		System.out.println(genreName);
+
+		ArrayList<Performance> pList = perfoService.selectListgenre(genreName);
+
+		System.out.println(pList);
+
+		model.addAttribute("pList", pList);
+
+		return "performance/performanceListView2";
+	}
+
 }

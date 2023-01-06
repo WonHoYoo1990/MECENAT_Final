@@ -359,7 +359,7 @@
 									</div>
 									<div class="txt">MECENAT 투데이</div>
 							</a></li>
-							<li><a href="list.no">
+							<li><a href="list.no?boardCode=0">
 									<div class="img">
 										<img src="./resources/sejongpac/static/portal/img/main/m1_4.gif" alt="">
 									</div>
@@ -388,6 +388,12 @@
 										<img src="./resources/sejongpac/static/portal/img/main/m1_12.gif" alt="">
 									</div>
 									<div class="txt">FAQ</div>
+							</a></li>
+							<li><a href="etiquette.cs">
+									<div class="img">
+										<img src="./resources/sejongpac/static/portal/img/main/m1_11.gif" alt="">
+									</div>
+									<div class="txt">관람예절</div>
 							</a></li>
 						</ul>
 					</div>
@@ -506,50 +512,25 @@
 										<span class="small">Notice</span>
 										<h2 class="t">최신소식</h2>
 										<p class="txt">
-											<span class="block-pc">세종문화회관의 <br> 최신 소식을 알려드립니다.
+											<span class="block-pc">MECENAT의 <br> 최신 소식을 알려드립니다.
 											</span>
 										</p>
 									</div>
 									<ul class="cont clearfix">
-										<!-- <li class="item">
-							<a href="/portal/bbs/B0000001/view.do?nttId=45146&menuNo=200042"><span class="t">[안내] 코로나19 특별방역대책에 따른 세종문화회관 관람안내</span></a>
-							<span class="date">2021.11.30</span>
-						</li> -->
-										<li class="item"><a href="/portal/bbs/B0000001/view.do?nttId=45926&amp;menuNo=200042"><span class="t">[티켓오픈안내] &nbsp; 라이브러리컴퍼니 자선음악회 추가 좌석 티켓오픈 안내</span></a> <span class="date">2022.12.15</span></li>
-										<li class="item"><a href="/portal/bbs/B0000001/view.do?nttId=45925&amp;menuNo=200042"><span class="t">[입찰공고] &nbsp; 세종문화회관 터보냉동기 구매설치 입찰공고(긴급)</span></a> <span class="date">2022.12.15</span></li>
-								</ul> <a href="/portal/bbs/B0000001/list.do?menuNo=200042" class="more">더보기</a>
-							</li>
-								<li class="r popup_zone">
-									<div class="tit-main">
-										<span class="small">Popup Zone</span>
-										<h2 class="t">팝업존</h2>
-									</div>
-									<div class="btns mb-st1 p">
-										<button type="button" class="prev slick-arrow slick-hidden" aria-disabled="true" tabindex="-1">이전</button>
-										<button type="button" class="next slick-arrow slick-hidden" aria-disabled="true" tabindex="-1">다음</button>
-										<span class="after"></span>
-									</div>
-									<div class="w">
-										<ul class="s slick-initialized slick-slider">
-											<div aria-live="polite" class="slick-list draggable">
-												<div class="slick-track" style="opacity: 1; width: 478px; transform: translate3d(0px, 0px, 0px);">
-													<li class="slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" role="option" tabindex="-1" style="width: 239px;"><a href="https://www.creativebloq.com/brand-impact-awards-winners-2022" target="_blank" title="새창으로 열립니다." tabindex="0">
-															<div class="in">
-																<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=4b3e3d9d2ca3ad1395b5126caf40404bbb6d9ec4bb1f6894357ee3bde7a73807&amp;streFileNm=95a51859d07d5eb6b745d26c016fe11052e2f1440befb29c34155b70a7ef77fe" alt="">
-																<div class="hide">세종문화회관 CI 영국 브랜드 임팩트 어워드(Brand Impact Award) BRONZE 수상</div>
-															</div>
-													</a></li>
-													<li class="slick-slide slick-active" data-slick-index="1" aria-hidden="false" role="option" tabindex="-1" style="width: 239px;"><a href="https://www.instagram.com/sejongcenter/" target="_blank" title="새창으로 열립니다." tabindex="0">
-															<div class="in">
-																<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=2b128253b55e283788516ff26464fb7cbb6d9ec4bb1f6894357ee3bde7a73807&amp;streFileNm=247914bc50fbf07b3df8596057dd712c6db30ab9edb0bb8e4f449a9903cb06fb" alt="">
-																<div class="hide">세종문화회관 인스타</div>
-															</div>
-													</a></li>
-												</div>
-											</div>
-										</ul>
-									</div>
-							</li>
+										<li class="item">
+											<a href="/portal/bbs/B0000001/view.do?nttId=45926&amp;menuNo=200042">
+												<span class="t">[티켓오픈안내] &nbsp; 라이브러리컴퍼니 자선음악회 추가 좌석 티켓오픈 안내</span>
+											</a> 
+											<span class="date">2022.12.15</span>
+										</li>
+										<li class="item">
+											<a href="/portal/bbs/B0000001/view.do?nttId=45925&amp;menuNo=200042">
+												<span class="t">[입찰공고] &nbsp; 세종문화회관 터보냉동기 구매설치 입찰공고(긴급)</span>
+											</a> 
+											<span class="date">2022.12.15</span>
+										</li>
+									</ul> <a href="list.no?boardCode=0" class="more">더보기</a>
+								</li>
 							</ul>
 						</div>
 						<!-- #m4 -->

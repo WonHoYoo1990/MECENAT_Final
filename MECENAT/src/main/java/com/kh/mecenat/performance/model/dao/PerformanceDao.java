@@ -89,13 +89,13 @@ public class PerformanceDao {
 	}
 
 	public ArrayList<Performance> selectPlayPerformance(SqlSessionTemplate sqlSession, PageInfo pi) {
-		
+
 		int limit = pi.getBoardLimit();
-		int offset = (pi.getCurrentPage()-1)*limit;
-		
+		int offset = (pi.getCurrentPage() - 1) * limit;
+
 		RowBounds rowBounds = new RowBounds(offset, limit);
-		
-		return (ArrayList)sqlSession.selectList("performanceMapperMana.selectPlayPerformance", null, rowBounds);
+
+		return (ArrayList) sqlSession.selectList("performanceMapperMana.selectPlayPerformance", null, rowBounds);
 	}
 	
 	public int updateStatus(SqlSessionTemplate sqlSession,Performance p) {
@@ -107,7 +107,7 @@ public class PerformanceDao {
 	}
 
 	public int nopePerformance(SqlSessionTemplate sqlSession, int rcode) {
-		return sqlSession.update("reservationMapper.nopePerformance",rcode);
+		return sqlSession.update("reservationMapper.nopePerformance", rcode);
 	}
 
 	public int selectListCount(SqlSessionTemplate sqlSession) {
@@ -116,16 +116,15 @@ public class PerformanceDao {
 
 	public ArrayList<Performance> selectPlayEndPerformance(SqlSessionTemplate sqlSession, PageInfo pi) {
 		int limit = pi.getBoardLimit();
-		int offset = (pi.getCurrentPage()-1)*limit;
-		
+		int offset = (pi.getCurrentPage() - 1) * limit;
+
 		RowBounds rowBounds = new RowBounds(offset, limit);
-		return (ArrayList)sqlSession.selectList("performanceMapperMana.selectPlayEndPerformance", null, rowBounds);
+		return (ArrayList) sqlSession.selectList("performanceMapperMana.selectPlayEndPerformance", null, rowBounds);
 	}
 
 	public int selectEndListCount(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("performanceMapperMana.selectEndListCount");
 	}
-
 	public ArrayList<Performance> selectEndPlayPerformance(SqlSessionTemplate sqlSession, PageInfo pi) {
 		int limit = pi.getBoardLimit();
 		int offset = (pi.getCurrentPage()-1)*limit;
