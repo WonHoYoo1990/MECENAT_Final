@@ -135,17 +135,6 @@
         </div>
     </div>
     
-    <script>
-    	document.addEventListener("DOMContentLoaded", function(){
-	        const modal = document.getElementById("modal")
-			    modal.style.display = "flex"
-			    
-	    	const closeBtn = modal.querySelector(".close-area")
-	    	closeBtn.addEventListener("click", e => {
-	    	    modal.style.display = "none"
-			})
-    	},{once : true});
-    </script>
 <form action='selectSeats.rv' method='post'>
     <div id="reserveOuter" style="width:65%;">
         <div id="head-img" style="width:100%;">
@@ -166,8 +155,8 @@
         <div id="concert-info" style="width:100%;">
         	<table style="width:100%;" border="1">
         		<tr>
-        			<td rowspan="4">${list[0].changeName }</td>
-        			<td colspan="2">${list[0].perfoTitle }</td>
+        			<td rowspan="4">${list[0].changeName}</td>
+        			<td colspan="2">${list[0].perfoTitle}</td>
         		</tr>
         		<tr>
         			<td>기간</td>
@@ -223,12 +212,16 @@
     </div>
 </form>
 	<script>
-// 		$( document ).ready(function confirmWin() {
-			
-// 			var result = 
-
-// 		});
-	</script>
+    	document.addEventListener("DOMContentLoaded", function(){
+	        const modal = document.getElementById("modal")
+			    modal.style.display = "flex"
+			    
+	    	const closeBtn = modal.querySelector(".close-area")
+	    	closeBtn.addEventListener("click", e => {
+	    	    modal.style.display = "none"
+			})
+    	},{once : true});
+    </script>
     <script type="text/javascript">
 		var today = new Date("${list[0].perfoEventDate}");//오늘 날짜//내 컴퓨터 로컬을 기준으로 today에 Date 객체를 넣어줌
 		function buildCalendar(){
@@ -287,11 +280,10 @@
     	 	
 		    <c:forEach items="${list}" var="p">
 	    		var perfoEventDate = "${p.perfoEventDate}";
-	    		if(perfoEventDate==findPfDate){
-				
+	    		if(perfoEventDate == findPfDate){	
 	     			cell.setAttribute('class', "pfDetail");
 	     			cell.setAttribute('value', "${p.perfoEventDate}");
-	     			if("${list[0].perfoEventDate}"==findPfDate){
+	     			if("${list[0].perfoEventDate}" == findPfDate){
 	     				cell.bgColor = "lightpink";
 	     			}
 	    		}
@@ -302,7 +294,6 @@
      			if(this.getAttribute('value') != null){
       				$(".pfDetail").css("background-color","white");
      				this.setAttribute("style", "background-color:lightpink;");
-//     				$("#seleted-date").html(perfoEventDate);
      			}else if(this.getAttribute("style") != "background-color:white;"){
  					this.setAttribute("style", "background-color:white;");
      			}
@@ -317,17 +308,23 @@
 					success : function(result){
 						var resultStr = "";
 						var resultStr2 = "";
-
+						var rtime = parseInt(result.runningTime.substring(0,3));
+						var etimeHh = parseInt(result.startTime.substring(0,2));
+						var etimeMm = parseInt(result.startTime.substring(3,5));
+						var k = (etimeHh * 60) + etimeMm + rtime;
+						etimeHh = Math.floor(k/60);
+						etimeMm = k - (etimeHh*60);
+						if(etimeMm == 0){ etimeMm = "00";}
  						resultStr += "<table id='select-pfInfo' border='1'>"
 								  +  "<tr><th width='120px'>공연 날짜 </th><td id='seleted-date' width='200px'>&nbsp;" + result.perfoEventDate + "</td></tr>"
 								  +  "<tr><th>공연 시작시간</th><td id='perfo-stime'>&nbsp;" + result.startTime + "</td></tr>"
-								  +  "<tr><th>공연 시간</th><td id='perfo-rtime'>&nbsp;" + result.runningTime + "</td></tr>"
+								  +  "<tr><th>공연 종료시간</th><td id='perfo-etime'>&nbsp;" + etimeHh + ":" + etimeMm + "</td></tr>"
+								  +  "<tr><th>공연 시간</th><td id='perfo-rtime'>&nbsp;"+ rtime +" 분</td></tr>"
 								  +  "<tr><th>잔여좌석수</th><td id='soldout-seats'>&nbsp;" + result.remainingSeats + "</td></tr>";
 						if(result.remainingSeats > 0){//잔여좌석수가 1개 이상일 경우 버튼이 보이도록, 0일경우는 안보임/
 							resultStr +=  "<table style='width:50%;'><tr><td colspan='2' align='center'><button type='submit' class='site-btn' id='next-btn'>Make Reservation</button></td></tr></table>";
 						}
 						resultStr +=  "</table>";
-					    			
 						
 	 					$("#info-td").html(resultStr);
 	 					$("#top-select-date").html("3. 날짜<br><p>"+ result.perfoEventDate +"</p>")

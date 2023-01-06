@@ -81,12 +81,14 @@
 			text-transform: uppercase;
 			display: inline-block;
 			padding: 10px 20px;
+			cursor: pointer;
 		}
 		
     </style>    
 </head>
 <body>
 <form action='discount.rv' method='post'>
+<input type='hidden' name='selectedSeats' id="selectedSeats">
     <div id="reserveOuter" style="width:65%;">
         <div id="head-img" style="width:100%;">
         <img src="resources/img/reserve/center-top.jpg" style="width:100%; height:auto;"/>
@@ -120,34 +122,44 @@
     						<th width="40%">티켓가격</th>
     						<th>잔여석</th>
     					</tr>
+    					
     					<tr align="center">
     						<th><span style='background-color:orange; width:9px; height:9px; display:inline-block;'></span>&nbsp;R석</th>
-    						<td>50,000원</td>
+    						<fmt:parseNumber var="rPrice" integerOnly="true" value="${performance.price*1.5}"/>
+    						<td>${rPrice} 원</td>
     						<td id='rTier'></td>
     					</tr>
+    					
     					<tr align="center">
     						<th><span style='background-color:red; width:9px; height:9px; display:inline-block;'></span>&nbsp;S석</th>
-    						<td>30,000원</td>
+    						<fmt:parseNumber var="sPrice" integerOnly="true" value="${performance.price*1.2}"/>
+    						<td>${sPrice} 원</td>
     						<td id='sTier'></td>
     					</tr>
+    					
     					<tr align="center">
     						<th><span style='background-color:green; width:9px; height:9px; display:inline-block;'></span>&nbsp;A석</th>
-    						<td>10,000원</td>
+    						<td>${performance.price} 원</td>
     						<td id='aTier'></td>
     					</tr>
+    					
     				</table>
     				<table id='myAllSeats' style="width:80%;" border="1">
-    					<tr><th>선택한 좌석 정보</th></tr>
-    					<tr><th>&nbsp;</th></tr>
-    					<tr><th>&nbsp;</th></tr>
-    					<tr><th>&nbsp;</th></tr>
-    					<tr><th>&nbsp;</th></tr>
-    					<tr><th>&nbsp;</th></tr>
-    					
+    					<thead>
+	    					<tr><th>선택한 좌석 정보</th></tr>
+    					</thead>
+    					<tbody>
+	    					<tr><th>&nbsp;</th></tr>
+	    					<tr><th>&nbsp;</th></tr>
+	    					<tr><th>&nbsp;</th></tr>
+	    					<tr><th>&nbsp;</th></tr>
+	    					<tr><th>&nbsp;</th></tr>
+    					</tbody>
     				</table>
     				<table id='letgo-btn' style="width:80%;">
     					<tr style='height:30px;'>
     						<th>
+			    				<button type='button' class='site-btn' style="background-Color: red; cursor: pointer;" onClick="window.location.reload()">RESET</button>
     							<button type='submit' class='site-btn' id='pay-btn' disabled>Make Reservation</button>
    							</th>
    						</tr>
@@ -156,6 +168,7 @@
     		</tr>
     	</table>
    	</div>
+   		
 		
 		<script>
 		    let test = [];
@@ -186,10 +199,10 @@
 		            	input.value = "A"+seatLevel;
 			            div.append(input);
 			         
-			            if(j > 2 && j < 23 && i < 11){//S석 띄워주기
+			            if(j >= 3 && j <= 22 && i <= 10){//S석 띄워주기
 			            	input.value = "S" + seatLevel;
 				            input.style = "width: 15px; height: 15px; background-color: red; color: rgba(0,0,0,0);  border:1px solid white;";
-				            if(j > 4 && j < 21 && i < 6){//R석 띄워주기
+				            if(j >= 5 && j <= 20 && i <= 5){//R석 띄워주기
 				            	input.value = "R" + seatLevel;
 				            	input.style = "width: 15px; height: 15px; background-color: orange; color: rgba(0,0,0,0);  border:1px solid white;";
 				            }
@@ -246,9 +259,9 @@
 			                    count -= 1;
 			                    input.style = "width: 15px; height: 15px; background-color: green; color: rgba(0,0,0,0);  border:1px solid white;";
 			                    
-			                    if(j > 2 && j < 23 && i < 11){//S석 띄워주기
+			                    if(j >= 3 && j <= 22 && i <= 10){//S석 띄워주기
 						            input.style = "width: 15px; height: 15px; background-color: red; color: rgba(0,0,0,0);  border:1px solid white;";
-						            if(j > 4 && j < 21 && i < 6){//R석 띄워주기
+						            if(j >= 5 && j <= 20 && i <= 5){//R석 띄워주기
 						            	input.style = "width: 15px; height: 15px; background-color: orange; color: rgba(0,0,0,0);  border:1px solid white;";
 						            }
 					            }
@@ -273,25 +286,31 @@
 			                	document.getElementById("pay-btn").disabled = true;
 			                }
 			                
-			                var nomalStr = "<tr><th>선택한 좌석 정보</th></tr>"
+		                    var selectSeats = "";
+		                    var nomalStr = "<tr><th>선택한 좌석 정보</th></tr>"
 			                var selectStr = "";
 			                for(var k = 0; k < 5; k++){//선택한 좌석 정보
 			                	if(selectedSeats[k] != null){
+			                		if(selectSeats == ""){
+				                		selectSeats = selectedSeats[k];		                			
+			                		}else{
+			                			selectSeats += ","+selectedSeats[k];		
+			                		}
 					                selectStr += "<tr>"
-					                		  +  "<td align='center'>"
+					                		  +  "<td class='selectSeatTr' align='center'>"
 					                		  +  selectedSeats[k].substring(0,1) + "석 "
 					                		  +  selectedSeats[k].substring(1,2) + "열 "
 					                		  +  selectedSeats[k].substring(2) + "번"
-					                		  +  "<input type='hidden' name='selectedSeats' value="+selectedSeats[k]+">"
+// 					                		  +  "<button type='button' class='delete-btn' onClick='test1();' value='"+ selectedSeats[k] +"'>X</button>"
 					                		  +  "</td>"
 					                		  +  "</tr>"
 			               		}else{
 			               			selectStr += "<tr><th>&nbsp;</th></tr>"
 			               		}
 			                }
-
 			                nomalStr += selectStr;
 			                $("#myAllSeats").html(nomalStr);
+			                $("#selectedSeats").val(selectSeats);
 			            })//input.addEventListener('click', function(e)
 			            		
 			        }//for (let j = 1; j < 15; j++)
@@ -314,84 +333,119 @@
 			            //3중포문을 사용하지 않기위해 
 			            mapping(input, i, j);
 		            	seatLevel = input.value;
-		            	input.value = "A"+seatLevel;
+		            	input.value = "A" + seatLevel;
 			            div.append(input);
 			         
-			            if(j > 2 && j < 23 && i < 11){//S석 띄워주기
-        				    input.value = "S" + seatLevel;
+			            if(j >= 3 && j <= 22 && i <= 8){//S석 띄워주기
+			            	input.value = "S" + seatLevel;
 				            input.style = "width: 15px; height: 15px; background-color: red; color: rgba(0,0,0,0);  border:1px solid white;";
-				            if(j > 4 && j < 21 && i < 6){//R석 띄워주기
+				            if(j >= 5 && j <= 20 && i <= 4){//R석 띄워주기
 				            	input.value = "R" + seatLevel;
 				            	input.style = "width: 15px; height: 15px; background-color: orange; color: rgba(0,0,0,0);  border:1px solid white;";
 				            }
-				            
 			            }
-			            
+
  		            	if(input.value.substring(1)=="blank"){//복도 만드는 기능
 			            	input.style = "width: 15px; height: 15px; background-color: white; color: rgba(0,0,0,0);  border:1px solid white; cursor: default; pointer-events: none;";
 		            	}
-						
-			            if (input.value == "RA8"){//예매된 좌석 클릭 안되게 하는 기능
-			            	input.style = "width: 15px; height: 15px; background-color: lightgray; color: rgba(0,0,0,0);  border:1px solid white; cursor: default; pointer-events: none;";             
-			            }
+			           
+			            var seatsNum = "";
+			            var rTier = 0;
+			            var sTier = 0;
+			            var aTier = 0;
+			            <c:forEach items="${asat}" var="a">
+				            if('${a.seatTier}' == 'R'){
+				            	rTier++;
+				            }else if('${a.seatTier}' == 'S'){
+				            	sTier++;
+				            }else if('${a.seatTier}' == 'A'){
+				            	aTier++;
+				            }
+			            </c:forEach>
+			            
+			            <c:forEach items="${sosl}" var="n">
+			            	seatsNum = "${n.seatTier}" + "${n.seatCode}";
+
+				            if (input.value == seatsNum){//예매된 좌석 클릭 안되게 하는 기능
+				            	input.style = "width: 15px; height: 15px; background-color: lightgray; color: rgba(0,0,0,0);  border:1px solid white; cursor: default; pointer-events: none;";             			            	
+				            }
+				            
+				            if('${n.seatTier}' == 'R'){
+				            	rTier--;
+				            }else if('${n.seatTier}' == 'S'){
+				            	sTier--;
+				            }else if('${n.seatTier}' == 'A'){
+				            	aTier--;
+				            }
+			            </c:forEach>
+		               	document.getElementById("rTier").innerText=rTier;
+		            	document.getElementById("sTier").innerText=sTier;
+		            	document.getElementById("aTier").innerText=aTier;
 			            
 			            input.addEventListener('click', function(e) {//좌석 클릭
-			                 //중복방지 함수
+			                //중복방지 함수
 			                selectedSeats = selectedSeats.filter((element, index) => selectedSeats.indexOf(element) != index);
 			             
-			                if (input.classList.contains("clicked")) {//click class가 존재할때(제거해주는 toggle)
+			                if(input.classList.contains("clicked")) {//click class가 존재할때(제거해주는 toggle)
 			                    input.classList.remove("clicked");
 			                    selectedSeats.splice(selectedSeats.indexOf(e.target.value), 1);
 			                    count -= 1;
 			                    input.style = "width: 15px; height: 15px; background-color: green; color: rgba(0,0,0,0);  border:1px solid white;";
 			                    
-			                    if(j > 2 && j < 23 && i < 11){//S석 띄워주기
+			                    if(j >= 3 && j <= 22 && i <= 8){//S석 띄워주기
 						            input.style = "width: 15px; height: 15px; background-color: red; color: rgba(0,0,0,0);  border:1px solid white;";
-						            if(j > 4 && j < 21 && i < 6){//R석 띄워주기
+						            if(j >= 5 && j <= 20 && i <= 4){//R석 띄워주기
 						            	input.style = "width: 15px; height: 15px; background-color: orange; color: rgba(0,0,0,0);  border:1px solid white;";
 						            }
 					            }
-			                } else if(!input.classList.contains("clicked") && count < 5){//click class가 존재하지 않을때 (추가해주는 toggle)
+			                }else if(!input.classList.contains("clicked") && count < 5){//click class가 존재하지 않을때 (추가해주는 toggle)
 			                    count += 1;
-			                    input.style = "border: 2px solid black; background-color: hotpink; color: rgba(0,0,0,0);";
+			                    input.style = "border: 1px solid black; background-color: hotpink; color: rgba(0,0,0,0);";
 			                    input.classList.add("clicked");
 			                }
 			                
 			                clicked = document.querySelectorAll(".clicked");
 		                    clicked.forEach((data) => {
+		                    	//clicked된 데이터 들어감
 		                        selectedSeats.push(data.value);
 		              		})
-		                 
-			                
+
 			                if(count != 0){//선택한 좌석수만큼 인원수 증가
-			                	document.getElementById("count-seat").innerHTML=count;
+			                	document.getElementById("count-seat").innerHTML="5. 인원<br>&nbsp;"+count;
+			                	document.getElementById("pay-btn").className="site-btn-a";
+			                	document.getElementById("pay-btn").disabled = false;
 			                }else if(count == 0){
-			                	document.getElementById("count-seat").innerText='0';
+			                	document.getElementById("count-seat").innerHTML='5. 인원<br>&nbsp;';
+			                	document.getElementById("pay-btn").className="site-btn";
+			                	document.getElementById("pay-btn").disabled = true;
 			                }
 			                
-			                var nomalStr = "<tr><th>선택한 좌석 정보</th></tr>"
+		                    var selectSeats = "";
+		                    var nomalStr = "<tr><th>선택한 좌석 정보</th></tr>"
 			                var selectStr = "";
-			                
 			                for(var k = 0; k < 5; k++){//선택한 좌석 정보
 			                	if(selectedSeats[k] != null){
-					                selectStr += "<tr>"
-					                		  +  "<td align='center'>"
-					                		  +  selectedSeats[k].substring(0,1) + "석 "
-					                		  +  selectedSeats[k].substring(1,2) + "열 "
-					                		  +  selectedSeats[k].substring(2) + "번"
-					                		  +  "<input type='hidden' name='selectedSeats' value="+selectedSeats[k]+">"
-					                		  +  "</td>"
-					                		  +  "</tr>"
+			                		if(selectSeats == ""){
+				                		selectSeats = selectedSeats[k];		                			
+			                		}else{
+			                			selectSeats += ","+selectedSeats[k];		
+			                		}
+			                		selectStr += "<tr>"
+				                		  +  "<td class='selectSeatTr' align='center'>"
+				                		  +  selectedSeats[k].substring(0,1) + "석 "
+				                		  +  selectedSeats[k].substring(1,2) + "열 "
+				                		  +  selectedSeats[k].substring(2) + "번"
+// 				                		  +  "<button type='button' class='delete-btn'>X</button>"
+				                		  +  "</td>"
+				                		  +  "</tr>"
 			               		}else{
 			               			selectStr += "<tr><th>&nbsp;</th></tr>"
 			               		}
 			                }
-			               
 			                nomalStr += selectStr;
 			                $("#myAllSeats").html(nomalStr);
-			                		  
+			                $("#selectedSeats").val(selectSeats);
 			            })//input.addEventListener('click', function(e)
-			            		
 			        }//for (let j = 1; j < 15; j++)
 			        	
 			    }//for (let i = 1; i <= 10; i++)
@@ -449,40 +503,14 @@
 					input.value = input.value.substring(0,1)+(input.value.substring(1)-2);
 				}
 		    }
+        
+// 			function test1(num) {
+// 				console.log(num);
+// 			}	
+   		
 		</script>
-		        
     </div>
 </form>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

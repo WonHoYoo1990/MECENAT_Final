@@ -57,19 +57,18 @@
         	align:center;
         	width:90%;
         }
-        
-        .site-btn {
-			font-size: 11px;
-			color: white;
-			background: lightgray;
-			font-weight: 700;
-			border: none;
-			border-radius: 2px;
-			letter-spacing: 2px;
-			text-transform: uppercase;
-			display: inline-block;
-			padding: 10px 20px;
+		.totalPrice{
+			width:100%;
+			height:50px;
 		}
+        
+        #priceTd{
+       		width: 60%;
+			font-size: 25px;
+			font-weight: 700;
+			padding:30px;
+		}
+
 		.site-btn-a {
 			font-size: 11px;
 			color: white;
@@ -81,24 +80,31 @@
 			text-transform: uppercase;
 			display: inline-block;
 			padding: 10px 20px;
+			cursor:point;
 		}
-		
+		.site-btn-a:hover {
+		cursor : pointer; 
+		}
     </style>    
 </head>
 <body>
-<form action='discount.rv'>
-    <div id="reserveOuter" style="width:65%;">
+<form action="payment.rv" method='post'>
+<input type='hidden' name='thisSeats' id="thisSeats">
+<input type="hidden" name="totalPrice" id="tp">
+<input type="hidden" name="rentalCode" value="${ra.rentalCode}">
+<input type="hidden" name="perfoNo" value="${performance.perfoNo}">
+    <div id="reserveOuter" style="width:65%;" align='center'>
         <div id="head-img" style="width:100%;">
-        <img src="resources/img/reserve/center-top.jpg" style="width:100%; height:auto;"/>
+        	<img src="resources/img/reserve/center-top.jpg" style="width:100%; height:auto;"/>
         </div>
-        <div id="reserve-step">
+        <div id="reserve-step" align='center'>
         <table style="width:100%;" border="1">
         	<tr>
         		<th style="width:130px;"><p>1. 프로그램<br>${performance.perfoTitle}</p></th>
         		<th><p>2. 장소<br>${ra.hallName}</p></th>
         		<th><p>3. 날짜<br>${performance.perfoEventDate}</p></th>
         		<th><p>4. 관람시간<br>${performance.startTime}</p></th>
-        		<th><p id="count-seat">5. 인원<br>&nbsp;</p></th>
+        		<th><p id="count-seat">5. 인원<br>${selectAllSeats.size()}</p></th>
         		<th><p>6. 결제<br>&nbsp;</p></th>
         	</tr>
         </table>
@@ -111,44 +117,43 @@
     <div class="seat-wrapper" align="center">
     	<table id='seat-table' align="center">
     		<tr>
-    			<td id='myseats' class="myseats">
-    				<table style="width:80%;" border="1">
+    			<td id='myseats' class="myseats" align='center'>
+    				<table style="width:80%;" border="1" align='center'>
     					<tr>
     						<th width="35%">좌석등급</th>
     						<th width="35%">티켓가격</th>
     						<th width="30%">선택한 좌석 수</th>
     					</tr>
+    					
     					<tr align="center">
     						<th><span style='background-color:orange; width:9px; height:9px; display:inline-block;'></span>&nbsp;R석</th>
-    						<td>50,000원</td>
+    						<fmt:parseNumber var="rPrice" integerOnly="true" value="${performance.price*1.5}"/>
+    						<td>${rPrice} 원</td>
     						<td id='rTier'></td>
     					</tr>
+    					
     					<tr align="center">
     						<th><span style='background-color:red; width:9px; height:9px; display:inline-block;'></span>&nbsp;S석</th>
-    						<td>30,000원</td>
+    						<fmt:parseNumber var="sPrice" integerOnly="true" value="${performance.price*1.2}"/>
+    						<td>${sPrice} 원</td>
     						<td id='sTier'></td>
     					</tr>
+    					
     					<tr align="center">
     						<th><span style='background-color:green; width:9px; height:9px; display:inline-block;'></span>&nbsp;A석</th>
-    						<td>10,000원</td>
+    						<td>${performance.price} 원</td>
     						<td id='aTier'></td>
     					</tr>
     				</table>
-    				<table id='myAllSeats' style="width:80%;" border="1">
-    					<tr><th>선택한 좌석 정보</th></tr>
-    					<tr><th>&nbsp;</th></tr>
-    					<tr><th>&nbsp;</th></tr>
-    					<tr><th>&nbsp;</th></tr>
-    					<tr><th>&nbsp;</th></tr>
-    					<tr><th>&nbsp;</th></tr>
-    					
+    				<table id='selectAllSeats' style="width:80%;" border="1">
+    					<tr><th>선택한 좌석 정보</th><th>선택 좌석 금액</th></tr>
+    					<tr><th>&nbsp;</th><th>&nbsp;</th></tr>
+    					<tr><th>&nbsp;</th><th>&nbsp;</th></tr>
+    					<tr><th>&nbsp;</th><th>&nbsp;</th></tr>
+    					<tr><th>&nbsp;</th><th>&nbsp;</th></tr>
+    					<tr><th>&nbsp;</th><th>&nbsp;</th></tr>
     				</table>
-    				<table id='letgo-btn' style="width:80%;">
-    					<tr style='height:30px;'>
-    						<th>
-    							<button type='submit' class='site-btn' id='pay-btn' disabled>Make Reservation</button>
-   							</th>
-   						</tr>
+    				<table id='totalPrice' align='center' >
     				</table>
     			</td>
     		</tr>
@@ -161,87 +166,63 @@
 	var rTier = 0;
 	var sTier = 0;
 	var aTier = 0;
-	
-	<c:forEach items="${asat}" var="a">
-	    if('${a.seatTier}' == 'R'){
-	    	rTier++;
-	    }else if('${a.seatTier}' == 'S'){
-	    	sTier++;
-	    }else if('${a.seatTier}' == 'A'){
-	    	aTier++;
-	    }
+	var nomalStr = "<tr><th>선택한 좌석 정보</th><th>선택 좌석 금액</th></tr>"
+    var selectStr = "";
+	var priceStr = "";
+	var selectSeatsList = [];
+	var seatsListStr = "";
+	var priceNum = 0;
+	<c:forEach items="${selectAllSeats}" var="selectAllSeats">
+		selectSeatsList.push("${selectAllSeats}");
 	</c:forEach>
-	
-	<c:forEach items="${sosl}" var="n">
-		seatsNum = "${n.seatTier}" + "${n.seatCode}";
-	
-	    if (input.value == seatsNum){//예매된 좌석 클릭 안되게 하는 기능
-	    	input.style = "width: 15px; height: 15px; background-color: lightgray; color: rgba(0,0,0,0);  border:1px solid white; cursor: default; pointer-events: none;";             			            	
-	    }
-	    
-	    if('${n.seatTier}' == 'R'){
-	    	rTier--;
-	    }else if('${n.seatTier}' == 'S'){
-	    	sTier--;
-	    }else if('${n.seatTier}' == 'A'){
-	    	aTier--;
-	    }
-	</c:forEach>
-	
-	document.getElementById("rTier").innerText=rTier;
+
+	for (var i = 0; i < selectSeatsList.length; i++) {
+		if(selectSeatsList[i] != null){
+			if(i == 0 ){
+				seatsListStr += selectSeatsList[i];
+			}else{
+				seatsListStr += "," + selectSeatsList[i];
+			}
+			
+	        selectStr += "<tr align='center'>"
+	        		  +  "<td>"
+	        		  +  selectSeatsList[i].substring(0,1) + "석 "
+	        		  +  selectSeatsList[i].substring(1,2) + "열 "
+	        		  +  selectSeatsList[i].substring(2) + "번"
+	        		  + "</td><td>"
+	        		  
+	    	if(selectSeatsList[i].substring(0,1) == 'R'){
+	    		rTier++;
+	    		selectStr += '${rPrice} 원'
+	    	}
+			if(selectSeatsList[i].substring(0,1) == 'S'){
+				sTier++;
+				selectStr += '${sPrice} 원'
+	    	}
+			if(selectSeatsList[i].substring(0,1) == 'A'){
+				aTier++;
+				selectStr += '${performance.price} 원'
+	    	}
+			selectStr += "</td></tr>"
+		} else{
+   			selectStr += "<tr><th>&nbsp;</th><th>&nbsp;</th></tr>"
+   		}
+	}
+	priceStr = "<tr><th id='priceTd'> 총 결제금액 : " + (rTier * ${rPrice} + sTier * ${sPrice} + aTier * ${performance.price}).toLocaleString() + " 원</th>"
+			 + "<th><button type='submit' class='site-btn-a' id='pay-btn'>Make Reservation</button></th></tr>";
+    nomalStr += selectStr;
+    $("#selectAllSeats").html(nomalStr);
+    $("#totalPrice").html(priceStr);
+    $("#thisSeats").val(seatsListStr);
+    priceNum = parseInt(rTier * ${rPrice} + sTier * ${sPrice} + aTier * ${performance.price});
+	$("#tp").val(priceNum);
+    document.getElementById("rTier").innerText=rTier;
 	document.getElementById("sTier").innerText=sTier;
 	document.getElementById("aTier").innerText=aTier;
 	
-	var nomalStr = "<tr><th>선택한 좌석 정보</th></tr>"
-    var selectStr = "";
-	
-	<c:forEach items="${selectedSeats}" var="selectedSeats">
-        selectStr += "<tr>"
-        		  +  "<td align='center'>"
-        		  +  ${selectedSeats}.substring(0,1) + "석 "
-        		  +  ${selectedSeats}.substring(1,2) + "열 "
-        		  +  ${selectedSeats}.substring(2) + "번"
-        		  +  "<input type='hidden' name='selectedSeats' value=" + ${selectedSeats} + ">"
-        		  +  "</td>"
-        		  +  "</tr>"
-	</c:forEach>
-
-    nomalStr += selectStr;
-    $("#myAllSeats").html(nomalStr);
-		
 </script>
 
 </form>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
