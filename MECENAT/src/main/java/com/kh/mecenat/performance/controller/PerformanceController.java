@@ -396,6 +396,12 @@ public class PerformanceController {
 	}
 	
 	
+	@ResponseBody
+	@RequestMapping(value = "searchList.perf")
+	public void searchList(String FirstDate, String LastDate) {
+		System.out.println(FirstDate);
+		System.out.println(LastDate);
+	}
 	
 	
 	
