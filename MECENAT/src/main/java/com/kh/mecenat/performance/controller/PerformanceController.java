@@ -394,13 +394,13 @@ public class PerformanceController {
 		int updateStatus = perfoService.updateStatus(p);
 		
 	}
-
-//		if (updateStatus >0){
-//			System.out.println("update했음");
-//		} else {
-//			System.out.println("실패");
-//		}
-
+	
+	//yuri myPage date값 가져오기....
+	@ResponseBody
+	@RequestMapping(value = "searchList.perf")
+	public void searchList(String FirstDate, String LastDate) {
+		System.out.println(FirstDate);
+		System.out.println(LastDate);
 	}
 
 	// 댓글 리스트 조회
