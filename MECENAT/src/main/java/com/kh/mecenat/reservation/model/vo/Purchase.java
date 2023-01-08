@@ -21,5 +21,6 @@ public class Purchase {
 	private Date purchaseDate;//	PURCHASE_DATE
 	private Date reservationDate;//	RESERVATION_DATE
 	private int totalPrice;//	TOTAL_PRICE
+	private String perfoTitle;
 	
 }

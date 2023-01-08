@@ -82,45 +82,47 @@
 	
 	<div class="content">
 		<br><br>
-		<div class="innerOuter" style="padding:5% 10%;">
+		<div class="innerOuter" style="padding:5% 10%;" align="center">
 			<br>
-			<p id="title">내 공연 조회</p>
+			<p id="title" style="font-size:30px">my공연 조회</p>
 			<br>
 			
 			<div onchange="searchDateChange();">
+				기간 선택: 
 				<input type="date" id="myListFirstDate" name="myListFirstDate">
 				<input type="date" id="myListLastDate" name="myListLastDate">
 			</div>
 			
 			<br>
-			
-			<table  class="table table-hover" id="applicationList">
+			<input type="hidden" id="userId" value="${loginUser.userId}">
+			<table  class="table table-hover" id="applicationList" >
 				<thead>
 					<tr align="center">
-						<th>1</th>
-						<th>2</th>
-						<th>3</th>
+						<th></th>
+						<th>공연이름</th>
+						<th>공연날짜</th>
+						<th>좌석번호</th>
+						<th>티켓구매날짜</th>
+						<th></th>
 					</tr>
 				</thead>
 				
-				<tbody>
-					<tr align="center">
-						<td>ㅇㅇ</td>
-						<td>ㄴㄴ</td>
-						<td>ㅇㅇ</td>
-					</tr>
+				<tbody align="center">
+				
 				</tbody>
 			</table>
 		</div>
 		<br><br>
 	</div>
+	
+	
 	<script>
 		var d = new Date();
 		var year = d.getFullYear(); // 년
 		var month = d.getMonth();   // 월
 		var day = d.getDate();      // 일
 		
-		var dd11 = new Date(year, month, day - 7).toLocaleDateString();
+		// 변수명 쫌 고치자...
 		
 		var dd1 = new Date(year,month, day-7);
 		
@@ -153,23 +155,47 @@
 			var FirstDate = document.getElementById('myListFirstDate').value;
 			var LastDate = document.getElementById('myListLastDate').value;
 			console.log(FirstDate + "~" + LastDate);
-			
+			var userId = document.getElementById('userId').value;
 			/* 아작스로 first, last Date값 서칭해주기 url값이랑  */
 			
 			$.ajax({
 				url: "searchList.perf",
 				data: {
 					FirstDate:FirstDate,
-					LastDate:LastDate
+					LastDate:LastDate,
+					userId: userId
 				},
-				success : function(){
+				success : function(Slist){
+					
+					var str = "";
+					
+					for(var i in Slist){
+						str += 	"<tr>"
+							+ "<td type='hidden' vaule='Slist[i].perfoTitle'></td>"
+							+ "<td>"+Slist[i].perfoTitle+"</td>"
+							+ "<td>"+Slist[i].reservationDate+"</td>"
+							+ "<td>"+Slist[i].seatNo+"</td>"
+							+ "<td>"+Slist[i].purchaseDate+"</td>"
+							+ "<td><button id='dd' value='"+ Slist[i].purchaseNo +"'>환불</button></td>"
+							+ "</tr>";
+							
+					}
+					$("#applicationList>tbody").html(str);
+					
 				},
 				error: function(){
 					console.log("실패");
 				}
 			});
+			
 		}
 		
+		$(function(){
+			$("#applicationList button").click(function(){
+				/* location.href="payback.perf?pno="+$(this).parent().children(0)eq(0).val(); */
+				location.href="payback.perf?pno="+$(this).val();
+			})
+		})
 		
 		
 	</script>

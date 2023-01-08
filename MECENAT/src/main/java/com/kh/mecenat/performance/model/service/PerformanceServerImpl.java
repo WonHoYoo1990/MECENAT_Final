@@ -144,6 +144,10 @@ public class PerformanceServerImpl implements PerformanceService {
 		return performanceDao.selectEndListCount(SqlSession);
 	}
 
+	@Override
+	public ArrayList<Performance> selectDateList(Performance p) {
+		return performanceDao.selectDateList(SqlSession, p);
+	}
 
 
 }

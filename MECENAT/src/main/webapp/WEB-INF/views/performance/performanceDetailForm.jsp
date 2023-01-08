@@ -377,6 +377,7 @@
 		
 		
     </script>
+    <script>
 	$(function(){
 		selectReviewList();	
 	})

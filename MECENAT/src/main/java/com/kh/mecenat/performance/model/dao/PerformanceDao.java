@@ -133,5 +133,9 @@ public class PerformanceDao {
 		return (ArrayList)sqlSession.selectList("performanceMapperMana.selectEndPlayPerformance", null, rowBounds);
 	}
 
+	public ArrayList<Performance> selectDateList(SqlSessionTemplate sqlSession, Performance p) {
+		return (ArrayList)sqlSession.selectList("reservationMapper.selectDateList",p);
+	}
+
 
 }
