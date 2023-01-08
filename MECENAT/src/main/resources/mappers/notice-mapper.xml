@@ -124,5 +124,20 @@
 		AND STATUS = 'Y'
 	</update>
 	
+	<!-- 메인페이지 최신뉴스 조회 -->
+	<select id="latestNewsTicket" resultMap="noticeResultSet">
+		SELECT NOTICE_NO,
+			   BOARD_CODE,
+			   BOARD_NAME,
+			   NOTICE_TITLE,
+			   NOTICE_DATE,
+			   STATUS
+		FROM NOTICE
+		JOIN NOTICE_TYPE USING (BOARD_CODE)
+		WHERE STATUS = 'Y' 
+	    AND BOARD_CODE = #{boardCode}
+		ORDER BY NOTICE_DATE
+	</select>
+	
 
 </mapper>

@@ -253,7 +253,88 @@ body.hide-focus-ring *:focus {
 					}
 				</script>
 			</div>
+			
 			<div class="txt inner">
+			
+				<div class="foot_notice">
+					<h2 class="t">Notice</h2>
+					<ul class="fs slick-initialized slick-slider slick-vertical">
+						<button type="button" data-role="none" class="slick-prev slick-arrow" aria-label="Previous slide" role="button" style="" onclick="upList();">Previous slide</button>
+						<div aria-live="polite" class="slick-list draggable" style="height: 44.1875px;">
+							<div class="slick-track" style="opacity: 1; height: 310px; transform: translate3d(0px, -0px, 0px);">
+								<li class="item slick-slide slick-cloned" data-slick-index="-1" id="" aria-hidden="true" tabindex="-1" style="width: 911px;">
+									<div><a href="/portal/bbs/B0000001/view.do?nttId=45934&amp;menuNo=200042" tabindex="-1">[입찰공고] &nbsp;세종문화회관 홈페이지 통합 유지보수 사업 용역 입찰 재공고(협상에 의한 계약)</a></div>
+								</li>
+								<li class="item slick-slide" data-slick-index="0" aria-hidden="true" role="option" tabindex="-1" style="width: 911px;">
+									<div><a href="/portal/bbs/B0000001/view.do?nttId=45941&amp;menuNo=200042" tabindex="-1">[티켓오픈안내] &nbsp;연극 &lt;아마데우스&gt; 1차 티켓오픈 안내</a></div>
+								</li>
+								<li class="item slick-slide slick-current slick-active" data-slick-index="1" aria-hidden="false" role="option" tabindex="-1" style="width: 911px;">
+									<div><a href="/portal/bbs/B0000001/view.do?nttId=45939&amp;menuNo=200042" tabindex="0">[안내] &nbsp;1월 카드사 부분무이자/무이자 할부 이벤트 안내</a></div>
+								</li>
+								<li class="item slick-slide" data-slick-index="2" aria-hidden="true" role="option" tabindex="-1" style="width: 911px;">
+									<div><a href="/portal/bbs/B0000001/view.do?nttId=45936&amp;menuNo=200042" tabindex="-1">[합격자발표] &nbsp;(재)세종문화회관 제10차 계약직 직원 공개채용 서류전형 합격자 공고</a></div>
+								</li>
+								<li class="item slick-slide" data-slick-index="3" aria-hidden="true" role="option" tabindex="-1" style="width: 911px;">
+									<div><a href="/portal/bbs/B0000001/view.do?nttId=45935&amp;menuNo=200042" tabindex="-1">[입찰공고] &nbsp;청소 소모품 연간 단가계약 입찰 공고</a></div>
+								</li>
+								<li class="item slick-slide" data-slick-index="4" aria-hidden="true" role="option" tabindex="-1" style="width: 911px;">
+									<div><a href="/portal/bbs/B0000001/view.do?nttId=45934&amp;menuNo=200042" tabindex="-1">[입찰공고] &nbsp;세종문화회관 홈페이지 통합 유지보수 사업 용역 입찰 재공고(협상에 의한 계약)</a></div>
+								</li>
+								<li class="item slick-slide slick-cloned" data-slick-index="5" id="" aria-hidden="true" tabindex="-1" style="width: 911px;">
+									<div><a href="/portal/bbs/B0000001/view.do?nttId=45941&amp;menuNo=200042" tabindex="-1">[티켓오픈안내] &nbsp;연극 &lt;아마데우스&gt; 1차 티켓오픈 안내</a></div>
+								</li>
+							</div>
+						</div>
+						<button type="button" data-role="none" class="slick-next slick-arrow" aria-label="Next slide" role="button" style="">Next slide</button>
+					</ul>
+				</div>
+				<script type="text/javascript">
+					function upList() {
+						 $('.slick-track').slick({
+						      slide: 'div',        //슬라이드 되어야 할 태그
+						      infinite : true,     //무한 반복 옵션     
+						      slidesToShow : 2,        // 한 화면에 보여질 컨텐츠 개수
+						      slidesToScroll : 1,        //스크롤 한번에 움직일 컨텐츠 개수
+						      speed : 500,     // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+						      arrows : true,         // 옆으로 이동하는 화살표 표시 여부
+						      dots : true,         // 스크롤바 아래 점으로 페이지네이션 여부
+						      autoplay : true,            // 자동 스크롤 사용 여부
+						      autoplaySpeed : 2000,         // 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
+						      pauseOnHover : true,        // 슬라이드 이동    시 마우스 호버하면 슬라이더 멈추게 설정
+						      vertical : true,        // 세로 방향 슬라이드 옵션
+						      /* prevArrow : "<button type='button' class='slick-prev slick-arrow'>Previous</button>", */
+						      prevArrow : $('.slick-prev'),
+						      /* nextArrow : "<button type='button' class='slick-next slick-arrow'>Next</button>", */
+						      nextArrow : $('.slick-next'),
+						      draggable : true,     //드래그 가능 여부 
+						    });
+					}
+				
+					$(function(){
+						
+					})
+				</script>
+				
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 				<div class="clearfix">
 					<div class="l">
 						<address>

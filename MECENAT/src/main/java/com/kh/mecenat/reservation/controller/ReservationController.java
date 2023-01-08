@@ -94,9 +94,10 @@ public class ReservationController {
 	
 	//예매 페이지로 가는 메서드
 	@GetMapping("make.rv")
-	public String selectPerformaceForm(Model model//,
-									   /*int rentalCode*/) {
-		int rentalCode = 1;
+	public String selectPerformaceForm(Model model,
+									   int rentalCode) {
+		//int rentalCode = 1;
+		System.out.println("rentalCode : " + rentalCode);
 		
 		ArrayList<Performance> list = reservationService.selectPerformanceList(rentalCode);
 
