@@ -40,63 +40,12 @@
 	<link rel="stylesheet" href="./resources/sejongpac/static/portal/css/aos.css">
 	<script src="./resources/sejongpac/static/portal/inc/netfunnel.js" charset="UTF-8"></script>
 	
-	<script>
-		//<![CDATA[
-		$(document).ready(function(){
-			$('.pop_c').bind('click', function(){
-				$(this).closest('.pop_l').hide();
-				return false;
-			});
-			cookiedata = document.cookie;
-		});
+	<!-- slick 슬라이더 -->
+	<link rel="stylesheet" type="text/css" href="/plugin/slick/slick.css"/>
+	<link rel="stylesheet" type="text/css" href="/plugin/slick/slick-theme.css"/>
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script type="text/javascript" src="/plugin/slick/slick.js"></script>
 	
-		$(function(){
-		   NetFunnel_Complete(); //넷퍼넬로 넘어온 페이지면 종료 처리
-		})
-		
-		//웃는남자 예매 타이머
-		var nowDate = "java.text.SimpleDateFormat@e863f5a0";
-		//var stDate = new Date().getTime();
-		var stDate = new Date().getTime(nowDate.replace(/-/g, '/').replace(/[a-z]+/gi, ' '));//사파리 처리
-		//var edDate = new Date('2022-06-23 09:23:00').getTime(); // TODO 웃는남자 오픈시간 수정필요
-		var edDate = Date.parse('2022-06-23 17:12:00'.replace(/-/g, '/').replace(/[a-z]+/gi, ' ')); // TODO 웃는남자 오픈시간 수정필요 //사파리
-		var RemainDate = edDate - stDate;
-		tid=setInterval('msg_time()',1000);// 타이머 1초간격으로 수행
-	
-		function msg_time() {
-			//var hours = addZeros(Math.floor((RemainDate % (1000 * 60 * 60 * 24)) / (10006060)),2);
-			var hours = addZeros(Math.floor((RemainDate) / (1000*60*60)),2);
-			var miniutes = addZeros(Math.floor((RemainDate % (1000 * 60 * 60)) / (1000*60)),2);
-			var seconds = addZeros(Math.floor((RemainDate % (1000 * 60)) / 1000),2);
-			
-			var openTime = hours + ":" +  miniutes + ":" + seconds ; // 남은 시간 text형태로 변경
-			
-			if (RemainDate < 0) {      
-				// 시간이 종료 되었으면..
-				clearInterval(tid);   // 타이머 해제
-				$("#clock1").html("예매하기"); //날짜를 출력해 줌
-				$(".clockChk").attr("onclick","showPerformPop2('grpm2204131016a01');return false;");
-				$(".clockChk").removeAttr("style");
-			}else{
-				$("#clock1").html("남은시간 "+openTime); //날짜를 출력해 줌
-				RemainDate = RemainDate - 1000; // 남은시간 -1초
-				$(".clockChk").removeAttr("onclick");
-				$(".clockChk").attr("style","background-color:gray;");
-			}
-		}
-		
-		function addZeros(num, digit) { // 자릿수 맞춰주기
-			  var zero = '';
-			  num = num.toString();
-			  if (num.length < digit) {
-			    for (i = 0; i < digit - num.length; i++) {
-			      zero += '0';
-			    }
-			  }
-			  return zero + num;
-		}
-		//]]>
-	</script>
 	
 	<style>body.hide-focus-ring *:focus { outline: none !important; }</style>
 </head>
@@ -141,14 +90,76 @@
 				<!-- 메인 시작 -->
 				<script>
 					$(function() {
-						$("img").each(function(index, item) {
+						console.clear();
+						
+						
+						$('.slick-track').slick({
+							slide: 'li',		//슬라이드 되어야 할 태그 ex) div, li 
+							infinite : true, 	//무한 반복 옵션	 
+							slidesToShow : 4,		// 한 화면에 보여질 컨텐츠 개수
+							slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
+							speed : 100,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+							arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
+							dots : true, 		// 스크롤바 아래 점으로 페이지네이션 여부
+							autoplay : true,			// 자동 스크롤 사용 여부
+							autoplaySpeed : 5000, 		// 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
+							pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
+							vertical : false,		// 세로 방향 슬라이드 옵션
+							prevArrow : "<button type='button' class='slick-prev'>Previous</button>",		// 이전 화살표 모양 설정
+							nextArrow : "<button type='button' class='slick-next'>Next</button>",		// 다음 화살표 모양 설정
+							dotsClass : "slick-dots", 	//아래 나오는 페이지네이션(점) css class 지정
+							draggable : true, 	//드래그 가능 여부 
+							
+							responsive: [ // 반응형 웹 구현 옵션
+								{  
+									breakpoint: 960, //화면 사이즈 960px
+									settings: {
+										//위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+										slidesToShow:3 
+									} 
+								},
+								{ 
+									breakpoint: 768, //화면 사이즈 768px
+									settings: {	
+										//위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+										slidesToShow:2 
+									} 
+								}, 
+								{ 
+									breakpoint: 2560, //화면 사이즈 2560px
+									settings: {	
+										//위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+										slidesToShow:2
+									} 
+								} 
+							]
+
+						});
+					
+						// 메인 배너 아래 목록 이미지 조회
+						$("item").each(function(index, item) { 
+							
+							var index = index.val();
+							console.log("index2 : " + index)
+							var item = item.val();
+							console.log("item : " + item)
+							
 							var getting_pc = $(item).attr("src");
 							if (getting_pc.match("https://www.sejongpac.or.kr/")) {
 							} else {
 								var getting_pc_tmp = getting_pc.replace("/cmmn","https://www.sejongpac.or.kr/cmmn");
 								$(item).attr("src",getting_pc_tmp);
 							}
+							
 						})
+
+						// 메인 배너 아래 목록 이미지 반응형
+						$(".slick-track li").hover(function() {
+							$(this).addClass("slick-current slick-active");
+						}, function() {
+							$(".slick-track li").removeClass("slick-current slick-active");
+						})
+
 					});
 				</script>
 				<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/main_new.css?v=210526">
@@ -157,45 +168,11 @@
 						
 						<div class="in_w">
 							<div class="in">
+								<!-- 베너 시작 -->
 								<ul class="ms slick-initialized slick-slider">
-									<div aria-live="polite" class="slick-list draggable">
-										<div class="slick-track" style="opacity: 1; width: 10000px;">
-										
-										<!-- 
-											<li class="item slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" role="option" tabindex="-1" style="width: 2000px; position: relative; left: 0px; top: 0px; z-index: 1000; opacity: 1; transition: opacity 500ms ease 0s;">
-												<div class="mobile">
-													<div class="bg" style="background-image: url('/cmmn/file/imageSrc.do?fileStreCours=4366262547f859658d779d7e621625cf&amp;amp;streFileNm=e674d1e93fc4c5023b1b8990884427d65780e802885c9a2e4f5ff6a995362cef')">
-														<div class="blue"></div>
-													</div>
-													<div class="tit_w">
-														<strong class="date"> 2022.12.24 (토) </strong> <strong class="tit">겨울이야기</strong>
-													</div>
-													<div class="img">
-														<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=f82a3571b7df23a6aa38eb59781dbf2a&amp;streFileNm=e674d1e93fc4c5023b1b8990884427d65780e802885c9a2e4f5ff6a995362cef" alt="">
-													</div>
-												</div>
-												<div class="img_pc">
-													<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=76331b7fb043b513c10e97964b50b143&amp;streFileNm=e049304328c12031ec8c05162c558f206db30ab9edb0bb8e4f449a9903cb06fb" alt="" style="display: block; margin: 0 auto;">
-													<div class="hide">꿈의숲 송년공연 겨울이야기 2022.12.24~12.25 꿈의숲아트센터</div>
-												</div>
-												<div class="btn_w">
-													<a href="https://www.sejongpac.or.kr/portal/qestnar/qustnr/view.do?qustnrSn=1068&amp;menuNo=200027&amp;status=T&amp;pageUnit=8&amp;pageIndex=1" class="r" tabindex="-1"><span>상세보기</span></a>
-												</div>
-											</li>
-											 -->
-											
-											<li class="item slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" role="option" tabindex="-1" style="width: 2000px; position: relative; left: 0px; top: 0px; z-index: 1000; opacity: 1; transition: opacity 500ms ease 0s;">
-												<div class="mobile">
-													<div class="bg" style="background-image: url('/cmmn/file/imageSrc.do?fileStreCours=4366262547f859658d779d7e621625cf&amp;amp;streFileNm=e674d1e93fc4c5023b1b8990884427d65780e802885c9a2e4f5ff6a995362cef')">
-														<div class="blue"></div>
-													</div>
-													<div class="tit_w">
-														<strong class="date"> 2022.12.24 (토) </strong> <strong class="tit">겨울이야기</strong>
-													</div>
-													<div class="img">
-														<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=f82a3571b7df23a6aa38eb59781dbf2a&amp;streFileNm=e674d1e93fc4c5023b1b8990884427d65780e802885c9a2e4f5ff6a995362cef" alt="">
-													</div>
-												</div>
+									<div aria-live="polite" class="slick-list draggable" >
+										<div class="slick-track" style="opacity: 1; width: auto;">
+											<li class="item slick-slide" data-slick-index="0" >
 												<div class="img_pc">
 													<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=76331b7fb043b513c10e97964b50b143&amp;streFileNm=e049304328c12031ec8c05162c558f206db30ab9edb0bb8e4f449a9903cb06fb" alt="" style="display: block; margin: 0 auto;">
 													<div class="hide">꿈의숲 송년공연 겨울이야기 2022.12.24~12.25 꿈의숲아트센터</div>
@@ -205,18 +182,7 @@
 												</div>
 											</li>
 											
-											<li class="item slick-slide" data-slick-index="1" aria-hidden="true" role="option" tabindex="-1" style="width: 2000px; position: relative; left: -2000px; top: 0px; z-index: 998; opacity: 0; transition: opacity 500ms ease 0s;">
-												<div class="mobile">
-													<div class="bg" style="background-image: url('/cmmn/file/imageSrc.do?fileStreCours=6436dd1e8a0862a2860834fa2de5163b&amp;amp;streFileNm=c0248f6783e813baf17ae0438849314598e0e7c45a5c149f65e15b47100fce11')">
-														<div class="blue"></div>
-													</div>
-													<div class="tit_w">
-														<strong class="date"> 2022.12.23 (금) </strong> <strong class="tit">투명한 미래전</strong>
-													</div>
-													<div class="img">
-														<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=76331b7fb043b513c10e97964b50b143&amp;streFileNm=c0248f6783e813baf17ae0438849314598e0e7c45a5c149f65e15b47100fce11" alt="">
-													</div>
-												</div>
+											<li class="item slick-slide " data-slick-index="1" >
 												<div class="img_pc">
 													<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=76331b7fb043b513c10e97964b50b143&amp;streFileNm=96f9f2230a6336df6cdd85664f993a15ad9dfc36288f971a5bacb5e178aa54a2" alt="" style="display: block; margin: 0 auto;">
 													<div class="hide">투명한 미래전</div>
@@ -226,18 +192,7 @@
 												</div>
 											</li>
 											
-											<li class="item slick-slide" data-slick-index="2" aria-hidden="true" role="option" tabindex="-1" style="width: 2000px; position: relative; left: -4000px; top: 0px; z-index: 998; opacity: 0; transition: opacity 500ms ease 0s;">
-												<div class="mobile">
-													<div class="bg" style="background-image: url('/cmmn/file/imageSrc.do?fileStreCours=4366262547f859658d779d7e621625cf&amp;amp;streFileNm=c16f9bb18fd876aa07d90051d369fccd2b2061ad95b408c44731011a6c60517c')">
-														<div class="blue"></div>
-													</div>
-													<div class="tit_w">
-														<strong class="date"> 2022.12.22 (목) </strong> <strong class="tit">유니버설발레단 '호두까기인형'</strong>
-													</div>
-													<div class="img">
-														<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=f82a3571b7df23a6aa38eb59781dbf2a&amp;streFileNm=c16f9bb18fd876aa07d90051d369fccd2b2061ad95b408c44731011a6c60517c" alt="">
-													</div>
-												</div>
+											<li class="item slick-slide" data-slick-index="2" >
 												<div class="img_pc">
 													<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=f82a3571b7df23a6aa38eb59781dbf2a&amp;streFileNm=7dc99ce1910546cfea5bc24409eb58294200ca52209836814279c2c87fbc6042" alt="" style="display: block; margin: 0 auto;">
 													<div class="hide">유니버설발레단 호두까기 인형 2022.12.22(목)~12.31(토) 세종대극장</div>
@@ -247,18 +202,7 @@
 												</div>
 											</li>
 											
-											<li class="item slick-slide" data-slick-index="3" aria-hidden="true" role="option" tabindex="-1" style="width: 2000px; position: relative; left: -6000px; top: 0px; z-index: 998; opacity: 0; transition: opacity 500ms ease 0s;">
-												<div class="mobile">
-													<div class="bg" style="background-image: url('/cmmn/file/imageSrc.do?fileStreCours=4366262547f859658d779d7e621625cf&amp;amp;streFileNm=cef1655f89b9cf076fee29b429f06a19610859f559405acebf035c508af9a606')">
-														<div class="blue"></div>
-													</div>
-													<div class="tit_w">
-														<strong class="date"> 2023.01.20 (금) </strong> <strong class="tit">뮤지컬 캣츠 내한공연-서울 (Musical CATS)</strong>
-													</div>
-													<div class="img">
-														<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=f82a3571b7df23a6aa38eb59781dbf2a&amp;streFileNm=cef1655f89b9cf076fee29b429f06a19610859f559405acebf035c508af9a606" alt="">
-													</div>
-												</div>
+											<li class="item slick-slide" data-slick-index="3" >
 												<div class="img_pc">
 													<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=f82a3571b7df23a6aa38eb59781dbf2a&amp;streFileNm=a1eb39cceb02fcda61498353859fbcdc4200ca52209836814279c2c87fbc6042" alt="" style="display: block; margin: 0 auto;">
 													<div class="hide">뮤지컬 캣츠 내한공연-서울 musical cats 2023.1.20(금)~03.12(일)세종대극장</div>
@@ -269,17 +213,6 @@
 											</li>
 											
 											<li class="item slick-slide" data-slick-index="4" aria-hidden="true" role="option" tabindex="-1" style="width: 2000px; position: relative; left: -8000px; top: 0px; z-index: 998; opacity: 0; transition: opacity 500ms ease 0s;">
-												<div class="mobile">
-													<div class="bg" style="background-image: url('/cmmn/file/imageSrc.do?fileStreCours=6436dd1e8a0862a2860834fa2de5163b&amp;amp;streFileNm=301bc04329066ee98076bb67c6ce74e96a7ff77472074eb1dad6fba65becd736')">
-														<div class="blue"></div>
-													</div>
-													<div class="tit_w">
-														<strong class="date"> 2022.12.31 (토) </strong> <strong class="tit">셀럽이 사랑한 Bag&amp;Shoes</strong>
-													</div>
-													<div class="img">
-														<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=76331b7fb043b513c10e97964b50b143&amp;streFileNm=301bc04329066ee98076bb67c6ce74e96a7ff77472074eb1dad6fba65becd736" alt="">
-													</div>
-												</div>
 												<div class="img_pc">
 													<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=76331b7fb043b513c10e97964b50b143&amp;streFileNm=593f88dd921509eb5c44b9dd3a6c06223f48942c620f71cc3fc0c508cc687eff" alt="" style="display: block; margin: 0 auto;">
 													<div class="hide">셀럽이 사랑한 bag&amp;shoes 2022.12.31~2023.03.25 세종미술관</div>
@@ -292,15 +225,21 @@
 										</div>
 									</div>
 								</ul>
+								<!-- 베너 끝 -->
 							</div>
-							<div class="thumb_w">
+							<script type="text/javascript">
 								
+							</script>
+							
+							
+							
+							<div class="thumb_w">
 								<!-- #main_visual 썸네일 -->
 								<div class="inner">
-									<ul class="ms2 slick-initialized slick-slider" id="mainVisualThumb">
+									<ul class="ms2 slick-initialized slick-slider" id="mainVisualThumb" st>
 										<div aria-live="polite" class="slick-list draggable">
 											<div class="slick-track fixedSlick" style="opacity: 1; width: 485px; transform: translate3d(0px, 0px, 0px);">
-												<li class="item slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" role="option" tabindex="-1" style="width: 92px;">
+												<li class="item slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" role="option" tabindex="-1" style="width: 92px; ">
 													<button type="button" tabindex="0">
 														<strong class="in"> 
 															<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=f82a3571b7df23a6aa38eb59781dbf2a&amp;streFileNm=e674d1e93fc4c5023b1b8990884427d65780e802885c9a2e4f5ff6a995362cef" alt="꿈의숲 송년공연 겨울이야기 2022.12.24~12.25 꿈의숲아트센터">
@@ -344,13 +283,10 @@
 							</div>
 						</div>
 					</div>
-					<!-- #main_visual -->
+					<!-- #main_visual 썸네일 끝-->
 					
-					<svg version="1.1" xmlns="http://www.w3.org/2000/svg" height="0" class="tablet">
-												<filter id="blur">
-													<feGaussianBlur stdDeviation="3"></feGaussianBlur>
-												</filter>
-											</svg>
+					
+					<!-- 카테고리 시작-->
 					<div id="m1" class="inner aos-init aos-animate" data-aos="fade-up">
 						<ul class="clearfix s">
 							<li><a href="subMainPerformance.perf">
@@ -397,6 +333,7 @@
 							</a></li>
 						</ul>
 					</div>
+					<!-- 카테고리 끝-->
 					<!-- .m1 -->
 					
 					<div class="inner_m">
@@ -406,7 +343,6 @@
 								<div class="tit-main">
 									<span class="small">Recommended Program</span>
 									<h2 class="t">추천 프로그램</h2>
-									<!-- <a href="#" class="more">더보기</a> -->
 									<p class="txt">
 										<span class="block-pc">MECENAT의 다양한</span> 프로그램 추천드립니다.
 									</p>
@@ -418,7 +354,7 @@
 								</div>
 								<ul class="clearfix cont s slick-initialized slick-slider">
 									<div aria-live="polite" class="slick-list draggable">
-										<div class="slick-track" style="opacity: 1; width: 1130px; transform: translate3d(0px, 0px, 0px);">
+										<div class="slick-track" style="opacity: 1; width: 500px; transform: translate3d(0px, 0px, 0px);">
 										
 											<li class="item slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" role="option" tabindex="-1" style="width: 226px;">
 												<div class="rel">
@@ -506,7 +442,7 @@
 						</script>
 						
 						<div id="m4" class="aos-init" data-aos="fade-up">
-							<ul class="half_w clearfix">
+							<ul class="half_w clearfix ">
 								<li class="l m_notice">
 									<div class="tit-main">
 										<span class="small">Notice</span>
@@ -516,24 +452,35 @@
 											</span>
 										</p>
 									</div>
-									<ul class="cont clearfix">
-										<li class="item">
-											<a href="/portal/bbs/B0000001/view.do?nttId=45926&amp;menuNo=200042">
-												<span class="t">[티켓오픈안내] &nbsp; 라이브러리컴퍼니 자선음악회 추가 좌석 티켓오픈 안내</span>
-											</a> 
-											<span class="date">2022.12.15</span>
-										</li>
-										<li class="item">
-											<a href="/portal/bbs/B0000001/view.do?nttId=45925&amp;menuNo=200042">
-												<span class="t">[입찰공고] &nbsp; 세종문화회관 터보냉동기 구매설치 입찰공고(긴급)</span>
-											</a> 
-											<span class="date">2022.12.15</span>
-										</li>
+									<ul class="cont clearfix latestNews">
+										<!-- ajax 덮어씌우기 -->
 									</ul> <a href="list.no?boardCode=0" class="more">더보기</a>
 								</li>
 							</ul>
 						</div>
 						<!-- #m4 -->
+						<script type="text/javascript">
+							 $(function() {
+								 console.clear();
+								 latestNews();
+							})
+							function latestNews(){
+								var boardCode = [40, 50];
+								
+					     		$.ajax({
+					     			url : "latestNewsTicket.no",
+									data :{ boardCode : boardCode}, 
+					     			success : function(list){
+					     				$(".latestNews").html(list);
+					     			} ,
+					     			error : function(){
+					     				console.log("latestNewsTicket 통신실패");	
+					     			}
+					     		})
+					     	}
+						</script>
+						
+						
 					</div>
 					<!-- #m2, #m3, #m4 -->
 				</div>

@@ -220,7 +220,7 @@
 						        center: new kakao.maps.LatLng(37.53389636310767,126.89675678549531), // 지도의 중심좌표
 						        level: 2 // 지도의 확대 레벨
 						    };
-	
+	   
 							var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 		
 							// 마커가 표시될 위치입니다 

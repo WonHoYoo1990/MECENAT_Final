@@ -113,6 +113,7 @@ public class ReservationController {
 	@GetMapping("make.rv")
 	public String selectPerformaceForm(Model model
 									   ,int rentalCode) {
+
 		ArrayList<Performance> list = reservationService.selectPerformanceList(rentalCode);
 		Hall hall = reservationService.selectHallInfo(list.get(0).getHallName());
 		RentApplication ra = reservationService.selectRentApplication(rentalCode);
