@@ -201,9 +201,7 @@
 	<!-- Header Section Begin -->
 	<jsp:include page="../common/header.jsp"/>
 	<!-- Header End -->
-	<script>
-		
-	</script>
+
 	<!-- Normal Breadcrumb Begin -->
 	<secion id="cont" tabindex="0" align="center">
 		<div class="containerr" align="center">
@@ -272,23 +270,25 @@
 									var today = new Date();
 									var canMonth = today.getMonth()+3;
 									var canYear = today.getFullYear();					
+									var canFullDate = "";
 									
-									if(canMonth>12){
+									if(canMonth>=10&&canMonth<13){
+										canFullDate = canYear+"-"+canMonth+"-01";
+									}else if(canMonth>12){
 										canYear += 1;
 										canMonth -= 12;
-										if(canMonth<10){
-											canMonth = "0"+canMonth;
-										}
+										canFullDate = canYear+"-"+"0"+canMonth+"-01";
+									}else if(canMonth<10){
+										canFullDate = canYear+"-0"+canMonth+"-01";
 									}
-									
-									var canFullDate = canYear+"-"+canMonth+"-01";
+									console.log(canFullDate);
  									$rsDate.attr("min",canFullDate);
  									
- 									$(function(){
- 										$rsDate.focusout(function(){
- 											$reDate.attr("min",$rsDate.val());	
- 										})												
- 									})
+  									$(function(){
+  										$rsDate.focusout(function(){
+  											$reDate.attr("min",$rsDate.val());	
+  										})												
+  									})
 								</script>
 							<div class="input__item"><!-- 선택한 공연일 -->			
 								<input type="text" id="eventDates" name="eventDates"  placeholder="실제 공연 날짜" readonly/>

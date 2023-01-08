@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
 <mapper namespace="reservationMapper">
-
 	<resultMap type="performance" id="performanceResult">
 		<result column="PERFO_NO" property="perfoNo"/>
 		<result column="RENTAL_CODE" property="rentalCode"/>
@@ -96,6 +95,7 @@
 		JOIN RENTAPPLICATION R ON(P.RENTAL_CODE=R.RENTAL_CODE)
 		WHERE P.RENTAL_CODE = #{rentalCode}
 		AND APPROVE_STATUS = '승인'
+		AND PERFO_DELETE_STATUS = 'Y'
 		ORDER BY P.PERFO_EVENT_DATE
 	</select>
 	
@@ -106,6 +106,7 @@
 		FROM PERFORMANCE
 		WHERE PERFO_NO = #{perfoNo}
 		AND PERFO_STATUS = '공연중'
+		AND PERFO_DELETE_STATUS = 'Y'
 	</select>
 	
 	<!-- #혜원만제 - 대관신청서 insert -->
@@ -171,6 +172,7 @@
 		FROM PERFORMANCE
 		WHERE PERFO_EVENT_DATE = #{perfoEventDate}
 		AND RENTAL_CODE = #{rentalCode}
+		AND PERFO_DELETE_STATUS = 'Y' 
 	</select>
 	
 	<!-- #혜원만제 - 홀 좌석 수 조회 -->
