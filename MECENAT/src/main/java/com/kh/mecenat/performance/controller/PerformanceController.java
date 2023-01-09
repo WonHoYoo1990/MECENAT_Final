@@ -51,8 +51,6 @@ public class PerformanceController {
 		Performance pList = perfoService.selectListPerformance(rno);
 		RentApplication rList = perfoService.selectRentalApplicationR(rno);
 
-//		int updateStatus = perfoService.updateRentalAppStatus(rno);
-
 		model.addAttribute("rList", rList);
 
 		return "performance/performanceInsert2";
@@ -321,7 +319,6 @@ public class PerformanceController {
 	@RequestMapping("subMainPerformanceSearch.perf")
 	public ModelAndView subMainPerformanceSearch(String searchWrd, ModelAndView mv) {
 
-
 		ArrayList<Performance> pList = perfoService.subMainPerformanceSearch(searchWrd);
 
 		mv.addObject("pList", pList).setViewName("performance/subMainPerformanceList");
@@ -355,15 +352,29 @@ public class PerformanceController {
 	@ResponseBody
 	@RequestMapping(value = "searchList.perf", produces = "application/json; charset=UTF-8")
 	public String searchList(String FirstDate, String LastDate, String userId, Model model) {
+
 		Performance p = new Performance();
-		
-		p.setUserId(userId);
+
+p.setUserId(userId);
 		p.setStartDate(FirstDate);
 		p.setEndDate(LastDate);
 		
+		System.out.println("p : " + p);
+
 		ArrayList<Performance> Slist = perfoService.selectDateList(p);
-		
+		System.out.println("slist : " + Slist);
+
 		return new Gson().toJson(Slist);
+
+	}
+
+//	유리-환불
+	@RequestMapping(value = "payback.perf")
+	public String payback(int pno, Model model) {
+
+		model.addAttribute("pno", pno);
+		return "performance/paybackForm";
+
 	}
 	
 //	유리-환불

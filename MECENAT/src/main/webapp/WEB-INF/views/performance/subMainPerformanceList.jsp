@@ -21,7 +21,7 @@
 		<div class="hover" style="display: none;">
 			<div class="table">
 				<div class="vertical">
-					<a href="make.rv?rentalCode=${pList.rentalCode}" class="r ReservationTitle">예매</a>
+					<a href="make.rv?perfoNo=${pList.perfoNo}" class="r ReservationTitle">예매</a>
 					<a href="detail.perf?rno=${pList.rentalCode}" class="d">상세</a>
 				</div>
 			</div>

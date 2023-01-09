@@ -114,11 +114,6 @@ public class PerformanceServerImpl implements PerformanceService {
 	}
 
 	@Override
-	public ArrayList<Performance> selectPlayPerformance() {
-		return performanceDao.selectPlayPerformance(SqlSession);
-	}
-
-	@Override
 	public ArrayList<Performance> selectListgenre(String genreName) {
 		// TODO Auto-generated method stub
 		return performanceDao.selectListgenre(SqlSession, genreName);
@@ -150,19 +145,34 @@ public class PerformanceServerImpl implements PerformanceService {
 	// ?
 	@Override
 	public int updateStatus(Performance p) {
-		return 0;
+		return performanceDao.updateStatus(SqlSession, p);
 	}
 
 	// ?
 	@Override
 	public int performanceDelete(int rcode) {
-		return 0;
+		return performanceDao.performanceDelete(SqlSession, rcode);
 	}
 
 	// ?
 	@Override
 	public int nopePerformance(int rcode) {
-		return 0;
+		return performanceDao.nopePerformance(SqlSession, rcode);
+	}
+
+	@Override
+	public ArrayList<Performance> selectDateList(Performance p) {
+		return performanceDao.selectDateList(SqlSession, p);
+	}
+
+	@Override
+	public ArrayList<Performance> selectListNew() {
+		return null;
+	}
+
+	@Override
+	public ArrayList<Performance> selectEndPlayPerformance(PageInfo piEnd) {
+		return performanceDao.selectEndPlayPerformance(SqlSession, piEnd);
 	}
 
 }

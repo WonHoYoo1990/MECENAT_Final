@@ -128,16 +128,24 @@ public class PerformanceDao {
 		return sqlSession.selectOne("performanceMapperMana.selectEndListCount");
 	}
 
+	public int updateStatus(SqlSessionTemplate sqlSession, Performance p) {
+		return sqlSession.update("performanceMapperMana.updateStatus", p);
+	}
+
+	public int performanceDelete(SqlSessionTemplate sqlSession, int rcode) {
+		return sqlSession.update("performanceMapperMana.performanceDelete", rcode);
+	}
+
 	public ArrayList<Performance> selectEndPlayPerformance(SqlSessionTemplate sqlSession, PageInfo pi) {
 		int limit = pi.getBoardLimit();
-		int offset = (pi.getCurrentPage()-1)*limit;
-		
+		int offset = (pi.getCurrentPage() - 1) * limit;
+
 		RowBounds rowBounds = new RowBounds(offset, limit);
-		return (ArrayList)sqlSession.selectList("performanceMapperMana.selectEndPlayPerformance", null, rowBounds);
+		return (ArrayList) sqlSession.selectList("performanceMapperMana.selectEndPlayPerformance", null, rowBounds);
 	}
 
 	public ArrayList<Performance> selectDateList(SqlSessionTemplate sqlSession, Performance p) {
-		return (ArrayList)sqlSession.selectList("reservationMapper.selectDateList",p);
+		return (ArrayList) sqlSession.selectList("reservationMapper.selectDateList", p);
 	}
 
 }
