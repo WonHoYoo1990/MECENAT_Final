@@ -42,8 +42,8 @@
 <script src="./resources/sejongpac/static/ticket/ticket.js"></script>
 <link rel="stylesheet" href="./resources/sejongpac/static/portal/css/aos.css">
 <script src="./resources/sejongpac/static/portal/inc/netfunnel.js" charset="UTF-8"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+
 
 <!--[if lt IE 9]>
 <script src="/static/portal/js/html5.js"></script>
@@ -83,7 +83,6 @@ body.hide-focus-ring *:focus {
 
 
 		<!-- Header Section Begin -->
-<<<<<<< HEAD
 		<jsp:include page="../common/header2.jsp" />
 		<!-- Header End -->
 
@@ -200,192 +199,98 @@ body.hide-focus-ring *:focus {
 
 
 
+<script src="/static/commons/js/validUtil.js"></script>
+
 <style>
 .tabs-st1,.tabs-st2{display: none;}
 </style>
 <article class="find_confirm inner member_com">
 	<h3 class="tit-st4">간편찾기</h3>
 	<div class="box">
-		<h4 class="t">Please check your ID</h4>
-			
-		<div class="bg">
-			<ul class="select f18">
-				<c:choose> 
-				  <c:when test="${empty m}">                                                 
-					<li>
-		               <p class="mb-4">조회결과가 없습니다.</p>                                        
-		          	</li>
-		          </c:when>  
-				  <c:otherwise>
-				 	<li>
-					  <p class="mb-4">${m.userId}</p>
-				  	</li>
-				  </c:otherwise>
-				  
-				</c:choose>
-				
-			</ul>
-		</div>
+		<h4 class="t">SNS 계정으로 가입하신 경우 비밀번호 찾기를 이용하실 수 없습니다.</h4>
+		<form name="f" method="post" action="searchPwd.me" onsubmit="return false;">
+			<input type="hidden" name="chk" id="chk" value="">
+			<input type="hidden" name="cel" id="cel" value="">
+			<div class="bg">
+				<div class="in">
+					<label for="id">아이디</label>
+					<input type="email" name="userId" id="id" placeholder="이메일"> 
+					<input type="text" name="userName" id="userName" placeholder="이름"> 
+					<button type="button" class="bg-black" onclick="pwAuth();">확인</button>
+				</div>
+			</div>
+		</form>
 	</div>
-
-
-	<div class="bbs-btn clearfix tac">
-		<a href="loginForm.me" class="bbs-btn-st2 bg-purple3">로그인</a>
-		<a href="/portal/member/user/findPw.do?menuNo=200146" class="bbs-btn-st2 bg-black_r">비밀번호찾기</a>
-	</div>
-
 </article>
+
+<script>
+    //<![CDATA[
+
+	$(function(){
+		$("input[name='userId']").keyup(function(e){
+            if(e.keyCode == 13) pwAuth();
+        });
+	});
+
+	function pwAuth(){
+
+		var f = document.f;
+		var chk = '0';
+
+		if (validUtil.isEmpty($("input[name='userId']")[0], "아이디를 입력하세요", true)) return false;
+		if (!validUtil.checkId2($("input[name='userId']")[0])) return false;
+
+		//본인인증없이 SNS가입자들은 본인인증키(DI)가 없기때문에 체크처리 2018.09.10
+
+		$.post("/portal/member/user/snsIdCheck.json",
+		{"userId" : $("#id").val()},
+		function(data) {
+			if( data.resultCode == 'success' ){
+				var snsCheck =  data.snsCheck;
+				chk = snsCheck.snsChk;
+				cel = snsCheck.memberCel;
+
+				if(chk == '1'){
+					alert('SNS 계정으로 가입하신 경우 비밀번호 찾기를 이용하실 수 없습니다.');
+					return;
+				}else if(chk == '2'){
+					alert('없는 아이디입니다. 다시 입력해주세요.');
+					$("#id").val('');
+					$("#id").focus();
+					return false;
+				}else{
+					$("#chk").val(chk);
+					$("#cel").val(cel);
+					document.f.submit();
+				}
+			}else{
+				alert('없는 아이디입니다. 다시 입력해주세요.');
+				$("#id").val('');
+				$("#id").focus();
+				return false;
+			}
+		});
+
+
+
+
+	}
+
+    //]]>
+</script>
 		</div>
 	</div>
 
 </div>
+
+
+
+		ㅡ,ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+
 
 		<!-- footer Section Begin -->
 		<jsp:include page="../common/footer2.jsp" />
-=======
-		<jsp:include page="../common/header.jsp" />
-		<!-- Header End -->
-
-		
-		<div id="depth_w" class="">
-		<div class="inner">
-			<ul class="clearfix dot dep1 li2">
-				<li class="home">
-					<span><span>HOME</span></span>
-				</li>
-				<li>
-					<div class="rel">
-					<a href="#"><span>통합회원서비스</span></a>
-					<ul class="depth" style="display: none;">
-						
-						<li><a href="/portal/subMain/perform.do?menuNo=200001">공연·전시·강좌</a>
-						
-						</li><li><a href="/portal/bbs/B0000002/list.do?menuNo=200012">대관안내</a>
-						
-						</li><li><a href="/portal/qestnar/qustnr/list.do?status=T&amp;menuNo=200027">참여공간</a>
-						
-						</li><li><a href="/portal/bbs/B0000001/list.do?menuNo=200042">뉴스·소식</a>
-						
-						</li><li><a href="/portal/main/contents.do?menuNo=200082">고객센터</a>
-						
-						</li><li><a href="https://www.sjartgroups.or.kr/sjartgroups/main/main.do" target="_blank" title="새창 열림">서울시예술단</a>
-						
-					</li></ul>
-					</div>
-				</li>
-				
-				<li>
-					<div class="rel">
-					<a href="findIdForm.me"><span>아이디 찾기</span></a>
-					<ul class="depth" style="display: none;">
-					<li><a href="/portal/main/contents.do?menuNo=200099"><span>서비스소개</span></a></li>
-					<li><a href="loginForm.me"><span>로그인</span></a></li>
-					<li><a href="signupForm.me"><span>회원가입</span></a></li>
-					<li><a href="findIdForm.me"><span>아이디 찾기</span></a></li>
-					<li><a href="findPwdForm.me"><span>패스워드 찾기</span></a></li>
-					<li><a href="/portal/main/contents.do?menuNo=200148"><span>개인정보처리방침</span></a></li>
-					<li><a href="/portal/main/contents.do?menuNo=200150"><span>이메일무단수집거부</span></a></li>
-					<li><a href="/portal/main/contents.do?menuNo=200164"><span>고객서비스헌장</span></a></li>
-					<li><a href="/portal/singl/siteMap/list.do?menuNo=200162"><span>사이트 맵</span></a></li>
-					</ul>
-					</div>
-				</li>
-				
-
-			</ul>
-		</div>
-	</div>
-	<script>
-	$(window).resize(function(){
-		if ( $(window).width() > 1024 ){
-			$("#depth_w .rel").hover(function(){
-				$(this).closest("#depth_w").addClass("on")
-				$(this).find(".depth").show();
-			},function(){
-				$(this).closest("#depth_w").removeClass("on")
-				$(this).find(".depth").hide();
-			})
-			$("#depth_w .rel > a").focus(function(){
-				$(this).closest("#depth_w").addClass("on")
-				$(this).next(".depth").show();
-			})
-			$("#depth_w .depth > li:last-child a").focusout(function(){
-				$(this).closest("#depth_w").removeClass("on")
-				$("#depth_w .depth").stop(true,true).slideUp(150);
-			})
-		}else {
-			$("#depth_w .rel").click(function(){
-				$(this).closest("#depth_w").toggleClass("on")
-				$(this).find(".depth").toggle();
-			})
-		}
-	}).resize();
-	</script>
-	
-	
-<div id="cont">
-	<div id="sub_page">
-		<div class="inner">
-			
-		</div>
-
-		<script>
-		var loc = $("#depth_w > div > ul > li").length - 1;
-		$("#depth_w .dep1").addClass("li"+loc);
-
-		var len = $(".tabs-st1 li").length;
-		$(".tabs-st1").addClass("li"+len);
-		</script>
-
-		<div class="sub_page">
-		
-
-
-
-
-<style>
-.tabs-st1,.tabs-st2{display: none;}
-</style>
-<article class="find_confirm inner member_com">
-	<h3 class="tit-st4">간편찾기</h3>
-	<div class="box">
-		<h4 class="t">Please check your ID</h4>
-			
-		<div class="bg">
-			<ul class="select f18">
-				<c:choose> 
-				  <c:when test="${empty m}">                                                 
-					<li>
-		               <p class="mb-4">조회결과가 없습니다. <br> 입력하신 이름과 휴대폰 번호를 다시 확인해주세요. </p>                                        
-		          	</li>
-		          </c:when>  
-				  <c:otherwise>
-				 	<li>
-					  <p class="mb-4">찾으시는 아이디 : ${m.userId}</p>
-				  	</li>
-				  </c:otherwise>
-				  
-				</c:choose>
-				
-			</ul>
-		</div>
-	</div>
-
-
-	<div class="bbs-btn clearfix tac">
-		<a href="loginForm.me" class="bbs-btn-st2 bg-purple3">로그인</a>
-		<a href="findPwdForm.me" class="bbs-btn-st2 bg-black_r">비밀번호찾기</a>
-	</div>
-
-</article>
-		</div>
-	</div>
-
-</div>
-
-		<!-- footer Section Begin -->
-		<jsp:include page="../common/footer.jsp" />
->>>>>>> refs/heads/main
 		<!-- footer End -->
 		
 		

@@ -25,13 +25,27 @@ public interface MemberService {
 
 	// 로그인 유저
 	Member loginUser(Member m);
+<<<<<<< HEAD
+
+=======
 	
 	//아이디 찾기
 	Member memberIdSearch(Member m);
+>>>>>>> refs/heads/main
 	
 	//관리자) 멤버 전체 조회
 	ArrayList<Member> selectAllMemberList();
 
+<<<<<<< HEAD
+	//비밀번호 찾기
+	Member selectMember(String email);
+
+	//비밀번호 재설정
+	int pwUpdate_M(Member loginUser);
+
+	//아이디 찾기
+	Member memberIdSearch(Member m);
+=======
 	// 비밀번호 찾기
 	Member selectMember(String email);
 
@@ -65,5 +79,6 @@ public interface MemberService {
 	
 	
 
+>>>>>>> refs/heads/main
 
 }

@@ -1,12 +1,18 @@
 package com.kh.mecenat.member.controller;
 
 import java.io.IOException;
+<<<<<<< HEAD
+=======
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+>>>>>>> refs/heads/main
 import java.util.ArrayList;
+<<<<<<< HEAD
+=======
 import java.util.Date;
 import java.util.Locale;
+>>>>>>> refs/heads/main
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
@@ -16,7 +22,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+<<<<<<< HEAD
+import org.springframework.mail.javamail.JavaMailSender;
+=======
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+>>>>>>> refs/heads/main
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -45,9 +55,16 @@ public class MemberController {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
+<<<<<<< HEAD
+
+	@Autowired
+	private JavaMailSender mailSender;
+
+=======
 	@Autowired
 	private JavaMailSenderImpl mailSender;
 	
+>>>>>>> refs/heads/main
 	// 회원가입 폼으로 이동
 	@RequestMapping("signupForm.me")
 	public String signupForm() {
@@ -307,6 +324,45 @@ public class MemberController {
 			System.out.println("");
 			String name = (String)request.getParameter("name2");
 
+<<<<<<< HEAD
+	
+	// 아이디 찾기 페이지로 이동
+	@RequestMapping("findIdForm.me")
+	public String searchIdView() {
+		return "member/search_Id";
+	}
+	
+	// 아이디 찾기 실행
+	@RequestMapping(value = "searchResultId.me")
+	public String search_result_id(HttpServletRequest request, Model model,
+		    @RequestParam(required = true, value = "userName") String userName, 
+		    @RequestParam(required = true, value = "userPhone") String userPhone,
+		    Member m) {
+		
+		try {
+		    
+		    m.setUserName(userName);
+		    m.setUserPhone(userPhone);
+		    Member memberSearch = memberService.memberIdSearch(m);
+		    
+		    model.addAttribute("m", memberSearch);
+		 
+		    
+		} catch (Exception e) {
+		    System.out.println(e.toString());
+		    model.addAttribute("msg", "오류가 발생되었습니다.");
+		}
+		return "member/search_result_Id";
+		
+		
+	}
+	
+	
+	// 비밀번호 찾기 페이지로 이동
+	@RequestMapping("findPasswordForm.me")
+	public String searchPwdView() {
+		return "member/search_pwd";
+=======
 			Member vo = memberService.selectMember(chkEmail);
 				
 			if(vo != null) {
@@ -389,6 +445,7 @@ public class MemberController {
 			else {
 				return "member/search_Pwd_New";
 			}
+>>>>>>> refs/heads/main
 	}
 		///d
 		
@@ -416,6 +473,11 @@ public class MemberController {
 			
 			PageInfo pi = Pagination.getPageinfo(listCount, currentPage, pageLimit, boardLimit);
 
+<<<<<<< HEAD
+	// 비밀번호 찾기 실행
+	@PostMapping(value= "searchPwd.me")
+	public ModelAndView searchPwd(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException  {
+=======
 			ArrayList<Member> mList = memberService.selectAllMemberList(pi);
 					
 			System.out.println(mList);
@@ -431,7 +493,14 @@ public class MemberController {
 		public ModelAndView kickMember(String userId, HttpSession session, ModelAndView mv) {
 			
 			int result = memberService.deleteMember(userId);
+>>>>>>> refs/heads/main
 
+<<<<<<< HEAD
+		String email = (String)request.getParameter("userId");
+		String name = (String)request.getParameter("userName");
+		
+		Member loginUser = memberService.selectMember(email);
+=======
 			if(result > 0) {
 //				session.setAttribute("alertMsg", "강퇴 시켜버렸다~");
 				mv.setViewName("redirect:/memberManage.form");
@@ -472,7 +541,56 @@ public class MemberController {
 			return mv;
 		}
 		
+>>>>>>> refs/heads/main
 
+<<<<<<< HEAD
+		if(loginUser != null) {
+		Random r = new Random();
+		int num = r.nextInt(999999); // 이메일 인증 번호인 랜덤난수설정
+		
+		if (loginUser.getUserName().equals(name)) {
+			session.setAttribute("email", loginUser.getEmail());
+			
+			
+			String setfrom = "sjs8739@naver.com"; // naver 보내는사람
+			String tomail = email; //받는사람
+			String title = "[MECENAT] 비밀번호변경 인증 이메일 입니다"; 
+			String content = System.getProperty("line.separator") + "안녕하세요 회원님" + System.getProperty("line.separator")
+			+ "MECENAT 비밀번호찾기(변경) 인증번호는 " + num + " 입니다." + System.getProperty("line.separator");
+		
+			
+			try {
+			MimeMessage message = mailSender.createMimeMessage();
+			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "utf-8");
+			
+			messageHelper.setFrom(setfrom); 
+			messageHelper.setTo(tomail); 
+			messageHelper.setSubject(title);
+			messageHelper.setText(content); 
+			
+			mailSender.send(message);
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+				ModelAndView mv = new ModelAndView();
+				mv.setViewName("member/numCheck");
+				mv.addObject("num", num);
+				return mv;
+			
+			}else {
+				ModelAndView mv = new ModelAndView();
+				mv.setViewName("member/search_pwd");
+				return mv;
+			}
+			}else {
+				ModelAndView mv = new ModelAndView();
+				mv.setViewName("member/search_pwd");
+				return mv;
+			}
+
+		
+		
+=======
 		@RequestMapping("kk.kk")
 		public ModelAndView ddd(String userId, ModelAndView mv) {
 			Member m = memberService.selectm(userId);
@@ -484,7 +602,64 @@ public class MemberController {
 			System.out.println(list);
 			
 			return mv;
+>>>>>>> refs/heads/main
 		}
+		
 
+<<<<<<< HEAD
+	//비밀번호 찾기 인증번호 확인
+	@RequestMapping(value="numCheck.me", method = RequestMethod.POST)
+	public String numCheck(@RequestParam(value="email_injeung") String email_injeung,
+			@RequestParam(value = "num") String num) throws IOException{
+		
+		if(email_injeung.equals(num)) {
+			return "member/pw_new";
+		}
+		else {
+			return "member/search_pwd";
+		}
+} 
+=======
+>>>>>>> refs/heads/main
 	
+<<<<<<< HEAD
+	//비밀번호 업데이트
+	@RequestMapping(value = "/pw_new.me", method = RequestMethod.POST)
+	public String pw_new(Member loginUser, HttpSession session) throws IOException{
+		int result = memberService.pwUpdate_M(loginUser);
+		if(result == 1) {
+			return "member/login";
+		}
+		else {
+			System.out.println("pw_update"+ result);
+			return "member/pw_new";
+		}
+}
+	
+	
+	@RequestMapping("memberDel.manager")
+	public String managerMemberList(Model model) {
+		
+		ArrayList<Member> mList = memberService.selectAllMemberList();
+		
+		System.out.println(mList);
+		
+		model.addAttribute("mList", mList);
+		
+		return "member/managerMemberDelete";
+	}
+	
+	@RequestMapping("deleteMem.manager")
+	public void managerMemberDelete() {
+		System.out.println("ㅇㅇ");
+		
+	}
+	
+	
+
+	// test 05!!
+
+	// test 06 !!
+=======
+>>>>>>> refs/heads/main
 }
