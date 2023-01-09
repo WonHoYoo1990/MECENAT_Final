@@ -9,5 +9,17 @@
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />	
 
 
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	    <property name="host" value="smtp.yourEmailDomain.co.kr"/>
+	    <property name="port" value="25" />
+	    <property name="username" value="yourUserName"/>
+	    <property name="password" value="yourPassword"/>
+	    <property name="javaMailProperties">
+	        <props>
+	            <prop key="mail.smtp.auth">true</prop>
+	        </props>
+	    </property>
+	</bean>
+
 </beans>
 

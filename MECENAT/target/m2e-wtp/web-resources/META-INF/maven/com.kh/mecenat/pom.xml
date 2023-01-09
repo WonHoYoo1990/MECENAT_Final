@@ -185,12 +185,11 @@
 		    <artifactId>commons-fileupload</artifactId>
 		    <version>1.3.3</version>
 		</dependency>
-		
 		<!-- commons-io -->
 		<dependency>
 		    <groupId>commons-io</groupId>
 		    <artifactId>commons-io</artifactId>
-		    <version>2.6</version>
+		    <version>2.11.0</version>
 		</dependency>
 		
 		<!-- GSON 라이브러리 -->
@@ -200,7 +199,6 @@
 		    <version>2.8.9</version>
 		</dependency>
 		
-<<<<<<< HEAD
 		<!-- mail 발송 -->
 		<dependency>
 		    <groupId>org.springframework</groupId>
@@ -213,32 +211,6 @@
 		    <artifactId>javax.mail</artifactId>
 		    <version>1.5.6</version>
 		</dependency>
-=======
-		<!-- 메일발송 -->
-		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
-			<version>1.4.7</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
-			<version>5.3.24</version>
-		</dependency>
-		
-		<!-- 파일 업로드를 위한 라이브러리 commons-fileupload,commons-io -->
-		<dependency>
-			    <groupId>commons-fileupload</groupId>
-			    <artifactId>commons-fileupload</artifactId>
-			    <version>1.3.3</version>
-		</dependency>
-		<dependency>
-		    <groupId>commons-io</groupId>
-		    <artifactId>commons-io</artifactId>
-		    <version>2.11.0</version>
-		</dependency>
-		
->>>>>>> refs/heads/main
 
 </dependencies>
 	

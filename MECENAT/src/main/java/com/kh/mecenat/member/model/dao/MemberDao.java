@@ -45,12 +45,15 @@ public class MemberDao {
 		return sqlSession.selectOne("memberMapper.loginUser", m);
 	}
 
+<<<<<<< HEAD
+=======
 	//아이디 찾기
 	public Member memberIdSearch(SqlSessionTemplate sqlSession, Member m) {
 		
 		return sqlSession.selectOne("memberMapper.memberIdSearch", m);
 	
 	}
+>>>>>>> refs/heads/main
 	
 	//관리자) 멤버 전체 조회
 	public ArrayList<Member> selectAllMemberList(SqlSessionTemplate sqlSession) {
@@ -58,6 +61,25 @@ public class MemberDao {
 		return (ArrayList)sqlSession.selectList("memberMapper.selectAllMemberList");
 	}
 
+<<<<<<< HEAD
+	public Member selectMember(SqlSessionTemplate sqlSession, String email) {
+		return sqlSession.selectOne("memberMapper.selectMember", email);
+	}
+
+	public int pwUpdate_M(SqlSessionTemplate sqlSession, Member loginUser) {
+		
+		return sqlSession.update("memberMapper.pwUpdate_M", loginUser);
+	
+	} 
+
+	//아이디 찾기
+	public Member memberIdSearch(SqlSessionTemplate sqlSession, Member m) {
+		
+		return sqlSession.selectOne("memberMapper.memberIdSearch", m);
+	
+	}
+
+=======
 	////비밀번호 찾기 이메일 인증
 	public Member selectMember(SqlSessionTemplate sqlSession, String email) {
 
@@ -121,4 +143,5 @@ public class MemberDao {
 
 
 	
+>>>>>>> refs/heads/main
 }
