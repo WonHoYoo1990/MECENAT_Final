@@ -142,6 +142,9 @@ public class PerformanceServerImpl implements PerformanceService {
 	@Override
 	public ArrayList<Performance> selectListNew() {
 		return null;
+	@Override
+	public ArrayList<Performance> selectDateList(Performance p) {
+		return performanceDao.selectDateList(SqlSession, p);
 	}
 
 	// ?

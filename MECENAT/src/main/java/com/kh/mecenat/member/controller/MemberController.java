@@ -1,12 +1,16 @@
 package com.kh.mecenat.member.controller;
 
 import java.io.IOException;
+
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.Locale;
+
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
@@ -16,7 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -46,6 +52,7 @@ public class MemberController {
 
 	@Autowired
 	private JavaMailSenderImpl mailSender;
+
 
 	// 회원가입 폼으로 이동
 	@RequestMapping("signupForm.me")
@@ -264,18 +271,16 @@ public class MemberController {
 			@RequestParam(required = true, value = "userPhone") String userPhone, Member m) {
 
 		try {
-
 			m.setUserName(userName);
 			m.setUserPhone(userPhone);
 			Member memberSearch = memberService.memberIdSearch(m);
 
 			model.addAttribute("m", memberSearch);
-
 		} catch (Exception e) {
 			model.addAttribute("msg", "오류가 발생되었습니다.");
 		}
-		return "member/search_result_Id";
 
+		return "member/search_result_Id";
 	}
 
 	// 비밀번호 찾기 페이지로 이동
@@ -400,6 +405,7 @@ public class MemberController {
 		int result = memberService.deleteMember(userId);
 
 		if (result > 0) {
+
 //				session.setAttribute("alertMsg", "강퇴 시켜버렸다~");
 			mv.setViewName("redirect:/memberManage.form");
 		} else {
@@ -421,7 +427,7 @@ public class MemberController {
 		} else {
 			mv.addObject("errorMsg", "블랙 처리 실패").setViewName("common/errorPage");
 		}
-
+    
 		return mv;
 	}
 
@@ -439,7 +445,7 @@ public class MemberController {
 
 		return mv;
 	}
-
+  
 	@RequestMapping("kk.kk")
 	public ModelAndView ddd(String userId, ModelAndView mv) {
 		Member m = memberService.selectm(userId);

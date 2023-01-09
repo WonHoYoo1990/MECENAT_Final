@@ -2,6 +2,7 @@ package com.kh.mecenat.performance.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -338,7 +340,6 @@ public class PerformanceController {
 	}
 
 //	유리) PERFO_STATUS 변경
-
 	@ResponseBody
 	@RequestMapping(value = "statusChange.perf")
 	public void updateStatus(int rcode, String statusVal) {
@@ -348,15 +349,31 @@ public class PerformanceController {
 		p.setPerfoStatus(statusVal);
 
 		int updateStatus = perfoService.updateStatus(p);
-
 	}
 
 	// yuri myPage date값 가져오기....
 	@ResponseBody
-	@RequestMapping(value = "searchList.perf")
-	public void searchList(String FirstDate, String LastDate) {
+	@RequestMapping(value = "searchList.perf", produces = "application/json; charset=UTF-8")
+	public String searchList(String FirstDate, String LastDate, String userId, Model model) {
+		Performance p = new Performance();
+		
+		p.setUserId(userId);
+		p.setStartDate(FirstDate);
+		p.setEndDate(LastDate);
+		
+		ArrayList<Performance> Slist = perfoService.selectDateList(p);
+		
+		return new Gson().toJson(Slist);
 	}
+	
+//	유리-환불
 
+	@RequestMapping(value = "payback.perf")
+	public String payback(int pno, Model model) {
+		model.addAttribute("pno",pno);
+		return "performance/paybackForm";
+	}
+	
 	// 댓글 리스트 조회
 	@ResponseBody
 	@RequestMapping(value = "rlist.bo", produces = "application/json; charset=UTF-8")
@@ -396,5 +413,5 @@ public class PerformanceController {
 
 		return "performance/performanceListView2";
 	}
-
+  
 }

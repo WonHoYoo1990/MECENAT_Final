@@ -67,4 +67,6 @@ public interface PerformanceService {
 
 	public int selectEndListCount();
 
+	public ArrayList<Performance> selectDateList(Performance p);
+
 }

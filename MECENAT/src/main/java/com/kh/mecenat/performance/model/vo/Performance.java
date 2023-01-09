@@ -1,5 +1,7 @@
 package com.kh.mecenat.performance.model.vo;
 
+import java.sql.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,6 +35,9 @@ public class Performance {
 	private String agentEmail;
 	private String hallName;
 	
+	private String startDate;
+	private String endDate;
+	private String userId;
 	
 
 }

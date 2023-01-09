@@ -55,12 +55,15 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.loginUser(sqlSession, m);
 	}
 
+<<<<<<< HEAD
+=======
 	//아이디 찾기
 	@Override
 	public Member memberIdSearch(Member m) {
 		
 		return memberDao.memberIdSearch(sqlSession, m);
 	}
+>>>>>>> refs/heads/main
 	
 	//관리자) 멤버 전체 조회
 	@Override
@@ -69,6 +72,27 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.selectAllMemberList(sqlSession);
 	}
 
+<<<<<<< HEAD
+	@Override
+	public Member selectMember(String email) {
+
+		return memberDao.selectMember(sqlSession, email);
+	}
+
+	@Override
+	public int pwUpdate_M(Member loginUser) {
+		
+		return memberDao.pwUpdate_M(sqlSession, loginUser);
+	
+	}
+
+	//아이디 찾기
+	@Override
+	public Member memberIdSearch(Member m) {
+		
+		return memberDao.memberIdSearch(sqlSession, m);
+	}
+=======
 	//비밀번호 찾기
 	@Override
 	public Member selectMember(String email) {
@@ -138,6 +162,7 @@ public class MemberServiceImpl implements MemberService {
 	
 
 	
+>>>>>>> refs/heads/main
 
 
 }
