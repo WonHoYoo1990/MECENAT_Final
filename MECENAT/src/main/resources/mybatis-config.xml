@@ -3,27 +3,43 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-
 	<settings>
 		<setting name="jdbcTypeForNull" value="NULL" />
 	</settings>
-
 	<!-- 별칭등록 -->
 	<typeAliases>
-		<typeAlias type = "com.kh.mecenat.member.model.vo.Member" alias="member"/>
-		<typeAlias type="com.kh.mecenat.reservation.model.vo.Hall" alias="hall"/>
-		<typeAlias type="com.kh.mecenat.reservation.model.vo.Payment" alias="payment"/>
-		<typeAlias type="com.kh.mecenat.reservation.model.vo.Performance" alias="performance"/>
-		<typeAlias type="com.kh.mecenat.reservation.model.vo.Purchase" alias="purchase"/>
-		<typeAlias type="com.kh.mecenat.reservation.model.vo.RentApplication" alias="rentapplication"/>
-		<typeAlias type="com.kh.mecenat.reservation.model.vo.RentSystem" alias="rentsystem"/>
-		<typeAlias type="com.kh.mecenat.performance.model.vo.Performance" alias="performanceMana"/>
+		<typeAlias type="com.kh.mecenat.member.model.vo.Member"
+			alias="member" />
+		<typeAlias type="com.kh.mecenat.reservation.model.vo.Hall"
+			alias="hall" />
+		<typeAlias
+			type="com.kh.mecenat.reservation.model.vo.Payment" alias="payment" />
+		<typeAlias
+			type="com.kh.mecenat.reservation.model.vo.Performance"
+			alias="performance" />
+		<typeAlias
+			type="com.kh.mecenat.reservation.model.vo.Purchase" alias="purchase" />
+		<typeAlias
+			type="com.kh.mecenat.reservation.model.vo.RentApplication"
+			alias="rentapplication" />
+		<typeAlias
+			type="com.kh.mecenat.reservation.model.vo.RentSystem"
+			alias="rentsystem" />
+		<typeAlias
+			type="com.kh.mecenat.performance.model.vo.Performance"
+			alias="performanceMana" />
+		<typeAlias type="com.kh.mecenat.reservation.model.vo.Seat" alias="seat"/>
+		<typeAlias type="com.kh.mecenat.performance.model.vo.Review"
+			alias="review" />
+		<typeAlias type="com.kh.mecenat.notice.model.vo.Notice"
+			alias="notice" />
+		<typeAlias type="com.kh.mecenat.notice.model.vo.NoticeType"
+			alias="noticeType" />
 	</typeAliases>
-
 	<mappers>
-		<mapper resource="/mappers/member-mapper.xml"/>
-		<mapper resource="/mappers/reservation-mapper.xml"/>
-		<mapper resource="/mappers/performance.xml"/>
+		<mapper resource="/mappers/member-mapper.xml" />
+		<mapper resource="/mappers/reservation-mapper.xml" />
+		<mapper resource="/mappers/performance.xml" />
+		<mapper resource="/mappers/notice-mapper.xml" />
 	</mappers>
-	
 </configuration>

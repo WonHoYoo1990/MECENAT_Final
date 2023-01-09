@@ -6,8 +6,10 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.mecenat.common.PageInfo;
 import com.kh.mecenat.member.model.dao.MemberDao;
 import com.kh.mecenat.member.model.vo.Member;
+import com.kh.mecenat.performance.model.vo.Review;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -31,14 +33,14 @@ public class MemberServiceImpl implements MemberService {
 
 	// ID 중복 체크
 	@Override
-	public int checkId(String checkId) {
-		return memberDao.checkId(sqlSession, checkId);
+	public int checkDupId(String checkId) {
+		return memberDao.checkDupId(sqlSession, checkId);
 	}
 
 	// EMAIL 중복 체크
 	@Override
-	public int checkEmail(String checkEmail) {
-		return memberDao.checkEmail(sqlSession, checkEmail);
+	public int checkDupEmail(String checkEmail) {
+		return memberDao.checkDupEmail(sqlSession, checkEmail);
 	}
 
 	// 회원 로그인
@@ -53,6 +55,15 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.loginUser(sqlSession, m);
 	}
 
+<<<<<<< HEAD
+=======
+	//아이디 찾기
+	@Override
+	public Member memberIdSearch(Member m) {
+		
+		return memberDao.memberIdSearch(sqlSession, m);
+	}
+>>>>>>> refs/heads/main
 	
 	//관리자) 멤버 전체 조회
 	@Override
@@ -61,6 +72,7 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.selectAllMemberList(sqlSession);
 	}
 
+<<<<<<< HEAD
 	@Override
 	public Member selectMember(String email) {
 
@@ -80,6 +92,77 @@ public class MemberServiceImpl implements MemberService {
 		
 		return memberDao.memberIdSearch(sqlSession, m);
 	}
+=======
+	//비밀번호 찾기
+	@Override
+	public Member selectMember(String email) {
+		return memberDao.selectMember(sqlSession, email);
+	}
+
+	//비밀번호 재설정
+	@Override
+	public int search_Pwd_New(Member vo) {
+		return memberDao.search_Pwd_New(sqlSession, vo);	
+	}
+	
+	//마이페이지 회원정보 수정
+	@Override
+	public int updateMember(Member m) {
+		return memberDao.updateMember(sqlSession,m);
+	}
+
+	//블랙시키기
+	@Override
+	public int blackMember(String userId) {
+		// TODO Auto-generated method stub
+		return memberDao.blackMember(sqlSession, userId);
+	}
+	
+	//블랙해제
+	@Override
+	public int blackCancelMember(String userId) {
+		// TODO Auto-generated method stub
+		return memberDao.blackCancelMember(sqlSession, userId);
+	}
+
+	
+	@Override
+	public int selectListCount() {
+		// TODO Auto-generated method stub
+		return memberDao.selectListCount(sqlSession);
+	}
+
+	@Override
+	public ArrayList<Member> selectAllMemberList(PageInfo pi) {
+		// TODO Auto-generated method stub
+		return memberDao.selectAllMemberList(sqlSession, pi);
+	}
+
+
+	@Override
+	public Member selectm(String userId) {
+		// TODO Auto-generated method stub
+		return memberDao.selectm(sqlSession, userId);
+	}
+
+	
+	@Override
+	public ArrayList<Review> selectReviewList(String userId) {
+		// TODO Auto-generated method stub
+		return memberDao.selectReviewList(sqlSession, userId);
+	}
+
+	
+	
+	
+	
+	
+
+	
+	
+
+	
+>>>>>>> refs/heads/main
 
 
 }

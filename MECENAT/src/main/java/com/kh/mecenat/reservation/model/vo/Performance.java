@@ -24,6 +24,10 @@ public class Performance {
 	private String runningTime;//	RUNNING_TIME
 	private int ageLimit;//	AGE_LIMIT
 	private String  perfoStatus;//	PERFO_STATUS
+	private String  perfoDeleteStatus;//PERFO_DELETE_STATUS
 	private int price;//	PRICE
+	private String  originName;//	ORIGIN_NAME
+	private String  changeName;//	CHANGE_NAME
 	private String  hallName;//	HALL_NAME
+	private int remainingSeats;//	남은 좌석수
 }

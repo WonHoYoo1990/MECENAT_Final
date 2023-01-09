@@ -24,7 +24,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 			if (loginUser.getUserId().equals("admin")) {
 				session.setAttribute("alertMsg", "관리자님 안녕하세요");
 			} else {
-				session.setAttribute("alertMsg", loginUser.getUserId() + "님 안녕하세요.");
+//				session.setAttribute("alertMsg", loginUser.getUserName() + "님 안녕하세요.");
 			}
 			return true;
 		} else {
@@ -34,6 +34,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
 			return false;
 		}
+		//test01
 
 	}
 

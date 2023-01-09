@@ -38,6 +38,7 @@
 	 	<property name="maxUploadSizePerFile"  value="10000000"/>
 	 </bean>	
 	 
+<<<<<<< HEAD
 	 <!-- 메일 보내기 위한 도구 등록 -->
 	<bean id="mailSender"
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">
@@ -59,5 +60,22 @@
 	</bean>
 	
 	 
+=======
+	<!-- google email -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	    <property name="host" value="smtp.gmail.com" />
+	    <property name="port" value="587" />
+	    <property name="username" value="hejin28739@gmail.com" />
+	    <property name="password" value="password"/>
+	    <property name="javaMailProperties">
+	        <props>
+	            <prop key="mail.transport.protocol">smtp</prop>
+	            <prop key="mail.smtp.auth">true</prop>
+	            <prop key="mail.smtp.starttls.enable">true</prop>
+	            <prop key="mail.debug">true</prop>
+	        </props>
+	    </property>
+	</bean>
+>>>>>>> refs/heads/main
 	 
 </beans>

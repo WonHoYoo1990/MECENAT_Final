@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
 <mapper namespace="reservationMapper">
-
 	<resultMap type="performance" id="performanceResult">
 		<result column="PERFO_NO" property="perfoNo"/>
 		<result column="RENTAL_CODE" property="rentalCode"/>
 		<result column="PERFO_TITLE" property="perfoTitle"/>
 		<result column="GENRE_NAME" property="genreName"/>
 		<result column="PERFO_DATE" property="perfoDate"/>
-		<result column="PERFO_START_DATE" property="perfoStartDate"/>
-		<result column="PERFO_END_DATE" property="perfoEndDate"/>
 		<result column="PERFO_EVENT_DATE" property="perfoEventDate"/>
 		<result column="DIRECTOR" property="director"/>
 		<result column="CAST" property="cast"/>
@@ -19,6 +16,9 @@
 		<result column="AGE_LIMIT" property="ageLimit"/>
 		<result column="PERFO_STATUS" property="perfoStatus"/>
 		<result column="PRICE" property="price"/>
+		<result column="PERFO_DELETE_STATUS" property="perfoDeleteStatus"/>
+		<result column="ORIGIN_NAME" property="originName"/>
+		<result column="CHANGE_NAME" property="changeName"/>
 		<result column="HALL_NAME" property="hallName"/>
 	</resultMap>
 	
@@ -31,9 +31,10 @@
 		<result column="AGENT_NAME" property="agentName"/>
 		<result column="AGENT_PHONE" property="agentPhone"/>
 		<result column="AGENT_EMAIL" property="agentEmail"/>
-		<result column="PERFO_START_DATE" property="rentalStartDate"/>
+		<result column="RENTAL_START_DATE" property="rentalStartDate"/>
 		<result column="RENTAL_END_DATE" property="rentalEndDate"/>
 		<result column="EVENT_DATE" property="eventDate"/>
+		<result column="EVENT_TIME" property="eventTime"/>
 		<result column="RENTAL_PROPOSE" property="rentalPropose"/>
 		<result column="RENTAL_DATE" property="rentalDate"/>
 		<result column="APPROVE_STATUS" property="approveStatus"/>
@@ -71,17 +72,32 @@
 		<result column="RENTAL_CODE" property="rentalCode"/>
 		<result column="SEAT_NO" property="seatNo"/>
 		<result column="PAYMENT_NO" property="paymentNo"/>
+		<result column="PERFO_NO" property="perfoNo"/>
 		<result column="CUSTOMERSERVICE_STATUS" property="customerserviceStatus"/>
 		<result column="PURCHASE_DATE" property="purchaseDate"/>
 		<result column="RESERVATION_DATE" property="reservationDate"/>
 		<result column="TOTAL_PRICE" property="totalPrice"/>
+		<result column="PERFO_TITLE" property="perfoTitle"/>
+	</resultMap>
+	
+	<resultMap type="seat" id="seatResult">
+		<result column="SEAT_NO" property="seatNo"/>
+		<result column="SEAT_CODE" property="seatCode"/>
+		<result column="HALL_NAME" property="hallName"/>
+		<result column="SEAT_TIER" property="seatTier"/>
+		<result column="SEAT_PRICE" property="seatPrice"/>
+		<result column="SEAT_STATUS" property="seatStatus"/>
 	</resultMap>
 
+	<!-- #혜원만제 - 전체 공연리스트 조회(조정중) -->
 	<select id="selectPerformanceList" resultMap="performanceResult">
-		SELECT *
-		FROM PERFORMANCE
-		WHERE PERFO_STATUS = 'Y'
-		ORDER BY PERFO_START_DATE
+		SELECT P.*, HALL_NAME
+		FROM PERFORMANCE P
+		JOIN RENTAPPLICATION R ON(P.RENTAL_CODE=R.RENTAL_CODE)
+		WHERE P.RENTAL_CODE = #{rentalCode}
+		AND APPROVE_STATUS = '승인'
+		AND PERFO_DELETE_STATUS = 'Y'
+		ORDER BY P.PERFO_EVENT_DATE
 	</select>
 	
 	
@@ -89,13 +105,29 @@
 	<select id="selectPerformance" resultMap="performanceResult">
 		SELECT *
 		FROM PERFORMANCE
-		WHERE PERFO_STATUS = 'Y'
-		AND PERFO_NO = #{perfoNo}
+		WHERE PERFO_NO = #{perfoNo}
+		AND PERFO_STATUS = '공연중'
+		AND PERFO_DELETE_STATUS = 'Y'
 	</select>
 	
 	<!-- #혜원만제 - 대관신청서 insert -->
 	<insert id="insertApplication">
 		INSERT INTO RENTAPPLICATION
+			(RENTAL_CODE
+			, USER_ID
+			, HALL_NAME
+			, COVENANTEE_NAME
+			, COVENANTEE_PHONE
+			, AGENT_NAME
+			, AGENT_PHONE
+			, AGENT_EMAIL
+			, RENTAL_START_DATE
+			, RENTAL_END_DATE
+			, EVENT_DATE
+			, EVENT_TIME
+			, RENTAL_PROPOSE
+			, RENTAL_DATE
+			, APPROVE_STATUS)
 	    VALUES(SEQ_RENTALNO.NEXTVAL
 			, #{userId}
 			, #{hallName}
@@ -107,27 +139,123 @@
 			, #{rentalStartDate}
 			, #{rentalEndDate}
 			, #{eventDate}
+			, #{eventTime}
 			, #{rentalPropose}
 			, SYSDATE
 			, '승인대기')
 	</insert>
-
 	
-	<update id="updateBoard">
-		UPDATE BOARD
-		SET BOARD_TITLE = #{boardTitle}
-		,BOARD_CONTENT = #{boardContent}
-		,ORIGIN_NAME = #{originName}
-		,CHANGE_NAME = #{changeName}
-		WHERE STATUS = 'Y'
-		AND BOARD_NO = #{boardNo}
-	</update>
+	<!-- #혜원만제 - 해당 공연의 판매된 전체 좌석 -->
+	<select id="selectSoldOutSeats" resultMap="seatResult">
+		SELECT *
+		FROM SEAT S
+		JOIN PURCHASE P ON (S.SEAT_NO = P.SEAT_NO)
+		WHERE P.PERFO_NO = #{perfoNo}
+	</select>
+	
+	<!-- #혜원만제 - 해당 공연의 판매된 전체 좌석 -->
+	<select id="selectAllSeats" resultMap="seatResult">
+		SELECT *
+		FROM SEAT
+		WHERE HALL_NAME = #{hallName}
+	</select>
+	
+	<!-- #혜원만제 - 공연장 선택 시 해당 공연장 전체 정보 조회 -->
+	<select id="selectHallInfo" resultMap="hallResult">
+		SELECT *
+		FROM HALL
+		WHERE HALL_NAME = #{hallName}
+	</select>
+	
+	<!-- #혜원만제 - 해당날짜 및 렌탈코드로 공연 정보 조회해 예매페이지로 전달 -->
+	<select id="getReservationPerformance" resultMap="performanceResult">
+		SELECT *
+		FROM PERFORMANCE
+		WHERE PERFO_EVENT_DATE = #{perfoEventDate}
+		AND RENTAL_CODE = #{rentalCode}
+		AND PERFO_DELETE_STATUS = 'Y' 
+	</select>
+	
+	<!-- #혜원만제 - 홀 좌석 수 조회 -->
+	<select id="getHallSeats" resultMap="hallResult">
+		SELECT HALL_SEATS
+		FROM HALL
+		WHERE HALL_NAME = #{hallName}
+	</select>
+	
+	<!-- #혜원만제 - 예매완료된 좌석 조회 -->
+	<select id="getPurchaseSeats" resultType="_int">
+		SELECT COUNT(*)
+		FROM PURCHASE
+		WHERE PERFO_NO = #{perfoNo}
+	</select>
+	
+	<!-- #혜원만제 - 선택한 좌석 뒷사람이 못고르게 막기 -->
+	<insert id="blockSeats">
+		INSERT INTO PURCHASE (PURCHASE_NO, USER_ID, SEAT_NO, PERFO_NO)
+		VALUES(SEQ_PURCHASENO.NEXTVAL, #{userId}, #{seatNo}, #{perfoNo})
+	</insert>
+	
+	<!-- #혜원만제 - 특정 홀의 좌석고유번호 가져오기 -->
+	<select id="selectSeatNo" resultType="_int">
+		SELECT SEAT_NO
+		FROM SEAT
+		WHERE HALL_NAME = #{hallName}
+		AND SEAT_CODE = #{seatCode}
+	</select>
+	
+	<select id="selectRentApplication1" resultMap="rentapplicationResult">
+		SELECT * FROM RENTAPPLICATION WHERE RENTAL_CODE = #{rentalCode}
+	</select>
+	
+<!-- =================================================================================== -->
 
-	<update id="deleteBoard" parameterType="int">
-		UPDATE BOARD
-		SET STATUS = 'N'
-		WHERE BOARD_NO = #{boardNo}
-		AND STATUS = 'Y'
-	</update>
+	<!-- 관리자(유리) -->
+	<select id="selectRentalApplicationR" resultMap="rentapplicationResult">
+		SELECT * FROM RENTAPPLICATION
+		WHERE RENTAL_CODE = #{rno}
+	</select>
 
+	<!--  관리자)승인대기중인 list조회  -->
+	<select id="selectRentalApplication" resultMap="rentapplicationResult"> 
+		SELECT *
+		FROM RENTAPPLICATION
+		WHERE APPROVE_STATUS != '등록'
+	</select>
+	
+	<!-- 승인관리 -->
+	<update id="updateApproveStatus">
+		UPDATE RENTAPPLICATION
+		SET APPROVE_STATUS='승인'
+		WHERE RENTAL_CODE = #{rno}
+	</update>
+	<update id="updateCancelStatus">
+		UPDATE RENTAPPLICATION
+		SET APPROVE_STATUS='승인대기'
+		WHERE RENTAL_CODE = #{rno}
+	</update>
+	<update id="nopePerformance">
+		UPDATE RENTAPPLICATION
+		SET APPROVE_STATUS='미승인'
+		WHERE RENTAL_CODE = #{rno}
+	</update>
+	
+	<select id="selectDateList" resultMap="purchaseResult">
+	<![CDATA[
+		SELECT USER_ID, PERFO_NO, PERFO_TITLE, PURCHASE_DATE, SEAT_NO, RESERVATION_DATE, PRICE, PURCHASE_NO
+		FROM PURCHASE P
+		JOIN PERFORMANCE USING(PERFO_NO)
+		WHERE PURCHASE_DATE >= #{startDate} AND PURCHASE_DATE <= #{endDate} AND USER_ID=#{userId} AND PURCHASE_NO != 0
+		ORDER BY PURCHASE_NO
+	]]>
+	</select>
+	
+	
+	<!-- update status -->
+	<update id="updateRentalAppStatus">
+		UPDATE RENTAPPLICATION
+		SET APPROVE_STATUS='등록'
+		WHERE RENTAL_CODE= #{rno}
+	</update>
+	
 </mapper>

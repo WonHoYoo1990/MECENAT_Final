@@ -10,12 +10,16 @@
 		INSERT INTO MEMBER( USER_ID, 
 							USER_PWD, 
 							USER_NAME, 
+							USER_BIRTHDAY, 
 							USER_PHONE, 
+							USER_ADDRESS, 
 							USER_EMAIL)
 										VALUES(	#{userId},
 											    #{userPwd},
 											    #{userName},
+											    #{regNoDate},
 											    #{userPhone},
+											    #{address},
 											    #{email} )
 	</insert>
 	
@@ -28,7 +32,7 @@
 	</update>
 	
 	<!-- ID 중복 체크 -->
-	<select id="checkId" resultType="_int">
+	<select id="checkDupId" resultType="_int">
 		SELECT COUNT(*)
 		FROM MEMBER
 		WHERE USER_ID = #{checkId}
@@ -36,7 +40,7 @@
 	</select>
 	
 	<!-- EMAIL 중복 체크 -->
-	<select id="checkEmail" resultType="int">
+	<select id="checkDupEmail" resultType="int">
 		SELECT COUNT(*)
 		FROM MEMBER
 		WHERE USER_EMAIL = #{checkEmail}
@@ -47,10 +51,14 @@
 		<result column="USER_ID" property="userId"/>
 		<result column="USER_PWD" property="userPwd"/>
 		<result column="USER_NAME" property="userName"/>
-		<result column="EMAIL" property="email"/>
+		<result column="USER_BIRTHDAY" property="regNoDate"/>
+		<result column="USER_PHONE" property="userPhone"/>
+		<result column="USER_ADDRESS" property="address"/>
+		<result column="USER_EMAIL" property="email"/>
 		<result column="ENROLL_DATE" property="enrollDate"/>
 		<result column="UPDATE_DATE" property="updateDate"/>
 		<result column="USER_GRADE" property="userGrade"/>
+		<result column="BLACKLIST" property="blacklist"/>
 		<result column="STATUS" property="status"/>
 	</resultMap>
 	
@@ -72,31 +80,71 @@
 	
 	</select>
 	
-	<!-- 비밀번호 찾기 -->
-	<select id="searchPwd" resultType="member">
+	<!-- 아이디 찾기 -->
+	<select id="memberIdSearch" resultMap="memberResultSet">
 		SELECT *
 		FROM MEMBER
-		WHERE USER_ID = #{userId} 
-		AND USER_NAME = #{userName} 
-		AND USER_PHONE = #{userPhone} 
+		WHERE USER_NAME = #{userName}
+		AND USER_PHONE =  #{userPhone}
 		AND STATUS = 'Y'
-		
 	</select>
 	
-	<!-- 비밀번호 업데이트 -->
-	<update id="updatePwd">
+	<!-- 관리자) 멤버 전체 조회 -->
+	
+	
+	<!-- 회원정보조회 -->
+	<select id="selectMember" parameterType="String" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
+		WHERE USER_EMAIL = #{email}
+	</select>
+	
+	<!-- 비밀번호 변경 -->
+	<update id = "search_Pwd_New" parameterType="member">
 		UPDATE MEMBER 
+		SET USER_PWD = #{userPwd} 
+		WHERE USER_EMAIL = #{email}
+	</update>
+	
+	<!-- 마이페이지 회원정보 수정 -->
+	<update id = "updateMember" parameterType="member">
+		UPDATE MEMBER
 		SET USER_PWD = #{userPwd}
+			,USER_BIRTHDAY = #{regNoDate}
+			,USER_ADDRESS = #{address}
+			,USER_EMAIL = #{email}
+			,USER_PHONE = #{userPhone}
 		WHERE USER_ID = #{userId}
 		AND STATUS = 'Y'
 	</update>
 	
-	<!-- 관리자) 멤버 전체 조회 -->
-	<select id="selectAllMemberList" resultMap="memberResultSet">
-		SELECT *
+	<update id="blackMember" parameterType="member">
+		UPDATE MEMBER
+		SET BLACKLIST = 'Y'
+		WHERE USER_ID = #{userId}
+		AND BLACKLIST = 'N'
+	</update>
+	
+	<update id="blackCancelMember" parameterType="member">
+		UPDATE MEMBER
+		SET BLACKLIST = 'N'
+		WHERE USER_ID = #{userId}
+		AND BLACKLIST = 'Y'
+	</update>
+	
+	
+	<select id="selectListMember" resultType="_int">
+		SELECT COUNT(*)
 		FROM MEMBER
 	</select>
 	
+	<select id="selectAllMemberList" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
+		ORDER BY STATUS DESC
+	</select>
+	
+<<<<<<< HEAD
 	<!-- 회원정보조회 -->
 	<select id="selectMember" resultMap="memberResultSet">
 		SELECT *
@@ -119,4 +167,40 @@
 		AND USER_PHONE =  #{userPhone}
 	</select>
 		
+=======
+	<select id="dList" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
+		WHERE USER_ID = #{userId}
+	</select>
+	
+	
+	<resultMap type="review" id="reviewResultSet">
+	  	<result column="REVIEW_NO" property="reviewNo"/>
+	  	<result column="REF_NO" property="refNo"/>
+	  	<result column="REVIEW_WRITER" property="reviewWriter"/>
+	  	<result column="STAR_RATE" property="starRate"/>	  	
+	  	<result column="REVIEW_CONTENT" property="content"/>	  	
+	  	<result column="WRITE_DATE" property="writeDate"/>
+	  	<result column="STATUS" property="status"/>	  	
+    </resultMap>
+	
+	<select id="selectReviewList" resultMap="reviewResultSet">
+		SELECT *
+		FROM REVIEW
+		WHERE REVIEW_WRITER = #{userId}
+	</select>
+	
+	
+	
+	
+	
+    
+
+    
+    
+  
+  	
+  	
+>>>>>>> refs/heads/main
 </mapper>
