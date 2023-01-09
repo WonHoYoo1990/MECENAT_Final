@@ -211,15 +211,29 @@ public class NoticeController {
 
 	// 메인페이지 최신소식 조회
 	@ResponseBody
-	@RequestMapping("latestNewsTicket.no")
-	public ModelAndView latestNewsTicket( @RequestParam(value = "boardCode[]") List<String>boardCode, ModelAndView mv) {
-		
+	@RequestMapping("latestNews.no")
+	public ModelAndView latestNews(@RequestParam(value = "boardCode[]") List<String> boardCode, ModelAndView mv) {
+
 		ArrayList<ArrayList<Notice>> noticesList = new ArrayList<ArrayList<Notice>>();
-		
+
 		for (int i = 0; i < boardCode.size(); i++) {
-			noticesList.add(noticeService.latestNewsTicket(boardCode.get(i)));
+			noticesList.add(noticeService.latestNews(boardCode.get(i)));
 		}
+
 		mv.addObject("noticesList", noticesList).setViewName("mainlatestnews");
+
+		return mv;
+	}
+
+	// 푸터 페이지 Notice 조회
+	@ResponseBody
+	@RequestMapping("footerNotice.no")
+	public ModelAndView footerNotice(ModelAndView mv) {
+
+		ArrayList<Notice> footerNotice = noticeService.footerNotice();
+
+		mv.addObject("footerNotice", footerNotice).setViewName("common/footerNotice");
+
 		return mv;
 	}
 

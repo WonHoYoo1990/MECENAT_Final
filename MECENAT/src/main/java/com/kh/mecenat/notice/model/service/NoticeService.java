@@ -33,6 +33,9 @@ public interface NoticeService {
 	ArrayList<NoticeType> selectCategoryList(String boardCode);
 
 	// 메인페이지 최신뉴스 조회
-	ArrayList<Notice> latestNewsTicket(String boardCode);
+	ArrayList<Notice> latestNews(String boardCode);
+
+	// 푸터 페이지 Notice 조회
+	ArrayList<Notice> footerNotice();
 
 }

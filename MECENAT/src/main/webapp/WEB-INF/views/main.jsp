@@ -70,13 +70,6 @@
 			<!-- 헤더부분은 기존 소스 살림  -->
 			
 			<!-- // -->
-			<span itemscope="" itemtype="http://schema.org/Organization" style="display: none;">
-				<a itemprop="sameAs" href="https://www.youtube.com/channel/UCCqaPJqI5q1kfO51qWWOjrQ"><span class="hide">유튜브</span></a> 
-				<a itemprop="sameAs" href="https://www.instagram.com/sejongcenter/"><span class="hide">인스타그램</span></a> 
-				<a itemprop="sameAs" href="https://www.facebook.com/sjcenter"><span class="hide">페이스북</span></a> 
-				<a itemprop="sameAs" href="https://blog.naver.com/sejongnanum"><span class="hide">블로그</span></a> 
-				<a itemprop="sameAs" href="https://twitter.com/SEJONG_CENTER"><span class="hide">트위터</span></a>
-			</span>
 			<script src="./resources/sejongpac/static/portal/js/ksearch/top_apc.js"></script>
 			<script src="./resources/sejongpac/static/portal/js/jquery.rwdImageMaps.js"></script>
 			
@@ -92,50 +85,10 @@
 					$(function() {
 						console.clear();
 						
+						mainBanner();
+						mainVisualThumb();
+						recommendedProgram();
 						
-						$('.slick-track').slick({
-							slide: 'li',		//슬라이드 되어야 할 태그 ex) div, li 
-							infinite : true, 	//무한 반복 옵션	 
-							slidesToShow : 4,		// 한 화면에 보여질 컨텐츠 개수
-							slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
-							speed : 100,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
-							arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
-							dots : true, 		// 스크롤바 아래 점으로 페이지네이션 여부
-							autoplay : true,			// 자동 스크롤 사용 여부
-							autoplaySpeed : 5000, 		// 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
-							pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
-							vertical : false,		// 세로 방향 슬라이드 옵션
-							prevArrow : "<button type='button' class='slick-prev'>Previous</button>",		// 이전 화살표 모양 설정
-							nextArrow : "<button type='button' class='slick-next'>Next</button>",		// 다음 화살표 모양 설정
-							dotsClass : "slick-dots", 	//아래 나오는 페이지네이션(점) css class 지정
-							draggable : true, 	//드래그 가능 여부 
-							
-							responsive: [ // 반응형 웹 구현 옵션
-								{  
-									breakpoint: 960, //화면 사이즈 960px
-									settings: {
-										//위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
-										slidesToShow:3 
-									} 
-								},
-								{ 
-									breakpoint: 768, //화면 사이즈 768px
-									settings: {	
-										//위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
-										slidesToShow:2 
-									} 
-								}, 
-								{ 
-									breakpoint: 2560, //화면 사이즈 2560px
-									settings: {	
-										//위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
-										slidesToShow:2
-									} 
-								} 
-							]
-
-						});
-					
 						// 메인 배너 아래 목록 이미지 조회
 						$("item").each(function(index, item) { 
 							
@@ -161,8 +114,86 @@
 						})
 
 					});
+					
+					// 메인 베너 slick 반응형
+					function mainBanner() {
+						$('.mainBanner').slick({
+							slide: 'li',		//슬라이드 되어야 할 태그 ex) div, li 
+							infinite : true, 	//무한 반복 옵션	 
+							slidesToShow : 1,		// 한 화면에 보여질 컨텐츠 개수
+							slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
+							speed : 100,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+							arrows : false, 		// 옆으로 이동하는 화살표 표시 여부
+							dots : false, 		// 스크롤바 아래 점으로 페이지네이션 여부
+							autoplay : true,			// 자동 스크롤 사용 여부
+							autoplaySpeed : 5000, 		// 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
+							pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
+							vertical : false,		// 세로 방향 슬라이드 옵션
+							draggable : true, 	//드래그 가능 여부 
+							
+							responsive: [ // 반응형 웹 구현 옵션
+								{  
+									breakpoint: 960, //화면 사이즈 960px
+									settings: {
+										//위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+										slidesToShow:1 
+									} 
+								},
+								{ 
+									breakpoint: 768, //화면 사이즈 768px
+									settings: {	
+										//위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+										slidesToShow:1 
+									} 
+								}, 
+								{ 
+									breakpoint: 2560, //화면 사이즈 2560px
+									settings: {	
+										//위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+										slidesToShow:1
+									} 
+								} 
+							]
+
+						});
+					}
+
+					// 메인 베너 썸네일 slick 반응형
+					function mainVisualThumb() {
+						$('.mainVisualThumb').slick({
+							slide: 'li',		//슬라이드 되어야 할 태그 ex) div, li 
+							infinite : true, 	//무한 반복 옵션	 
+							slidesToShow : 4,		// 한 화면에 보여질 컨텐츠 개수
+							slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
+							speed : 100,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+							arrows : false, 		// 옆으로 이동하는 화살표 표시 여부
+							dots : false, 		// 스크롤바 아래 점으로 페이지네이션 여부
+							autoplay : true,			// 자동 스크롤 사용 여부
+							autoplaySpeed : 5000, 		// 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
+							pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
+							vertical : false,		// 세로 방향 슬라이드 옵션
+							draggable : true, 	//드래그 가능 여부 
+						});
+					}
+
+					// 메인 추천 프로그램 slick 반응형
+					function recommendedProgram() {
+						$('.recommendedProgram').slick({
+							slide: 'li',		//슬라이드 되어야 할 태그 ex) div, li 
+							infinite : true, 	//무한 반복 옵션	 
+							slidesToShow : 4,		// 한 화면에 보여질 컨텐츠 개수
+							slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
+							speed : 100,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+							arrows : false, 		// 옆으로 이동하는 화살표 표시 여부
+							dots : false, 		// 스크롤바 아래 점으로 페이지네이션 여부
+							autoplay : true,			// 자동 스크롤 사용 여부
+							autoplaySpeed : 5000, 		// 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
+							pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
+							vertical : false,		// 세로 방향 슬라이드 옵션
+							draggable : true, 	//드래그 가능 여부 
+						});
+					}
 				</script>
-				<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/main_new.css?v=210526">
 				<div id="main">
 					<div id="main_visual">
 						
@@ -170,9 +201,10 @@
 							<div class="in">
 								<!-- 베너 시작 -->
 								<ul class="ms slick-initialized slick-slider">
-									<div aria-live="polite" class="slick-list draggable" >
-										<div class="slick-track" style="opacity: 1; width: auto;">
-											<li class="item slick-slide" data-slick-index="0" >
+									<div aria-live="polite" class="slick-list draggable " >
+										
+										<div class="slick-track mainBanner" style="opacity: 1; width: auto;">
+											<li class="item slick-slide"  >
 												<div class="img_pc">
 													<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=76331b7fb043b513c10e97964b50b143&amp;streFileNm=e049304328c12031ec8c05162c558f206db30ab9edb0bb8e4f449a9903cb06fb" alt="" style="display: block; margin: 0 auto;">
 													<div class="hide">꿈의숲 송년공연 겨울이야기 2022.12.24~12.25 꿈의숲아트센터</div>
@@ -182,7 +214,7 @@
 												</div>
 											</li>
 											
-											<li class="item slick-slide " data-slick-index="1" >
+											<li class="item slick-slide ">
 												<div class="img_pc">
 													<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=76331b7fb043b513c10e97964b50b143&amp;streFileNm=96f9f2230a6336df6cdd85664f993a15ad9dfc36288f971a5bacb5e178aa54a2" alt="" style="display: block; margin: 0 auto;">
 													<div class="hide">투명한 미래전</div>
@@ -192,17 +224,22 @@
 												</div>
 											</li>
 											
-											<li class="item slick-slide" data-slick-index="2" >
+											<li class="item slick-slide" >
 												<div class="img_pc">
 													<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=f82a3571b7df23a6aa38eb59781dbf2a&amp;streFileNm=7dc99ce1910546cfea5bc24409eb58294200ca52209836814279c2c87fbc6042" alt="" style="display: block; margin: 0 auto;">
 													<div class="hide">유니버설발레단 호두까기 인형 2022.12.22(목)~12.31(토) 세종대극장</div>
 												</div>
 												<div class="btn_w">
-													<a href="#" onclick="javascript:showPerformPop('grpb2210111117a01');return false;" class="l ReservationTitle" tabindex="-1"><span>예매하기</span></a> <a href="/portal/performance/performance/view.do?performIdx=33630&amp;menuNo=200004" class="r" tabindex="-1"><span>상세보기</span></a>
+													<a href="#" onclick="javascript:showPerformPop('grpb2210111117a01');return false;" class="l ReservationTitle" tabindex="-1">
+														<span>예매하기</span>
+													</a> 
+													<a href="/portal/performance/performance/view.do?performIdx=33630&amp;menuNo=200004" class="r" tabindex="-1">
+														<span>상세보기</span>
+													</a>
 												</div>
 											</li>
 											
-											<li class="item slick-slide" data-slick-index="3" >
+											<li class="item slick-slide" >
 												<div class="img_pc">
 													<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=f82a3571b7df23a6aa38eb59781dbf2a&amp;streFileNm=a1eb39cceb02fcda61498353859fbcdc4200ca52209836814279c2c87fbc6042" alt="" style="display: block; margin: 0 auto;">
 													<div class="hide">뮤지컬 캣츠 내한공연-서울 musical cats 2023.1.20(금)~03.12(일)세종대극장</div>
@@ -212,7 +249,7 @@
 												</div>
 											</li>
 											
-											<li class="item slick-slide" data-slick-index="4" aria-hidden="true" role="option" tabindex="-1" style="width: 2000px; position: relative; left: -8000px; top: 0px; z-index: 998; opacity: 0; transition: opacity 500ms ease 0s;">
+											<li class="item slick-slide" aria-hidden="true" role="option" tabindex="-1" style="width: 2000px; position: relative; left: -8000px; top: 0px; z-index: 998; opacity: 0; transition: opacity 500ms ease 0s;">
 												<div class="img_pc">
 													<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=76331b7fb043b513c10e97964b50b143&amp;streFileNm=593f88dd921509eb5c44b9dd3a6c06223f48942c620f71cc3fc0c508cc687eff" alt="" style="display: block; margin: 0 auto;">
 													<div class="hide">셀럽이 사랑한 bag&amp;shoes 2022.12.31~2023.03.25 세종미술관</div>
@@ -223,22 +260,19 @@
 											</li>
 											
 										</div>
+										
+										
 									</div>
 								</ul>
 								<!-- 베너 끝 -->
 							</div>
-							<script type="text/javascript">
-								
-							</script>
-							
-							
 							
 							<div class="thumb_w">
 								<!-- #main_visual 썸네일 -->
 								<div class="inner">
-									<ul class="ms2 slick-initialized slick-slider" id="mainVisualThumb" st>
+									<ul class="ms2 slick-initialized slick-slider" id="mainVisualThumb">
 										<div aria-live="polite" class="slick-list draggable">
-											<div class="slick-track fixedSlick" style="opacity: 1; width: 485px; transform: translate3d(0px, 0px, 0px);">
+											<div class="slick-track fixedSlick mainVisualThumb" style="opacity: 1; width: 400px; transform: translate3d(0px, 0px, 0px);">
 												<li class="item slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" role="option" tabindex="-1" style="width: 92px; ">
 													<button type="button" tabindex="0">
 														<strong class="in"> 
@@ -354,8 +388,7 @@
 								</div>
 								<ul class="clearfix cont s slick-initialized slick-slider">
 									<div aria-live="polite" class="slick-list draggable">
-										<div class="slick-track" style="opacity: 1; width: 500px; transform: translate3d(0px, 0px, 0px);">
-										
+										<div class="slick-track recommendedProgram" style="opacity: 1; width: 800px; transform: translate3d(0px, 0px, 0px);">
 											<li class="item slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" role="option" tabindex="-1" style="width: 226px;">
 												<div class="rel">
 													<img src="https://www.sejongpac.or.kr/cmmn/file/imageSrc.do?fileStreCours=2b59bbae5ad2d8e5c4a30c3dd7ad5380&amp;streFileNm=b2af8d74e1235276407b1cdf9a59e7dc24078277cccf491c8dad44ed96e373b4" alt="나를 채우는 뽐나는 예술교양강좌 세종온클래스 상세">
@@ -462,25 +495,26 @@
 						<script type="text/javascript">
 							 $(function() {
 								 console.clear();
+
 								 latestNews();
 							})
-							function latestNews(){
+							
+							//최신 소식 ajax 
+							function latestNews(){ 
 								var boardCode = [40, 50];
 								
 					     		$.ajax({
-					     			url : "latestNewsTicket.no",
+					     			url : "latestNews.no",
 									data :{ boardCode : boardCode}, 
 					     			success : function(list){
 					     				$(".latestNews").html(list);
 					     			} ,
 					     			error : function(){
-					     				console.log("latestNewsTicket 통신실패");	
+					     				console.log("latestNews 통신실패");	
 					     			}
 					     		})
 					     	}
 						</script>
-						
-						
 					</div>
 					<!-- #m2, #m3, #m4 -->
 				</div>
@@ -496,11 +530,6 @@
 				AOS.init({
 					//easing: 'ease-in-out-sine'
 				});
-
-				if ($(window).width() > 1350) {
-					//2020.01.31 수정요청사항 - 6초후에 메뉴 숨김
-					setTimeout(function() {$('.btn-quick').click();}, 6000);
-				}
 			});
 		</script>
 		<!-- footer Section Begin -->

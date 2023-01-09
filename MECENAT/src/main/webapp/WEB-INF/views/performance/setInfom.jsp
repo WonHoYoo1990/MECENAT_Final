@@ -432,6 +432,7 @@
 		<!-- footer Section Begin -->
 		<jsp:include page="../common/footer.jsp" />
 		<!-- footer End -->
+		<script src="./resources/sejongpac/static/portal/js/common.js"></script>
 	</section>
 </body>
 </html>

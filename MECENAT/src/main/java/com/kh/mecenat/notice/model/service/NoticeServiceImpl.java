@@ -71,8 +71,14 @@ public class NoticeServiceImpl implements NoticeService {
 
 	// 메인페이지 최신뉴스 조회
 	@Override
-	public ArrayList<Notice> latestNewsTicket(String boardCode) {
-		return noticeDao.latestNewsTicket(sqlSession, boardCode);
+	public ArrayList<Notice> latestNews(String boardCode) {
+		return noticeDao.latestNews(sqlSession, boardCode);
+	}
+
+	// 푸터 페이지 Notice 조회
+	@Override
+	public ArrayList<Notice> footerNotice() {
+		return noticeDao.footerNotice(sqlSession);
 	}
 
 }

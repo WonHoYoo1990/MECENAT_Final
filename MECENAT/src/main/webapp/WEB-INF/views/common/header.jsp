@@ -69,23 +69,16 @@
 				<ul class="clearfix">
 					<li><a href="list.perf">공연·전시·강좌</a>
 						<ul class="depth2">
-							<li><a href="/portal/bbs/B0000033/list.do?menuNo=200003">세종시즌</a></li>
+							<li><a href="subMainPerformance.perf">MECENAT 투데이</a></li>
 							<li><a href="list.perf">공연일정</a></li>
-							<li><a href="/portal/performance/exhibit/performList.do?menuNo=200005">전시일정</a></li>
-							<li><a href="http://academy.sejongpac.or.kr/academy/singl/academyProgram/list.do?menuNo=800003" target="_blank" title="새창으로 열립니다.">강좌일정</a></li>
 							<li class="arrow"><a href="setInfom.perf">좌석배치도</a>
 								<ul class="depth3">
-									<li><a href="setInfom.perf">세종대극장</a></li>
-									<li><a href="/portal/main/contents.do?menuNo=200095">세종M씨어터</a></li>
-									<li><a href="/portal/main/contents.do?menuNo=200096">세종 체임버홀</a></li>
-									<li><a href="https://www.sejongpac.or.kr/upload/vr/vr2/tour.html" target="_blank" title="새창으로 열립니다.">세종S씨어터</a></li>
-									<li><a href="/portal/main/contents.do?menuNo=200221">꿈의숲 퍼포먼스홀</a></li>
-									<li><a href="/portal/main/contents.do?menuNo=200224">꿈의숲 콘서트홀</a></li>
+									<li><a href="setInfom.perf">MECENAT극장</a></li>
 								</ul>
 							</li>
 						</ul>
 					</li>
-					<li><a href="/portal/bbs/B0000002/list.do?menuNo=200012">대관안내</a>
+					<li><a href="rentList.rv">대관안내</a>
 						<ul class="depth2">
 							<li><a href="rentList.rv">대관공고</a></li>
 							<li class="arrow"><a href="information.hl?hallName=Concert Hall">Concert Hall</a>
@@ -102,98 +95,34 @@
 							</li>
 						</ul>
 					</li>
-					<li><a href="/portal/qestnar/qustnr/list.do?status=T&amp;menuNo=200027">참여공간</a>
-						<ul class="depth2">
-							<li class="arrow"><a href="/portal/qestnar/qustnr/list.do?status=T&amp;menuNo=200027">이벤트</a>
-								<ul class="depth3">
-									<li><a href="/portal/qestnar/qustnr/list.do?status=T&amp;menuNo=200027">진행중 이벤트</a></li>
-									<li><a href="/portal/qestnar/qustnr/list.do?status=F&amp;menuNo=200028">종료된 이벤트</a></li>
-									<li><a href="/portal/bbs/B0000012/list.do?menuNo=200029">당첨자 발표</a></li>
-							</ul></li>
-							<li><a href="/portal/main/contents.do?menuNo=200025">세종투어</a></li>
-					</ul></li>
 					<li><a href="list.no?boardCode=0">뉴스·소식</a>
 						<ul class="depth2">
 							<li class="arrow"><a href="list.no?boardCode=0">새소식</a>
 								<ul class="depth3">
 									<li><a href="list.no?boardCode=0">MECENAT 소식</a></li>
 							</ul></li>
-							<li><a href="/portal/bbs/B0000017/list.do?menuNo=200040">뉴스레터</a></li>
-							<li><a href="/portal/bbs/B0000040/list.do?menuNo=200199">세종문화N</a></li>
 					</ul></li>
-					<li><a href="/portal/main/contents.do?menuNo=200082">고객센터</a>
+					<li><a href="directions.cs">고객센터</a>
 						<ul class="depth2">
-							<li class="arrow"><a href="/portal/main/contents.do?menuNo=200082">이용안내</a>
+							<li class="arrow"><a href="directions.cs">이용안내</a>
 								<ul class="depth3">
 									<li><a href="directions.cs">오시는길</a></li>
-									<li><a href="/portal/main/contents.do?menuNo=200049">편의시설</a></li>
-									<li><a href="/portal/main/contents.do?menuNo=200050">장애인해피콜서비스</a></li>
-									<li><a href="/portal/main/contents.do?menuNo=200051">분실물찾기</a></li>
 							</ul></li>
 							<li class="arrow"><a href="/portal/singl/faq/list.do?menuNo=200052">고객문의</a>
 								<ul class="depth3">
 									<li><a href="/portal/singl/faq/list.do?menuNo=200052">FAQ</a></li>
 									<li><a href="/portal/singl/sound/list.do?menuNo=200170">고객의 소리</a></li>
 							</ul></li>
-							<li class="arrow"><a href="/portal/main/contents.do?menuNo=200091">회원혜택 안내</a>
-								<ul class="depth3">
-									<li><a href="/portal/main/contents.do?menuNo=200091">회원제 소개</a></li>
-									<li><a href="/portal/singl/restaurant/list.do?menuNo=200093">제휴업체</a></li>
-							</ul></li>
 							<li class="arrow"><a href="infomTicket.rv">예매안내</a>
 								<ul class="depth3">
-									<li><a href="/portal/main/contents.do?menuNo=200085">티켓 구입방법</a></li>
-									<li><a href="/portal/main/contents.do?menuNo=200222">티켓 수령방법</a></li>
-									<li><a href="/portal/main/contents.do?menuNo=200087">예매 취소, 변경안내</a></li>
-									<li><a href="/portal/main/contents.do?menuNo=200173">예매약관</a></li>
+									<li><a href="infomTicket.rv">티켓 구입방법</a></li>
 							</ul></li>
 							<li><a href="etiquette.cs">관람예절</a></li>
 					</ul></li>
-					<li><a href="https://www.sjartgroups.or.kr/sjartgroups/main/main.do" target="_blank" title="새창으로 열립니다.">서울시예술단</a>
-						<ul class="depth2">
-							<li><a href="https://www.sjartgroups.or.kr/sjartgroups/main/contents.do?menuNo=300008" target="_blank" title="새창으로 열립니다.">서울시국악관현악단</a></li>
-							<li><a href="https://www.sjartgroups.or.kr/sjartgroups/main/contents.do?menuNo=300013" target="_blank" title="새창으로 열립니다.">서울시무용단</a></li>
-							<li><a href="https://www.sjartgroups.or.kr/sjartgroups/main/contents.do?menuNo=300019" target="_blank" title="새창으로 열립니다.">서울시합창단</a></li>
-							<li><a href="https://www.sjartgroups.or.kr/sjartgroups/main/contents.do?menuNo=300025" target="_blank" title="새창으로 열립니다.">서울시뮤지컬단</a></li>
-							<li><a href="https://www.sjartgroups.or.kr/sjartgroups/main/contents.do?menuNo=300030" target="_blank" title="새창으로 열립니다.">서울시극단</a></li>
-							<li><a href="https://www.sjartgroups.or.kr/sjartgroups/main/contents.do?menuNo=300035" target="_blank" title="새창으로 열립니다.">서울시오페라단</a></li>
-							<li><a href="https://www.sjartgroups.or.kr/sjartgroups/main/contents.do?menuNo=300040" target="_blank" title="새창으로 열립니다.">서울시유스오케스트라단</a></li>
-							<li><a href="https://www.sjartgroups.or.kr/sjartgroups/main/contents.do?menuNo=300047" target="_blank" title="새창으로 열립니다.">서울시소년소녀합창단</a></li>
-							<li><a href="https://www.sjartgroups.or.kr/sjartgroups/main/contents.do?menuNo=300051" target="_blank" title="새창으로 열립니다.">서울시청소년국악단</a></li>
-					</ul></li>
-					<li><a href="/organization/main/main.do" target="_blank" title="새창으로 열립니다.">기관소개</a>
-						<ul class="depth2">
-							<li class="arrow"><a href="https://www.sejongpac.or.kr/organization/main/contents.do?menuNo=500150" target="_blank" title="새창으로 열립니다.">세종문화회관 소개</a>
-								<ul class="depth3">
-									<li><a href="https://www.sejongpac.or.kr/organization/main/contents.do?menuNo=500150" target="_blank" title="새창으로 열립니다.">개요</a></li>
-									<li><a href="https://www.sejongpac.or.kr/organization/main/contents.do?menuNo=500078" target="_blank" title="새창으로 열립니다.">CEO인사말</a></li>
-									<li><a href="https://www.sejongpac.or.kr/organization/main/contents.do?menuNo=500131" target="_blank" title="새창으로 열립니다.">CI소개</a></li>
-									<li><a href="https://www.sejongpac.or.kr/organization/main/contents.do?menuNo=500080" target="_blank" title="새창으로 열립니다.">조직도</a></li>
-							</ul></li>
-							<li class="arrow"><a href="https://www.sejongpac.or.kr/organization/main/contents.do?menuNo=500137" target="_blank" title="새창으로 열립니다.">시설소개</a>
-								<ul class="depth3">
-									<li><a href="https://www.sejongpac.or.kr/organization/main/contents.do?menuNo=500137" target="_blank" title="새창으로 열립니다.">세종문화회관</a></li>
-									<li><a href="https://www.sejongpac.or.kr/organization/main/contents.do?menuNo=500172" target="_blank" title="새창으로 열립니다.">꿈의숲아트센터</a></li>
-							</ul></li>
-							<li class="arrow"><a href="https://www.sejongpac.or.kr/portal/subMain/dreamTree.do" target="_blank" title="새창으로 열립니다.">사회공헌</a>
-								<ul class="depth3">
-									<li><a href="https://www.sejongpac.or.kr/portal/subMain/dreamTree.do" target="_blank" title="새창으로 열립니다.">꿈나무오케스트라</a></li>
-									<li><a href="https://www.sejongpac.or.kr/organization/main/contents.do?menuNo=500161" target="_blank" title="새창으로 열립니다.">우리동네프로젝트</a></li>
-									<li><a href="https://www.sejongpac.or.kr/organization/main/contents.do?menuNo=500073" target="_blank" title="새창으로 열립니다.">1사1촌자매결연</a></li>
-									<li><a href="http://happy1000.sejongpac.or.kr" target="_blank" title="새창으로 열립니다.">천원의행복</a></li>
-									<li><a href="https://www.sejongpac.or.kr/organization/main/contents.do?menuNo=500074" target="_blank" title="새창으로 열립니다.">예술로 동행</a></li>
-							</ul></li>
-							<li><a href="https://www.sejongpac.or.kr/portal/subMain/donation.do?menuNo=500060" target="_blank" title="새창으로 열립니다.">후원‧협찬</a></li>
-							<li class="arrow"><a href="https://www.sejongpac.or.kr/organization/main/contents.do?menuNo=500101" target="_blank" title="새창으로 열립니다.">CLEAN 세종</a>
-								<ul class="depth3">
-									<li><a href="https://www.sejongpac.or.kr/organization/main/contents.do?menuNo=500101" target="_blank" title="새창으로 열립니다.">세종민원</a></li>
-									<li><a href="https://www.sejongpac.or.kr/organization/main/contents.do?menuNo=500105" target="_blank" title="새창으로 열립니다.">윤리경영</a></li>
-									<li><a href="https://www.sejongpac.or.kr/organization/main/contents.do?menuNo=500168" target="_blank" title="새창으로 열립니다.">인권경영</a></li>
-									<li><a href="https://www.sejongpac.or.kr/organization/bbs/B0000035/list.do?menuNo=500108" target="_blank" title="새창으로 열립니다.">정보공개</a></li>
-									<li><a href="https://www.sejongpac.or.kr/organization/main/contents.do?menuNo=500122" target="_blank" title="새창으로 열립니다.">윤리규범</a></li>
-									<li><a href="https://www.sejongpac.or.kr/organization/main/contents.do?menuNo=500066" target="_blank" title="새창으로 열립니다.">청탁금지법 공무수행사인</a></li>
-							</ul></li>
-					</ul></li>
+					<li style="display: none;"><a href="#" target="_blank" title="새창으로 열립니다.">&nbsp;</a>
+					</li>
+					<li style="display:inline-block;"><a href="#" target="_blank" title="새창으로 열립니다.">&nbsp;</a>
+					</li>
 				</ul>
 			</div>
 			<ul id="gnb" class="clearfix">
@@ -216,7 +145,6 @@
 						</ul></li>
 					</c:otherwise>
 				</c:choose>
-				<li class="li"><a href="/eng/main/main.do" target="_blank" title="새창으로 열립니다.">ENG</a></li>
 				<li class="ticket tablet"><a href="javascript:checkList();" class="btn-ticket btn">TICKET</a></li>
 				<li class="pc_only"><a href="javascript:checkList();" title="새창으로 열립니다.">TICKET</a></li>
 				<!-- //웃는남자 일때 주석 달력,검색 주석 -->
@@ -240,21 +168,14 @@
 					<ul class="clearfix" id="lnb_m">
 						<li><a href="/portal/subMain/perform.do?menuNo=200001">공연·전시·강좌</a>
 							<ul class="depth2">
-								<li><a href="/portal/bbs/B0000033/list.do?menuNo=200003"><span>세종시즌</span></a></li>
+								<li><a href="subMainPerformance.perf"><span>MECENAT 투데이</span></a></li>
 								<li><a href="list.perf"><span>공연일정</span></a></li>
-								<li><a href="/portal/performance/exhibit/performList.do?menuNo=200005"><span>전시일정</span></a></li>
-								<li><a href="http://academy.sejongpac.or.kr/academy/singl/academyProgram/list.do?menuNo=800003" target="_blank" title="새창으로 열립니다."><span>강좌일정</span></a></li>
 								<li><a href="setInfom.perf"><span>좌석배치도</span></a>
 									<ul class="depth3 bul-dot">
-										<li><a href="setInfom.perf">세종대극장</a></li>
-										<li><a href="setInfom.perf">세종M씨어터</a></li>
-										<li><a href="/portal/main/contents.do?menuNo=200096">세종 체임버홀</a></li>
-										<li><a href="https://www.sejongpac.or.kr/upload/vr/vr2/tour.html" target="_blank" title="새창으로 열립니다.">세종S씨어터</a></li>
-										<li><a href="/portal/main/contents.do?menuNo=200221">꿈의숲 퍼포먼스홀</a></li>
-										<li><a href="/portal/main/contents.do?menuNo=200224">꿈의숲 콘서트홀</a></li>
+										<li><a href="setInfom.perf">MECENAT극장</a></li>
 								</ul></li>
 						</ul></li>
-						<li><a href="/portal/bbs/B0000002/list.do?menuNo=200012">대관안내</a>
+						<li><a href="rentList.rv">대관안내</a>
 							<ul class="depth2">
 								<li><a href="rentList.rv"><span>대관공고</span></a></li>
 								<li><a href="application.rv"><span>대관신청</span></a></li>
@@ -297,14 +218,11 @@
 								<li><a href="/portal/bbs/B0000017/list.do?menuNo=200040"><span>뉴스레터</span></a></li>
 								<li><a href="/portal/bbs/B0000040/list.do?menuNo=200199"><span>세종문화N</span></a></li>
 						</ul></li>
-						<li><a href="/portal/main/contents.do?menuNo=200082">고객센터</a>
+						<li><a href="directions.cs">고객센터</a>
 							<ul class="depth2">
-								<li><a href="/portal/main/contents.do?menuNo=200082"><span>이용안내</span></a>
+								<li><a href="directions.cs"><span>이용안내</span></a>
 									<ul class="depth3 bul-dot">
-										<li><a href="/portal/main/contents.do?menuNo=200082">오시는길</a></li>
-										<li><a href="/portal/main/contents.do?menuNo=200049">편의시설</a></li>
-										<li><a href="/portal/main/contents.do?menuNo=200050">장애인해피콜서비스</a></li>
-										<li><a href="/portal/main/contents.do?menuNo=200051">분실물찾기</a></li>
+										<li><a href="directions.cs">오시는길</a></li>
 								</ul></li>
 								<li><a href="/portal/singl/faq/list.do?menuNo=200052"><span>고객문의</span></a>
 									<ul class="depth3 bul-dot">
@@ -318,10 +236,7 @@
 								</ul></li>
 								<li><a href="infomTicket.rv"><span>예매안내</span></a>
 									<ul class="depth3 bul-dot">
-										<li><a href="/portal/main/contents.do?menuNo=200085">티켓 구입방법</a></li>
-										<li><a href="/portal/main/contents.do?menuNo=200222">티켓 수령방법</a></li>
-										<li><a href="/portal/main/contents.do?menuNo=200087">예매 취소, 변경안내</a></li>
-										<li><a href="/portal/main/contents.do?menuNo=200173">예매약관</a></li>
+										<li><a href="infomTicket.rv">티켓 구입방법</a></li>
 								</ul></li>
 								<li><a href="/portal/main/contents.do?menuNo=200047"><span>관람예절</span></a></li>
 						</ul></li>
@@ -637,40 +552,10 @@
 			</c:otherwise>
 		</c:choose>
 		<!-- 배너 End -->
-
-
-
-		<!--  Google Analytics -->
-		<script>
-			(function(i, s, o, g, r, a, m) {
-				i['GoogleAnalyticsObject'] = r;
-				i[r] = i[r] || function() {
-					(i[r].q = i[r].q || []).push(arguments)
-				}, i[r].l = 1 * new Date();
-				a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-				a.async = 1;
-				a.src = g;
-				m.parentNode.insertBefore(a, m)
-			})(window, document, 'script',
-					'//www.google-analytics.com/analytics.js', 'ga');
-
-			ga('create', 'UA-69200327-1', 'auto');
-			ga('send', 'pageview');
-		</script>
-		<script>
-			//ReservationTitle	
-			function ReservationTitlePopWindow() {
-				if (interestLoginChk == true) { //header 에서 정의 로그인 여부	
-					$(".ReservationTitle").attr("title", "새창으로 이동합니다.");
-				}
-			}
-			ReservationTitlePopWindow();
-		</script>
-		<script src="./resources/sejongpac/static/portal/js/common.js"></script>
-		
 		</div>
+		
+		
+		<script src="./resources/sejongpac/static/portal/js/common.js"></script>
 	</section>
-	
-	
 </body>
 </html>

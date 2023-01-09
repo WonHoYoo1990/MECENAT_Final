@@ -76,14 +76,13 @@ public class PerformanceServerImpl implements PerformanceService {
 	}
 
 	// 서브 메인페이지 내에서 검색어 리스트 개수 조회
-
 	@Override
 	public int subMainPerformanceSearchCount(String searchWrd) {
 		return performanceDao.subMainPerformanceSearchCount(SqlSession, searchWrd);
 	}
 
 	@Override
-	public ArrayList<Review> selectRevieList(int rno) {
+	public ArrayList<Review> selectReviewList(int rno) {
 		// TODO Auto-generated method stub
 		return performanceDao.selectReviewList(SqlSession, rno);
 	}
@@ -115,18 +114,14 @@ public class PerformanceServerImpl implements PerformanceService {
 	}
 
 	@Override
-	public int updateStatus(Performance p) {
-		return performanceDao.updateStatus(SqlSession, p);
+	public ArrayList<Performance> selectPlayPerformance() {
+		return performanceDao.selectPlayPerformance(SqlSession);
 	}
 
 	@Override
-	public int performanceDelete(int rcode) {
-		return performanceDao.performanceDelete(SqlSession, rcode);
-	}
-
-	@Override
-	public int nopePerformance(int rcode) {
-		return performanceDao.nopePerformance(SqlSession, rcode);
+	public ArrayList<Performance> selectListgenre(String genreName) {
+		// TODO Auto-generated method stub
+		return performanceDao.selectListgenre(SqlSession, genreName);
 	}
 
 	@Override
@@ -135,8 +130,8 @@ public class PerformanceServerImpl implements PerformanceService {
 	}
 
 	@Override
-	public ArrayList<Performance> selectEndPlayPerformance(PageInfo pi) {
-		return performanceDao.selectEndPlayPerformance(SqlSession, pi);
+	public ArrayList<Performance> selectPlayEndPerformance(PageInfo pi) {
+		return performanceDao.selectPlayEndPerformance(SqlSession, pi);
 	}
 
 	@Override
@@ -144,6 +139,27 @@ public class PerformanceServerImpl implements PerformanceService {
 		return performanceDao.selectEndListCount(SqlSession);
 	}
 
+	@Override
+	public ArrayList<Performance> selectListNew() {
+		return null;
+	}
 
+	// ?
+	@Override
+	public int updateStatus(Performance p) {
+		return 0;
+	}
+
+	// ?
+	@Override
+	public int performanceDelete(int rcode) {
+		return 0;
+	}
+
+	// ?
+	@Override
+	public int nopePerformance(int rcode) {
+		return 0;
+	}
 
 }

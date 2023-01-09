@@ -10,12 +10,10 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!-- Functions -->
 
-
-<c:forEach var="list" items="${noticesList}" >
-	<li class="item">
-		<a href="detail.no?nno=${list[0].noticeNo}">
-			<span class="t">[ ${list[0].boardName} ] &nbsp; ${list[0].noticeTitle}</span>
-		</a> 
-		<span class="date">${list[0].noticeDate}</span>
+<c:forEach var="list" items="${footerNotice}">
+	<li class="item slick-slide">
+		<div>
+			<a href="/portal/bbs/B0000001/view.do?nttId=45934&amp;menuNo=200042" tabindex="-1">[${list.boardName}] &nbsp;${list.noticeTitle}</a>
+		</div>
 	</li>
 </c:forEach>
