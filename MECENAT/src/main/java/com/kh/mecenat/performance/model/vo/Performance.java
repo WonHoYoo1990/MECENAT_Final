@@ -33,6 +33,9 @@ public class Performance {
 	private String agentEmail;
 	private String hallName;
 	
+	private String startDate;
+	private String endDate;
+	private String userId;
 	
 
 }

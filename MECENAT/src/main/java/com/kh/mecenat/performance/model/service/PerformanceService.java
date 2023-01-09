@@ -53,8 +53,6 @@ public interface PerformanceService {
 
 	public ArrayList<Performance> selectPlayPerformance(PageInfo pi);
 
-	public ArrayList<Performance> selectPlayPerformance();
-
 	public int updateStatus(Performance p);
 
 	public int performanceDelete(int rcode);
@@ -66,5 +64,9 @@ public interface PerformanceService {
 	public ArrayList<Performance> selectPlayEndPerformance(PageInfo pi);
 
 	public int selectEndListCount();
+
+	public ArrayList<Performance> selectDateList(Performance p);
+
+	public ArrayList<Performance> selectEndPlayPerformance(PageInfo piEnd);
 
 }

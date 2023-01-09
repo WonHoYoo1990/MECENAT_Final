@@ -32,8 +32,8 @@
 		<result column="AGENT_EMAIL" property="agentEmail" />
 		<result column="HALL_NAME" property="hallName" />
 	</resultMap>
-	<select id="selectPerformanceList"
-		resultMap="performanceResultSet">
+	
+	<select id="selectPerformanceList" resultMap="performanceResultSet">
 		SELECT RENTAL_CODE, PERFO_TITLE, GENRE_NAME, DIRECTOR, CAST,
 		PERFO_CONTENT, RUNNING_TIME, AGE_LIMIT,PERFO_STATUS,
 		PRICE,PERFO_DELETE_STATUS, ORIGIN_NAME, CHANGE_NAME
@@ -47,9 +47,9 @@
 		HAVING PERFO_DELETE_STATUS='Y'
 		ORDER BY RENTAL_CODE
 	</select>
+	
 	<!-- selectDetailPerformance -->
-	<select id="selectDetailPerformance"
-		resultMap="performanceResultSet">
+	<select id="selectDetailPerformance" resultMap="performanceResultSet">
 		SELECT RENTAL_CODE, PERFO_TITLE, GENRE_NAME, DIRECTOR,CAST,
 		PERFO_CONTENT, RUNNING_TIME, AGE_LIMIT,
 		PRICE,PERFO_STATUS,PERFO_DELETE_STATUS, ORIGIN_NAME,
@@ -64,9 +64,9 @@
 		HAVING RENTAL_CODE=#{rno} AND
 		PERFO_DELETE_STATUS='Y' ORDER BY RENTAL_CODE
 	</select>
+	
 	<!-- performanceList+담당자정보 -->
-	<select id="selectPlayPerformance"
-		resultMap="performanceResultSet">
+	<select id="selectPlayPerformance" resultMap="performanceResultSet">
 		SELECT RENTAL_CODE, PERFO_TITLE, GENRE_NAME,
 		DIRECTOR,AGENT_NAME,AGENT_PHONE,AGENT_EMAIL , PERFO_STATUS, PRICE,
 		ORIGIN_NAME, CHANGE_NAME, HALL_NAME,
@@ -83,10 +83,7 @@
 		PERFO_DELETE_STATUS='Y' AND PERFO_STATUS !='공연종료'
 	</select>
 
-
-
-	<select id="selectEndPlayPerformance"
-		resultMap="performanceResultSet">
+	<select id="selectEndPlayPerformance" resultMap="performanceResultSet">
 		SELECT RENTAL_CODE, PERFO_TITLE, GENRE_NAME,
 		DIRECTOR,AGENT_NAME,AGENT_PHONE,AGENT_EMAIL , PERFO_STATUS, PRICE,
 		ORIGIN_NAME, CHANGE_NAME, HALL_NAME,
@@ -103,14 +100,10 @@
 		PERFO_DELETE_STATUS='Y' AND PERFO_STATUS ='공연종료'
 		ORDER BY
 		RENTAL_CODE
-
 	</select>
 
-
-
-
-
-	<insert id="insertPerformance"> INSERT INTO PERFORMANCE(PERFO_NO, RENTAL_CODE,
+	<insert id="insertPerformance"> 
+		INSERT INTO PERFORMANCE(PERFO_NO, RENTAL_CODE,
 		PERFO_TITLE, GENRE_NAME, PERFO_EVENT_DATE, DIRECTOR, CAST,
 		PERFO_CONTENT, START_TIME, RUNNING_TIME, AGE_LIMIT, PERFO_STATUS,
 		PRICE, PERFO_DELETE_STATUS, ORIGIN_NAME, CHANGE_NAME) VALUES(
@@ -119,7 +112,6 @@
 		#{startTime}, #{runningTime}, #{ageLimit}, #{perfoStatus}, #{price},
 		'Y', #{originName}, #{changeName} )
 	</insert>
-
 
 	<select id="selectListCount" resultType="_int">
 		SELECT COUNT(*)
@@ -142,8 +134,7 @@
 	</select>
 
 	<!-- 서브 메인페이지 내에서 공연 리스트 검색 조회 -->
-	<select id="subMainPerformanceSearch"
-		resultMap="performanceResultSet">
+	<select id="subMainPerformanceSearch" resultMap="performanceResultSet">
 		SELECT *
 		FROM PERFORMANCE
 		WHERE PERFO_TITLE LIKE
@@ -162,8 +153,7 @@
 	</select>
 
 	<!-- 서브메인 공연 리스트 조회 -->
-	<select id="subMainPerformanceList"
-		resultMap="performanceResultSet">
+	<select id="subMainPerformanceList" resultMap="performanceResultSet">
 		SELECT *
 		FROM PERFORMANCE
 		WHERE PERFO_EVENT_DATE = #{sdate}
@@ -178,21 +168,20 @@
 	</select>
 
 	<!-- 서브메인 공연 리스트 최신순 조회 -->
-	<select id="subMainPerformanceSearchSort1"
-		resultMap="performanceResultSet">
+	<select id="subMainPerformanceSearchSort1" resultMap="performanceResultSet">
 		SELECT *
 		FROM PERFORMANCE
 		WHERE PERFO_EVENT_DATE = #{sdate}
 		ORDER BY PERFO_EVENT_DATE
 	</select>
 	<!-- 서브메인 공연 리스트 관심순 조회 -->
-	<select id="subMainPerformanceSearchSort2"
-		resultMap="performanceResultSet">
+	<select id="subMainPerformanceSearchSort2" resultMap="performanceResultSet">
 		SELECT *
 		FROM PERFORMANCE
 		WHERE PERFO_EVENT_DATE = #{sdate}
 		ORDER BY PERFO_COUNT DESC
 	</select>
+	
 	<resultMap type="review" id="reviewResultSet">
 		<result column="REVIEW_NO" property="reviewNo" />
 		<result column="REF_NO" property="refNo" />
@@ -202,6 +191,7 @@
 		<result column="WRITE_DATE" property="writeDate" />
 		<result column="STATUS" property="status" />
 	</resultMap>
+	
 	<select id="selectReviewList" resultMap="reviewResultSet"> 
 		SELECT * 
 		FROM REVIEW

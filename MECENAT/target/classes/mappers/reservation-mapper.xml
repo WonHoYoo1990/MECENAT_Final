@@ -239,6 +239,15 @@
 		WHERE RENTAL_CODE = #{rno}
 	</update>
 	
+	<select id="selectDateList" resultMap="purchaseResult">
+	<![CDATA[
+		SELECT USER_ID, PERFO_NO, PERFO_TITLE, PURCHASE_DATE, SEAT_NO, RESERVATION_DATE, PRICE, PURCHASE_NO
+		FROM PURCHASE P
+		JOIN PERFORMANCE USING(PERFO_NO)
+		WHERE PURCHASE_DATE >= #{startDate} AND PURCHASE_DATE <= #{endDate} AND USER_ID=#{userId} AND PURCHASE_NO != 0
+		ORDER BY PURCHASE_NO
+	]]>
+	</select>
 	
 	
 	<!-- update status 변경해야함(등록으로) -->

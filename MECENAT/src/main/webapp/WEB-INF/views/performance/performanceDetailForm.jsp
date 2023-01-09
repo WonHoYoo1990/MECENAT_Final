@@ -374,9 +374,9 @@
 		} else{
 			element2.innerText = arrD[0];
 		}
-		
-		
     </script>
+    
+    <script>
 	$(function(){
 		selectReviewList();	
 	})
