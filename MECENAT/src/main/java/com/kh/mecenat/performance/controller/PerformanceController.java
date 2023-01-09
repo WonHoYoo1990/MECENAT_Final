@@ -2,6 +2,7 @@ package com.kh.mecenat.performance.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,10 +20,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.kh.mecenat.common.PageInfo;
 import com.kh.mecenat.common.Pagination;
 import com.kh.mecenat.performance.model.service.PerformanceService;
 import com.kh.mecenat.performance.model.vo.Performance;
+import com.kh.mecenat.performance.model.vo.Review;
 import com.kh.mecenat.reservation.model.vo.RentApplication;
 
 @Controller
@@ -389,7 +393,7 @@ public class PerformanceController {
 		p.setRentalCode(rcode);
 		p.setPerfoStatus(statusVal);
 
-		System.out.println(p);
+//		System.out.println(p);
 
 		int updateStatus = perfoService.updateStatus(p);
 		
@@ -397,12 +401,42 @@ public class PerformanceController {
 	
 	//yuri myPage date값 가져오기....
 	@ResponseBody
-	@RequestMapping(value = "searchList.perf")
-	public void searchList(String FirstDate, String LastDate) {
-		System.out.println(FirstDate);
-		System.out.println(LastDate);
+	@RequestMapping(value = "searchList.perf", produces = "application/json; charset=UTF-8")
+	public String searchList(String FirstDate, String LastDate, String userId, Model model) {
+//		System.out.println(FirstDate);
+//		System.out.println(LastDate);
+		Performance p = new Performance();
+		
+		p.setUserId(userId);
+		p.setStartDate(FirstDate);
+		p.setEndDate(LastDate);
+		
+//		System.out.println(p);
+		
+		ArrayList<Performance> Slist = perfoService.selectDateList(p);
+		
+//		System.out.println(Slist);
+		return new Gson().toJson(Slist);
+//		model.addAttribute("Slist",Slist);
+		
 	}
+	
+//	유리-환불
 
+	@RequestMapping(value = "payback.perf")
+	public String payback(int pno, Model model) {
+//		System.out.println("asdf" + pno);
+		
+		
+		
+		model.addAttribute("pno",pno);
+		return "performance/paybackForm";
+	}
+	
+	
+	
+	
+/*
 	// 댓글 리스트 조회
 	@ResponseBody
 	@RequestMapping(value = "rlist.bo", produces = "application/json; charset=UTF-8")
@@ -453,5 +487,5 @@ public class PerformanceController {
 
 		return "performance/performanceListView2";
 	}
-
+*/
 }

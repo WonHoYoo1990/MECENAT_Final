@@ -31,6 +31,8 @@
 		<result column="AGENT_EMAIL" property="agentEmail" />
 		<result column="HALL_NAME" property="hallName" />
 	</resultMap>
+	
+	
 	<select id="selectPerformanceList" resultMap="performanceResultSet">
 		SELECT RENTAL_CODE, PERFO_TITLE, GENRE_NAME, DIRECTOR, CAST, PERFO_CONTENT, RUNNING_TIME, AGE_LIMIT,PERFO_STATUS,
 				PRICE,PERFO_DELETE_STATUS, ORIGIN_NAME, CHANGE_NAME
@@ -104,25 +106,8 @@
 		    GROUP BY RENTAL_CODE, PERFO_DELETE_STATUS, PERFO_STATUS
 		    HAVING PERFO_DELETE_STATUS='Y' AND PERFO_STATUS = '공연종료')
 	</select>
-
-	<!-- 서브 메인페이지 내에서 공연 리스트 검색 조회 -->
-	<select id="subMainPerformanceSearch"
-		resultMap="performanceResultSet">
-		SELECT *
-		FROM PERFORMANCE
-		WHERE PERFO_TITLE LIKE '%'||#{searchWrd}||'%'
-		ORDER BY
-		PERFO_EVENT_DATE
-	</select>
-
-	<!-- 서브 메인페이지 내에서 검색어 리스트 개수 조회 -->
-	<select id="subMainPerformanceSearchCount" resultType="int">
-		SELECT COUNT(*)
-		FROM PERFORMANCE
-		WHERE PERFO_TITLE LIKE '%'||#{searchWrd}||'%'
-		ORDER BY PERFO_EVENT_DATE
-	</select>
 	
+
 	
 	
 	
