@@ -19,39 +19,26 @@
 	<link rel="icon" type="image/png" sizes="32x32" href="/static/commons/img/favicon_32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/static/commons/img/favicon_16.png">
 
-	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/style.css">
-	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/layout_new.css">
-	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/sub_new.css">
-	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/bbs_new.css">
-	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/responsive_new.css">
-	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/pop_all.css">
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-	<script async="" src="//www.google-analytics.com/analytics.js"></script>
-	<script src="./resources/sejongpac/static/commons/js/jquery-3.6.0.min.js"></script>
-	<script src="./resources/sejongpac/static/commons/js/jquery-ui.1.12.1.min.js"></script>
-	<script src="./resources/sejongpac/static/portal/js/slider.js"></script>
-	
-	<!-- 카카오 지도API  -->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2b5f1ae6395582aedbeea93a4779638a"></script>
-	<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2b5f1ae6395582aedbeea93a4779638a&libraries=services,clusterer,drawing"></script>
-	
-
-		
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-	<!-- jQuery library -->
-	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
-	<!-- Popper JS -->
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-	<!-- Latest compiled JavaScript -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-	
-	
-	
+	<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/aos.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/bbs_new.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/fonts.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/layout_new.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/main_new.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/pop_all.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/reset.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/responsive_new.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/sitemap.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/slider.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/style.css">
+<link rel="stylesheet" type="text/css" href="./resources/sejongpac/static/portal/css/sub.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script async="" src="//www.google-analytics.com/analytics.js"></script>
+<script src="./resources/sejongpac/static/commons/js/jquery-3.6.0.min.js"></script>
+<script src="./resources/sejongpac/static/commons/js/jquery-ui.1.12.1.min.js"></script>
+<script src="./resources/sejongpac/static/portal/js/slider.js"></script>
 	
 </head>
-<body class="vsc-initialized hide-focus-ring">
+<body class="vsc-initialized">
 	<section id="wrap">
 		<!-- Header Section Begin -->
 		<jsp:include page="../common/header.jsp" />
@@ -216,11 +203,6 @@
 			</div>
 		
 		</div>
-		
-		
-		
-		
-		
 		
 		<!-- footer Section Begin -->
 		<jsp:include page="../common/footer.jsp" />

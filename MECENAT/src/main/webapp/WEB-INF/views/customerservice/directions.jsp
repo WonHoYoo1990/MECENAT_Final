@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8"> 
+	<meta charset="UTF-8">
 	<title>공연장 위치 | MECENAT |</title>
 	<!-- 인터넷 -->
 	<link rel="apple-touch-icon" sizes="180x180" href="/static/commons/img/favicon_180.png">
@@ -36,26 +36,21 @@
 	<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2b5f1ae6395582aedbeea93a4779638a&libraries=services,clusterer,drawing"></script>
 	
-
-		
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-	<!-- jQuery library -->
-	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
-	<!-- Popper JS -->
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-	<!-- Latest compiled JavaScript -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-	
-	
-	
+	<style>
+	.directions1>div{
+		float:left;
+	}
+	#daumRoughmapContainer1672928582695{
+		padding:30px;
+	}
+	</style>
 	
 </head>
 <body class="vsc-initialized">
 	<section id="wrap">
 		<!-- Header Section Begin -->
 		<jsp:include page="../common/header.jsp" />
-		<!-- Header End 08-->
+		<!-- Header End -->
 		
 		<div id="depth_w" class="">
 			<div class="inner">
@@ -97,15 +92,15 @@
 							</ul>
 						</div>
 					</li>
-					<li>
-						<div class="rel">
-							<a href="#"><span>세종문화회관</span></a>
-							<ul class="depth" style="display: none;">
-								<li><a href="/portal/main/contents.do?menuNo=200082"><span>세종문화회관</span></a></li>
-								<li><a href="/portal/main/contents.do?menuNo=200237"><span>꿈의숲아트센터</span></a></li>
-							</ul>
-						</div>
-					</li>
+<!-- 					<li> -->
+<!-- 						<div class="rel"> -->
+<!-- 							<a href="#"><span>세종문화회관</span></a> -->
+<!-- 							<ul class="depth" style="display: none;"> -->
+<!-- 								<li><a href="/portal/main/contents.do?menuNo=200082"><span>세종문화회관</span></a></li> -->
+<!-- 								<li><a href="/portal/main/contents.do?menuNo=200237"><span>꿈의숲아트센터</span></a></li> -->
+<!-- 							</ul> -->
+<!-- 						</div> -->
+<!-- 					</li> -->
 				</ul>
 			</div>
 		</div>
@@ -137,133 +132,274 @@
 		</script>
 		<div id="cont">
 			<div id="sub_page">
-				<div class="inner">
-					<ul class="tabs-st1 clearfix li2">
-						<a href="#" style="background-color: #0e0e71;" onclick="return false;"><span><b style="font-size: 50px; color: white;">MECENAT</b></span></a>
-					</ul>
-				</div>
-				
-				<div class="sub_page">
-					<article class="location">
-						<style>
-							#sub_page {
-								background: #f1f1f1;
-							}
-							/* .tabs-st1,#loc{display: none;} */
-						</style>
-						<div class="bg" align="center">
-							<div class="tit inner">
-								<div class="t">
-								
-									<ul class="loc_tabs clearfix">
-										<li class="loc1 active" id="loc1" onclick="fn_directions('1');" style="height: 60px;"><span style="font-size:x-large; font-weight: bold; line-height: 60px;">공연장 위치안내</span></li>
-										<li class="loc2" id="loc2" onclick="fn_directions('2');" style="height: 60px;"><span style="font-size:x-large; font-weight: bold; line-height: 60px;">대중교통 이용시</span></li>
-									</ul>
-									
-									<dl>
-										<dt class="color-navy">공연장 <span>위치안내</span></dt>
-										<dd class="add">서울특별시 영등포구 선유동2로 57 이레빌딩(구관) 19F, 20F</dd>
-										<dd class="tel">T: 1544-9970 / F: 02-2163-8560</dd>
-									</dl>
+<!-- 				<div class="inner"> -->
+<!-- 					<ul class="tabs-st1 clearfix li2"> -->
+<!-- 						<li class="active"><a href="/portal/main/contents.do?menuNo=200082"><span>세종문화회관</span></a></li> -->
+<!-- 						<li class=""><a href="/portal/main/contents.do?menuNo=200237"><span>꿈의숲아트센터</span></a></li> -->
+<!-- 					</ul> -->
+<!-- 				</div> -->
+			<script>
+				var loc = $("#depth_w > div > ul > li").length - 1;
+				$("#depth_w .dep1").addClass("li" + loc);
+
+				var len = $(".tabs-st1 li").length;
+				$(".tabs-st1").addClass("li" + len);
+			</script>
+			<div class="sub_page">
+				<article class="location">
+					<style>
+						#sub_page {
+							background: #f1f1f1;
+						}
+						/* .tabs-st1,#loc{display: none;} */
+					</style>
+					<div class="bg">
+						<div class="tit inner">
+							<div class="t">
+							
+								<ul class="loc_tabs clearfix">
+									<li class="loc1 active" id="loc1" onclick="fn_directions('1');" style="height: 60px; padding-left:20px;"><span style="font-size:x-large; font-weight: bold; line-height: 60px;">공연장 위치안내</span></li>
+									<li class="loc2" id="loc2" onclick="fn_directions('2');" style="height: 60px; padding-left:20px;"><span style="font-size:x-large; font-weight: bold; line-height: 60px;">대중교통 이용시</span></li>
+								</ul>
+								<dl>
+									<dt class="color-navy">공연장 <span>위치안내</span></dt>
+									<dd class="add">서울특별시 영등포구 선유동2로 57 이레빌딩(구관) 19F, 20F</dd>
+									<dd class="tel">T: 1544-9970 / F: 02-2163-8560</dd>
+									<dd class="link clearfix">
+										<font color="red"><b><p class="bul-mark2 b">세종로 공영주차장 입차 70분 후부터 공연시간(4시간 한정/유료전시 2시간) 이내에 사전 정산을 하시면 공연 종료 후 출차 시 혼잡으로 인한 서비스 시간을 적용 받으실 수 있습니다. 광화문광장 공사 및 외부 교통 신호등에 의해 차량 정체가 빈번히 발생하오니 가급적 대중교통을 이용해 주시기 바랍니다. 공연장 위치는 하단의 각 공연장을 클릭하여 확인하시기 바랍니다.</p></b></font>
+										<p class="bul-mark2 b">대중교통 정보는 변경될 수 있으니 아래의 포털사이트를 통해 버스정류장 위치 및 운행정보를 반드시 확인하시기 바랍니다.</p>
+										<a href="http://kko.to/jnwEWIvj0" class="daum"><span>다음지도로 바로가기</span></a><a href="http://naver.me/GHme4YOA" class="naver"><span>네이버지도로 바로가기</span></a>
+									</dd>
+								</dl>
+							</div>
+							
+
+							<div class="directions1" >
+								<div id="roadview" style="width:60%;height:650px;">
+								<img src="resources/img/location/d1_west1.png">
 								</div>
 								
-								<!-- 카카오 지도  -->
-								
-								<!-- 카카오 지도 API -->
-								<div class="directions1" >
-									<div id="map" style="width:yy00px;height:400px;"></div> <br>
-									<button type="button" class="btn btn-warning" onclick="location.href = 'http://kko.to/MwZ_5Yf9cK';">다음지도로 바로가기</button>
-									<button type="button" class="btn btn-success" onclick="location.href = 'https://naver.me/F8KbXAzo';">네이버지도로 바로가기</button>
-								</div>
-								
-								
-								<!-- 대중교통 이용 -->
-								<div class="directions2">
-									<table class="contact" cellpadding="0" cellspacing="0" style="display: table;">
-										<tbody>
-											<tr style="border-bottom: 1px solid #E0E0E0;">
-												<th style="border-top:1px solid #222; width: 200px; padding-left: 9%;">주소</th>
-												<td style="border-top:1px solid #222; "> 서울특별시 영등포구 선유동2로 57 이레빌딩(구관) 19F, 20F (T: 1544-9970 / F: 02-2163-8560)</td>
-											</tr>
-											<tr colspan="2" style="border-bottom: 1px solid #E0E0E0;">
-												<th style="width: 200px; padding-left: 9%;">버스</th>
-												<td class="young_bus"> - 선유고등학교/(구)강서세무서 -
-													<div class="young_01">
-														<img src="/mecenat/resources/sejongpac/static/portal/img/customer/sub01_06_busB.jpg" alt="지선">7612  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-														<img src="/mecenat/resources/sejongpac/static/portal/img/customer/sub01_06_busR.jpg" alt="간선">1000 / 1200 / 1300 / 1301 / 1302 / 1400 / 1500 / 1601 / M6628 / M6724
-													</div> - 당산역 -
-													<div class="young_02">
-														<img src="/mecenat/resources/sejongpac/static/portal/img/customer/sub01_06_busB.jpg" alt="지선">602 / 760 / 5620 / 5714 / 6514 / 6623 / 6631
+							</div>
+
+							
+							<div class="directions2">
+								<table class="contact" cellpadding="0" cellspacing="0" style="display: table;">
+									<tbody>
+										<tr style="border-bottom: 1px solid #E0E0E0;">
+											<th style="border-top:1px solid #222; width: 200px; padding-left: 9%;">주소</th>
+											<td style="border-top:1px solid #222; "> 서울특별시 영등포구 선유동2로 57 이레빌딩(구관) 19F, 20F (T: 1544-9970 / F: 02-2163-8560)</td>
+										</tr>
+										<tr colspan="2" style="border-bottom: 1px solid #E0E0E0;">
+											<th style="width: 200px; padding-left: 9%;">버스</th>
+											<td class="young_bus"> - 선유고등학교/(구)강서세무서 -
+												<div class="young_01">
+													<img src="/mecenat/resources/sejongpac/static/portal/img/customer/sub01_06_busB.jpg" alt="지선">7612  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<img src="/mecenat/resources/sejongpac/static/portal/img/customer/sub01_06_busR.jpg" alt="간선">1000 / 1200 / 1300 / 1301 / 1302 / 1400 / 1500 / 1601 / M6628 / M6724
+												</div> - 당산역 -
+												<div class="young_02">
+													<img src="/mecenat/resources/sejongpac/static/portal/img/customer/sub01_06_busB.jpg" alt="지선">602 / 760 / 5620 / 5714 / 6514 / 6623 / 6631
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<th style="border-bottom:1px solid #222; width: 200px; padding-left: 8%;">지하철</th>
+											<td style="border-bottom:1px solid #222">지하철 2, 9호선 당산역 12번 출구 400m</td>
+										</tr>
+										<tr>
+											<td colspan="2" class="contact_map">
+												<div id="young_map" style="position: relative; overflow: hidden; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/bg_tile.png&quot;);">
+													<div style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; touch-action: none; cursor: url(&quot;https://t1.daumcdn.net/mapjsapi/images/cursor/openhand.cur.ico&quot;) 7 5, url(&quot;https://t1.daumcdn.net/mapjsapi/images/cursor/openhand.cur.ico&quot;), default;">
+														<div style="position: absolute;">
+															<div style="position: absolute; z-index: 0; left: 0px; top: 0px;"><img src="https://map1.daumcdn.net/map_2d/2212ejo/L4/991/429.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 11.5px; top: 207px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 128px; height: 128px;"><img src="https://map2.daumcdn.net/map_2d/2212ejo/L4/991/430.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 139.5px; top: 207px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 128px; height: 128px;"><img src="https://map3.daumcdn.net/map_2d/2212ejo/L4/991/431.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 267.5px; top: 207px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 128px; height: 128px;"><img src="https://map0.daumcdn.net/map_2d/2212ejo/L4/991/432.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 395.5px; top: 207px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 128px; height: 128px;"><img src="https://map1.daumcdn.net/map_2d/2212ejo/L4/991/433.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 523.5px; top: 207px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 128px; height: 128px;"><img src="https://map2.daumcdn.net/map_2d/2212ejo/L4/991/434.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 651.5px; top: 207px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 128px; height: 128px;"><img src="https://map1.daumcdn.net/map_2d/2212ejo/L4/992/429.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 11.5px; top: 79px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 128px; height: 128px;"><img src="https://map2.daumcdn.net/map_2d/2212ejo/L4/992/430.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 139.5px; top: 79px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 128px; height: 128px;"><img src="https://map3.daumcdn.net/map_2d/2212ejo/L4/992/431.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 267.5px; top: 79px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 128px; height: 128px;"><img src="https://map0.daumcdn.net/map_2d/2212ejo/L4/992/432.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 395.5px; top: 79px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 128px; height: 128px;"><img src="https://map1.daumcdn.net/map_2d/2212ejo/L4/992/433.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 523.5px; top: 79px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 128px; height: 128px;"><img src="https://map2.daumcdn.net/map_2d/2212ejo/L4/992/434.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 651.5px; top: 79px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 128px; height: 128px;"><img src="https://map1.daumcdn.net/map_2d/2212ejo/L4/993/429.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 11.5px; top: -49px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 128px; height: 128px;"><img src="https://map2.daumcdn.net/map_2d/2212ejo/L4/993/430.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 139.5px; top: -49px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 128px; height: 128px;"><img src="https://map3.daumcdn.net/map_2d/2212ejo/L4/993/431.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 267.5px; top: -49px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 128px; height: 128px;"><img src="https://map0.daumcdn.net/map_2d/2212ejo/L4/993/432.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 395.5px; top: -49px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 128px; height: 128px;"><img src="https://map1.daumcdn.net/map_2d/2212ejo/L4/993/433.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 523.5px; top: -49px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 128px; height: 128px;"><img src="https://map2.daumcdn.net/map_2d/2212ejo/L4/993/434.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 651.5px; top: -49px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 128px; height: 128px;"></div>
+															<div style="position: absolute; z-index: 1; left: 0px; top: 0px;"><img src="https://map2.daumcdn.net/map_2d/2212ejo/L5/494/214.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -116px; top: 463px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2212ejo/L5/494/215.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 140px; top: 463px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2212ejo/L5/494/216.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 396px; top: 463px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map1.daumcdn.net/map_2d/2212ejo/L5/494/217.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 652px; top: 463px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2212ejo/L5/494/218.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 908px; top: 463px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2212ejo/L5/494/219.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 1164px; top: 463px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2212ejo/L5/495/214.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -116px; top: 207px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2212ejo/L5/495/215.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 140px; top: 207px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2212ejo/L5/495/216.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 396px; top: 207px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map1.daumcdn.net/map_2d/2212ejo/L5/495/217.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 652px; top: 207px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2212ejo/L5/495/218.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 908px; top: 207px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2212ejo/L5/495/219.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 1164px; top: 207px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2212ejo/L5/496/214.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -116px; top: -49px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2212ejo/L5/496/215.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 140px; top: -49px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2212ejo/L5/496/216.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 396px; top: -49px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map1.daumcdn.net/map_2d/2212ejo/L5/496/217.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 652px; top: -49px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2212ejo/L5/496/218.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 908px; top: -49px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2212ejo/L5/496/219.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 1164px; top: -49px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"></div>
+															<div style="position: absolute; z-index: 1;"></div>
+															<div style="width: 1130px; height: 500px; position: absolute; z-index: 1;"></div>
+															<div style="position: absolute; z-index: 1;"><svg version="1.1" style="stroke: none; stroke-dashoffset: 0.5; stroke-linejoin: round; fill: none; transform: translateZ(0px); position: absolute; left: -2260px; top: -1000px; width: 5650px; height: 2500px;" viewBox="0 0 5650 2500"><defs></defs></svg></div>
+															<div style="position: absolute; z-index: 1; width: 100%; height: 0px; transform: translateZ(0px);">
+																<div style="position: absolute; margin: -39px 0px 0px -14px; z-index: 0; left: 323px; top: 118px;"><img draggable="false" src="https://t1.daumcdn.net/mapjsapi/images/marker.png" alt="" role="presentation" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(0px, 29px, 42px, 0px); top: 0px; left: 0px; width: 29px; height: 42px;"><img src="https://t1.daumcdn.net/mapjsapi/images/transparent.gif" alt="" role="presentation" draggable="false" usemap="#daum.maps.Marker.Area:2" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; width: 29px; height: 42px;"><map id="daum.maps.Marker.Area:2" name="daum.maps.Marker.Area:2"><area href="javascript:void(0)" alt="" role="presentation" shape="poly" coords="14,39,9,27,4,21,1,16,1,10,4,4,11,0,18,0,25,4,28,10,28,16,25,21,20,27" title="" style="-webkit-tap-highlight-color: transparent;"></map></div>
+															</div>
+														</div>
 													</div>
-												</td>
-											</tr>
-											<tr>
-												<th style="border-bottom:1px solid #222; width: 200px; padding-left: 8%;">지하철</th>
-												<td style="border-bottom:1px solid #222">지하철 2, 9호선 당산역 12번 출구 400m</td>
-												<td>
-													<div class="directions2" >
-														
+													<div style="position: absolute; cursor: default; z-index: 1; margin: 0px 6px; height: 19px; line-height: 14px; left: 0px; bottom: 0px; color: rgb(0, 0, 0);">
+														<div style="color: rgb(0, 0, 0); text-align: center; font-size: 10px; float: left;">
+															<div style="float: left; margin: 2px 3px 0px 4px; height: 6px; transition: width 0.1s ease 0s; border-top: none rgb(0, 0, 0); border-right: 2px solid rgb(0, 0, 0); border-bottom: 2px solid rgb(0, 0, 0); border-left: 2px solid rgb(0, 0, 0); border-image: initial; width: 58px;"></div>
+															<div style="float: left; margin: 0px 4px 0px 0px; font-family: AppleSDGothicNeo-Regular, 돋움, dotum, sans-serif; font-weight: bold; color: rgb(0, 0, 0);">250m</div>
+														</div>
+														<div style="margin: 0px 4px; float: left;"><a target="_blank" href="http://map.kakao.com/" title="Kakao 지도로 보시려면 클릭하세요." style="float: left; width: 32px; height: 10px;"><img src="https://t1.daumcdn.net/mapjsapi/images/m_bi_b.png" alt="Kakao 지도로 이동" style="float: left; width: 32px; height: 10px; border: none;"></a>
+															<div style="font: 11px / 11px Arial, Tahoma, Dotum, sans-serif; float: left;"></div>
+														</div>
 													</div>
-												</td>
-											</tr>
-										</tbody>
-									</table> 
-									<br>
-									<button type="button" class="btn btn-primary" onclick="location.href = 'https://map.kakao.com/link/to/KH정보교육원 당산지원,37.53389636310767,126.89675678549531';">길찾기 바로가기</button>
+													<div style="cursor: auto; position: absolute; z-index: 2; left: 0px; top: 0px;"></div>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								<div id="daumRoughmapContainer1672928582695" class="root_daum_roughmap root_daum_roughmap_landing" align="right" style="width:65%; float: left;">
+									<button type="button" class="btn btn-warning" onclick="location.href = 'http://kko.to/qzDEUTcNW8';" style="font-size:large;"> | 다음지도로 바로가기 | </button>&nbsp;&nbsp;&nbsp;
+									<button type="button" class="btn btn-success" onclick="location.href = 'https://naver.me/xB4ROWbJ';" style="font-size:large;"> 네이버지도로 바로가기 | </button>&nbsp;&nbsp;&nbsp;
+									<button type="button" class="btn btn-primary" onclick="location.href = 'https://map.kakao.com/link/to/꿈의숲아트센터, 37.621458222757965,127.03856107957358 ';" style="font-size:large;">길찾기 바로가기 | </button> <br><br>
 								</div>
 							</div>
+							<script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+			
+							<script charset="UTF-8">
+								new daum.roughmap.Lander({
+									"timestamp" : "1672928582695",
+									"key" : "2dbaa",
+									"mapWidth" : "770",
+									"mapHeight" : "500"
+								}).render();
+							</script>
+								
 						</div>
-						<script>
-							//카카오 지도 API
-							var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-						    mapOption = { 
-						        center: new kakao.maps.LatLng(37.53389636310767,126.89675678549531), // 지도의 중심좌표
-						        level: 2 // 지도의 확대 레벨
-						    };
-	   
-							var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-		
-							// 마커가 표시될 위치입니다 
-							var markerPosition  = new kakao.maps.LatLng(37.53399638410767,126.89675678549531); 
-		
-							// 마커를 생성합니다
-							var marker = new kakao.maps.Marker({
-							    position: markerPosition
-							});
-		
-							// 마커가 지도 위에 표시되도록 설정합니다
-							marker.setMap(map);
-		
-							// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
-							// marker.setMap(null); 
-						</script>
-						
-						<script type="text/javascript">
-							$(()=>{$(".directions2").hide();})
-						
-							function fn_directions(directions) { //위치안내, 대중교통 이용시 버튼 클릭시
+						<div class="cont_w inner">
+						<ul class="tbl-st2">
+							<li class="item">
+								<strong class="t">구분</strong>
+								<div class="cont">
+									<ul class="bul-dot">
+										<li><strong>주차위치 :</strong> 북서울꿈의숲 (공원) 서문 주차장 (꿈의숲아트센터 주차장)</li>
+										<li><strong>주차규모 :</strong> 총 74대 (일반 35대, 장애인 9대, 여성전용 24대, 전기차전용 2대, 경차전용 4대)</li>
+										<li><strong>기본요금 :</strong> 10분당 300원 (2009년 11월 01일부터 적용)</li>
+										<li><strong>특이사항</strong>
+											<ul class="bul-dash">
+												<li>공연 일에는 주차장 이용자가 많으니 가급적 대중교통을 이용해주시기 바랍니다.</li>
+												<li>본 주차장은 차량번호를 자동으로 인식하는 무인주차 시스템 방식으로 주차권을 발행하지 않습니다.</li>
+												<li>꿈의숲아트센터 주차장은 대형버스 주차가 불가합니다.(정문 방문자 주차장 가능합니다.)</li>
+				                                                                <li><font color="red"><b>동문(방문자센터) 주차장 이용시 꿈의숲아트센터 관련 각종 주차할인 적용을 받지 못합니다.</b></font></li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li class="item">
+								<strong class="t">주차할인</strong>
 								
-								var directions = directions;
+								<div class="tbl clearfix">
+									<table>
+										<caption>장소, 할인적용 방법, 할인시간으로 구성된 주차할인 안내 테이블</caption>
+										<thead>
+											<tr>
+												<th scope="col" style="width:33.333333%">장소</th>
+												<th scope="col" style="width:33.333333%">할인적용 방법</th>
+												<th scope="col" style="width:33.333333%">할인시간</th>
+											</tr>
+											<tr>
+												<td>공연장</td>
+												<td>공연관람 할인권 제시</td>
+												<td>1시간 20분 무료</td>
+											</tr>
+											<tr>
+												<td>상상톡톡 미술관</td>
+												<td>미술관관람 할인권 제시</td>
+												<td>1시간 20분 무료</td>
+											</tr>
+										</thead>
+									</table>
 								
-								if (directions == 1) { //공연장 위치안내 클릭시
-									console.log("1")
-									
-									// 관심순 class 제거 및 최신순 class 추가
-									document.getElementById('loc2').classList.remove('active');
-									document.getElementById('loc1').classList.add('active');
-									
-									$(".directions1").show();
-									$(".directions2").hide();
-								} else {
-									// 관심순 class 제거 및 최신순 class 추가
-									document.getElementById('loc1').classList.remove('active');
-									document.getElementById('loc2').classList.add('active');
-
-									$(".directions2").show();
-									$(".directions1").hide();
-								}
+								<div class="cont border">
+									<ul class="bul-dot">
+										<li>
+											<strong>공연관람할인권</strong><br>
+											공연관람 할인권은 꿈의숲아트센터 안내데스크에서 공연티켓에 확인 도장을 받으신 후 수령하실 수 있습니다. (차량당 1개)
+										</li>
+										<li>
+											<strong>수령방법</strong><br>
+											또한 공연 당일 마지막 공연이 끝나고 10분이 지난 후에는 공연관람 할인권을 받으실 수 없으니 공연시작 전에 미리 공연관람 할인권을 수령하시면 더욱 편안한 공연시간이 되실 수 있습니다.
+										</li>
+									</ul>
+								</div>
+								</div>
+							</li>
+							<li class="item">
+								<strong class="t">기타 주차요금 할인  </strong>
+								<div class="cont">
+									<ul class="bul-dot">
+										<li>
+											<strong>장애인 및 국가유공자 <strong class="color-gold">80% 할인</strong></strong><br>
+											차량에 장애인 및 국가유공자 표지를 차량에 부착하고 복지카드, 국가유공자증서를 소지하고 본인이 탑승한 차량에 한하여 주차요금 할인이 적용되며, 그 외에는 주차요금 할인이 적용되지 않습니다.
+										</li>
+										<li>
+											<strong>경차 <strong class="color-gold">50% 할인</strong></strong> <br>
+											경차는 배기량1,000cc 미만으로 길이 3.6m, 너비 1.6m,높이 2.0m 이하인 자동차
+										</li>
+										<li>
+											<strong>승용차 요일제 참여차량 <strong class="color-gold">30% 할인</strong></strong> <br>
+											요일제 전자스티커(RFID)를 부착하고 요일제 참여 차량에 한합니다.
+										</li>
+										<li>
+											<strong>기타</strong>
+											<ul class="bul-dash">
+												<li>기타 주차요금 할인율은 법률 및 조례에 따릅니다.<br> 2개 이상 적용되는 주차요금 감면사유에 해당하는 때에는 그 중 감면율이 높은 하나만 적용합니다.</li>
+												<li>주차장에 관한 자세한 내용은 꿈의숲 아트센터 주차관제실<span class="color-gold">(02. 2289. 5478)</span>로 문의해 주시기 바랍니다.</li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+					<script>
+						//카카오 지도 API
+						var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+					    mapOption = { 
+					        center: new kakao.maps.LatLng(37.53389636310767,126.89675678549531), // 지도의 중심좌표
+					        level: 2 // 지도의 확대 레벨
+					    };
+		
+						var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		
+						// 마커가 표시될 위치입니다 
+						var markerPosition  = new kakao.maps.LatLng(37.53399638410767,126.89675678549531); 
+		
+						// 마커를 생성합니다
+						var marker = new kakao.maps.Marker({
+						    position: markerPosition
+						});
+		
+						// 마커가 지도 위에 표시되도록 설정합니다
+						marker.setMap(map);
+		
+						// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
+						// marker.setMap(null); 
+					</script>
+					
+					<script type="text/javascript">
+						$(function() {
+							$(".directions2").hide();
+						})
+					
+						function fn_directions(directions) { //위치안내, 대중교통 이용시 버튼 클릭시
+							
+							var directions = directions;
+							
+							console.log("directions : " + directions)
+							
+							if (directions == 1) { //공연장 위치안내 클릭시
+								console.log("1")
+								
+								// 관심순 class 제거 및 최신순 class 추가
+								document.getElementById('loc2').classList.remove('active');
+								document.getElementById('loc1').classList.add('active');
+								
+								$(".directions1").show();
+								$(".directions2").hide();
+								
+								
+							} else {
+								console.log("2")
+		
+								// 관심순 class 제거 및 최신순 class 추가
+								document.getElementById('loc1').classList.remove('active');
+								document.getElementById('loc2').classList.add('active');
+		
+								$(".directions2").show();
+								$(".directions1").hide();
 							}
-						</script>
+						}
+					</script>
 					</article>
 				</div>
 			</div>
@@ -272,6 +408,50 @@
 		<!-- footer Section Begin -->
 		<jsp:include page="../common/footer.jsp" />
 		<!-- footer End -->
+		
+		<!--  Google Analytics -->
+		<script>
+			(function(i, s, o, g, r, a, m) {
+				i['GoogleAnalyticsObject'] = r;
+				i[r] = i[r] || function() {
+					(i[r].q = i[r].q || []).push(arguments)
+				}, i[r].l = 1 * new Date();
+				a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+				a.async = 1;
+				a.src = g;
+				m.parentNode.insertBefore(a, m)
+			})(window, document, 'script',
+					'//www.google-analytics.com/analytics.js', 'ga');
+
+			ga('create', 'UA-69200327-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		<script>
+			//반응형 이미지맵 (jquery.rwdImageMaps.js)
+			$(function() {
+				$('img[usemap]').rwdImageMaps();
+				$("#img").width("100%");
+			});
+
+			$("#e2230b85").bind("DOMNodeRemoved", function() {
+				//$("a").append("<style>::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-thumb{background:#ff7c94;border-radius:10px}</style>")
+			})
+		</script>
+		<!-- //세종문화N iframe title 추가 -->
+		<script>
+			$('#sejongPdf iframe').attr('title', '세종 센터 매거진');
+		</script>
+		<script>
+			//ReservationTitle	
+			function ReservationTitlePopWindow() {
+				if (interestLoginChk == true) { //header 에서 정의 로그인 여부	
+					$(".ReservationTitle").attr("title", "새창으로 이동합니다.");
+				}
+			}
+			ReservationTitlePopWindow();
+
+			console.log("196");
+		</script>
 	</section>
 </body>
-</html> 
+</html>

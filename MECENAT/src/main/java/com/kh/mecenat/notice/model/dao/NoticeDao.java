@@ -59,14 +59,20 @@ public class NoticeDao {
 	}
 
 	// 메인페이지 최신뉴스 조회
-	public ArrayList<Notice> latestNewsTicket(SqlSessionTemplate sqlSession, String boardCode) {
+	public ArrayList<Notice> latestNews(SqlSessionTemplate sqlSession, String boardCode) {
 
 		int limit = 1;
 		int offset = 1;
 
 		RowBounds rowBounds = new RowBounds(offset, limit);
 
-		return (ArrayList) sqlSession.selectList("noticeMapper.latestNewsTicket", boardCode, rowBounds);
+		return (ArrayList) sqlSession.selectList("noticeMapper.latestNews", boardCode, rowBounds);
+	}
+
+	// 푸터 페이지 Notice 조회
+	public ArrayList<Notice> footerNotice(SqlSessionTemplate sqlSession) {
+
+		return (ArrayList) sqlSession.selectList("noticeMapper.footerNotice");
 	}
 
 }

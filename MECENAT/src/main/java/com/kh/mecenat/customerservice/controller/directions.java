@@ -13,6 +13,7 @@ public class directions {
 		return "customerservice/directions";
 
 	}
+	
 //	관람예절 페이지 이동
 	@RequestMapping("etiquette.cs")
 	public String etiquette() {

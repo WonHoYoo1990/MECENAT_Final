@@ -1,18 +1,16 @@
 package com.kh.mecenat.member.controller;
 
 import java.io.IOException;
-<<<<<<< HEAD
-=======
+
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
->>>>>>> refs/heads/main
+
 import java.util.ArrayList;
-<<<<<<< HEAD
-=======
+
 import java.util.Date;
 import java.util.Locale;
->>>>>>> refs/heads/main
+
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
@@ -22,11 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-<<<<<<< HEAD
-import org.springframework.mail.javamail.JavaMailSender;
-=======
+
 import org.springframework.mail.javamail.JavaMailSenderImpl;
->>>>>>> refs/heads/main
+
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -45,7 +41,6 @@ import com.kh.mecenat.member.model.service.MemberService;
 import com.kh.mecenat.member.model.vo.Member;
 import com.kh.mecenat.performance.model.vo.Review;
 
-
 @Controller
 public class MemberController {
 
@@ -54,17 +49,11 @@ public class MemberController {
 
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
-	
-<<<<<<< HEAD
 
-	@Autowired
-	private JavaMailSender mailSender;
-
-=======
 	@Autowired
 	private JavaMailSenderImpl mailSender;
-	
->>>>>>> refs/heads/main
+
+
 	// 회원가입 폼으로 이동
 	@RequestMapping("signupForm.me")
 	public String signupForm() {
@@ -80,66 +69,62 @@ public class MemberController {
 	// 회원정보 수정 페이지 이동
 	@RequestMapping("updateMemberForm.me")
 	public String updateMemberForm(HttpSession session, Model model) {
-		
-		Member loginUser = (Member)session.getAttribute("loginUser");
-		
-		//전화번호 - 대로 자르기
+
+		Member loginUser = (Member) session.getAttribute("loginUser");
+
+		// 전화번호 - 대로 자르기
 		String userPhone = loginUser.getUserPhone();
 		String[] arr = userPhone.split("-");
 
-		model.addAttribute("arr", arr); 
-		
-		//생일 - 대로 자르기
+		model.addAttribute("arr", arr);
+
+		// 생일 - 대로 자르기
 		String regbdDate = loginUser.getRegNoDate();
 		String result1 = regbdDate.substring(0, 10);
-		
+
 		String[] arr2 = result1.split("-");
-		
-		model.addAttribute("arr2", arr2); 
-		
+
+		model.addAttribute("arr2", arr2);
+
 		return "member/updateMemberForm";
 	}
-	
-	
+
 	// 회원 정보 수정
 	@RequestMapping("update.me")
-	public String updateMember(Member m,HttpSession session, Model model) {
-			
+	public String updateMember(Member m, HttpSession session, Model model) {
+
 		int result = memberService.updateMember(m);
 		String newMemEncPwd = bCryptPasswordEncoder.encode(m.getUserPwd());
 		m.setUserPwd(newMemEncPwd);
-		
-		
-		if(result>0) {
+
+		if (result > 0) {
 			Member updateMember = memberService.loginMember(m.getUserId());
 			session.setAttribute("loginUser", updateMember);
 			session.setAttribute("alertMsg", "회원 정보 수정이 완료되었습니다.");
-			return "redirect:/index.jsp"; 
-			
-		}else {
-			model.addAttribute("errorMsg","회원 정보 수정 실패");
+			return "redirect:/index.jsp";
+
+		} else {
+			model.addAttribute("errorMsg", "회원 정보 수정 실패");
 			return "common/errorPage";
 		}
 	}
-	
-	
+
 	// 회원가입 등록
 	@RequestMapping("signup.me")
 	public ModelAndView signup(Member m, ModelAndView mv, HttpSession session) {
-		
-		
+
 		String encPwd = bCryptPasswordEncoder.encode(m.getUserPwd());
 
 		m.setUserPwd(encPwd);
-		
+
 		int result = memberService.signup(m);
 
 		if (result > 0) {
 			Member loginUser = memberService.loginMember(m.getUserId());
-			
+
 			session.setAttribute("loginUser", loginUser);
 			session.setAttribute("alertMsg", "회원가입을 축하합니다!");
-			
+
 			mv.setViewName("redirect:/");
 		} else {
 			mv.addObject("errorMsg", "회원 가입 실패하셨습니다. 다시 시도해 주세요!").setViewName("common/errorPage");
@@ -155,11 +140,9 @@ public class MemberController {
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		String userId = loginUser.getUserId();
 		String loginUserPwd = loginUser.getUserPwd();
-		
 
 		if (bCryptPasswordEncoder.matches(userPwd, loginUserPwd)) { // 입력한 비밀번호와 암호화 비밀번호가 일치할 경우
 			int result = memberService.deleteMember(userId);
-			System.out.println("result : " + result);
 
 			if (result > 0) {
 				session.removeAttribute("loginUser");
@@ -182,10 +165,9 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping("checkDupId.me")
 	public String checkDupId(String checkId) {
-		
 
 		int count = memberService.checkDupId(checkId);
-		
+
 		String str = "";
 
 		if (count > 0) {
@@ -225,8 +207,7 @@ public class MemberController {
 
 	// 로그인
 	@PostMapping("login.me")
-	public String loginMember(Member m, HttpSession session, HttpServletResponse response, ModelAndView mv,
-			HttpServletRequest request) {
+	public String loginMember(Member m, HttpSession session, HttpServletResponse response, ModelAndView mv, HttpServletRequest request) {
 
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
@@ -277,115 +258,70 @@ public class MemberController {
 		session.setAttribute("alertMsg", "로그아웃 되었습니다.");
 		return "redirect:/";
 	}
-	
-	// 아이디 찾기 페이지로 이동
-		@RequestMapping("findIdForm.me")
-		public String searchIdView() {
-			return "member/search_Id";
-		}
-		
-		// 아이디 찾기 실행
-		@RequestMapping(value = "searchResultId.me")
-		public String search_result_id(HttpServletRequest request, Model model,
-			    @RequestParam(required = true, value = "userName") String userName, 
-			    @RequestParam(required = true, value = "userPhone") String userPhone,
-			    Member m) {
-			
-			try {
-			    
-			    m.setUserName(userName);
-			    m.setUserPhone(userPhone);
-			    Member memberSearch = memberService.memberIdSearch(m);
-			    
-			    model.addAttribute("m", memberSearch);
-			    
-			    
-			} catch (Exception e) {
-			    model.addAttribute("msg", "오류가 발생되었습니다.");
-			}
-			return "member/search_result_Id";
-			
-			
-		}
-		
-		//비밀번호 찾기 페이지로 이동
-		@RequestMapping("findPwdForm.me")
-		public String searchPwdView() {
-			return "member/search_Pwd";
-		}
-		
-		//비밀번호 찾기 실행
-		@RequestMapping(value = "findPwd.me")
-		public ModelAndView search_Pwd (HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException {
-			
-			String chkEmail = (String)request.getParameter("chkEmail");
-			
-			session.setAttribute("chkEmail", chkEmail);
-			System.out.println("");
-			String name = (String)request.getParameter("name2");
 
-<<<<<<< HEAD
-	
 	// 아이디 찾기 페이지로 이동
 	@RequestMapping("findIdForm.me")
 	public String searchIdView() {
 		return "member/search_Id";
 	}
-	
+
 	// 아이디 찾기 실행
 	@RequestMapping(value = "searchResultId.me")
-	public String search_result_id(HttpServletRequest request, Model model,
-		    @RequestParam(required = true, value = "userName") String userName, 
-		    @RequestParam(required = true, value = "userPhone") String userPhone,
-		    Member m) {
-		
+	public String search_result_id(HttpServletRequest request, Model model, @RequestParam(required = true, value = "userName") String userName,
+			@RequestParam(required = true, value = "userPhone") String userPhone, Member m) {
+
 		try {
-		    
-		    m.setUserName(userName);
-		    m.setUserPhone(userPhone);
-		    Member memberSearch = memberService.memberIdSearch(m);
-		    
-		    model.addAttribute("m", memberSearch);
-		 
-		    
+			m.setUserName(userName);
+			m.setUserPhone(userPhone);
+			Member memberSearch = memberService.memberIdSearch(m);
+
+			model.addAttribute("m", memberSearch);
 		} catch (Exception e) {
-		    System.out.println(e.toString());
-		    model.addAttribute("msg", "오류가 발생되었습니다.");
+			model.addAttribute("msg", "오류가 발생되었습니다.");
 		}
+
 		return "member/search_result_Id";
-		
-		
 	}
-	
-	
+
 	// 비밀번호 찾기 페이지로 이동
-	@RequestMapping("findPasswordForm.me")
+	@RequestMapping("findPwdForm.me")
 	public String searchPwdView() {
-		return "member/search_pwd";
-=======
-			Member vo = memberService.selectMember(chkEmail);
-				
-			if(vo != null) {
+		return "member/search_Pwd";
+	}
+
+	// 비밀번호 찾기 실행
+	@RequestMapping(value = "findPwd.me")
+	public ModelAndView search_Pwd(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+		String chkEmail = (String) request.getParameter("chkEmail");
+
+		session.setAttribute("chkEmail", chkEmail);
+
+		String name = (String) request.getParameter("name2");
+
+		Member vo = memberService.selectMember(chkEmail);
+
+		if (vo != null) {
 			Random r = new Random();
 			int num = r.nextInt(999999); // 랜덤난수설정
-			
+
 			if (vo.getUserName().equals(name)) {
 				session.setAttribute("email", vo.getEmail());
 
-				String setfrom = "sjs@naver.com"; // naver 
-				String tomail = chkEmail; //받는사람
-				String title = "[MECENAT] 비밀번호변경 인증 이메일 입니다"; 
+				String setfrom = "sjs@naver.com"; // naver
+				String tomail = chkEmail; // 받는사람
+				String title = "[MECENAT] 비밀번호변경 인증 이메일 입니다";
 				String content = System.getProperty("line.separator") + "안녕하세요 회원님" + System.getProperty("line.separator")
-						+ "MECENAT 비밀번호찾기(변경) 인증번호는 '" + num + "'입니다." + System.getProperty("line.separator"); // 
+						+ "MECENAT 비밀번호찾기(변경) 인증번호는 '" + num + "'입니다." + System.getProperty("line.separator"); //
 
 				try {
 					MimeMessage message = mailSender.createMimeMessage();
 					MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "utf-8");
 
-					messageHelper.setFrom(setfrom); 
-					messageHelper.setTo(tomail); 
+					messageHelper.setFrom(setfrom);
+					messageHelper.setTo(tomail);
 					messageHelper.setSubject(title);
-					messageHelper.setText(content); 
+					messageHelper.setText(content);
 
 					mailSender.send(message);
 				} catch (Exception e) {
@@ -395,271 +331,130 @@ public class MemberController {
 				mv.setViewName("member/search_Pwd_Email");
 				mv.addObject("num", num);
 				return mv;
-			}else {
+			} else {
 				ModelAndView mv = new ModelAndView();
 				mv.setViewName("member/search_Pwd");
 				return mv;
 			}
-			}else {
-				ModelAndView mv = new ModelAndView();
-				mv.setViewName("member/search_Pwd");
-				return mv;
-			}
-
+		} else {
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("member/search_Pwd");
+			return mv;
 		}
-		
-		//비밀번호 이메일 인증번호 확인
-		@RequestMapping(value = "search_Pwd_Email.me", method = RequestMethod.POST)
-		public String search_Pwd_Email(@RequestParam(value="email_injeung") String email_injeung,
-					@RequestParam(value = "num") String num, HttpSession session) throws IOException{
-				
-				if(email_injeung.equals(num)) {
-					session.setAttribute("alertMsg", "비밀번호 인증이 완료되었습니다.");
-					return "member/search_Pwd_New";
-					
-				}
-				else {
-					return "member/search_Pwd"; 
-				}
-		} 
-		
-		//비밀번호 업데이트
-		@RequestMapping(value = "search_Pwd_New.me", method = RequestMethod.POST)
-		public String search_Pwd_New(HttpSession session, String newPwd) throws IOException{
-			
-			Member vo = new Member();
-			String newEncPwd = bCryptPasswordEncoder.encode(newPwd);
-			vo.setUserPwd(newEncPwd);
 
-			String chkEmail = (String)session.getAttribute("chkEmail");
-			vo.setEmail(chkEmail);
-			
-			
-			int result = memberService.search_Pwd_New(vo);
-			
-			if(result == 1) {
-				session.removeAttribute("chkEmail");
-				session.setAttribute("alertMsg", "비밀번호 변경이 완료되었습니다.");
-				return "member/login"; 
-			}
-			else {
-				return "member/search_Pwd_New";
-			}
->>>>>>> refs/heads/main
 	}
-		///d
-		
-//		//관리자 회원 리스트
-//		@RequestMapping("memberManage.form")
-//		public String memberListForm(@RequestParam(value="currentPage",defaultValue="1") int currentPage,Model model) {
-//			
-//			ArrayList<Member> mList = memberService.selectAllMemberList();
-//			
-//			System.out.println(mList);
-//			
-//			model.addAttribute("mList", mList);
-//			
-//			return "member/manageAllMember";
-//		}
-		
-		//관리자 회원 리스트
-		@RequestMapping("memberManage.form")
-		public String memberListForm(@RequestParam(value="currentPage",defaultValue="1") int currentPage,Model model) {
-					
-			
-			int listCount = memberService.selectListCount();
-			int pageLimit = 10;
-			int boardLimit = 10;
-			
-			PageInfo pi = Pagination.getPageinfo(listCount, currentPage, pageLimit, boardLimit);
 
-<<<<<<< HEAD
-	// 비밀번호 찾기 실행
-	@PostMapping(value= "searchPwd.me")
-	public ModelAndView searchPwd(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException  {
-=======
-			ArrayList<Member> mList = memberService.selectAllMemberList(pi);
-					
-			System.out.println(mList);
-					
-			model.addAttribute("mList", mList);
-			model.addAttribute("pi", pi);
-					
-		    return "member/manageAllMember";
-		}
-		
-		//강퇴시켜버리기
-		@RequestMapping("delete.user")
-		public ModelAndView kickMember(String userId, HttpSession session, ModelAndView mv) {
-			
-			int result = memberService.deleteMember(userId);
->>>>>>> refs/heads/main
+	// 비밀번호 이메일 인증번호 확인
+	@RequestMapping(value = "search_Pwd_Email.me", method = RequestMethod.POST)
+	public String search_Pwd_Email(@RequestParam(value = "email_injeung") String email_injeung, @RequestParam(value = "num") String num,
+			HttpSession session) throws IOException {
 
-<<<<<<< HEAD
-		String email = (String)request.getParameter("userId");
-		String name = (String)request.getParameter("userName");
-		
-		Member loginUser = memberService.selectMember(email);
-=======
-			if(result > 0) {
-//				session.setAttribute("alertMsg", "강퇴 시켜버렸다~");
-				mv.setViewName("redirect:/memberManage.form");
-			} else {
-//				session.setAttribute("alertMsg", "강퇴 실패ㅠㅠ");
-				mv.addObject("errorMsg", "탈퇴 처리 실패").setViewName("common/errorPage");
-			}
-			
-			return mv;	
-		}
-		//블랙
-		@RequestMapping("black.user")
-		public ModelAndView blackMember(String userId, ModelAndView mv) {
-			
-			int result = memberService.blackMember(userId);
-			
-			if(result > 0) {
-				mv.setViewName("redirect:/memberManage.form");
-			} else {
-				mv.addObject("errorMsg", "블랙 처리 실패").setViewName("common/errorPage");
-			}
-			
-			return mv;
-		}
-		
-		//블랙풀기
-		@RequestMapping("blackc.user")
-		public ModelAndView blackCancelMember(String userId, ModelAndView mv) {
-			
-			int result = memberService.blackCancelMember(userId);
-			
-			if(result > 0) {
-				mv.setViewName("redirect:/memberManage.form");
-			} else {
-				mv.addObject("errorMsg", "블랙 해제 실패").setViewName("common/errorPage");
-			}
-			
-			return mv;
-		}
-		
->>>>>>> refs/heads/main
+		if (email_injeung.equals(num)) {
+			session.setAttribute("alertMsg", "비밀번호 인증이 완료되었습니다.");
+			return "member/search_Pwd_New";
 
-<<<<<<< HEAD
-		if(loginUser != null) {
-		Random r = new Random();
-		int num = r.nextInt(999999); // 이메일 인증 번호인 랜덤난수설정
-		
-		if (loginUser.getUserName().equals(name)) {
-			session.setAttribute("email", loginUser.getEmail());
-			
-			
-			String setfrom = "sjs8739@naver.com"; // naver 보내는사람
-			String tomail = email; //받는사람
-			String title = "[MECENAT] 비밀번호변경 인증 이메일 입니다"; 
-			String content = System.getProperty("line.separator") + "안녕하세요 회원님" + System.getProperty("line.separator")
-			+ "MECENAT 비밀번호찾기(변경) 인증번호는 " + num + " 입니다." + System.getProperty("line.separator");
-		
-			
-			try {
-			MimeMessage message = mailSender.createMimeMessage();
-			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "utf-8");
-			
-			messageHelper.setFrom(setfrom); 
-			messageHelper.setTo(tomail); 
-			messageHelper.setSubject(title);
-			messageHelper.setText(content); 
-			
-			mailSender.send(message);
-			} catch (Exception e) {
-				System.out.println(e.getMessage());
-			}
-				ModelAndView mv = new ModelAndView();
-				mv.setViewName("member/numCheck");
-				mv.addObject("num", num);
-				return mv;
-			
-			}else {
-				ModelAndView mv = new ModelAndView();
-				mv.setViewName("member/search_pwd");
-				return mv;
-			}
-			}else {
-				ModelAndView mv = new ModelAndView();
-				mv.setViewName("member/search_pwd");
-				return mv;
-			}
+		} else {
+			return "member/search_Pwd";
+		}
+	}
 
-		
-		
-=======
-		@RequestMapping("kk.kk")
-		public ModelAndView ddd(String userId, ModelAndView mv) {
-			Member m = memberService.selectm(userId);
-			ArrayList<Review>list = memberService.selectReviewList(userId);
-			
-			mv.addObject("m", m).setViewName("member/ma");
-			mv.addObject("list", list).setViewName("member/ma");
-			
-			System.out.println(list);
-			
-			return mv;
->>>>>>> refs/heads/main
-		}
-		
+	// 비밀번호 업데이트
+	@RequestMapping(value = "search_Pwd_New.me", method = RequestMethod.POST)
+	public String search_Pwd_New(HttpSession session, String newPwd) throws IOException {
 
-<<<<<<< HEAD
-	//비밀번호 찾기 인증번호 확인
-	@RequestMapping(value="numCheck.me", method = RequestMethod.POST)
-	public String numCheck(@RequestParam(value="email_injeung") String email_injeung,
-			@RequestParam(value = "num") String num) throws IOException{
-		
-		if(email_injeung.equals(num)) {
-			return "member/pw_new";
-		}
-		else {
-			return "member/search_pwd";
-		}
-} 
-=======
->>>>>>> refs/heads/main
-	
-<<<<<<< HEAD
-	//비밀번호 업데이트
-	@RequestMapping(value = "/pw_new.me", method = RequestMethod.POST)
-	public String pw_new(Member loginUser, HttpSession session) throws IOException{
-		int result = memberService.pwUpdate_M(loginUser);
-		if(result == 1) {
+		Member vo = new Member();
+		String newEncPwd = bCryptPasswordEncoder.encode(newPwd);
+		vo.setUserPwd(newEncPwd);
+
+		String chkEmail = (String) session.getAttribute("chkEmail");
+		vo.setEmail(chkEmail);
+
+		int result = memberService.search_Pwd_New(vo);
+
+		if (result == 1) {
+			session.removeAttribute("chkEmail");
+			session.setAttribute("alertMsg", "비밀번호 변경이 완료되었습니다.");
 			return "member/login";
+		} else {
+			return "member/search_Pwd_New";
 		}
-		else {
-			System.out.println("pw_update"+ result);
-			return "member/pw_new";
-		}
-}
-	
-	
-	@RequestMapping("memberDel.manager")
-	public String managerMemberList(Model model) {
-		
-		ArrayList<Member> mList = memberService.selectAllMemberList();
-		
-		System.out.println(mList);
-		
+	}
+
+	// 관리자 회원 리스트
+	@RequestMapping("memberManage.form")
+	public String memberListForm(@RequestParam(value = "currentPage", defaultValue = "1") int currentPage, Model model) {
+
+		int listCount = memberService.selectListCount();
+		int pageLimit = 10;
+		int boardLimit = 10;
+
+		PageInfo pi = Pagination.getPageinfo(listCount, currentPage, pageLimit, boardLimit);
+
+		ArrayList<Member> mList = memberService.selectAllMemberList(pi);
+
 		model.addAttribute("mList", mList);
-		
-		return "member/managerMemberDelete";
-	}
-	
-	@RequestMapping("deleteMem.manager")
-	public void managerMemberDelete() {
-		System.out.println("ㅇㅇ");
-		
-	}
-	
-	
+		model.addAttribute("pi", pi);
 
-	// test 05!!
+		return "member/manageAllMember";
+	}
 
-	// test 06 !!
-=======
->>>>>>> refs/heads/main
+	// 강퇴시켜버리기
+	@RequestMapping("delete.user")
+	public ModelAndView kickMember(String userId, HttpSession session, ModelAndView mv) {
+
+		int result = memberService.deleteMember(userId);
+
+		if (result > 0) {
+
+//				session.setAttribute("alertMsg", "강퇴 시켜버렸다~");
+			mv.setViewName("redirect:/memberManage.form");
+		} else {
+//				session.setAttribute("alertMsg", "강퇴 실패ㅠㅠ");
+			mv.addObject("errorMsg", "탈퇴 처리 실패").setViewName("common/errorPage");
+		}
+
+		return mv;
+	}
+
+	// 블랙
+	@RequestMapping("black.user")
+	public ModelAndView blackMember(String userId, ModelAndView mv) {
+
+		int result = memberService.blackMember(userId);
+
+		if (result > 0) {
+			mv.setViewName("redirect:/memberManage.form");
+		} else {
+			mv.addObject("errorMsg", "블랙 처리 실패").setViewName("common/errorPage");
+		}
+    
+		return mv;
+	}
+
+	// 블랙풀기
+	@RequestMapping("blackc.user")
+	public ModelAndView blackCancelMember(String userId, ModelAndView mv) {
+
+		int result = memberService.blackCancelMember(userId);
+
+		if (result > 0) {
+			mv.setViewName("redirect:/memberManage.form");
+		} else {
+			mv.addObject("errorMsg", "블랙 해제 실패").setViewName("common/errorPage");
+		}
+
+		return mv;
+	}
+  
+	@RequestMapping("kk.kk")
+	public ModelAndView ddd(String userId, ModelAndView mv) {
+		Member m = memberService.selectm(userId);
+		ArrayList<Review> list = memberService.selectReviewList(userId);
+
+		mv.addObject("m", m).setViewName("member/ma");
+		mv.addObject("list", list).setViewName("member/ma");
+
+		return mv;
+	}
+
 }
